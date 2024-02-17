@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "arcanearmory",
+	"version": "${version}",
+	"name": "Arcane Armory",
+	"description": "Unleash the magic within 'Arcane Armory' and forge legendary weapons and armor from mythical materials to conquer the Minecraft realms in unparalleled style!",
+	"authors": [
+		"iamkaf"
+	],
+	"contact": {
+		"homepage": "https://github.com/iamkaf",
+		"sources": "https://github.com/iamkaf/arcanearmory"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/arcanearmory/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.iamkaf.arcanearmory.ArcaneArmory"
+		],
+		"client": [
+			"com.iamkaf.arcanearmory.ArcaneArmoryClient"
+		],
+		"fabric-datagen": [
+          "com.iamkaf.arcanearmory.ArcaneArmoryDataGenerator"
+		]
+	},
+	"mixins": [
+      "arcanearmory.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.6",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

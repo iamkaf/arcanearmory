@@ -1,0 +1,76 @@
+{
+  "item.arcanearmory.special_chocolate_cookie": "Special Chocolate Cookie",
+
+
+  "item.arcanearmory.template": "Template",
+  "tooltip.arcanearmory.material.template.ingot": "This is the Template material.",
+  "block.arcanearmory.template_block": "Template Block",
+  "block.arcanearmory.template_ore": "Template Ore",
+  "item.arcanearmory.template_helmet": "Template Helmet",
+  "item.arcanearmory.template_chestplate": "Template Chestplate",
+  "item.arcanearmory.template_leggings": "Template Leggings",
+  "item.arcanearmory.template_boots": "Template Boots",
+  "item.arcanearmory.template_shield": "Template Shield",
+  "item.arcanearmory.template_sword": "Template Sword",
+  "item.arcanearmory.template_shovel": "Template Shovel",
+  "item.arcanearmory.template_pickaxe": "Template Pickaxe",
+  "item.arcanearmory.template_axe": "Template Axe",
+  "item.arcanearmory.template_hoe": "Template Hoe",
+  "item.arcanearmory.template_bow": "Template Bow",
+
+  "item.arcanearmory.coolpper": "Coolpper",
+  "tooltip.arcanearmory.material.coolpper.ingot": "This is the Coolpper material.",
+  "block.arcanearmory.coolpper_block": "Coolpper Block",
+  "block.arcanearmory.coolpper_ore": "Coolpper Ore",
+  "item.arcanearmory.coolpper_helmet": "Coolpper Helmet",
+  "item.arcanearmory.coolpper_chestplate": "Coolpper Chestplate",
+  "item.arcanearmory.coolpper_leggings": "Coolpper Leggings",
+  "item.arcanearmory.coolpper_boots": "Coolpper Boots",
+  "item.arcanearmory.coolpper_shield": "Coolpper Shield",
+  "item.arcanearmory.coolpper_sword": "Coolpper Sword",
+  "item.arcanearmory.coolpper_shovel": "Coolpper Shovel",
+  "item.arcanearmory.coolpper_pickaxe": "Coolpper Pickaxe",
+  "item.arcanearmory.coolpper_axe": "Coolpper Axe",
+  "item.arcanearmory.coolpper_hoe": "Coolpper Hoe",
+  "item.arcanearmory.coolpper_bow": "Coolpper Bow",
+
+
+  "item.arcanearmory.ruby": "Ruby",
+  "tooltip.arcanearmory.material.ruby.ingot": "This is the Ruby material.",
+  "block.arcanearmory.ruby_block": "Ruby Block",
+  "block.arcanearmory.ruby_ore": "Ruby Ore",
+  "item.arcanearmory.ruby_helmet": "Ruby Helmet",
+  "item.arcanearmory.ruby_chestplate": "Ruby Chestplate",
+  "item.arcanearmory.ruby_leggings": "Ruby Leggings",
+  "item.arcanearmory.ruby_boots": "Ruby Boots",
+  "item.arcanearmory.ruby_shield": "Ruby Shield",
+  "item.arcanearmory.ruby_sword": "Ruby Sword",
+  "item.arcanearmory.ruby_shovel": "Ruby Shovel",
+  "item.arcanearmory.ruby_pickaxe": "Ruby Pickaxe",
+  "item.arcanearmory.ruby_axe": "Ruby Axe",
+  "item.arcanearmory.ruby_hoe": "Ruby Hoe",
+  "item.arcanearmory.ruby_bow": "Ruby Bow",
+
+  "item.arcanearmory.titanium": "Titanium",
+  "tooltip.arcanearmory.material.titanium.ingot": "This is the Titanium material.",
+  "block.arcanearmory.titanium_block": "Titanium Block",
+  "block.arcanearmory.titanium_ore": "Titanium Ore",
+  "item.arcanearmory.titanium_helmet": "Titanium Helmet",
+  "item.arcanearmory.titanium_chestplate": "Titanium Chestplate",
+  "item.arcanearmory.titanium_leggings": "Titanium Leggings",
+  "item.arcanearmory.titanium_boots": "Titanium Boots",
+  "item.arcanearmory.titanium_shield": "Titanium Shield",
+  "item.arcanearmory.titanium_sword": "Titanium Sword",
+  "item.arcanearmory.titanium_shovel": "Titanium Shovel",
+  "item.arcanearmory.titanium_pickaxe": "Titanium Pickaxe",
+  "item.arcanearmory.titanium_axe": "Titanium Axe",
+  "item.arcanearmory.titanium_hoe": "Titanium Hoe",
+  "item.arcanearmory.titanium_bow": "Titanium Bow",
+
+
+
+
+
+
+  "itemgroup.arcanearmory": "Arcane Armory"
+}

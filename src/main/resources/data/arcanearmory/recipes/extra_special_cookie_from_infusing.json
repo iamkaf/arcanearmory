@@ -1,0 +1,11 @@
+{
+  "type": "kafvalentine:lovey_dovey_infusing",
+  "ingredients": [
+    {
+      "item": "kafvalentine:special_chocolate_cookie"
+    }
+  ],
+  "output": {
+    "item": "kafvalentine:extra_special_chocolate_cookie"
+  }
+}
