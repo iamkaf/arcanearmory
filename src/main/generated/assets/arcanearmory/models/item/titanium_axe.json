@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "arcanearmory:item/titanium_axe"
+    "layer0": "arcanearmory:item/titanium_axe",
+    "layer1": "arcanearmory:item/titanium_axe_overlay"
   }
 }

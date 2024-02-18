@@ -38,3 +38,7 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+node_modules
+scripts/texture-generator/generated/**/*.json
+scripts/texture-generator/generated/**/*.png

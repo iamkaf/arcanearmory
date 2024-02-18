@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "arcanearmory:item/ruby_sword"
+    "layer0": "arcanearmory:item/ruby_sword",
+    "layer1": "arcanearmory:item/ruby_sword_overlay"
   }
 }

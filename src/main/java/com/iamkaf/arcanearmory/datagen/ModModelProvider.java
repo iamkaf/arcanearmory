@@ -4,8 +4,7 @@ package com.iamkaf.arcanearmory.datagen;
 import com.iamkaf.arcanearmory.block.ModBlocks;
 import com.iamkaf.arcanearmory.block.custom.CottonCandyCropBlock;
 import com.iamkaf.arcanearmory.item.ModItems;
-import com.iamkaf.arcanearmory.material.AAMaterial;
-import com.iamkaf.arcanearmory.material.ModMaterials;
+import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -35,12 +34,14 @@ public class ModModelProvider extends FabricModelProvider {
         );
 
 //        blockStateModelGenerator.registerNorthDefaultHorizontalRotation(ModBlocks.LOVEY_DOVEY_INFUSER);
+
+        AAMaterialDatagen.generateModels(blockStateModelGenerator);
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.SPECIAL_CHOCOLATE_COOKIE, Models.GENERATED);
 
-        AAMaterial.generateItemModels(itemModelGenerator);
+        AAMaterialDatagen.generateModels(itemModelGenerator);
     }
 }

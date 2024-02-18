@@ -63,6 +63,7 @@
     }
   ],
   "textures": {
-    "layer0": "arcanearmory:item/coolpper_chestplate"
+    "layer0": "arcanearmory:item/coolpper_chestplate",
+    "layer1": "arcanearmory:item/coolpper_chestplate_overlay"
   }
 }

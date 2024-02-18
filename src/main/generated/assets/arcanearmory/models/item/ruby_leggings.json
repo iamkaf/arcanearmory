@@ -63,6 +63,7 @@
     }
   ],
   "textures": {
-    "layer0": "arcanearmory:item/ruby_leggings"
+    "layer0": "arcanearmory:item/ruby_leggings",
+    "layer1": "arcanearmory:item/ruby_leggings_overlay"
   }
 }

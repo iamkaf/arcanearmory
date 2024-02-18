@@ -1,0 +1,46 @@
+{
+  "materials": [
+    {
+      "name": "ruby",
+      "type": "gem",
+      "overrides": [
+        {
+          "item_type": "ingot",
+          "variant_texture": "diamond_gem"
+        }
+      ],
+      "hue_shift": [
+        {
+          "item_type": "ingot",
+          "amount": 0,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "titanium",
+      "type": "ingot",
+      "hue_shift": [
+        {
+          "item_type": "all",
+          "amount": -129,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "coolpper",
+      "type": "ingot",
+      "hue_shift": [
+        {
+          "item_type": "all",
+          "amount": 28,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ]
+    }
+  ]
+}

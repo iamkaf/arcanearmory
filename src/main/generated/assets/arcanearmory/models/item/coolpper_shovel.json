@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "arcanearmory:item/coolpper_shovel"
+    "layer0": "arcanearmory:item/coolpper_shovel",
+    "layer1": "arcanearmory:item/coolpper_shovel_overlay"
   }
 }

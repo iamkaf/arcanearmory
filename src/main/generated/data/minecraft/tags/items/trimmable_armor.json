@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "arcanearmory:coolpper_helmet",
+    "arcanearmory:coolpper_chestplate",
+    "arcanearmory:coolpper_leggings",
+    "arcanearmory:coolpper_boots",
+    "arcanearmory:ruby_helmet",
+    "arcanearmory:ruby_chestplate",
+    "arcanearmory:ruby_leggings",
+    "arcanearmory:ruby_boots",
+    "arcanearmory:titanium_helmet",
+    "arcanearmory:titanium_chestplate",
+    "arcanearmory:titanium_leggings",
+    "arcanearmory:titanium_boots"
+  ]
+}

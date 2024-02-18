@@ -1,0 +1,22 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generate_textures.js",
+  "scripts": {
+    "start": "npm run clean && ts-node --transpile-only ./texture-generator",
+    "clena": "rimraf ./texture-generator/generated/resources",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mkdirp": "^3.0.1",
+    "sharp": "^0.33.2",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  }
+}

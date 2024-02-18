@@ -1,8 +1,10 @@
 package com.iamkaf.arcanearmory.datagen;
 
+import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -13,8 +15,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-//        getOrCreateTagBuilder(ModTags.Items.SPECIAL_COOKIE)
-//                .add(ModItems.SPECIAL_CHOCOLATE_COOKIE)
-//                .add(ModItems.EXTRA_SPECIAL_CHOCOLATE_COOKIE);
+        var builder = getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR);
+        AAMaterialDatagen.tagTrimmableArmors(builder);
     }
 }

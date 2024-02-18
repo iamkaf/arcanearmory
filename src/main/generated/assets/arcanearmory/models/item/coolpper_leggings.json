@@ -63,6 +63,7 @@
     }
   ],
   "textures": {
-    "layer0": "arcanearmory:item/coolpper_leggings"
+    "layer0": "arcanearmory:item/coolpper_leggings",
+    "layer1": "arcanearmory:item/coolpper_leggings_overlay"
   }
 }

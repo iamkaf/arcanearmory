@@ -3,7 +3,7 @@
 
 
   "item.arcanearmory.template": "Template",
-  "tooltip.arcanearmory.material.template.ingot": "This is the Template material.",
+  "tooltip.arcanearmory.material.template.name": "This is the Template material.",
   "block.arcanearmory.template_block": "Template Block",
   "block.arcanearmory.template_ore": "Template Ore",
   "item.arcanearmory.template_helmet": "Template Helmet",
@@ -19,7 +19,7 @@
   "item.arcanearmory.template_bow": "Template Bow",
 
   "item.arcanearmory.coolpper": "Coolpper",
-  "tooltip.arcanearmory.material.coolpper.ingot": "This is the Coolpper material.",
+  "tooltip.arcanearmory.material.coolpper.name": "This is the Coolpper material.",
   "block.arcanearmory.coolpper_block": "Coolpper Block",
   "block.arcanearmory.coolpper_ore": "Coolpper Ore",
   "item.arcanearmory.coolpper_helmet": "Coolpper Helmet",
@@ -36,7 +36,7 @@
 
 
   "item.arcanearmory.ruby": "Ruby",
-  "tooltip.arcanearmory.material.ruby.ingot": "This is the Ruby material.",
+  "tooltip.arcanearmory.material.ruby.name": "This is the Ruby material.",
   "block.arcanearmory.ruby_block": "Ruby Block",
   "block.arcanearmory.ruby_ore": "Ruby Ore",
   "item.arcanearmory.ruby_helmet": "Ruby Helmet",
@@ -52,7 +52,7 @@
   "item.arcanearmory.ruby_bow": "Ruby Bow",
 
   "item.arcanearmory.titanium": "Titanium",
-  "tooltip.arcanearmory.material.titanium.ingot": "This is the Titanium material.",
+  "tooltip.arcanearmory.material.titanium.name": "This is the Titanium material.",
   "block.arcanearmory.titanium_block": "Titanium Block",
   "block.arcanearmory.titanium_ore": "Titanium Ore",
   "item.arcanearmory.titanium_helmet": "Titanium Helmet",
