@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import { HueShift, ItemType, Material, MaterialDatabase } from './types';
+import { Tint, ItemType, Material, MaterialDatabase, Modulate } from './types';
 import { ITEM_TYPES, ARMOR_ITEM_TEXTURE_SIZE } from './constants';
 import { ensureDirExists } from './file-operations';
 import { getTemplateTexturePath, getOutFilePath, getOverlayTemplateTexturePath } from './paths';
@@ -37,44 +37,94 @@ async function processMaterialTextures(material: Material): Promise<number> {
     }
     ensureDirExists(outFile1);
 
-    const hueShift = getHueShiftForCurrentItemType(material, itemType);
+    const tint = getTintForCurrentItemType(material, itemType);
+    const modulation = getModulationForCurrentItemType(material, itemType);
 
-    generatedFilesCount += await generateRegularTexture(templateTexturePath, outFile1, hueShift.amount);
+    // for tools, the base and overlay are flipped
+    if (isTool(itemType)) {
+      tint.shift_base = !tint.shift_base;
+      tint.shift_overlay = !tint.shift_overlay;
+    }
+
+    generatedFilesCount += await generateRegularTexture(templateTexturePath, outFile1, tint, modulation);
 
     if (!outFile2) {
       continue;
     }
 
-    generatedFilesCount += await generateOverlayTexture(templateOverlayTexturePath, outFile2, hueShift.amount);
+    generatedFilesCount += await generateOverlayTexture(templateOverlayTexturePath, outFile2, tint, modulation);
   }
 
   return generatedFilesCount;
 }
 
-function getHueShiftForCurrentItemType(material: Material, itemType: ItemType) {
-  const defaultHueShift = {
+function getTintForCurrentItemType(material: Material, itemType: ItemType) {
+  const defaultHueShift: Tint = {
     item_type: 'all',
-    amount: 0,
+    r: 0,
+    g: 0,
+    b: 0,
     shift_base: false,
     shift_overlay: false,
   };
 
-  return material.hue_shift.findLast((hs) => hs.item_type === itemType || hs.item_type === 'all') || defaultHueShift;
+  const tint = material.tint?.findLast((hs) => hs.item_type === itemType || hs.item_type === 'all') || defaultHueShift;
+
+  return JSON.parse(JSON.stringify(tint));
 }
 
-async function generateRegularTexture(templateTexturePath: string, outFile: string, hueShift: number): Promise<number> {
+function getModulationForCurrentItemType(material: Material, itemType: ItemType) {
+  const defaultModulation: Modulate = {
+    item_type: 'all',
+    options: {
+      brightness: 1,
+      hue: 0,
+      saturation: 1,
+      lightness: 0,
+    },
+    modulate_base: false,
+    modulate_overlay: false,
+  };
+
+  const modulation =
+    material.modulate?.findLast((hs) => hs.item_type === itemType || hs.item_type === 'all') || defaultModulation;
+
+  return JSON.parse(JSON.stringify(modulation));
+}
+
+async function generateRegularTexture(
+  templateTexturePath: string,
+  outFile: string,
+  tint?: Tint,
+  modulation?: Modulate,
+): Promise<number> {
   const sharped = await sharp(templateTexturePath);
-  if (hueShift !== 0) {
-    sharped.modulate({ hue: hueShift });
+  if (tint) {
+    if (tint.shift_base) {
+      sharped.tint({ r: tint.r, g: tint.g, b: tint.b });
+    }
   }
-  await sharped.resize(ARMOR_ITEM_TEXTURE_SIZE, ARMOR_ITEM_TEXTURE_SIZE).toFile(outFile);
+
+  if (modulation) {
+    if (modulation.modulate_base) {
+      sharped.modulate({
+        brightness: modulation.options.brightness,
+        hue: modulation.options.hue,
+        saturation: modulation.options.saturation,
+        lightness: modulation.options.lightness,
+      });
+    }
+  }
+
+  await sharped.toFile(outFile);
   return 1; // Return 1 as one file is generated
 }
 
 async function generateOverlayTexture(
   templateTexturePath: string | null,
   outFile: string,
-  hueShift: number,
+  tint?: Tint,
+  modulation?: Modulate,
 ): Promise<number> {
   const sharpInput = templateTexturePath || {
     create: {
@@ -86,9 +136,28 @@ async function generateOverlayTexture(
   };
 
   const sharped = sharp(sharpInput as any);
-  if (hueShift !== 0) {
-    sharped.modulate({ hue: hueShift });
+
+  if (tint) {
+    if (tint.shift_overlay) {
+      sharped.tint({ r: tint.r, g: tint.g, b: tint.b });
+    }
   }
+
+  if (modulation) {
+    if (modulation.modulate_overlay) {
+      sharped.modulate({
+        brightness: modulation.options.brightness,
+        hue: modulation.options.hue,
+        saturation: modulation.options.saturation,
+        lightness: modulation.options.lightness,
+      });
+    }
+  }
+
   await sharped.toFile(outFile);
   return 1; // Return 1 as one file is generated
+}
+
+function isTool(itemType: ItemType): boolean {
+  return ['sword', 'pickaxe', 'axe', 'shovel', 'hoe'].includes(itemType);
 }

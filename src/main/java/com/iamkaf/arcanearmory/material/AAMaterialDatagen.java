@@ -18,7 +18,9 @@ public class AAMaterialDatagen {
         for (AAMaterialAutoload material : ALL_MATERIALS) {
             generator.register(material.MATERIAL, Models.GENERATED);
             generator.register(material.RAW_MATERIAL, Models.GENERATED);
-            generator.register(material.NUGGET, Models.GENERATED);
+            if (material.NUGGET != null) {
+                generator.register(material.NUGGET, Models.GENERATED);
+            }
             generator.registerArmor(material.HELMET);
             generator.registerArmor(material.CHESTPLATE);
             generator.registerArmor(material.LEGGINGS);
@@ -50,6 +52,7 @@ public class AAMaterialDatagen {
             ItemConvertible[] items = material.getItemsToAddToItemGroup();
 
             for (ItemConvertible item : items) {
+                if (item == null) continue;
                 entries.add(item);
             }
         });

@@ -5,7 +5,7 @@
   "main": "generate_textures.js",
   "scripts": {
     "start": "npm run clean && ts-node --transpile-only ./texture-generator",
-    "clena": "rimraf ./texture-generator/generated/resources",
+    "clean": "rimraf ./texture-generator/generated/resources",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

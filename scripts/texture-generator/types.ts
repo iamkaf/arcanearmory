@@ -5,15 +5,30 @@ export interface MaterialDatabase {
 export interface Material {
   name: string;
   type: string;
-  hue_shift: HueShift[];
+  tint?: Tint[];
+  modulate?: Modulate[];
   overrides?: MaterialOverrides[];
 }
 
-export interface HueShift {
+export interface Tint {
   item_type: ItemType | 'all';
-  amount: number;
+  r: number;
+  g: number;
+  b: number;
   shift_base: boolean;
   shift_overlay: boolean;
+}
+
+export interface Modulate {
+  item_type: ItemType | 'all';
+  options: {
+    brightness: number;
+    hue: number;
+    saturation: number;
+    lightness: number;
+  };
+  modulate_base: boolean;
+  modulate_overlay: boolean;
 }
 
 export interface MaterialOverrides {

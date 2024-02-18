@@ -63,7 +63,6 @@
     }
   ],
   "textures": {
-    "layer0": "arcanearmory:item/ruby_boots",
-    "layer1": "arcanearmory:item/ruby_boots_overlay"
+    "layer0": "arcanearmory:item/ruby_boots"
   }
 }

@@ -2,7 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "arcanearmory:item/coolpper_leggings",
-    "layer1": "arcanearmory:item/coolpper_leggings_overlay",
-    "layer2": "minecraft:trims/items/leggings_trim_amethyst"
+    "layer1": "minecraft:trims/items/leggings_trim_amethyst"
   }
 }

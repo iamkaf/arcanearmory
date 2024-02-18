@@ -14,7 +14,8 @@ export function copyReplacementsAfterGeneration() {
 }
 
 export function ensureDirExists(path) {
-  const dir = path.replace(/\/[^/]+$/, '');
+  // replaces / or \ and everything after it with an empty string
+  const dir = path.replace(/(\/|\\)[^/\\]+$/, '');
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }

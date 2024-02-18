@@ -9,36 +9,81 @@
           "variant_texture": "diamond_gem"
         }
       ],
-      "hue_shift": [
+      "tint": [
         {
-          "item_type": "ingot",
-          "amount": 0,
+          "item_type": "all",
+          "r": 222,
+          "g": 40,
+          "b": 73,
           "shift_base": true,
           "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 0.9,
+            "saturation": 1.1,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
         }
       ]
     },
     {
       "name": "titanium",
       "type": "ingot",
-      "hue_shift": [
+      "tint": [
         {
           "item_type": "all",
-          "amount": -129,
+          "r": 237,
+          "g": 229,
+          "b": 183,
           "shift_base": true,
           "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 1.2,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
         }
       ]
     },
     {
       "name": "coolpper",
       "type": "ingot",
-      "hue_shift": [
+      "tint": [
         {
           "item_type": "all",
-          "amount": 28,
+          "r": 176,
+          "g": 110,
+          "b": 30,
           "shift_base": true,
           "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 1.1,
+            "hue": 0,
+            "lightness": -20
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
         }
       ]
     }

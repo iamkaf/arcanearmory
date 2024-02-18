@@ -2,8 +2,8 @@ package com.iamkaf.arcanearmory.material;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
 import com.iamkaf.arcanearmory.material.config.AAMaterialConfiguration;
+import com.iamkaf.arcanearmory.material.config.AAMaterialType;
 import com.iamkaf.arcanearmory.material.config.AANamer;
-import com.iamkaf.arcanearmory.material.rendering.AAItemRendererUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -11,11 +11,13 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class AAMaterialAutoload {
     public final String name;
     public final Item MATERIAL;
     public final Item RAW_MATERIAL;
+    @Nullable
     public final Item NUGGET;
     public final Block ORE;
     public final Block BLOCK;
@@ -40,7 +42,11 @@ public abstract class AAMaterialAutoload {
 
         this.MATERIAL = registerItem(namer.ingot(), config.ingot);
         this.RAW_MATERIAL = registerItem(namer.rawMaterial(), new Item(new FabricItemSettings()));
-        this.NUGGET = registerItem(namer.nugget(), new Item(new FabricItemSettings()));
+        if (config.type.equals(AAMaterialType.INGOT)) {
+            this.NUGGET = registerItem(namer.nugget(), new Item(new FabricItemSettings()));
+        } else {
+            this.NUGGET = null;
+        }
         this.ORE = registerBlock(namer.oreBlock(), new Block(FabricBlockSettings.create()));
         this.BLOCK = registerBlock(namer.block(), new Block(FabricBlockSettings.create()));
         this.RAW_BLOCK = registerBlock(namer.rawBlock(), new Block(FabricBlockSettings.create()));
@@ -50,15 +56,15 @@ public abstract class AAMaterialAutoload {
         this.CHESTPLATE = armor[1];
         this.LEGGINGS = armor[2];
         this.BOOTS = armor[3];
-        try {
-            AAItemRendererUtil.registerArmorTints(config, MATERIAL,
-//                    RAW_MATERIAL,
-                    NUGGET, HELMET, CHESTPLATE, LEGGINGS, BOOTS
-            );
-        } catch (RuntimeException e) {
-            // this is fine for now I guess? haha :)
-            // if you know how to fix this pls open a PR <3
-        }
+//        try {
+//            AAItemRendererUtil.registerArmorTints(config, MATERIAL,
+////                    RAW_MATERIAL,
+//                    NUGGET, HELMET, CHESTPLATE, LEGGINGS, BOOTS
+//            );
+//        } catch (RuntimeException e) {
+//            // this is fine for now I guess? haha :)
+//            // if you know how to fix this pls open a PR <3
+//        }
 
         var tools = createTools(config);
         this.SWORD = (SwordItem) tools[0];
@@ -66,12 +72,12 @@ public abstract class AAMaterialAutoload {
         this.PICKAXE = (PickaxeItem) tools[2];
         this.AXE = (AxeItem) tools[3];
         this.HOE = (HoeItem) tools[4];
-        try {
-            AAItemRendererUtil.registerToolTints(config, SWORD, SHOVEL, PICKAXE, AXE, HOE);
-        } catch (RuntimeException e) {
-            // this is fine for now I guess? haha :)
-            // if you know how to fix this pls open a PR <3
-        }
+//        try {
+//            AAItemRendererUtil.registerToolTints(config, SWORD, SHOVEL, PICKAXE, AXE, HOE);
+//        } catch (RuntimeException e) {
+//            // this is fine for now I guess? haha :)
+//            // if you know how to fix this pls open a PR <3
+//        }
 
     }
 

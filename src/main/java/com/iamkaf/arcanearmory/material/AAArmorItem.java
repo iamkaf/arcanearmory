@@ -9,12 +9,12 @@ public class AAArmorItem extends ArmorItem {
         super(material, type, settings);
     }
 
-    @Override
-    public ArmorMaterial getMaterial() {
-        // If this returns leather the fabric datagen will add an overlay layer to the armor json
-        // which can be tinted through code.
-        return ArmorMaterials.LEATHER;
-    }
+//    @Override
+//    public ArmorMaterial getMaterial() {
+//        // If this returns leather the fabric datagen will add an overlay layer to the armor json
+//        // which can be tinted through code.
+//        return ArmorMaterials.LEATHER;
+//    }
 
     public ArmorMaterial getTrueMaterial() {
         return this.material;

@@ -2,7 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "arcanearmory:item/ruby_boots",
-    "layer1": "arcanearmory:item/ruby_boots_overlay",
-    "layer2": "minecraft:trims/items/boots_trim_netherite"
+    "layer1": "minecraft:trims/items/boots_trim_netherite"
   }
 }
