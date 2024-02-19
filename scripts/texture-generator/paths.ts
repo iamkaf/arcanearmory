@@ -57,6 +57,8 @@ export function getTemplateTexturePath(material, itemType: ItemType, gemOverlay 
         return `${TEXTURE_TEMPLATES_BASE_DIR}/${variant('template_raw_block.png')}`;
       case 'ore':
         return `${TEXTURE_TEMPLATES_BASE_DIR}/${variant('template_ore.png')}`;
+      case 'deepslate_ore':
+        return `${TEXTURE_TEMPLATES_BASE_DIR}/${variant('template_deepslate_ore.png')}`;
     }
   };
 
@@ -65,9 +67,14 @@ export function getTemplateTexturePath(material, itemType: ItemType, gemOverlay 
 
   return path.join(__dirname, result);
 }
+
+export function getPathToArbitraryTexture(textureName: string) {
+  return path.join(__dirname, `${TEXTURE_TEMPLATES_BASE_DIR}/${textureName}.png`);
+}
+
 export function getOutFilePath(material, itemType, isOverlay) {
   const isArmorModel = itemType === 'layer_1' || itemType === 'layer_2';
-  const isBlock = itemType === 'block' || itemType === 'raw_block' || itemType === 'ore';
+  const isBlock = ['block', 'raw_block', 'ore', 'deepslate_ore'].includes(itemType);
   const fileName = makeFileName(material, itemType, isOverlay);
   if (!fileName) {
     return null;

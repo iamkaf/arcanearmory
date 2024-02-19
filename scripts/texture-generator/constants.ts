@@ -19,4 +19,5 @@ export const ITEM_TYPES = [
   "block",
   "raw_block",
   "ore",
+  "deepslate_ore"
 ] as const;

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "arcanearmory:aetheric_crystal"
+    }
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "item": "arcanearmory:aetheric_crystal_boots"
+  },
+  "show_notification": true
+}

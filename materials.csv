@@ -1,0 +1,73 @@
+Type;Name;Rarity;Machine;Dimension;Ingredients;Notes
+MobDrop;Malice;Uncommon;None;Overworld;Mobs;Drops from all hostile mobs, can make items stronger but they will break faster
+Wood;Enchanted Oak;Uncommon;None;Villager;Oak Log, Amethyst;Glows like it is enchanted
+Wood;Aetheric Spruce;Uncommon;None;Villager;Spruce Log, Aetheric Crystal;Makes particles when placed
+Wood;Prismatic Birch;Uncommon;None;Villager;Birch Log, Dusk Prism;Makes particles when placed, emits light
+Wood;Galatic Acacia;Rare;None;Villager;Acacia Log, Starforged Galaxy Dust;Emits light and particles
+Wood;Shadow Oak;Epic;None;Villager;Dark Oak Log, Shadow Crystal;Spawns skeletons
+Wood;Radiant Jungle;Epic;None;Villager;Jungle Log, Radiant Quartz;Disappears when broken, TBD
+Wood;Glowing Sakura;Epic;None;Villager;Cherry Log, Radiant Quartz;Emits light, TBD
+Wood;Inferno Crimson;Epic;None;Villager;Crimson Log, Nether Ember Shard;Same burn time as coal, TBD
+Wood;Inferno Warped;Epic;None;Villager;Warped Log, Nether Ember Shard;Same burn time as coal, TBD
+Wood;Malicious Mangrove;Mythic;None;Villager;Mangrove Log, Malice;Spawns vexes
+Gem;Ruby;Uncommon;Lapidary;Overworld;Ruby Ore;Can be used to make tools and armor
+Gem;Sapphire;Uncommon;Lapidary;Overworld;Sapphire Ore;Can be used to make tools and armor
+Gem;Black Diamond;Uncommon;Lapidary;Overworld;Black Diamond Ore;Can be used to make tools and armor, stronger than diamond
+Gem;Topaz;Uncommon;Lapidary;Overworld;Topaz Ore;Can be used to make tools and armor
+Gem;Chrysoberyl;Uncommon;Lapidary;Overworld;Chrysoberyl Ore;Can be used to make tools and armor
+Gem;Aquamarine;Uncommon;Lapidary;Overworld;Aquamarine Ore;Can be used to make tools and armor
+Gem;Lunar Pearl;Epic;Hellfire Lapidary;Overworld;Lunar Pearl Ore;Upgrade material, comes from a flower
+Gem;Star Corundum;Epic;Hellfire Lapidary;Overworld;Star Corundum Ore;Can be used to make tools and armor, upgrade material, https://www.bulkgemstones.com/wp-content/uploads/2020/05/f14aaf7779126b4102dca535a9a94e0e.jpg
+Gem;Frost Diamond;Epic;Hellfire Lapidary;Overworld;Frost Diamond Ore;Upgrade material, freezes mobs, spawns snow when broken
+Gem;Solarflare Gem;Epic;Hellfire Lapidary;Overworld;Solarflare Gem Ore;Upgrade material, fuel
+Gem;Bloodfire Garnet;Epic;Hellfire Lapidary;Nether;Bloodfire Garnet Ore;Upgrade material, fuel
+Gem;Doom Fragment;Mythic;Starcore Lapidary;Nether;Doom Fragment Ore;Upgrade material, explosive
+Gem;Void Obsidian Fragment;Mythic;Starcore Lapidary;End;Void Obsidian Fragment Ore;Upgrade material, explosive
+Meteor;Starforged Ruby;Epic;Starcore Lapidary;Overworld;Ruby Ore;Can be used to make tools and armor, obtained from fallen meteors
+Meteor;Starforged Sapphire;Epic;Starcore Lapidary;Overworld;Sapphire Ore;Can be used to make tools and armor, obtained from fallen meteors
+Meteor;Starforged Black Diamond;Epic;Starcore Lapidary;Overworld;Black Diamond Ore;Can be used to make tools and armor, stronger than diamond, obtained from fallen meteors
+Meteor;Starforged Topaz;Epic;Starcore Lapidary;Overworld;Topaz Ore;Can be used to make tools and armor, obtained from fallen meteors
+Meteor;Starforged Chrysoberyl;Epic;Starcore Lapidary;Overworld;Chrysoberyl Ore;Can be used to make tools and armor, obtained from fallen meteors
+Meteor;Starforged Aquamarine;Epic;Starcore Lapidary;Overworld;Aquamarine Ore;Can be used to make tools and armor, obtained from fallen meteors
+Meteor;Starforged Frost Diamond;Epic;Starcore Lapidary;Overworld;Frost Diamond Ore;Upgrade material, freezes mobs, spawns snow when broken, obtained from fallen meteors
+Meteor;Starforged Solarflare Gem;Epic;Starcore Lapidary;Overworld;Solarflare Gem Ore;Upgrade material, fuel, obtained from fallen meteors
+Meteor;Starforged Moonstone;Epic;Starcore Lapidary;Overworld;Moonstone Ore;Upgrade material, obtained from fallen meteors
+Meteor;Starforged Nebula Crystal;Epic;Starcore Lapidary;Overworld;Nebula Crystal Ore;Upgrade material, obtained from fallen meteors
+Meteor;Starforged Galaxy Dust;Epic;Starcore Lapidary;Overworld;Galaxy Dust Ore;Upgrade material, obtained from fallen meteors
+Meteor;Starforged Void Obsidian;Mythic;Starcore Lapidary;End;Starforged Void Obsidian Ore;Upgrade material, explosive, obtained from fallen meteors
+Meteor;Starforged Darkmatter Fragment;Mythic;Starcore Lapidary;End;Darkmatter Fragment Ore;Upgrade material, obtained from fallen meteors
+Meteor;Starforged Black Hole Core;Mythic;Starcore Lapidary;End;Black Hole Core Ore;Upgrade material, obtained from fallen meteors
+Crystal;Aetheric Crystal;Rare;None;Overworld;Aether Crystal Ore;Upgrade material, gives experience when mined
+Crystal;Eternal Ice Shard;Rare;None;Overworld;Eternal Ice Shard Ore;Upgrade material, freezes player when mined
+Crystal;Dusk Prism;Rare;None;Overworld;Dusk Prism Ore;Upgrade material, gives darkness when mined
+Crystal;Solaris Crystal;Rare;None;Overworld;Solaris Crystal Ore;Upgrade material, fuel
+Crystal;Nether Ember Shard;Epic;None;Nether;Nether Ember Shard Ore;Upgrade material, sets player on fire when mined
+Crystal;Shadow Crystal;Epic;None;Nether;Shadow Crystal Ore;Upgrade material, gives wither when mined
+Crystal;Void Crystalite;Epic;None;Nether;Void Crystalite Ore;Upgrade material
+Crystal;Aurora Essence;Epic;None;End;Aurora Essence Ore;Upgrade material, gives night vision when mined
+Crystal;Radiant Quartz;Epic;None;End;Radiant Quartz Ore;Upgrade material, gives glowing when mined
+Crystal;Lunarite Crystal;Mythic;None;End;Lunarite Crystal Ore;Upgrade material, gives levitation when mined
+Crystal;Eclipsed Selenite;Mythic;None;End;Eclipsed Selenite Ore;Upgrade material, gives darkness when mined
+AlloyMaterial;Runestone;Epic;Furnace;Overworld;Runestone Ore;Alloy material
+AlloyMaterial;Phoenixium;Mythic;Furnace;Nether;Phoenixium Ore;Alloy material
+AlloyMaterial;Dragon's Scale;Mythic;Furnace;End;Dragon's Scale Ore;Alloy material
+AlloyMaterial;Lizardbane;Mythic;Furnace;End;Lizardbane Ore;Alloy material, deals extra damage to the ender dragon
+AlloyMaterial;Spectronium;Mythic;Furnace;End;Spectronium Ore;Alloy material
+Metal;Silver;Common;Furnace;Overworld;Silver Ore;Can be used to make tools and armor, deals extra damage to wither mobs
+Metal;Platinum;Rare;Furnace;Overworld;Platinum Ore;Used for jewelry
+Metal;Titanium;Rare;Furnace;Overworld;Titanium Ore;Can be used to make tools and armor
+Metal;Mythril;Epic;Furnace;Overworld;Mythril Ore;Can be used to make tools and armor
+Metal;Adamantite;Epic;Furnace;Overworld;Adamantite Ore;Can be used to make tools and armor
+Metal;Serenity Copper;Rare;None;Villager;Villager;Can be used to make tools and armor, redstone signal, only obtainable from villager trades
+Metal;Soul Iron;Rare;Furnace;Nether;Soul Iron Ore;Can be used to make tools and armor, passive soul speed
+Metal;Necronium;Epic;Furnace;Nether;Necronium Ore;Can be used to make tools and armor, inflicts hunger
+Metal;Abyssalite;Epic;Furnace;End;Abyssalite Ore;Can be used to make tools and armor, deals extra damage to wither mobs
+Metal;Eclipse Iron;Epic;Furnace;End;Eclipse Iron Ore;Can be used to make tools and armor, deals extra damage to endermen
+Alloy;Bronze;Common;Forge;Crafted;Copper Ingot, Tin Ingot;Can be used to make tools and armor
+Alloy;Steel;Uncommon;Forge;Crafted;Iron Ingot, Coal;Can be used to make tools and armor
+Alloy;Necrosteel;Rare;Hellfire Forge;Crafted;Soul Iron Ingot, Necronium Ingot;Can be used to make tools and armor
+Alloy;Abyssal Steel;Epic;Hellfire Forge;Crafted;Abyssalite Ingot, Eclipse Iron Ingot;Can be used to make tools and armor
+Alloy;Starcore;Mythic;Hellfire Forge;Crafted;Mythril, Lizardbane, Dragon's Scale;Can be used to make tools and armor, deals extra damage to the ender dragon
+Alloy;Spectrite;Epic;Starcore Forge;Crafted;Spectronium, Starforged Galaxy Dust;Can be used to make tools and armor, deals extra damage to the wither
+Alloy;Aetherium;Epic;Starcore Forge;Crafted;Adamantite, Aetheric Crystal, Solaris Crystal;Can be used to make tools and armor
+Alloy;Dragonsteel;Mythic;Starcore Forge;Crafted;Mythril, Lizardbane, Dragon's Scale;Can be used to make tools and armor, deals extra damage to the ender dragon

@@ -5,9 +5,22 @@ export interface MaterialDatabase {
 export interface Material {
   name: string;
   type: string;
+  composite?: Composite[];
   tint?: Tint[];
   modulate?: Modulate[];
   overrides?: MaterialOverrides[];
+}
+
+export interface Composite {
+  item_type: ItemType | 'all';
+  base_texture?: CompositeTexture[];
+  overlay_texture?: CompositeTexture[];
+}
+
+export interface CompositeTexture {
+  texture: string;
+  tint?: Omit<Tint, 'item_type' | 'shift_base' | 'shift_overlay'>;
+  modulate?: Modulate['options'];
 }
 
 export interface Tint {
@@ -53,4 +66,5 @@ export type ItemType =
   | 'raw'
   | 'block'
   | 'raw_block'
-  | 'ore';
+  | 'ore'
+  | 'deepslate_ore';

@@ -1,8 +1,13 @@
 import sharp from 'sharp';
-import { Tint, ItemType, Material, MaterialDatabase, Modulate } from './types';
+import { Tint, ItemType, Material, MaterialDatabase, Modulate, CompositeTexture } from './types';
 import { ITEM_TYPES, ARMOR_ITEM_TEXTURE_SIZE } from './constants';
 import { ensureDirExists } from './file-operations';
-import { getTemplateTexturePath, getOutFilePath, getOverlayTemplateTexturePath } from './paths';
+import {
+  getTemplateTexturePath,
+  getOutFilePath,
+  getOverlayTemplateTexturePath,
+  getPathToArbitraryTexture,
+} from './paths';
 
 const database: MaterialDatabase = require('../database.json');
 
@@ -39,20 +44,23 @@ async function processMaterialTextures(material: Material): Promise<number> {
 
     const tint = getTintForCurrentItemType(material, itemType);
     const modulation = getModulationForCurrentItemType(material, itemType);
+    const composite = material.composite?.find((c) => c.item_type === itemType);
 
-    // for tools, the base and overlay are flipped
-    if (isTool(itemType)) {
-      tint.shift_base = !tint.shift_base;
-      tint.shift_overlay = !tint.shift_overlay;
+    if (composite) {
+      generatedFilesCount += await generateCompositeTexture(composite.base_texture!, outFile1);
+    } else {
+      generatedFilesCount += await generateRegularTexture(templateTexturePath, outFile1, tint, modulation);
     }
-
-    generatedFilesCount += await generateRegularTexture(templateTexturePath, outFile1, tint, modulation);
 
     if (!outFile2) {
       continue;
     }
 
-    generatedFilesCount += await generateOverlayTexture(templateOverlayTexturePath, outFile2, tint, modulation);
+    if (composite) {
+      generatedFilesCount += await generateCompositeTexture(composite.overlay_texture!, outFile2);
+    } else {
+      generatedFilesCount += await generateOverlayTexture(templateOverlayTexturePath, outFile2, tint, modulation);
+    }
   }
 
   return generatedFilesCount;
@@ -70,7 +78,15 @@ function getTintForCurrentItemType(material: Material, itemType: ItemType) {
 
   const tint = material.tint?.findLast((hs) => hs.item_type === itemType || hs.item_type === 'all') || defaultHueShift;
 
-  return JSON.parse(JSON.stringify(tint));
+  const json = JSON.parse(JSON.stringify(tint));
+
+  // for tools, the base and overlay are flipped
+  if (isTool(itemType)) {
+    json.shift_base = !json.shift_base;
+    json.shift_overlay = !json.shift_overlay;
+  }
+
+  return json;
 }
 
 function getModulationForCurrentItemType(material: Material, itemType: ItemType) {
@@ -90,6 +106,20 @@ function getModulationForCurrentItemType(material: Material, itemType: ItemType)
     material.modulate?.findLast((hs) => hs.item_type === itemType || hs.item_type === 'all') || defaultModulation;
 
   return JSON.parse(JSON.stringify(modulation));
+}
+
+async function generateCompositeTexture(composite: CompositeTexture[], outFile: string) {
+  if (!composite) {
+    return 0;
+  }
+
+  const sharped = await processCompositeTexture(composite);
+  if (sharped) {
+    await sharped.toFile(outFile);
+    return 1; // Return 1 as one file is generated
+  }
+
+  return 0;
 }
 
 async function generateRegularTexture(
@@ -156,6 +186,50 @@ async function generateOverlayTexture(
 
   await sharped.toFile(outFile);
   return 1; // Return 1 as one file is generated
+}
+
+// this function combines two textures into one overlaying the second one on top of the first one
+// then applying an optional tint and modulate
+function processCompositeTexture(textures: CompositeTexture[]): Promise<sharp.Sharp | null> {
+  if (textures.length === 0) {
+    return Promise.resolve(null);
+  }
+
+  const createColoredSharpInstance = (texture: CompositeTexture) => {
+    const sharpInstance = sharp(getPathToArbitraryTexture(texture.texture));
+
+    if (texture.tint) {
+      sharpInstance.tint({ r: texture.tint.r, g: texture.tint.g, b: texture.tint.b });
+    }
+    if (texture.modulate) {
+      sharpInstance.modulate({
+        brightness: texture.modulate.brightness,
+        hue: texture.modulate.hue,
+        saturation: texture.modulate.saturation,
+        lightness: texture.modulate.lightness,
+      });
+    }
+
+    return sharpInstance;
+  };
+
+  const sharped = createColoredSharpInstance(textures[0]!);
+
+  if (textures.length === 1) {
+    return Promise.resolve(sharped);
+  }
+
+  return new Promise((resolve, reject) => {
+    const inputPromises = textures.slice(1).map((texture) => createColoredSharpInstance(texture).toBuffer());
+
+    Promise.all(inputPromises)
+      .then((buffers) => {
+        return buffers.map((buffer) => ({ input: buffer }));
+      })
+      .then((inputs) => {
+        return resolve(sharped.composite(inputs));
+      });
+  });
 }
 
 function isTool(itemType: ItemType): boolean {

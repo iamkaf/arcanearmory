@@ -1,6 +1,7 @@
 package com.iamkaf.arcanearmory.datagen;
 
 import com.iamkaf.arcanearmory.item.ModItems;
+import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
@@ -30,6 +31,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter,
                         new Identifier(getRecipeName(ModItems.SPECIAL_CHOCOLATE_COOKIE))
                 );
+
+        AAMaterialDatagen.generateOreRecipes(exporter);
 
 //        ShapedRecipeJsonBuilder
 //                .create(RecipeCategory.MISC, ModBlocks.LOVEY_DOVEY_INFUSER, 1)

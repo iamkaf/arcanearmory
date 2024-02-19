@@ -1,6 +1,5 @@
-
 export function makeFileName(material, itemType, isOverlay) {
-  const ITEMS_THAT_SKIP_OVERLAY = ['ingot', 'gem', 'nugget', 'block', 'raw_block', 'ore'];
+  const ITEMS_THAT_SKIP_OVERLAY = ['ingot', 'gem', 'nugget', 'block', 'raw_block', 'ore', 'deepslate_ore'];
   const ITEMS_WHOSE_NAME_STANDS_SLONE = ['gem'];
 
   const overlaySuffix = isOverlay ? '_overlay' : '';
@@ -25,6 +24,10 @@ export function makeFileName(material, itemType, isOverlay) {
 
   if (itemType === 'raw_block') {
     return `raw_${material.name}_block.png`;
+  }
+
+  if (itemType === 'deepslate_ore') {
+    return `deepslate_${material.name}_ore.png`;
   }
 
   return `${material.name}_${adjustedItemTypeDisplay}${overlaySuffix}.png`;
