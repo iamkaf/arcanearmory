@@ -47,18 +47,28 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         for (AAMaterialAutoload material : ALL_MATERIALS) {
             if (material.type.equals(AAMaterialType.INGOT)) {
-                addDrop(material.ORE, lapisLikeOreDrops(material.ORE, material.RAW_MATERIAL));
-                addDrop(
-                        material.DEEPSLATE_ORE,
-                        lapisLikeOreDrops(material.DEEPSLATE_ORE, material.RAW_MATERIAL)
-                );
+                addDrop(material.ORE, lapisLikeOreDrops(material.ORE,
+                        material.RAW_MATERIAL,
+                        material.blockConfiguration.minDrops,
+                        material.blockConfiguration.maxDrops
+                ));
+                addDrop(material.DEEPSLATE_ORE, lapisLikeOreDrops(material.DEEPSLATE_ORE,
+                        material.RAW_MATERIAL,
+                        material.blockConfiguration.minDrops,
+                        material.blockConfiguration.maxDrops
+                ));
             }
             if (material.type.equals(AAMaterialType.GEM)) {
-                addDrop(material.ORE, lapisLikeOreDrops(material.ORE, material.MATERIAL));
-                addDrop(
-                        material.DEEPSLATE_ORE,
-                        lapisLikeOreDrops(material.DEEPSLATE_ORE, material.MATERIAL)
-                );
+                addDrop(material.ORE, lapisLikeOreDrops(material.ORE,
+                        material.MATERIAL,
+                        material.blockConfiguration.minDrops,
+                        material.blockConfiguration.maxDrops
+                ));
+                addDrop(material.DEEPSLATE_ORE, lapisLikeOreDrops(material.DEEPSLATE_ORE,
+                        material.MATERIAL,
+                        material.blockConfiguration.minDrops,
+                        material.blockConfiguration.maxDrops
+                ));
             }
             if (material.type.equals(AAMaterialType.CRYSTAL)) {
                 addDrop(material.ORE, material.MATERIAL);
@@ -72,14 +82,12 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         }
     }
 
-    public LootTable.Builder lapisLikeOreDrops(Block drop, Item item) {
-        return BlockLootTableGenerator.dropsWithSilkTouch(drop, this.applyExplosionDecay(
-                drop,
+    public LootTable.Builder lapisLikeOreDrops(Block drop, Item item, float min, float max) {
+        return BlockLootTableGenerator.dropsWithSilkTouch(drop, this.applyExplosionDecay(drop,
                 (ItemEntry
                         .builder(item)
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(
-                                4.0f,
-                                9.0f
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(min,
+                                max
                         )))).apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE))
         ));
     }

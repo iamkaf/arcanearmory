@@ -19,15 +19,17 @@ public class AethericCrystalMaterialAutoload extends AAMaterialAutoload {
             AAMaterialType.GEM,
             ColorUtil.tint(),
             ColorUtil.tint(),
-            new AABlockConfiguration(1),
-            new AAArmorConfiguration(1815,
+            new AABlockConfiguration(2, 1, 6, -80, -40, 1, 1, true, false, false),
+            new AAArmorConfiguration(
+                    1815,
                     new int[]{1, 2, 3, 4},
                     Toughness.DIAMOND,
                     3f,
                     Enchantability.DIAMOND,
                     SoundEvents.ITEM_ARMOR_EQUIP_IRON
             ),
-            new AAToolConfiguration(ToolDurability.DIAMOND,
+            new AAToolConfiguration(
+                    ToolDurability.DIAMOND,
                     6,
                     2f,
                     8,

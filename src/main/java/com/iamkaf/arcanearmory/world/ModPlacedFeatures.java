@@ -1,6 +1,7 @@
 package com.iamkaf.arcanearmory.world;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
+import com.iamkaf.arcanearmory.material.AAMaterialAutoload;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -10,16 +11,42 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
 
+import static com.iamkaf.arcanearmory.material.ModMaterials.ALL_MATERIALS;
+
 public class ModPlacedFeatures {
+
+    // ! This code assumes an ore cannot generate in more than one dimension.
+
+    public static final HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> ALL_KEYS = makeAllKeys();
     public static final RegistryKey<PlacedFeature> RUBY_ORE_PLACED_KEY = registerKey(
             "ruby_ore_placed");
     public static final RegistryKey<PlacedFeature> NETHER_RUBY_ORE_PLACED_KEY = registerKey(
             "nether_ruby_ore_placed");
     public static final RegistryKey<PlacedFeature> END_RUBY_ORE_PLACED_KEY = registerKey(
             "end_ruby_ore_placed");
+
+    private static HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> makeAllKeys() {
+        HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> allKeys = new HashMap<>();
+
+        for (AAMaterialAutoload material : ALL_MATERIALS) {
+            if (material.blockConfiguration.spawnInOverworld) {
+                allKeys.put(material, registerKey(material.name + "_ore_placed"));
+            }
+            if (material.blockConfiguration.spawnInTheNether) {
+                allKeys.put(material, registerKey("nether_" + material.name + "_ore_placed"));
+            }
+            if (material.blockConfiguration.spawnInTheEnd) {
+                allKeys.put(material, registerKey("end_" + material.name + "_ore_placed"));
+            }
+        }
+
+        return allKeys;
+    }
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -28,33 +55,21 @@ public class ModPlacedFeatures {
         // placed. Uniform here means evenly distributed, trapezoid would have more ore in the
         // middle.
 
-        register(
-                context,
-                RUBY_ORE_PLACED_KEY,
-                configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.RUBY_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(
-                        12, // veins per chunk
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))
-                )
-        );
-        register(
-                context,
-                NETHER_RUBY_ORE_PLACED_KEY,
-                configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.NETHER_RUBY_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(
-                        12, // veins per chunk
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))
-                )
-        );
-        register(
-                context,
-                END_RUBY_ORE_PLACED_KEY,
-                configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.END_RUBY_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(
-                        12, // veins per chunk
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))
-                )
-        );
+        ALL_KEYS.forEach((material, key) -> {
+            register(
+                    context,
+                    key,
+                    configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.ALL_KEYS.get(
+                            material)),
+                    ModOrePlacement.modifiersWithCount(
+                            material.blockConfiguration.veinsPerChunk,
+                            HeightRangePlacementModifier.uniform(
+                                    YOffset.fixed(material.blockConfiguration.minYOffset),
+                                    YOffset.fixed(material.blockConfiguration.maxYOffset)
+                            )
+                    )
+            );
+        });
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {
@@ -62,7 +77,7 @@ public class ModPlacedFeatures {
     }
 
     private static void register(
-            Registerable<PlacedFeature> context,
+            @NotNull Registerable<PlacedFeature> context,
             RegistryKey<PlacedFeature> key,
             RegistryEntry<ConfiguredFeature<?, ?>> configuration,
             List<PlacementModifier> modifiers

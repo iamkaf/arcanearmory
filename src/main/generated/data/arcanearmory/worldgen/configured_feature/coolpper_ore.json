@@ -2,11 +2,11 @@
   "type": "minecraft:ore",
   "config": {
     "discard_chance_on_air_exposure": 0.0,
-    "size": 6,
+    "size": 8,
     "targets": [
       {
         "state": {
-          "Name": "arcanearmory:ruby_ore"
+          "Name": "arcanearmory:coolpper_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "arcanearmory:deepslate_ruby_ore"
+          "Name": "arcanearmory:deepslate_coolpper_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

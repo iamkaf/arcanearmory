@@ -1,5 +1,5 @@
 {
-  "feature": "arcanearmory:ruby_ore",
+  "feature": "arcanearmory:titanium_ore",
   "placement": [
     {
       "type": "minecraft:count",
@@ -13,10 +13,10 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 16
+          "absolute": 36
         },
         "min_inclusive": {
-          "absolute": -64
+          "absolute": -16
         }
       }
     },

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "arcanearmory:ruby_ore",
+    "arcanearmory:deepslate_ruby_ore",
+    "arcanearmory:sapphire_ore",
+    "arcanearmory:deepslate_sapphire_ore",
+    "arcanearmory:aetheric_crystal_ore",
+    "arcanearmory:deepslate_aetheric_crystal_ore",
+    "arcanearmory:titanium_ore",
+    "arcanearmory:deepslate_titanium_ore"
+  ]
+}

@@ -13,20 +13,23 @@ import net.minecraft.sound.SoundEvents;
 
 public class RubyMaterialAutoload extends AAMaterialAutoload {
     public final static Item MATERIAL = new Item(new FabricItemSettings());
-    public static final AAMaterialConfiguration configuration = new AAMaterialConfiguration("ruby",
+    public static final AAMaterialConfiguration configuration = new AAMaterialConfiguration(
+            "ruby",
             RubyMaterialAutoload.MATERIAL,
             AAMaterialType.GEM,
             ColorUtil.tint("#ff0000"),
             ColorUtil.tint("#00ff00"),
-            new AABlockConfiguration(1),
-            new AAArmorConfiguration(1815,
+            new AABlockConfiguration(2, 2, 6, -64,16,1, 1, true, false, false),
+            new AAArmorConfiguration(
+                    1815,
                     new int[]{1, 2, 3, 4},
                     Toughness.DIAMOND,
                     3f,
                     Enchantability.DIAMOND,
                     SoundEvents.ITEM_ARMOR_EQUIP_IRON
             ),
-            new AAToolConfiguration(ToolDurability.DIAMOND,
+            new AAToolConfiguration(
+                    ToolDurability.DIAMOND,
                     6,
                     2f,
                     8,

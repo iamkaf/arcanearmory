@@ -2,7 +2,10 @@ package com.iamkaf.arcanearmory.material.custom;
 
 import com.iamkaf.arcanearmory.material.AAMaterialAutoload;
 import com.iamkaf.arcanearmory.material.config.*;
-import com.iamkaf.arcanearmory.material.util.*;
+import com.iamkaf.arcanearmory.material.util.ColorUtil;
+import com.iamkaf.arcanearmory.material.util.Enchantability;
+import com.iamkaf.arcanearmory.material.util.ToolDurability;
+import com.iamkaf.arcanearmory.material.util.Toughness;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.item.Item;
@@ -16,7 +19,7 @@ public class CoolpperMaterialAutoload extends AAMaterialAutoload {
             AAMaterialType.INGOT,
             ColorUtil.tint("#9c3710"),
             ColorUtil.tint(),
-            new AABlockConfiguration(1),
+            new AABlockConfiguration(1, 3, 8, 0, 64, 1, 1, true, false, false),
             new AAArmorConfiguration(
                     1815,
                     new int[]{1, 2, 3, 4},
