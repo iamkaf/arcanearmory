@@ -1,12 +1,11 @@
 package com.iamkaf.arcanearmory.material;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
-import com.iamkaf.arcanearmory.material.config.AAMaterialConfiguration;
-import com.iamkaf.arcanearmory.material.config.AAMaterialType;
-import com.iamkaf.arcanearmory.material.config.AANamer;
+import com.iamkaf.arcanearmory.material.config.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -15,11 +14,13 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class AAMaterialAutoload {
     public final String name;
+    public final AAMaterialType type;
     public final Item MATERIAL;
     public final Item RAW_MATERIAL;
     @Nullable
     public final Item NUGGET;
     public final Block ORE;
+    public final Block DEEPSLATE_ORE;
     public final Block BLOCK;
     public final Block RAW_BLOCK;
     public final AAArmorItem HELMET;
@@ -33,12 +34,18 @@ public abstract class AAMaterialAutoload {
     //    public final BowItem BOW;
 //    public final ShearsItem SHEARS;
     public final HoeItem HOE;
+    public final AABlockConfiguration blockConfiguration;
+    public final AAToolConfiguration toolConfiguration;
     private final AANamer namer;
 
     public AAMaterialAutoload() {
         AAMaterialConfiguration config = this.getConfiguration();
         this.name = config.name;
+        this.type = config.type;
         namer = new AANamer(config);
+
+        this.blockConfiguration = config.blockConfiguration;
+        this.toolConfiguration = config.toolConfiguration;
 
         this.MATERIAL = registerItem(namer.ingot(), config.ingot);
         this.RAW_MATERIAL = registerItem(namer.rawMaterial(), new Item(new FabricItemSettings()));
@@ -47,9 +54,18 @@ public abstract class AAMaterialAutoload {
         } else {
             this.NUGGET = null;
         }
-        this.ORE = registerBlock(namer.oreBlock(), new Block(FabricBlockSettings.create()));
-        this.BLOCK = registerBlock(namer.block(), new Block(FabricBlockSettings.create()));
-        this.RAW_BLOCK = registerBlock(namer.rawBlock(), new Block(FabricBlockSettings.create()));
+        this.ORE = registerBlock(namer.oreBlock(),
+                new Block(FabricBlockSettings.copyOf(Blocks.IRON_ORE))
+        );
+        this.DEEPSLATE_ORE = registerBlock(namer.deepslateOreBlock(),
+                new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE))
+        );
+        this.BLOCK = registerBlock(namer.block(),
+                new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK))
+        );
+        this.RAW_BLOCK = registerBlock(namer.rawBlock(),
+                new Block(FabricBlockSettings.copyOf(Blocks.RAW_IRON_BLOCK))
+        );
 
         var armor = createArmor(config);
         this.HELMET = armor[0];
@@ -85,9 +101,9 @@ public abstract class AAMaterialAutoload {
 
     public ItemConvertible[] getItemsToAddToItemGroup() {
         return new ItemConvertible[]{
-                this.ORE, this.BLOCK, this.RAW_BLOCK, this.MATERIAL, this.RAW_MATERIAL, this.NUGGET,
-                this.HELMET, this.CHESTPLATE, this.LEGGINGS, this.BOOTS, this.SWORD, this.SHOVEL,
-                this.PICKAXE, this.AXE, this.HOE
+                this.ORE, this.DEEPSLATE_ORE, this.BLOCK, this.RAW_BLOCK, this.MATERIAL,
+                this.RAW_MATERIAL, this.NUGGET, this.HELMET, this.CHESTPLATE, this.LEGGINGS,
+                this.BOOTS, this.SWORD, this.SHOVEL, this.PICKAXE, this.AXE, this.HOE
         };
     }
 

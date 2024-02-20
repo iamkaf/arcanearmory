@@ -1,17 +1,28 @@
 package com.iamkaf.arcanearmory.material;
 
+import com.iamkaf.arcanearmory.datagen.ModLootTableProvider;
 import com.iamkaf.arcanearmory.material.rendering.AAItemRendererUtil;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.data.server.loottable.BlockLootTableGenerator;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LeafEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.function.ApplyBonusLootFunction;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
 
@@ -44,6 +55,7 @@ public class AAMaterialDatagen {
     public static void generateModels(BlockStateModelGenerator generator) {
         forEachMaterial((material) -> {
             generator.registerSimpleCubeAll(material.ORE);
+            generator.registerSimpleCubeAll(material.DEEPSLATE_ORE);
             generator.registerSimpleCubeAll(material.BLOCK);
             generator.registerSimpleCubeAll(material.RAW_BLOCK);
         });
@@ -74,9 +86,11 @@ public class AAMaterialDatagen {
 
     public static void generateOreRecipes(Consumer<RecipeJsonProvider> exporter) {
         for (AAMaterialAutoload material : ALL_MATERIALS) {
-            List<ItemConvertible> smeltables = List.of(material.ORE, material.RAW_MATERIAL);
-            RecipeProvider.offerSmelting(
-                    exporter,
+            List<ItemConvertible> smeltables = List.of(material.ORE,
+                    material.DEEPSLATE_ORE,
+                    material.RAW_MATERIAL
+            );
+            RecipeProvider.offerSmelting(exporter,
                     smeltables,
                     RecipeCategory.MISC,
                     material.MATERIAL,
@@ -84,8 +98,7 @@ public class AAMaterialDatagen {
                     200,
                     material.name
             );
-            RecipeProvider.offerBlasting(
-                    exporter,
+            RecipeProvider.offerBlasting(exporter,
                     smeltables,
                     RecipeCategory.MISC,
                     material.MATERIAL,
@@ -93,15 +106,13 @@ public class AAMaterialDatagen {
                     100,
                     material.name
             );
-            RecipeProvider.offerReversibleCompactingRecipes(
-                    exporter,
+            RecipeProvider.offerReversibleCompactingRecipes(exporter,
                     RecipeCategory.BUILDING_BLOCKS,
                     material.MATERIAL,
                     RecipeCategory.DECORATIONS,
                     material.BLOCK
             );
-            RecipeProvider.offerReversibleCompactingRecipes(
-                    exporter,
+            RecipeProvider.offerReversibleCompactingRecipes(exporter,
                     RecipeCategory.BUILDING_BLOCKS,
                     material.RAW_MATERIAL,
                     RecipeCategory.DECORATIONS,
@@ -184,6 +195,7 @@ public class AAMaterialDatagen {
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(material.SWORD)));
     }
+
     private static void shovelRecipe(
             AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
     ) {
@@ -198,6 +210,7 @@ public class AAMaterialDatagen {
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(material.SHOVEL)));
     }
+
     private static void pickaxeRecipe(
             AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
     ) {
@@ -212,6 +225,7 @@ public class AAMaterialDatagen {
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(material.PICKAXE)));
     }
+
     private static void axeRecipe(
             AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
     ) {
@@ -226,6 +240,7 @@ public class AAMaterialDatagen {
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(material.AXE)));
     }
+
     private static void hoeRecipe(
             AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
     ) {
@@ -241,4 +256,55 @@ public class AAMaterialDatagen {
                 .offerTo(exporter, new Identifier(getRecipeName(material.HOE)));
     }
 
+    public static void addBlockDrops(ModLootTableProvider provider) {
+        forEachMaterial(material -> {
+            switch (material.type) {
+                case INGOT:
+                    provider.addDrop(material.ORE,
+                            lapisLikeOreDrops(1f, 4f, material.ORE, material.RAW_MATERIAL, provider)
+                    );
+                    provider.addDrop(material.DEEPSLATE_ORE, lapisLikeOreDrops(1f,
+                            4f,
+                            material.DEEPSLATE_ORE,
+                            material.RAW_MATERIAL,
+                            provider
+                    ));
+                case GEM:
+                    provider.addDrop(material.ORE,
+                            lapisLikeOreDrops(1f, 4f, material.ORE, material.MATERIAL, provider)
+                    );
+                    provider.addDrop(material.DEEPSLATE_ORE,
+                            lapisLikeOreDrops(1f,
+                                    4f,
+                                    material.DEEPSLATE_ORE,
+                                    material.MATERIAL,
+                                    provider
+                            )
+                    );
+                case CRYSTAL:
+                    provider.addDrop(material.ORE, material.MATERIAL);
+                    provider.addDrop(material.DEEPSLATE_ORE, material.MATERIAL);
+                    provider.addDropWithSilkTouch(material.ORE, material.ORE);
+                    provider.addDropWithSilkTouch(material.DEEPSLATE_ORE, material.DEEPSLATE_ORE);
+            }
+            // these drop the same for all types
+            provider.addDrop(material.BLOCK);
+            provider.addDrop(material.RAW_BLOCK);
+        });
+    }
+
+    private static LootTable.Builder lapisLikeOreDrops(
+            float minCount, float maxCount, Block drop, Item item, ModLootTableProvider provider
+    ) {
+        return BlockLootTableGenerator.dropsWithSilkTouch(drop,
+                (LootPoolEntry.Builder) provider.applyExplosionDecay(drop,
+                        ((LeafEntry.Builder) ItemEntry
+                                .builder(item)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(
+                                        minCount,
+                                        maxCount
+                                )))).apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE))
+                )
+        );
+    }
 }

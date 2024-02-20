@@ -7,6 +7,7 @@ import com.iamkaf.arcanearmory.material.ModMaterials;
 import com.iamkaf.arcanearmory.sound.ModSounds;
 import com.iamkaf.arcanearmory.util.ModCustomTrades;
 import com.iamkaf.arcanearmory.util.ModLootTableModifiers;
+import com.iamkaf.arcanearmory.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -29,5 +30,6 @@ public class ArcaneArmory implements ModInitializer {
         ModCustomTrades.registerCustomTrades();
         ModSounds.registerSounds();
         ModMaterials.initializeArcaneArmoryMaterials();
+        ModWorldGeneration.generateModWorldGen();
     }
 }

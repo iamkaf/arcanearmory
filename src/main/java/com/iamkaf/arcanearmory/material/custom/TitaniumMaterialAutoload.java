@@ -19,7 +19,7 @@ public class TitaniumMaterialAutoload extends AAMaterialAutoload {
             AAMaterialType.INGOT,
             ColorUtil.tint("#173c91"),
             ColorUtil.tint(),
-            new AABlockConfiguration(1),
+            new AABlockConfiguration(4),
             new AAArmorConfiguration(
                     1815,
                     new int[]{1, 2, 3, 4},

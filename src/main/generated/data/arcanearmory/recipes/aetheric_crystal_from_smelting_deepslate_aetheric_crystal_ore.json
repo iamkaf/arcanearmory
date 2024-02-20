@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.45,
+  "group": "aetheric_crystal",
+  "ingredient": {
+    "item": "arcanearmory:deepslate_aetheric_crystal_ore"
+  },
+  "result": "arcanearmory:aetheric_crystal"
+}

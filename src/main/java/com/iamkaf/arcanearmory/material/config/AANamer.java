@@ -29,6 +29,10 @@ public class AANamer {
         return config.name + "_ore";
     }
 
+    public String deepslateOreBlock() {
+        return "deepslate_" + config.name + "_ore";
+    }
+
     public String block() {
         return config.name + "_block";
     }
@@ -72,6 +76,5 @@ public class AANamer {
     public String hoe() {
         return config.name + "_hoe";
     }
-
 
 }

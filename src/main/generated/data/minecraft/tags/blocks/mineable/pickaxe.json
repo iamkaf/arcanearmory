@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "arcanearmory:coolpper_ore",
+    "arcanearmory:deepslate_coolpper_ore",
+    "arcanearmory:coolpper_block",
+    "arcanearmory:raw_coolpper_block",
+    "arcanearmory:ruby_ore",
+    "arcanearmory:deepslate_ruby_ore",
+    "arcanearmory:ruby_block",
+    "arcanearmory:raw_ruby_block",
+    "arcanearmory:sapphire_ore",
+    "arcanearmory:deepslate_sapphire_ore",
+    "arcanearmory:sapphire_block",
+    "arcanearmory:raw_sapphire_block",
+    "arcanearmory:aetheric_crystal_ore",
+    "arcanearmory:deepslate_aetheric_crystal_ore",
+    "arcanearmory:aetheric_crystal_block",
+    "arcanearmory:raw_aetheric_crystal_block",
+    "arcanearmory:titanium_ore",
+    "arcanearmory:deepslate_titanium_ore",
+    "arcanearmory:titanium_block",
+    "arcanearmory:raw_titanium_block"
+  ]
+}
