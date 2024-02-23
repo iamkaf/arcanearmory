@@ -11,7 +11,7 @@ import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvents;
 
-public class SapphireMaterialAutoload extends AAMaterialAutoload {
+public class SapphireMaterialAutoload {
     public final static Item MATERIAL = new Item(new FabricItemSettings());
     public static final AAMaterialConfiguration configuration = new AAMaterialConfiguration(
             "sapphire",
@@ -38,10 +38,7 @@ public class SapphireMaterialAutoload extends AAMaterialAutoload {
                     MiningLevels.DIAMOND,
                     12,
                     Enchantability.DIAMOND
-            )
+            ),
+            new AAGenerationConfiguration(true, true, true, true)
     );
-
-    protected AAMaterialConfiguration getConfiguration() {
-        return SapphireMaterialAutoload.configuration;
-    }
 }

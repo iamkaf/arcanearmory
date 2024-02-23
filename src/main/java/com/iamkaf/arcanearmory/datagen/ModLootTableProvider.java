@@ -27,26 +27,17 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-//        addDrop(ModBlocks.LOVEY_DOVEY_INFUSER);
-
         BlockStatePropertyLootCondition.Builder builder = BlockStatePropertyLootCondition
                 .builder(ModBlocks.COTTON_CANDY_CROP)
                 .properties(StatePredicate.Builder
                         .create()
                         .exactMatch(CottonCandyCropBlock.AGE, 5));
-//        addDrop(ModBlocks.COTTON_CANDY_CROP, cropDrops(ModBlocks.COTTON_CANDY_CROP,
-//                ModItems.COTTON_CANDY,
-//                ModItems.COTTON_CANDY_SEEDS,
-//                builder
-//        ));
 
         addDrop(ModBlocks.ARISTEA);
         addPottedPlantDrops(ModBlocks.POTTED_ARISTEA);
 
-//        AAMaterialDatagen.addBlockDrops(this);
-
         for (AAMaterialAutoload material : ALL_MATERIALS) {
-            if (material.type.equals(AAMaterialType.INGOT)) {
+            if (material.type.equals(AAMaterialType.INGOT) && material.RAW_MATERIAL != null) {
                 addDrop(material.ORE, lapisLikeOreDrops(material.ORE,
                         material.RAW_MATERIAL,
                         material.blockConfiguration.minDrops,

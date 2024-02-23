@@ -40,15 +40,21 @@ public class AAMaterialDatagen {
             if (material.NUGGET != null) {
                 generator.register(material.NUGGET, Models.GENERATED);
             }
-            generator.registerArmor(material.HELMET);
-            generator.registerArmor(material.CHESTPLATE);
-            generator.registerArmor(material.LEGGINGS);
-            generator.registerArmor(material.BOOTS);
-            AAItemRendererUtil.registerHandheldTwoLayers(material.SWORD, generator);
-            AAItemRendererUtil.registerHandheldTwoLayers(material.SHOVEL, generator);
-            AAItemRendererUtil.registerHandheldTwoLayers(material.PICKAXE, generator);
-            AAItemRendererUtil.registerHandheldTwoLayers(material.AXE, generator);
-            AAItemRendererUtil.registerHandheldTwoLayers(material.HOE, generator);
+            if (material.generate.armor) {
+                generator.registerArmor(material.HELMET);
+                generator.registerArmor(material.CHESTPLATE);
+                generator.registerArmor(material.LEGGINGS);
+                generator.registerArmor(material.BOOTS);
+            }
+            if (material.generate.weapons) {
+                AAItemRendererUtil.registerHandheldTwoLayers(material.SWORD, generator);
+            }
+            if (material.generate.tools) {
+                AAItemRendererUtil.registerHandheldTwoLayers(material.SHOVEL, generator);
+                AAItemRendererUtil.registerHandheldTwoLayers(material.PICKAXE, generator);
+                AAItemRendererUtil.registerHandheldTwoLayers(material.AXE, generator);
+                AAItemRendererUtil.registerHandheldTwoLayers(material.HOE, generator);
+            }
         }
     }
 
@@ -63,7 +69,13 @@ public class AAMaterialDatagen {
 
     public static void tagTrimmableArmors(FabricTagProvider<Item>.FabricTagBuilder builder) {
         forEachMaterial((material) -> {
-            builder.add(material.HELMET, material.CHESTPLATE, material.LEGGINGS, material.BOOTS);
+            if (material.generate.armor) {
+                builder.add(material.HELMET,
+                        material.CHESTPLATE,
+                        material.LEGGINGS,
+                        material.BOOTS
+                );
+            }
         });
     }
 
@@ -86,48 +98,52 @@ public class AAMaterialDatagen {
 
     public static void generateOreRecipes(Consumer<RecipeJsonProvider> exporter) {
         for (AAMaterialAutoload material : ALL_MATERIALS) {
-            List<ItemConvertible> smeltables = List.of(material.ORE,
-                    material.DEEPSLATE_ORE,
-                    material.RAW_MATERIAL
-            );
-            RecipeProvider.offerSmelting(exporter,
-                    smeltables,
-                    RecipeCategory.MISC,
-                    material.MATERIAL,
-                    0.45f,
-                    200,
-                    material.name
-            );
-            RecipeProvider.offerBlasting(exporter,
-                    smeltables,
-                    RecipeCategory.MISC,
-                    material.MATERIAL,
-                    0.45f,
-                    100,
-                    material.name
-            );
+            if (material.RAW_MATERIAL != null) {
+                List<ItemConvertible> smeltables = List.of(material.ORE,
+                        material.DEEPSLATE_ORE,
+                        material.RAW_MATERIAL
+                );
+                RecipeProvider.offerSmelting(exporter,
+                        smeltables,
+                        RecipeCategory.MISC,
+                        material.MATERIAL,
+                        0.45f,
+                        200,
+                        material.name
+                );
+                RecipeProvider.offerBlasting(exporter,
+                        smeltables,
+                        RecipeCategory.MISC,
+                        material.MATERIAL,
+                        0.45f,
+                        100,
+                        material.name
+                );
+                RecipeProvider.offerReversibleCompactingRecipes(exporter,
+                        RecipeCategory.BUILDING_BLOCKS,
+                        material.RAW_MATERIAL,
+                        RecipeCategory.DECORATIONS,
+                        material.RAW_BLOCK
+                );
+            }
             RecipeProvider.offerReversibleCompactingRecipes(exporter,
                     RecipeCategory.BUILDING_BLOCKS,
                     material.MATERIAL,
                     RecipeCategory.DECORATIONS,
                     material.BLOCK
             );
-            RecipeProvider.offerReversibleCompactingRecipes(exporter,
-                    RecipeCategory.BUILDING_BLOCKS,
-                    material.RAW_MATERIAL,
-                    RecipeCategory.DECORATIONS,
-                    material.RAW_BLOCK
-            );
 
-            helmetRecipe(material, exporter);
-            chestplateRecipe(material, exporter);
-            leggingsRecipe(material, exporter);
-            bootsRecipe(material, exporter);
-            swordRecipe(material, exporter);
-            shovelRecipe(material, exporter);
-            pickaxeRecipe(material, exporter);
-            axeRecipe(material, exporter);
-            hoeRecipe(material, exporter);
+            if (material.generate.armor) {
+                helmetRecipe(material, exporter);
+                chestplateRecipe(material, exporter);
+                leggingsRecipe(material, exporter);
+                bootsRecipe(material, exporter);
+                swordRecipe(material, exporter);
+                shovelRecipe(material, exporter);
+                pickaxeRecipe(material, exporter);
+                axeRecipe(material, exporter);
+                hoeRecipe(material, exporter);
+            }
         }
     }
 
@@ -254,57 +270,5 @@ public class AAMaterialDatagen {
                 .criterion(hasItem(material.MATERIAL), conditionsFromItem(material.MATERIAL))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(material.HOE)));
-    }
-
-    public static void addBlockDrops(ModLootTableProvider provider) {
-        forEachMaterial(material -> {
-            switch (material.type) {
-                case INGOT:
-                    provider.addDrop(material.ORE,
-                            lapisLikeOreDrops(1f, 4f, material.ORE, material.RAW_MATERIAL, provider)
-                    );
-                    provider.addDrop(material.DEEPSLATE_ORE, lapisLikeOreDrops(1f,
-                            4f,
-                            material.DEEPSLATE_ORE,
-                            material.RAW_MATERIAL,
-                            provider
-                    ));
-                case GEM:
-                    provider.addDrop(material.ORE,
-                            lapisLikeOreDrops(1f, 4f, material.ORE, material.MATERIAL, provider)
-                    );
-                    provider.addDrop(material.DEEPSLATE_ORE,
-                            lapisLikeOreDrops(1f,
-                                    4f,
-                                    material.DEEPSLATE_ORE,
-                                    material.MATERIAL,
-                                    provider
-                            )
-                    );
-                case CRYSTAL:
-                    provider.addDrop(material.ORE, material.MATERIAL);
-                    provider.addDrop(material.DEEPSLATE_ORE, material.MATERIAL);
-                    provider.addDropWithSilkTouch(material.ORE, material.ORE);
-                    provider.addDropWithSilkTouch(material.DEEPSLATE_ORE, material.DEEPSLATE_ORE);
-            }
-            // these drop the same for all types
-            provider.addDrop(material.BLOCK);
-            provider.addDrop(material.RAW_BLOCK);
-        });
-    }
-
-    private static LootTable.Builder lapisLikeOreDrops(
-            float minCount, float maxCount, Block drop, Item item, ModLootTableProvider provider
-    ) {
-        return BlockLootTableGenerator.dropsWithSilkTouch(drop,
-                (LootPoolEntry.Builder) provider.applyExplosionDecay(drop,
-                        ((LeafEntry.Builder) ItemEntry
-                                .builder(item)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(
-                                        minCount,
-                                        maxCount
-                                )))).apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE))
-                )
-        );
     }
 }

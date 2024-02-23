@@ -12,7 +12,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AAMaterialAutoload {
+import java.util.ArrayList;
+import java.util.List;
+
+public class AAMaterialAutoload {
     public final String name;
     public final AAMaterialType type;
     public final Item MATERIAL;
@@ -23,29 +26,40 @@ public abstract class AAMaterialAutoload {
     public final Block DEEPSLATE_ORE;
     public final Block BLOCK;
     public final Block RAW_BLOCK;
+    @Nullable
     public final AAArmorItem HELMET;
+    @Nullable
     public final AAArmorItem CHESTPLATE;
+    @Nullable
     public final AAArmorItem LEGGINGS;
+    @Nullable
     public final AAArmorItem BOOTS;
+    @Nullable
     public final SwordItem SWORD;
+    @Nullable
     public final ShovelItem SHOVEL;
+    @Nullable
     public final PickaxeItem PICKAXE;
+    @Nullable
     public final AxeItem AXE;
-    //    public final BowItem BOW;
-//    public final ShearsItem SHEARS;
+    //    @Nullable  public final BowItem BOW;
+//    @Nullable  public final ShearsItem SHEARS;
+    @Nullable
     public final HoeItem HOE;
     public final AABlockConfiguration blockConfiguration;
     public final AAToolConfiguration toolConfiguration;
+    public final AAGenerationConfiguration generate;
     private final AANamer namer;
 
-    public AAMaterialAutoload() {
-        AAMaterialConfiguration config = this.getConfiguration();
+    public AAMaterialAutoload(AAMaterialConfiguration config) {
         this.name = config.name;
+        ArcaneArmory.LOGGER.info(config.name);
         this.type = config.type;
         namer = new AANamer(config);
 
-        this.blockConfiguration = config.blockConfiguration;
+        this.blockConfiguration = config.oreConfiguration;
         this.toolConfiguration = config.toolConfiguration;
+        this.generate = config.generationConfiguration;
 
         this.MATERIAL = registerItem(namer.ingot(), config.ingot);
         this.RAW_MATERIAL = registerItem(namer.rawMaterial(), new Item(new FabricItemSettings()));
@@ -68,10 +82,17 @@ public abstract class AAMaterialAutoload {
         );
 
         var armor = createArmor(config);
-        this.HELMET = armor[0];
-        this.CHESTPLATE = armor[1];
-        this.LEGGINGS = armor[2];
-        this.BOOTS = armor[3];
+        if (generate.armor) {
+            this.HELMET = armor[0];
+            this.CHESTPLATE = armor[1];
+            this.LEGGINGS = armor[2];
+            this.BOOTS = armor[3];
+        } else {
+            this.HELMET = null;
+            this.CHESTPLATE = null;
+            this.LEGGINGS = null;
+            this.BOOTS = null;
+        }
 //        try {
 //            AAItemRendererUtil.registerArmorTints(config, MATERIAL,
 ////                    RAW_MATERIAL,
@@ -83,28 +104,65 @@ public abstract class AAMaterialAutoload {
 //        }
 
         var tools = createTools(config);
-        this.SWORD = (SwordItem) tools[0];
-        this.SHOVEL = (ShovelItem) tools[1];
-        this.PICKAXE = (PickaxeItem) tools[2];
-        this.AXE = (AxeItem) tools[3];
-        this.HOE = (HoeItem) tools[4];
+        if (generate.weapons) {
+            this.SWORD = (SwordItem) tools[0];
+        } else {
+            this.SWORD = null;
+        }
+        if (generate.tools) {
+            this.SHOVEL = (ShovelItem) tools[1];
+            this.PICKAXE = (PickaxeItem) tools[2];
+            this.AXE = (AxeItem) tools[3];
+            this.HOE = (HoeItem) tools[4];
+        } else {
+            this.SHOVEL = null;
+            this.PICKAXE = null;
+            this.AXE = null;
+            this.HOE = null;
+        }
 //        try {
 //            AAItemRendererUtil.registerToolTints(config, SWORD, SHOVEL, PICKAXE, AXE, HOE);
 //        } catch (RuntimeException e) {
 //            // this is fine for now I guess? haha :)
 //            // if you know how to fix this pls open a PR <3
 //        }
-
     }
 
-    protected abstract AAMaterialConfiguration getConfiguration();
-
     public ItemConvertible[] getItemsToAddToItemGroup() {
-        return new ItemConvertible[]{
-                this.ORE, this.DEEPSLATE_ORE, this.BLOCK, this.RAW_BLOCK, this.MATERIAL,
-                this.RAW_MATERIAL, this.NUGGET, this.HELMET, this.CHESTPLATE, this.LEGGINGS,
-                this.BOOTS, this.SWORD, this.SHOVEL, this.PICKAXE, this.AXE, this.HOE
-        };
+        List<ItemConvertible> e = new ArrayList<>();
+
+        e.add(MATERIAL);
+        e.add(BLOCK);
+
+        if (generate.ore) {
+            e.add(ORE);
+            e.add(DEEPSLATE_ORE);
+            e.add(RAW_MATERIAL);
+            e.add(RAW_BLOCK);
+            if (type.equals(AAMaterialType.INGOT)) {
+                e.add(NUGGET);
+            }
+        }
+
+        if (generate.weapons) {
+            e.add(SWORD);
+        }
+
+        if (generate.tools) {
+            e.add(PICKAXE);
+            e.add(SHOVEL);
+            e.add(AXE);
+            e.add(HOE);
+        }
+
+        if (generate.armor) {
+            e.add(HELMET);
+            e.add(CHESTPLATE);
+            e.add(LEGGINGS);
+            e.add(BOOTS);
+        }
+
+        return e.toArray(new ItemConvertible[0]);
     }
 
     private AAArmorItem[] createArmor(

@@ -11,7 +11,7 @@ import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvents;
 
-public class RubyMaterialAutoload extends AAMaterialAutoload {
+public class RubyMaterialAutoload {
     public final static Item MATERIAL = new Item(new FabricItemSettings());
     public static final AAMaterialConfiguration configuration = new AAMaterialConfiguration(
             "ruby",
@@ -38,10 +38,7 @@ public class RubyMaterialAutoload extends AAMaterialAutoload {
                     MiningLevels.DIAMOND,
                     12,
                     Enchantability.DIAMOND
-            )
+            ),
+            new AAGenerationConfiguration(true, true, true, true)
     );
-
-    protected AAMaterialConfiguration getConfiguration() {
-        return RubyMaterialAutoload.configuration;
-    }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "arcanearmory:raw_frost_diamond_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "arcanearmory:raw_frost_diamond"
+  }
+}

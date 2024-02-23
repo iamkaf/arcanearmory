@@ -11,7 +11,7 @@ import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvents;
 
-public class TitaniumMaterialAutoload extends AAMaterialAutoload {
+public class TitaniumMaterialAutoload {
     public final static Item MATERIAL = new Item(new FabricItemSettings());
     public static final AAMaterialConfiguration configuration = new AAMaterialConfiguration(
             "titanium",
@@ -38,10 +38,7 @@ public class TitaniumMaterialAutoload extends AAMaterialAutoload {
                     MiningLevels.DIAMOND,
                     12,
                     Enchantability.DIAMOND
-            )
+            ),
+            new AAGenerationConfiguration(true, true, true, true)
     );
-
-    protected AAMaterialConfiguration getConfiguration() {
-        return TitaniumMaterialAutoload.configuration;
-    }
 }

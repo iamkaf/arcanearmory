@@ -152,6 +152,89 @@
       ]
     },
     {
+      "name": "frost_diamond",
+      "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/diamond",
+              "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 222, "g": 40, "b": 73 },
+              "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
+            }
+          ]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/stone" },
+            {
+              "texture": "pieces/gem_ore",
+              "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/deepslate" },
+            {
+              "texture": "pieces/gem_ore",
+              "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
+            }
+          ]
+        },
+        {
+          "item_type": "block",
+          "base_texture": [
+            {
+              "texture": "pieces/diamond_block",
+              "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
+            }
+          ]
+        }
+      ],
+      "tint": [],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 0,
+            "saturation": 1.1,
+            "hue": 0,
+            "lightness": 20
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "black_diamond",
+      "type": "gem",
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ]
+    },
+    {
       "name": "aetheric_crystal",
       "type": "gem",
       "composite": [

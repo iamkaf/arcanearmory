@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-20T03:29:16.6969483	Arcane Armory/Tags for minecraft:block
-20f7813f6b1a0905c2c686b8590a7adc6b798f0b data\minecraft\tags\blocks\needs_stone_tool.json
-9b7b35ff178019f9d3da45c2ebc4637995107c1a data\minecraft\tags\blocks\needs_iron_tool.json
-da7cf91a435db750abb67e25d2c640a1995a2f11 data\minecraft\tags\blocks\mineable\pickaxe.json
+// 1.20.1	2024-02-23T16:17:14.068858	Arcane Armory/Tags for minecraft:block
+69251cc469d806a2a7bcc618df0afb2efc9989a7 data\minecraft\tags\blocks\needs_stone_tool.json
+4703782fcec36d5e01e29dba17c04950da3c7d7c data\minecraft\tags\blocks\needs_iron_tool.json
+f36da649f8c347c670d822cc3135956a92d751ff data\minecraft\tags\blocks\mineable\pickaxe.json

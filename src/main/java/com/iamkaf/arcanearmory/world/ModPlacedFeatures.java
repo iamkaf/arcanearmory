@@ -23,12 +23,6 @@ public class ModPlacedFeatures {
     // ! This code assumes an ore cannot generate in more than one dimension.
 
     public static final HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> ALL_KEYS = makeAllKeys();
-    public static final RegistryKey<PlacedFeature> RUBY_ORE_PLACED_KEY = registerKey(
-            "ruby_ore_placed");
-    public static final RegistryKey<PlacedFeature> NETHER_RUBY_ORE_PLACED_KEY = registerKey(
-            "nether_ruby_ore_placed");
-    public static final RegistryKey<PlacedFeature> END_RUBY_ORE_PLACED_KEY = registerKey(
-            "end_ruby_ore_placed");
 
     private static HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> makeAllKeys() {
         HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> allKeys = new HashMap<>();
