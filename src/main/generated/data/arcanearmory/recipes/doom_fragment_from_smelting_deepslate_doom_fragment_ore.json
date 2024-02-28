@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.45,
+  "group": "doom_fragment",
+  "ingredient": {
+    "item": "arcanearmory:deepslate_doom_fragment_ore"
+  },
+  "result": "arcanearmory:doom_fragment"
+}

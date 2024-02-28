@@ -16,10 +16,14 @@ public class ModTags {
     }
 
     public static class Items {
-        public static final TagKey<Item> SPECIAL_COOKIE = createTag("special_cookie");
+        public static final TagKey<Item> ARISTEAS = createCommonTag("aristeas");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, new Identifier(ArcaneArmory.MOD_ID, name));
+        }
+
+        private static TagKey<Item> createCommonTag(String name) {
+            return TagKey.of(RegistryKeys.ITEM, new Identifier("c", name));
         }
     }
 }

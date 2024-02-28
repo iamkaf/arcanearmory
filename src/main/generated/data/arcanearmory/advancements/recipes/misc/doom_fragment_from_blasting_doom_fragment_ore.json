@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_doom_fragment_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "arcanearmory:doom_fragment_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:doom_fragment_from_blasting_doom_fragment_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_doom_fragment_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:doom_fragment_from_blasting_doom_fragment_ore"
+    ]
+  },
+  "sends_telemetry_event": false
+}

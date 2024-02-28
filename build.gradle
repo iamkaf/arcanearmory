@@ -16,11 +16,27 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+
+	// REI
 	maven { url "https://maven.shedaniel.me" }
+
+	// owo
 	maven { url 'https://maven.wispforest.io' }
 
 	// modmenu, trinkets
 	maven { url "https://maven.terraformersmc.com/" }
+
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
+			includeGroup "maven.modrinth"
+		}
+	}
 }
 
 fabricApi {
@@ -41,9 +57,10 @@ dependencies {
 
 	modRuntimeOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 
-	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
-	include "io.wispforest:owo-sentinel:${project.owo_version}"
-//	modImplementation "io.wispforest:lavender:${project.lavender_version}"
+	modRuntimeOnly "io.wispforest:owo-lib:${project.owo_version}"
+
+	// alloy forgery
+	modRuntimeOnly "maven.modrinth:jhl28YkY:2.1.2+1.20"
 
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.

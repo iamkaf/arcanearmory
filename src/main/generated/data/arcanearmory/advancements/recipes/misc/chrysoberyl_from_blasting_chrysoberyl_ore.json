@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chrysoberyl_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "arcanearmory:chrysoberyl_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:chrysoberyl_from_blasting_chrysoberyl_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_chrysoberyl_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:chrysoberyl_from_blasting_chrysoberyl_ore"
+    ]
+  },
+  "sends_telemetry_event": false
+}

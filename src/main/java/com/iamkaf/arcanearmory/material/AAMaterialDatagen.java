@@ -1,28 +1,17 @@
 package com.iamkaf.arcanearmory.material;
 
-import com.iamkaf.arcanearmory.datagen.ModLootTableProvider;
 import com.iamkaf.arcanearmory.material.rendering.AAItemRendererUtil;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
-import net.minecraft.data.server.loottable.BlockLootTableGenerator;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.LeafEntry;
-import net.minecraft.loot.entry.LootPoolEntry;
-import net.minecraft.loot.function.ApplyBonusLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
 
@@ -34,7 +23,7 @@ import static net.minecraft.data.server.recipe.RecipeProvider.*;
 
 public class AAMaterialDatagen {
     public static void generateModels(ItemModelGenerator generator) {
-        for (AAMaterialAutoload material : ALL_MATERIALS) {
+        for (AAMaterial material : ALL_MATERIALS) {
             generator.register(material.MATERIAL, Models.GENERATED);
             generator.register(material.RAW_MATERIAL, Models.GENERATED);
             if (material.NUGGET != null) {
@@ -60,10 +49,12 @@ public class AAMaterialDatagen {
 
     public static void generateModels(BlockStateModelGenerator generator) {
         forEachMaterial((material) -> {
-            generator.registerSimpleCubeAll(material.ORE);
-            generator.registerSimpleCubeAll(material.DEEPSLATE_ORE);
             generator.registerSimpleCubeAll(material.BLOCK);
-            generator.registerSimpleCubeAll(material.RAW_BLOCK);
+            if (material.generate.ore) {
+                generator.registerSimpleCubeAll(material.ORE);
+                generator.registerSimpleCubeAll(material.DEEPSLATE_ORE);
+                generator.registerSimpleCubeAll(material.RAW_BLOCK);
+            }
         });
     }
 
@@ -90,15 +81,19 @@ public class AAMaterialDatagen {
         });
     }
 
-    private static void forEachMaterial(Consumer<AAMaterialAutoload> useMaterial) {
-        for (AAMaterialAutoload material : ALL_MATERIALS) {
+    private static void forEachMaterial(Consumer<AAMaterial> useMaterial) {
+        for (AAMaterial material : ALL_MATERIALS) {
             useMaterial.accept(material);
         }
     }
 
     public static void generateOreRecipes(Consumer<RecipeJsonProvider> exporter) {
-        for (AAMaterialAutoload material : ALL_MATERIALS) {
-            if (material.RAW_MATERIAL != null) {
+        for (AAMaterial material : ALL_MATERIALS) {
+            if (material.generate.ore) {
+                assert material.ORE != null;
+                assert material.DEEPSLATE_ORE != null;
+                assert material.RAW_BLOCK != null;
+
                 List<ItemConvertible> smeltables = List.of(material.ORE,
                         material.DEEPSLATE_ORE,
                         material.RAW_MATERIAL
@@ -148,7 +143,7 @@ public class AAMaterialDatagen {
     }
 
     private static void helmetRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.HELMET, 1)
@@ -160,7 +155,7 @@ public class AAMaterialDatagen {
     }
 
     private static void chestplateRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.CHESTPLATE, 1)
@@ -173,7 +168,7 @@ public class AAMaterialDatagen {
     }
 
     private static void leggingsRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.LEGGINGS, 1)
@@ -186,7 +181,7 @@ public class AAMaterialDatagen {
     }
 
     private static void bootsRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.BOOTS, 1)
@@ -198,7 +193,7 @@ public class AAMaterialDatagen {
     }
 
     private static void swordRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.SWORD, 1)
@@ -213,7 +208,7 @@ public class AAMaterialDatagen {
     }
 
     private static void shovelRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.SHOVEL, 1)
@@ -228,7 +223,7 @@ public class AAMaterialDatagen {
     }
 
     private static void pickaxeRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.PICKAXE, 1)
@@ -243,7 +238,7 @@ public class AAMaterialDatagen {
     }
 
     private static void axeRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.AXE, 1)
@@ -258,7 +253,7 @@ public class AAMaterialDatagen {
     }
 
     private static void hoeRecipe(
-            AAMaterialAutoload material, Consumer<RecipeJsonProvider> exporter
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
     ) {
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.MISC, material.HOE, 1)

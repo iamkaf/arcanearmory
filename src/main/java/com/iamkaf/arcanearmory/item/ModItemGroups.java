@@ -2,6 +2,7 @@ package com.iamkaf.arcanearmory.item;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
 import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
+import com.iamkaf.arcanearmory.material.ModMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,7 @@ public class ModItemGroups {
             FabricItemGroup
                     .builder()
                     .displayName(Text.translatable("itemgroup.arcanearmory"))
-                    .icon(() -> new ItemStack(ModItems.SPECIAL_CHOCOLATE_COOKIE))
+                    .icon(() -> new ItemStack(ModMaterials.ARISTEUM.AXE))
                     .entries(((displayContext, entries) -> {
                         AAMaterialDatagen.addItemsToItemGroup(entries);
                     }))

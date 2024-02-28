@@ -10,7 +10,7 @@ public class AANamer {
     public String ingot() {
         // more will be added later
         switch (config.type) {
-            case GEM:
+            case GEM, CRYSTAL:
                 return config.name;
             default:
                 return config.name + "_ingot";

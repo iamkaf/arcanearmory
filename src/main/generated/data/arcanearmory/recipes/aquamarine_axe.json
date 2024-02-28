@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "arcanearmory:aquamarine"
+    }
+  },
+  "pattern": [
+    " XX",
+    " OX",
+    " O "
+  ],
+  "result": {
+    "item": "arcanearmory:aquamarine_axe"
+  },
+  "show_notification": true
+}

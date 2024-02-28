@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.45,
+  "group": "void_obsidian_fragment",
+  "ingredient": {
+    "item": "arcanearmory:void_obsidian_fragment_ore"
+  },
+  "result": "arcanearmory:void_obsidian_fragment"
+}

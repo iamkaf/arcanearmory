@@ -1,0 +1,33 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "arcanearmory:titanium_ingot"
+    },
+    {
+      "item": "arcanearmory:aetheric_crystal"
+    },
+    {
+      "tag": "c:aristeas"
+    },
+    {
+      "item": "minecraft:pink_dye"
+    }
+  ],
+  "output": {
+    "id": "arcanearmory:aristeum_ingot",
+    "count": 2
+  },
+  "overrides": {
+    "2": {
+      "id": "arcanearmory:aristeum_ingot",
+      "count": 2
+    },
+    "3+": {
+      "id": "arcanearmory:aristeum_ingot",
+      "count": 3
+    }
+  },
+  "min_forge_tier": 2,
+  "fuel_per_tick": 10
+}

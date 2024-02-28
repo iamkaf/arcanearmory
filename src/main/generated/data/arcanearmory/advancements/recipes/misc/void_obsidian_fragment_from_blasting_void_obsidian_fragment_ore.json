@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:void_obsidian_fragment_from_blasting_void_obsidian_fragment_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_void_obsidian_fragment_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "arcanearmory:void_obsidian_fragment_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_void_obsidian_fragment_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:void_obsidian_fragment_from_blasting_void_obsidian_fragment_ore"
+    ]
+  },
+  "sends_telemetry_event": false
+}

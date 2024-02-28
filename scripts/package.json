@@ -4,7 +4,8 @@
   "description": "",
   "main": "generate_textures.js",
   "scripts": {
-    "start": "npm run clean && ts-node --transpile-only ./texture-generator",
+    "start": "ts-node --transpile-only ./texture-generator",
+    "translate": "ts-node --transpile-only ./translation-helper",
     "clean": "rimraf ./texture-generator/generated/resources",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "change-case": "^5.4.3",
+    "change-case-all": "^2.1.0",
     "mkdirp": "^3.0.1",
     "sharp": "^0.33.2",
     "ts-node": "^10.9.2"

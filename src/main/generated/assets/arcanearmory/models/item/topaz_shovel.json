@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arcanearmory:item/topaz_shovel",
+    "layer1": "arcanearmory:item/topaz_shovel_overlay"
+  }
+}

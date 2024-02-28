@@ -40,7 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.SPECIAL_CHOCOLATE_COOKIE, Models.GENERATED);
+//        itemModelGenerator.register(ModItems.SPECIAL_CHOCOLATE_COOKIE, Models.GENERATED);
 
         AAMaterialDatagen.generateModels(itemModelGenerator);
     }

@@ -1,7 +1,7 @@
 package com.iamkaf.arcanearmory.world;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
-import com.iamkaf.arcanearmory.material.AAMaterialAutoload;
+import com.iamkaf.arcanearmory.material.AAMaterial;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -22,20 +22,22 @@ public class ModPlacedFeatures {
 
     // ! This code assumes an ore cannot generate in more than one dimension.
 
-    public static final HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> ALL_KEYS = makeAllKeys();
+    public static final HashMap<AAMaterial, RegistryKey<PlacedFeature>> ALL_KEYS = makeAllKeys();
 
-    private static HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> makeAllKeys() {
-        HashMap<AAMaterialAutoload, RegistryKey<PlacedFeature>> allKeys = new HashMap<>();
+    private static HashMap<AAMaterial, RegistryKey<PlacedFeature>> makeAllKeys() {
+        HashMap<AAMaterial, RegistryKey<PlacedFeature>> allKeys = new HashMap<>();
 
-        for (AAMaterialAutoload material : ALL_MATERIALS) {
-            if (material.blockConfiguration.spawnInOverworld) {
-                allKeys.put(material, registerKey(material.name + "_ore_placed"));
-            }
-            if (material.blockConfiguration.spawnInTheNether) {
-                allKeys.put(material, registerKey("nether_" + material.name + "_ore_placed"));
-            }
-            if (material.blockConfiguration.spawnInTheEnd) {
-                allKeys.put(material, registerKey("end_" + material.name + "_ore_placed"));
+        for (AAMaterial material : ALL_MATERIALS) {
+            if (material.generate.ore) {
+                if (material.blockConfiguration.spawnInOverworld) {
+                    allKeys.put(material, registerKey(material.name + "_ore_placed"));
+                }
+                if (material.blockConfiguration.spawnInTheNether) {
+                    allKeys.put(material, registerKey("nether_" + material.name + "_ore_placed"));
+                }
+                if (material.blockConfiguration.spawnInTheEnd) {
+                    allKeys.put(material, registerKey("end_" + material.name + "_ore_placed"));
+                }
             }
         }
 

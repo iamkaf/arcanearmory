@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "arcanearmory:chrysoberyl"
+    }
+  },
+  "pattern": [
+    " XX",
+    " O ",
+    " O "
+  ],
+  "result": {
+    "item": "arcanearmory:chrysoberyl_hoe"
+  },
+  "show_notification": true
+}

@@ -4,7 +4,7 @@ import { makeFileName } from './naming';
 import { ItemType } from './types';
 
 const TEXTURE_TEMPLATES_BASE_DIR = './templates/texture';
-const GENERATED_RESOURCES_BASE_DIR = './generated/resources';
+const GENERATED_RESOURCES_BASE_DIR = '../../src/main/resources';
 const REPLACEMENTS_RESOURCES_BASE_DIR = './replacements/resources';
 
 export function getTemplateTexturePath(material, itemType: ItemType, gemOverlay = false) {

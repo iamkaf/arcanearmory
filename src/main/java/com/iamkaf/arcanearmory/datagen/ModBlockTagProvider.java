@@ -1,6 +1,6 @@
 package com.iamkaf.arcanearmory.datagen;
 
-import com.iamkaf.arcanearmory.material.AAMaterialAutoload;
+import com.iamkaf.arcanearmory.material.AAMaterial;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryKeys;
@@ -23,19 +23,27 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        for (AAMaterialAutoload material : ALL_MATERIALS) {
-            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                    .add(material.ORE)
-                    .add(material.DEEPSLATE_ORE)
-                    .add(material.BLOCK)
-                    .add(material.RAW_BLOCK);
+        for (AAMaterial material : ALL_MATERIALS) {
+            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(material.BLOCK);
 
-            getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
-                    .add(material.BLOCK)
-                    .add(material.RAW_BLOCK);
+            if (material.generate.ore) {
+                getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                        .add(material.ORE)
+                        .add(material.DEEPSLATE_ORE)
+                        .add(material.RAW_BLOCK);
+
+                getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(material.RAW_BLOCK);
+            }
+
+            getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(material.BLOCK);
+
+            if (!material.generate.ore) {
+                continue;
+            }
 
             if (material.blockConfiguration.miningLevelRequired > 3) {
-                getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier("fabric",
+                getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(
+                        "fabric",
                         "needs_tool_level_" + material.blockConfiguration.miningLevelRequired
                 ))).add(material.ORE).add(material.DEEPSLATE_ORE);
             }

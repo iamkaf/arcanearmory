@@ -76,7 +76,10 @@ function getTintForCurrentItemType(material: Material, itemType: ItemType) {
     shift_overlay: false,
   };
 
-  const tint = material.tint?.findLast((hs) => hs.item_type === itemType || hs.item_type === 'all') || defaultHueShift;
+  const tint =
+    material.tint?.findLast((hs) => hs.item_type === itemType) ||
+    material.tint?.findLast((hs) => hs.item_type === 'all') ||
+    defaultHueShift;
 
   const json = JSON.parse(JSON.stringify(tint));
 
@@ -103,9 +106,19 @@ function getModulationForCurrentItemType(material: Material, itemType: ItemType)
   };
 
   const modulation =
-    material.modulate?.findLast((hs) => hs.item_type === itemType || hs.item_type === 'all') || defaultModulation;
+    material.modulate?.findLast((hs) => hs.item_type === itemType) ||
+    material.modulate?.findLast((hs) => hs.item_type === 'all') ||
+    defaultModulation;
 
-  return JSON.parse(JSON.stringify(modulation));
+  const json = JSON.parse(JSON.stringify(modulation));
+
+  // for tools, the base and overlay are flipped
+  if (isTool(itemType)) {
+    json.modulate_base = !modulation.modulate_base;
+    json.modulate_overlay = !modulation.modulate_overlay;
+  }
+
+  return json;
 }
 
 async function generateCompositeTexture(composite: CompositeTexture[], outFile: string) {

@@ -75,7 +75,7 @@
             "brightness": 0.9,
             "saturation": 1.1,
             "hue": 0,
-            "lightness": 0
+            "lightness": -30
           },
           "modulate_base": true,
           "modulate_overlay": false
@@ -144,7 +144,7 @@
             "brightness": 0.9,
             "saturation": 1.1,
             "hue": 0,
-            "lightness": -20
+            "lightness": -30
           },
           "modulate_base": true,
           "modulate_overlay": false
@@ -170,7 +170,7 @@
             { "texture": "pieces/raw_gem" },
             {
               "texture": "pieces/raw_gem_overlay",
-              "tint": { "r": 222, "g": 40, "b": 73 },
+              "tint": { "r": 183, "g": 247, "b": 245 },
               "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
             }
           ]
@@ -223,6 +223,71 @@
     {
       "name": "black_diamond",
       "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/gem_4",
+              "tint": { "r": 0, "g": 0, "b": 0 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 1,
+                "hue": 0,
+                "lightness": -60
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 0, "g": 0, "b": 0 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 1,
+                "hue": 0,
+                "lightness": -60
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/stone" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 0, "g": 0, "b": 0 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 1,
+                "hue": 0,
+                "lightness": -60
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/deepslate" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 0, "g": 0, "b": 0 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 1,
+                "hue": 0,
+                "lightness": -60
+              }
+            }
+          ]
+        }
+      ],
       "tint": [
         {
           "item_type": "all",
@@ -231,6 +296,761 @@
           "b": 0,
           "shift_base": true,
           "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1,
+            "saturation": 0,
+            "hue": 0,
+            "lightness": -60
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        },
+        {
+          "item_type": "sword",
+          "options": {
+            "brightness": 1,
+            "saturation": 0,
+            "hue": 0,
+            "lightness": -50
+          },
+          "modulate_base": false,
+          "modulate_overlay": false
+        },
+        {
+          "item_type": "shovel",
+          "options": {
+            "brightness": 1,
+            "saturation": 0,
+            "hue": 0,
+            "lightness": -50
+          },
+          "modulate_base": false,
+          "modulate_overlay": false
+        },
+        {
+          "item_type": "pickaxe",
+          "options": {
+            "brightness": 1,
+            "saturation": 0,
+            "hue": 0,
+            "lightness": -50
+          },
+          "modulate_base": false,
+          "modulate_overlay": false
+        },
+        {
+          "item_type": "axe",
+          "options": {
+            "brightness": 1,
+            "saturation": 0,
+            "hue": 0,
+            "lightness": -50
+          },
+          "modulate_base": false,
+          "modulate_overlay": false
+        },
+        {
+          "item_type": "hoe",
+          "options": {
+            "brightness": 1,
+            "saturation": 0,
+            "hue": 0,
+            "lightness": -50
+          },
+          "modulate_base": false,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "topaz",
+      "type": "gem",
+      "overrides": [
+        {
+          "item_type": "block",
+          "variant_texture": "emerald_block"
+        }
+      ],
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/gem_12",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": { "brightness": 0.9, "saturation": 2, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/stone" },
+            {
+              "texture": "pieces/emerald_ore_overlay",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/deepslate" },
+            {
+              "texture": "pieces/emerald_ore_overlay",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 21, "g": 140, "b": 214,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 2,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "chrysoberyl",
+      "type": "gem",
+      "overrides": [
+        {
+          "item_type": "block",
+          "variant_texture": "emerald_block"
+        }
+      ],
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/gem_13",
+              "tint": { "r": 175, "g": 207, "b": 33 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 175, "g": 207, "b": 33 },
+              "modulate": { "brightness": 0.9, "saturation": 2, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/stone" },
+            {
+              "texture": "pieces/emerald_ore_overlay",
+              "tint": { "r": 175, "g": 207, "b": 33 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/deepslate" },
+            {
+              "texture": "pieces/emerald_ore_overlay",
+              "tint": { "r": 175, "g": 207, "b": 33 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 175, "g": 207, "b": 33,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 2,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "aquamarine",
+      "type": "gem",
+      "overrides": [
+        {
+          "item_type": "block",
+          "variant_texture": "emerald_block"
+        }
+      ],
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/gem_18",
+              "tint": { "r": 95, "g": 203, "b": 227 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 95, "g": 203, "b": 227 },
+              "modulate": { "brightness": 0.9, "saturation": 2, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/stone" },
+            {
+              "texture": "pieces/emerald_ore_overlay",
+              "tint": { "r": 95, "g": 203, "b": 227 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/deepslate" },
+            {
+              "texture": "pieces/emerald_ore_overlay",
+              "tint": { "r": 95, "g": 203, "b": 227 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": 0
+              }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 95, "g": 203, "b": 227,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 2,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "star_corundum",
+      "type": "gem",
+      "overrides": [
+        {
+          "item_type": "block",
+          "variant_texture": "emerald_block"
+        }
+      ],
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/gem_6",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": -60
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": { "brightness": 0.9, "saturation": 2, "hue": 0, "lightness": -60 }
+            }
+          ]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/stone" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": -60
+              }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/deepslate" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 21, "g": 140, "b": 214 },
+              "modulate": {
+                "brightness": 1.0,
+                "saturation": 2,
+                "hue": 0,
+                "lightness": -60
+              }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 21, "g": 140, "b": 214,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 2,
+            "hue": 0,
+            "lightness": -60
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "doom_fragment",
+      "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [{ "texture": "pieces/gem_2", "tint": { "r": 185, "g": 34, "b": 212 } }]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/netherrack" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 185, "g": 34, "b": 212 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/netherrack" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 185, "g": 34, "b": 212 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "block",
+          "base_texture": [
+            {
+              "texture": "pieces/emerald_block",
+              "tint": { "r": 185, "g": 34, "b": 212 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 185, "g": 34, "b": 212,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1,
+            "saturation": 1,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "void_obsidian_fragment",
+      "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [{ "texture": "pieces/gem_2", "tint": { "r": 55, "g": 8, "b": 97 }, "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": -20 } }]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/end_stone" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 55, "g": 8, "b": 97 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": -20 }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/end_stone" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 55, "g": 8, "b": 97 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": -20 }
+            }
+          ]
+        },
+        {
+          "item_type": "block",
+          "base_texture": [
+            {
+              "texture": "pieces/diamond_block",
+              "tint": { "r": 55, "g": 8, "b": 97 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": -20 }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 55, "g": 8, "b": 97,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1,
+            "saturation": 1,
+            "hue": 0,
+            "lightness": -20
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "solarflare_gem",
+      "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [{ "texture": "pieces/gem_17", "tint": { "r": 227, "g": 130, "b": 34 }, "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": 0 } }]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/end_stone" },
+            {
+              "texture": "pieces/copper_ore_overlay",
+              "tint": { "r": 227, "g": 130, "b": 34 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/end_stone" },
+            {
+              "texture": "pieces/copper_ore_overlay",
+              "tint": { "r": 227, "g": 130, "b": 34 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "block",
+          "base_texture": [
+            {
+              "texture": "pieces/emerald_block",
+              "tint": { "r": 227, "g": 130, "b": 34 },
+              "modulate": { "brightness": 1, "saturation": 1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 227, "g": 130, "b": 34,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1,
+            "saturation": 1,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "bloodfire_garnet",
+      "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/gem_14",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/stone" },
+            {
+              "texture": "pieces/gem_ore",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/deepslate" },
+            {
+              "texture": "pieces/gem_ore",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "block",
+          "base_texture": [
+            {
+              "texture": "pieces/emerald_block",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "pickaxe",
+          "base_texture": [{"texture": "pieces/dark_pickaxe_rod"}],
+          "overlay_texture": [
+            {
+              "texture": "template_pickaxe_overlay",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "shovel",
+          "base_texture": [{"texture": "pieces/dark_shovel_rod"}],
+          "overlay_texture": [
+            {
+              "texture": "template_shovel_overlay",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "axe",
+          "base_texture": [{"texture": "pieces/dark_axe_rod"}],
+          "overlay_texture": [
+            {
+              "texture": "template_axe_overlay",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "hoe",
+          "base_texture": [{"texture": "pieces/dark_hoe_rod"}],
+          "overlay_texture": [
+            {
+              "texture": "template_hoe_overlay",
+              "tint": { "r": 179, "g": 2, "b": 22 },
+              "modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": -40 }
+            }
+          ]
+        },
+        {
+          "item_type": "layer_1",
+          "base_texture": [{"texture":"pieces/netherite_layer_1", "tint": { "r": 179, "g": 2, "b": 22 },"modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": 0 }}],
+          "overlay_texture": [{"texture":"template_layer_1_overlay"}]
+        },
+        {
+          "item_type": "layer_2",
+          "base_texture": [{"texture":"pieces/netherite_layer_2", "tint": { "r": 179, "g": 2, "b": 22 },"modulate": { "brightness": 0.9, "saturation": 1.2, "hue": 0, "lightness": 0 }}],
+          "overlay_texture": [{"texture":"template_layer_2_overlay"}]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 179, "g": 2, "b": 22,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 0.9,
+            "saturation": 1.2,
+            "hue": 0,
+            "lightness": -40
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
         }
       ]
     },
@@ -293,6 +1113,69 @@
             "saturation": 1,
             "hue": 0,
             "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "shadow_crystal",
+      "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [{ "texture": "pieces/crystal_1", "tint": { "r": 0, "g": 0, "b": 0 }, "modulate": { "brightness": 1, "saturation": 0.1, "hue": 0, "lightness": -60 } }]
+        },
+        {
+          "item_type": "ore",
+          "base_texture": [
+            { "texture": "pieces/netherrack" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 0, "g": 0, "b": 0 },
+              "modulate": { "brightness": 1, "saturation": 0.1, "hue": 0, "lightness": -60 }
+            }
+          ]
+        },
+        {
+          "item_type": "deepslate_ore",
+          "base_texture": [
+            { "texture": "pieces/netherrack" },
+            {
+              "texture": "pieces/crystal_ore_overlay",
+              "tint": { "r": 0, "g": 0, "b": 0 },
+              "modulate": { "brightness": 1, "saturation": 0.1, "hue": 0, "lightness": -60 }
+            }
+          ]
+        },
+        {
+          "item_type": "block",
+          "base_texture": [
+            {
+              "texture": "pieces/redstone_block",
+              "tint": { "r": 0, "g": 0, "b": 0 },
+              "modulate": { "brightness": 1, "saturation": 0.1, "hue": 0, "lightness": -60 }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 0, "g": 0, "b": 0,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1,
+            "saturation": 0.1,
+            "hue": 0,
+            "lightness": -60
           },
           "modulate_base": true,
           "modulate_overlay": false
@@ -419,6 +1302,31 @@
           "shift_overlay": false
         }
       ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 1.1,
+            "hue": 0,
+            "lightness": -20
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
+    },
+    {
+      "name": "aristeum",
+      "item_type": "ingot",
+      "tint": [{
+        "item_type": "all",
+        "r": 250,
+        "g": 115,
+        "b": 164,
+        "shift_base": true,
+        "shift_overlay": false
+      }],
       "modulate": [
         {
           "item_type": "all",

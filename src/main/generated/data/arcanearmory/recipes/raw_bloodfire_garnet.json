@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "arcanearmory:raw_bloodfire_garnet_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "arcanearmory:raw_bloodfire_garnet"
+  }
+}

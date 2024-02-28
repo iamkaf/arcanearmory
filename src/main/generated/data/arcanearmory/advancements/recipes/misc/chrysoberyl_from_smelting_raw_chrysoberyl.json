@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_chrysoberyl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "arcanearmory:raw_chrysoberyl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:chrysoberyl_from_smelting_raw_chrysoberyl"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_chrysoberyl",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:chrysoberyl_from_smelting_raw_chrysoberyl"
+    ]
+  },
+  "sends_telemetry_event": false
+}
