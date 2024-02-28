@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "arcanearmory:aristeum_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "arcanearmory:aristeum_ingot"
+  }
+}
