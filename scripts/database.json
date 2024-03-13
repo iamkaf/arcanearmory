@@ -948,7 +948,7 @@
         {
           "item_type": "ore",
           "base_texture": [
-            { "texture": "pieces/stone" },
+            { "texture": "pieces/netherrack" },
             {
               "texture": "pieces/gem_ore",
               "tint": { "r": 179, "g": 2, "b": 22 },
@@ -959,7 +959,7 @@
         {
           "item_type": "deepslate_ore",
           "base_texture": [
-            { "texture": "pieces/deepslate" },
+            { "texture": "pieces/netherrack" },
             {
               "texture": "pieces/gem_ore",
               "tint": { "r": 179, "g": 2, "b": 22 },
