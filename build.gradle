@@ -37,6 +37,8 @@ repositories {
 			includeGroup "maven.modrinth"
 		}
 	}
+
+	maven {url = 'https://jitpack.io'}
 }
 
 fabricApi {
@@ -61,6 +63,12 @@ dependencies {
 
 	// alloy forgery
 	modRuntimeOnly "maven.modrinth:jhl28YkY:2.1.2+1.20"
+
+	modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"
+
+	modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
+
+	modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
 
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.

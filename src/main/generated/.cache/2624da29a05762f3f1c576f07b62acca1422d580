@@ -1,3 +1,27 @@
-// 1.20.1	2024-02-28T09:47:42.5230189	Arcane Armory/Tags for minecraft:item
+// 1.20.1	2024-03-13T20:12:16.7822782	Arcane Armory/Tags for minecraft:item
 9c37a121bb91dbef1ed757971c4c1e66dc1602c4 data\c\tags\items\aristeas.json
 952c7ba5e79443742c09007c88424005a50ad49a data\minecraft\tags\items\trimmable_armor.json
+0b88133cc17a44a348a25655ee33292459239e3b data\minecraft\tags\items\pickaxes.json
+2999054492201e1ff202081807b02bf289afbad4 data\c\tags\items\tools\shovels.json
+c9d104d8dda48f04f7424c5ee086015b46084372 data\c\tags\items\shields.json
+bf3a782867934884e947a1b982e04ea8ce07bf3a data\minecraft\tags\items\hoes.json
+952c7ba5e79443742c09007c88424005a50ad49a data\c\tags\items\armors.json
+e350a82910c9ccdc64be4a23f81682ad43856451 data\c\tags\items\chestplates.json
+1678895e5a9ff37b511f26f461d8f5bf22c82815 data\minecraft\tags\items\swords.json
+1678895e5a9ff37b511f26f461d8f5bf22c82815 data\c\tags\items\tools\swords.json
+bf3a782867934884e947a1b982e04ea8ce07bf3a data\c\tags\items\tools\hoes.json
+04ec37ade94d348703228a2bcd04ed48c8b9242f data\c\tags\items\tools\axes.json
+04ec37ade94d348703228a2bcd04ed48c8b9242f data\minecraft\tags\items\axes.json
+b2f0524bfd91ac9c19325449b19dec9ca8f2a40f data\minecraft\tags\items\tools.json
+0b88133cc17a44a348a25655ee33292459239e3b data\c\tags\items\tools\pickaxes.json
+61f0c659417d2aee3f33897e7a1a8368faf10ee4 data\c\tags\items\leggings.json
+2999054492201e1ff202081807b02bf289afbad4 data\minecraft\tags\items\shovels.json
+1678895e5a9ff37b511f26f461d8f5bf22c82815 data\c\tags\items\swords.json
+7477379d0c0ed9f230e1a7b2c646062f453a1179 data\c\tags\items\boots.json
+04ec37ade94d348703228a2bcd04ed48c8b9242f data\c\tags\items\axes.json
+94134bf23e0e7907e5e5bb8fddc04aa5bf32535d data\c\tags\items\helmets.json
+b2f0524bfd91ac9c19325449b19dec9ca8f2a40f data\c\tags\items\tools.json
+2999054492201e1ff202081807b02bf289afbad4 data\c\tags\items\shovels.json
+0b88133cc17a44a348a25655ee33292459239e3b data\c\tags\items\pickaxes.json
+952c7ba5e79443742c09007c88424005a50ad49a data\c\tags\items\armor.json
+bf3a782867934884e947a1b982e04ea8ce07bf3a data\c\tags\items\hoes.json

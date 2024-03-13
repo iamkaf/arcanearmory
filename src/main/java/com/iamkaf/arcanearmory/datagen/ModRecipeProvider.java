@@ -1,9 +1,15 @@
 package com.iamkaf.arcanearmory.datagen;
 
+import com.iamkaf.arcanearmory.item.ModItems;
 import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
+import com.iamkaf.arcanearmory.material.ModMaterials;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.util.Identifier;
 
 import java.util.function.Consumer;
 
@@ -15,5 +21,45 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
         AAMaterialDatagen.generateOreRecipes(exporter);
+
+        ShapedRecipeJsonBuilder
+                .create(RecipeCategory.FOOD, ModItems.COOLPPER_SHIELD, 1)
+                .pattern("ABA")
+                .pattern("AAA")
+                .pattern(" A ")
+                .input('A', Blocks.OAK_PLANKS)
+                .input('B', ModMaterials.COOLPPER.MATERIAL)
+                .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromItem(Blocks.OAK_PLANKS))
+                .criterion(
+                        hasItem(ModMaterials.COOLPPER.MATERIAL),
+                        conditionsFromItem(ModMaterials.COOLPPER.MATERIAL)
+                )
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.COOLPPER_SHIELD)));
+        ShapedRecipeJsonBuilder
+                .create(RecipeCategory.FOOD, ModItems.TITANIUM_SHIELD, 1)
+                .pattern("ABA")
+                .pattern("AAA")
+                .pattern(" A ")
+                .input('A', Blocks.OAK_PLANKS)
+                .input('B', ModMaterials.TITANIUM.MATERIAL)
+                .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromItem(Blocks.OAK_PLANKS))
+                .criterion(
+                        hasItem(ModMaterials.TITANIUM.MATERIAL),
+                        conditionsFromItem(ModMaterials.TITANIUM.MATERIAL)
+                )
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.TITANIUM_SHIELD)));
+        ShapedRecipeJsonBuilder
+                .create(RecipeCategory.FOOD, ModItems.ARISTEUM_SHIELD, 1)
+                .pattern("ABA")
+                .pattern("AAA")
+                .pattern(" A ")
+                .input('A', Blocks.OAK_PLANKS)
+                .input('B', ModMaterials.ARISTEUM.MATERIAL)
+                .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromItem(Blocks.OAK_PLANKS))
+                .criterion(
+                        hasItem(ModMaterials.ARISTEUM.MATERIAL),
+                        conditionsFromItem(ModMaterials.ARISTEUM.MATERIAL)
+                )
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ARISTEUM_SHIELD)));
     }
 }

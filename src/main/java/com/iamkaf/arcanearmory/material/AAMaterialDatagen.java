@@ -58,14 +58,79 @@ public class AAMaterialDatagen {
         });
     }
 
-    public static void tagTrimmableArmors(FabricTagProvider<Item>.FabricTagBuilder builder) {
+    public static void tagArmors(
+            FabricTagProvider<Item>.FabricTagBuilder trimmables,
+            FabricTagProvider<Item>.FabricTagBuilder armors,
+            FabricTagProvider<Item>.FabricTagBuilder armor,
+            FabricTagProvider<Item>.FabricTagBuilder helmets,
+            FabricTagProvider<Item>.FabricTagBuilder chestplates,
+            FabricTagProvider<Item>.FabricTagBuilder leggings,
+            FabricTagProvider<Item>.FabricTagBuilder boots,
+            FabricTagProvider<Item>.FabricTagBuilder tools,
+            FabricTagProvider<Item>.FabricTagBuilder minecraftTools,
+            FabricTagProvider<Item>.FabricTagBuilder swords,
+            FabricTagProvider<Item>.FabricTagBuilder minecraftSwords,
+            FabricTagProvider<Item>.FabricTagBuilder toolSwords,
+            FabricTagProvider<Item>.FabricTagBuilder shovels,
+            FabricTagProvider<Item>.FabricTagBuilder minecraftShovels,
+            FabricTagProvider<Item>.FabricTagBuilder toolShovels,
+            FabricTagProvider<Item>.FabricTagBuilder axes,
+            FabricTagProvider<Item>.FabricTagBuilder minecraftAxes,
+            FabricTagProvider<Item>.FabricTagBuilder toolAxes,
+            FabricTagProvider<Item>.FabricTagBuilder pickaxes,
+            FabricTagProvider<Item>.FabricTagBuilder minecraftPickaxes,
+            FabricTagProvider<Item>.FabricTagBuilder toolPickaxes,
+            FabricTagProvider<Item>.FabricTagBuilder hoes,
+            FabricTagProvider<Item>.FabricTagBuilder minecraftHoes,
+            FabricTagProvider<Item>.FabricTagBuilder toolHoes
+    ) {
         forEachMaterial((material) -> {
             if (material.generate.armor) {
-                builder.add(material.HELMET,
+                trimmables.add(material.HELMET,
                         material.CHESTPLATE,
                         material.LEGGINGS,
                         material.BOOTS
                 );
+                armors.add(material.HELMET, material.CHESTPLATE, material.LEGGINGS, material.BOOTS);
+                armor.add(material.HELMET, material.CHESTPLATE, material.LEGGINGS, material.BOOTS);
+                helmets.add(material.HELMET);
+                chestplates.add(material.CHESTPLATE);
+                leggings.add(material.LEGGINGS);
+                boots.add(material.BOOTS);
+            }
+            if (material.generate.tools && material.generate.weapons) {
+                tools.add(material.SWORD,
+                        material.SHOVEL,
+                        material.AXE,
+                        material.PICKAXE,
+                        material.HOE
+                );
+                minecraftTools.add(material.SWORD,
+                        material.SHOVEL,
+                        material.AXE,
+                        material.PICKAXE,
+                        material.HOE
+                );
+
+                swords.add(material.SWORD);
+                minecraftSwords.add(material.SWORD);
+                toolSwords.add(material.SWORD);
+
+                shovels.add(material.SHOVEL);
+                minecraftShovels.add(material.SHOVEL);
+                toolShovels.add(material.SHOVEL);
+
+                axes.add(material.AXE);
+                minecraftAxes.add(material.AXE);
+                toolAxes.add(material.AXE);
+
+                pickaxes.add(material.PICKAXE);
+                minecraftPickaxes.add(material.PICKAXE);
+                toolPickaxes.add(material.PICKAXE);
+
+                hoes.add(material.HOE);
+                minecraftHoes.add(material.HOE);
+                toolHoes.add(material.HOE);
             }
         });
     }

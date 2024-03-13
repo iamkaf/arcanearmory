@@ -18,9 +18,13 @@ public class ModItemGroups {
             FabricItemGroup
                     .builder()
                     .displayName(Text.translatable("itemgroup.arcanearmory"))
-                    .icon(() -> new ItemStack(ModMaterials.ARISTEUM.AXE))
+                    .icon(() -> new ItemStack(ModMaterials.AETHERIC_CRYSTAL.DEEPSLATE_ORE))
                     .entries(((displayContext, entries) -> {
                         AAMaterialDatagen.addItemsToItemGroup(entries);
+//                        entries.add(ModItems.RUBY_SHIELD);
+                        entries.add(ModItems.COOLPPER_SHIELD);
+                        entries.add(ModItems.TITANIUM_SHIELD);
+                        entries.add(ModItems.ARISTEUM_SHIELD);
                     }))
                     .build()
     );
