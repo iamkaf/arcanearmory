@@ -36,12 +36,19 @@ public class ModTags {
         public static final TagKey<Item> BOOTS = createCommonTag("boots");
         public static final TagKey<Item> SHIELDS = createCommonTag("shields");
 
-        private static TagKey<Item> createTag(String name) {
-            return TagKey.of(RegistryKeys.ITEM, new Identifier(ArcaneArmory.MOD_ID, name));
+        public static final TagKey<Item> PLANKS = createCommonTag("planks");
+        public static final TagKey<Item> MINECRAFT_PLANKS = createTag("minecraft", "planks");
+
+        private static TagKey<Item> createModTag(String name) {
+            return createTag(ArcaneArmory.MOD_ID, name);
         }
 
         private static TagKey<Item> createCommonTag(String name) {
-            return TagKey.of(RegistryKeys.ITEM, new Identifier("c", name));
+            return createTag("c", name);
+        }
+
+        private static TagKey<Item> createTag(String namespace, String name) {
+            return TagKey.of(RegistryKeys.ITEM, new Identifier(namespace, name));
         }
     }
 }

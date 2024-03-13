@@ -3,6 +3,7 @@ package com.iamkaf.arcanearmory.datagen;
 import com.iamkaf.arcanearmory.item.ModItems;
 import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import com.iamkaf.arcanearmory.material.ModMaterials;
+import com.iamkaf.arcanearmory.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
@@ -37,7 +38,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("ABA")
                 .pattern("AAA")
                 .pattern(" A ")
-                .input('A', Blocks.OAK_PLANKS)
+                .input('A', ModTags.Items.MINECRAFT_PLANKS)
                 .input('B', ModMaterials.COOLPPER.MATERIAL)
                 .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromItem(Blocks.OAK_PLANKS))
                 .criterion(
@@ -50,7 +51,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("ABA")
                 .pattern("AAA")
                 .pattern(" A ")
-                .input('A', Blocks.OAK_PLANKS)
+                .input('A', ModTags.Items.MINECRAFT_PLANKS)
                 .input('B', ModMaterials.TITANIUM.MATERIAL)
                 .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromItem(Blocks.OAK_PLANKS))
                 .criterion(
@@ -63,7 +64,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("ABA")
                 .pattern("AAA")
                 .pattern(" A ")
-                .input('A', Blocks.OAK_PLANKS)
+                .input('A', ModTags.Items.MINECRAFT_PLANKS)
                 .input('B', ModMaterials.ARISTEUM.MATERIAL)
                 .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromItem(Blocks.OAK_PLANKS))
                 .criterion(

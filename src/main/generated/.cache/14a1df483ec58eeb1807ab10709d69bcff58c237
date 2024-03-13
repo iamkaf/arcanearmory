@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-13T20:38:18.6644155	Arcane Armory/Model Definitions
+// 1.20.1	2024-03-13T20:56:06.8818911	Arcane Armory/Model Definitions
 1a4f44aaa9483b621046418976edbdca2dda6283 assets\arcanearmory\blockstates\void_obsidian_fragment_ore.json
 d3cf6c28ad1d2b123cf80e3a3d8b7524ecf9a1f8 assets\arcanearmory\models\item\chrysoberyl_boots_diamond_trim.json
 f06ae3e3b37e57fbd05f7c63be69b59b5ef6308d assets\arcanearmory\models\item\black_diamond_helmet_iron_trim.json
@@ -642,8 +642,8 @@ c0669a937e3570286fb08ab625370346b46f55b4 assets\arcanearmory\models\item\titaniu
 117a33c1d56eb795b48e19954b77ffdbe0f2d8f7 assets\arcanearmory\models\item\coolpper_leggings_quartz_trim.json
 c73b07c5ce1172d72066b50d5d4b6190aa5a3946 assets\arcanearmory\models\item\black_diamond_chestplate_iron_trim.json
 2a03d10e9daf1d5705a67cbd43f9a865fa15e9ca assets\arcanearmory\models\item\bloodfire_garnet_chestplate_copper_trim.json
-7fdc061b7cb2bcc451bf9ac9bb9c081b7f976e1b assets\arcanearmory\blockstates\raw_star_corundum_block.json
 30414a4102cab6e06b517d2207095a7a8ced327d assets\arcanearmory\blockstates\ruby_block.json
+7fdc061b7cb2bcc451bf9ac9bb9c081b7f976e1b assets\arcanearmory\blockstates\raw_star_corundum_block.json
 0afd7258d87e88b4ee768eff61232208238a23c7 assets\arcanearmory\models\item\titanium_helmet_copper_trim.json
 8a13f1b36151101b35ffcbc2cd0118fc40407f04 assets\arcanearmory\models\item\aristeum_chestplate_copper_trim.json
 4ae6ce348153a1716de8502970623cbb7fbcceaf assets\arcanearmory\models\item\black_diamond_boots_netherite_trim.json

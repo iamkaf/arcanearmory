@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-13T20:38:18.6584156	Arcane Armory/World Gen
+// 1.20.1	2024-03-13T20:56:06.8763931	Arcane Armory/World Gen
 4567de45a6a0af48fd417c023b5975fd29f64d72 data\arcanearmory\worldgen\placed_feature\aquamarine_ore_placed.json
 f403e2050c1a8336f968ae0d578a72a04fa1c7a3 data\arcanearmory\worldgen\configured_feature\black_diamond_ore.json
 f474afdfcfd3a0f670f02e127c5aba1071a2ef8f data\arcanearmory\worldgen\configured_feature\topaz_ore.json
@@ -25,8 +25,8 @@ f5c1c6d4c0088b7732184b4196dd338852747a4b data\arcanearmory\worldgen\placed_featu
 b494acb70f2aa0728ec7731195af5d5c842f8cca data\arcanearmory\worldgen\configured_feature\sapphire_ore.json
 3446305515c03db50a154f155fe5648fc9eedf32 data\arcanearmory\worldgen\placed_feature\sapphire_ore_placed.json
 35079d451b61ce9ce7cd9101f61f88d9700e0ddf data\arcanearmory\worldgen\configured_feature\frost_diamond_ore.json
-66c3724e8d7061dfe58d0e1a86e5faf04af4cba1 data\arcanearmory\worldgen\placed_feature\frost_diamond_ore_placed.json
 8414264ed96a60b642da7a115be19ac3e4cf5f52 data\arcanearmory\worldgen\placed_feature\end_void_obsidian_fragment_ore_placed.json
+66c3724e8d7061dfe58d0e1a86e5faf04af4cba1 data\arcanearmory\worldgen\placed_feature\frost_diamond_ore_placed.json
 920a3b079a7023cf6cdd22bdfaeb173ccaa644ee data\arcanearmory\worldgen\configured_feature\aetheric_crystal_ore.json
 e3ffb0abc3f064eb6d2b38d47c4db5a300c177e5 data\arcanearmory\worldgen\placed_feature\solarflare_gem_ore_placed.json
 147d468611740b17b7576aedc63e8b40968a0094 data\arcanearmory\worldgen\placed_feature\titanium_ore_placed.json

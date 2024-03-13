@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:oak_planks"
+      "tag": "minecraft:planks"
     },
     "B": {
       "item": "arcanearmory:aristeum_ingot"
