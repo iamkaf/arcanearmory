@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-13T20:12:16.772262	Arcane Armory/Recipes
+// 1.20.1	2024-03-13T20:38:18.6594157	Arcane Armory/Recipes
 0bfb38fc928f587593b7026cb175929c6d87bb01 data\arcanearmory\recipes\chrysoberyl_from_blasting_raw_chrysoberyl.json
 268d050577604de406ab3be577113aea7a733553 data\arcanearmory\recipes\sapphire_pickaxe.json
 0a7ee599ed31e349b60420951e36d142d4be5aac data\arcanearmory\recipes\star_corundum_axe.json
@@ -124,6 +124,7 @@ a430e3ac0b390c8275231d5f87768341dcada43b data\arcanearmory\recipes\raw_topaz.jso
 0091552e587d69a74009908205ec2eb76e1011a7 data\arcanearmory\recipes\raw_sapphire.json
 f3212db940ca5d6532ff5ee2064b182e80c7b002 data\arcanearmory\advancements\recipes\misc\aetheric_crystal_boots.json
 e437dad0bbf2a745719926d359425161ebcbe303 data\arcanearmory\recipes\shadow_crystal.json
+c540502b4632622db2304396daf745f9a6c3d7f5 data\arcanearmory\recipes\ice.json
 e4fb1ac3e066160269304fd9cb4eee15efc4a503 data\arcanearmory\recipes\raw_chrysoberyl.json
 33a6aaaaa990a0c0096caaec8dc4359cfc9e59cc data\arcanearmory\recipes\black_diamond_leggings.json
 2a4ad6de9f5f2f61830a1b19d93d9491ec81e571 data\arcanearmory\advancements\recipes\decorations\coolpper_block.json
@@ -509,6 +510,7 @@ a10f5368defe62d8b794aa71944eaea1b35e4012 data\arcanearmory\advancements\recipes\
 df61cf8f015c1a4f4b1bfdebb9d8e736046aa54a data\arcanearmory\recipes\coolpper_shovel.json
 cf30d3edc93e4c820de1dc9938bb8cf27ea8cbdc data\arcanearmory\advancements\recipes\misc\chrysoberyl_helmet.json
 360a58ba255685dab4d0ca14aa82aacf16ea3ba1 data\arcanearmory\recipes\frost_diamond_from_smelting_raw_frost_diamond.json
+bd0dd62e2353313a0e3d6ff04db1faf3265d3944 data\arcanearmory\advancements\recipes\decorations\ice.json
 5a308d15af641b17f6e4fc6756e98002c4dd41c6 data\arcanearmory\advancements\recipes\misc\chrysoberyl_leggings.json
 3b7e2fbcdccd117b4fd70a9b678c9b554a87b71a data\arcanearmory\advancements\recipes\misc\aristeum_hoe.json
 47130b189bd77aaae7c8670199b707dfd98e0e33 data\arcanearmory\advancements\recipes\misc\aetheric_crystal_from_blasting_raw_aetheric_crystal.json

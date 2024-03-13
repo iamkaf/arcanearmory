@@ -9,6 +9,7 @@ import com.iamkaf.arcanearmory.util.ModCustomTrades;
 import com.iamkaf.arcanearmory.world.gen.ModWorldGeneration;
 import com.iamkaf.arcanearmory.world.loot.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,5 +32,8 @@ public class ArcaneArmory implements ModInitializer {
         ModSounds.registerSounds();
         ModMaterials.initializeArcaneArmoryMaterials();
         ModWorldGeneration.generateModWorldGen();
+
+        FuelRegistry.INSTANCE.add(ModMaterials.SOLARFLARE_GEM.MATERIAL, 2400);
+        FuelRegistry.INSTANCE.add(ModMaterials.SOLARFLARE_GEM.BLOCK, 24000);
     }
 }

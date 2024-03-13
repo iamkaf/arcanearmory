@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
 
@@ -21,6 +22,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
         AAMaterialDatagen.generateOreRecipes(exporter);
+
+        ShapelessRecipeJsonBuilder
+                .create(RecipeCategory.DECORATIONS, Blocks.ICE, 16)
+                .input(ModMaterials.FROST_DIAMOND.MATERIAL)
+                .criterion(
+                        hasItem(ModMaterials.FROST_DIAMOND.MATERIAL),
+                        conditionsFromItem(ModMaterials.FROST_DIAMOND.MATERIAL)
+                )
+                .offerTo(exporter, new Identifier(getRecipeName(Blocks.ICE)));
 
         ShapedRecipeJsonBuilder
                 .create(RecipeCategory.FOOD, ModItems.COOLPPER_SHIELD, 1)

@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-13T20:12:16.7837925	Arcane Armory/Block Loot Tables
+// 1.20.1	2024-03-13T20:38:18.6719285	Arcane Armory/Block Loot Tables
 726ee457fc48dfb9062a3f3867d71cc1bfa79a82 data\arcanearmory\loot_tables\blocks\coolpper_ore.json
 706d989fe354fffb608ffdcef4321ca1f9ad9ff8 data\arcanearmory\loot_tables\blocks\raw_sapphire_block.json
 db5c31e2c80f51b75e9f1d0025b3b005a98298cf data\arcanearmory\loot_tables\blocks\deepslate_black_diamond_ore.json
@@ -45,8 +45,8 @@ f1670c1b9582db4363d32f61ee102f584d215558 data\arcanearmory\loot_tables\blocks\ra
 801ebd22f43a70c09b54f4fc3b0b5b18b6516235 data\arcanearmory\loot_tables\blocks\star_corundum_block.json
 b6282fe33071449350657b6f51cf017a1ba09779 data\arcanearmory\loot_tables\blocks\aristea.json
 198825a0feffb063552d9ab1e9f594449060cc95 data\arcanearmory\loot_tables\blocks\deepslate_void_obsidian_fragment_ore.json
-4c974f38fd8d7afde292a58aff6e485fb6f78e3e data\arcanearmory\loot_tables\blocks\raw_aquamarine_block.json
 8fa22efb74925751d6ff6670e35ee4e0766aa4ef data\arcanearmory\loot_tables\blocks\aristeum_block.json
+4c974f38fd8d7afde292a58aff6e485fb6f78e3e data\arcanearmory\loot_tables\blocks\raw_aquamarine_block.json
 b2f5c2aa5e8119de102397f91f203b131db3dd97 data\arcanearmory\loot_tables\blocks\void_obsidian_fragment_block.json
 065e17016820a62341d4dd1e6eec7eeee9bc01ea data\arcanearmory\loot_tables\blocks\frost_diamond_ore.json
 d674c9d7771b22f1b8bfdc32b2b7f7e182f377a3 data\arcanearmory\loot_tables\blocks\ruby_block.json
