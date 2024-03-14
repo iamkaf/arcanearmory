@@ -324,5 +324,7 @@
   "item.arcanearmory.voidium_pickaxe": "Voidium Pickaxe",
   "item.arcanearmory.voidium_axe": "Voidium Axe",
   "item.arcanearmory.voidium_hoe": "Voidium Hoe",
-  "item.arcanearmory.voidium_bow": "Voidium Bow"
+  "item.arcanearmory.voidium_bow": "Voidium Bow",
+
+  "block.arcanearmory.doomflare_block": "Doomflare Block"
 }

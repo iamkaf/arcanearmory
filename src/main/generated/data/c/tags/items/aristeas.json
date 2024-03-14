@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "arcanearmory:aristea"
+    "arcanearmory:aristea",
+    "minecraft:wither_rose"
   ]
 }

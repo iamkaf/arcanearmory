@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-14T13:27:06.9233449	Arcane Armory/Recipes
+// 1.20.1	2024-03-14T15:26:17.3104128	Arcane Armory/Recipes
 0bfb38fc928f587593b7026cb175929c6d87bb01 data\arcanearmory\recipes\chrysoberyl_from_blasting_raw_chrysoberyl.json
 268d050577604de406ab3be577113aea7a733553 data\arcanearmory\recipes\sapphire_pickaxe.json
 6852ec701958a2a9f6d23cb8a2f46c5eb19ebc9a data\arcanearmory\advancements\recipes\misc\voidium_pickaxe.json
@@ -508,8 +508,8 @@ c31d6c1e3ca6b8f7e1f0a3199de37ac2267db3ce data\arcanearmory\advancements\recipes\
 57c24a37007b132af599d145899a219bca2ab690 data\arcanearmory\recipes\topaz_from_blasting_deepslate_topaz_ore.json
 79656fd208958c2e4bbf6d11e9069d55e3a7794c data\arcanearmory\advancements\recipes\misc\aristeum_helmet.json
 1b5057c5a4dfa9aab1b8ec729a45d2fa1cdc0d79 data\arcanearmory\recipes\shadow_crystal_from_smelting_shadow_crystal_ore.json
-d8da0da7fd0b0f9d016712f721d49d4ce6c8d838 data\arcanearmory\advancements\recipes\misc\sapphire_from_blasting_raw_sapphire.json
 69a445ae114e5d93c6caf0491b11aaf2f070ad11 data\arcanearmory\advancements\recipes\misc\ruby_sword.json
+d8da0da7fd0b0f9d016712f721d49d4ce6c8d838 data\arcanearmory\advancements\recipes\misc\sapphire_from_blasting_raw_sapphire.json
 e920192ead7504eb5d78b847c0a5ec13e49347fd data\arcanearmory\recipes\coolpper_sword.json
 86da27bd0b77f3c6794c3c2c81c51e12bfbbc1ac data\arcanearmory\advancements\recipes\decorations\raw_shadow_crystal_block.json
 83b9153cd94c19125891ac6e8797089e33ad333a data\arcanearmory\advancements\recipes\misc\topaz_from_blasting_raw_topaz.json

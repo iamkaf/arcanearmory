@@ -1,6 +1,7 @@
 package com.iamkaf.arcanearmory.item;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
+import com.iamkaf.arcanearmory.block.ModBlocks;
 import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import com.iamkaf.arcanearmory.material.ModMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -26,6 +27,7 @@ public class ModItemGroups {
                         entries.add(ModItems.TITANIUM_SHIELD);
                         entries.add(ModItems.ARISTEUM_SHIELD);
                         entries.add(ModItems.VOIDIUM_SHIELD);
+                        entries.add(ModBlocks.DOOMFLARE_BLOCK);
                     }))
                     .build()
     );

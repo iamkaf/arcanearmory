@@ -2,6 +2,7 @@ package com.iamkaf.arcanearmory.block;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
 import com.iamkaf.arcanearmory.block.custom.CottonCandyCropBlock;
+import com.iamkaf.arcanearmory.block.custom.DoomflareBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -33,6 +34,10 @@ public class ModBlocks {
             new FlowerPotBlock(ARISTEA,
                     FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM).nonOpaque()
             )
+    );
+
+    public static final Block DOOMFLARE_BLOCK = registerBlock("doomflare_block",
+            new DoomflareBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK))
     );
 
     private static Block registerBlock(String name, Block block) {

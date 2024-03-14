@@ -1,8 +1,8 @@
-// 1.20.1	2024-03-14T13:27:06.9348645	Arcane Armory/Tags for minecraft:item
-9c37a121bb91dbef1ed757971c4c1e66dc1602c4 data\c\tags\items\aristeas.json
-7a518b96284bd6a41ff4bcc47518ad8200d5dd0c data\minecraft\tags\items\trimmable_armor.json
-b49b8cb2098565b3657ddce2526d71006e1b844f data\minecraft\tags\items\pickaxes.json
+// 1.20.1	2024-03-14T15:26:17.3284437	Arcane Armory/Tags for minecraft:item
+935e72a4ba0701b63e32f91492b5915e4dfcf755 data\c\tags\items\aristeas.json
 a2089c965dbb40d402174ede6ddbae7f0cae876e data\c\tags\items\tools\shovels.json
+b49b8cb2098565b3657ddce2526d71006e1b844f data\minecraft\tags\items\pickaxes.json
+7a518b96284bd6a41ff4bcc47518ad8200d5dd0c data\minecraft\tags\items\trimmable_armor.json
 c9d104d8dda48f04f7424c5ee086015b46084372 data\c\tags\items\shields.json
 f380f71dd00fd8b9117abaf22e41fa4897472831 data\minecraft\tags\items\hoes.json
 7a518b96284bd6a41ff4bcc47518ad8200d5dd0c data\c\tags\items\armors.json

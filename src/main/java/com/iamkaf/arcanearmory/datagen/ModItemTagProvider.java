@@ -6,6 +6,7 @@ import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import com.iamkaf.arcanearmory.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 
@@ -45,7 +46,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         var chestplates = getOrCreateTagBuilder(ModTags.Items.CHESTPLATES);
         var leggings = getOrCreateTagBuilder(ModTags.Items.LEGGINGS);
         var boots = getOrCreateTagBuilder(ModTags.Items.BOOTS);
-        AAMaterialDatagen.tagArmors(trimmables,
+        AAMaterialDatagen.tagArmors(
+                trimmables,
                 armors,
                 armor,
                 helmets,
@@ -71,7 +73,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 toolHoes
         );
 
-        getOrCreateTagBuilder(ModTags.Items.ARISTEAS).add(ModBlocks.ARISTEA.asItem());
+        getOrCreateTagBuilder(ModTags.Items.ARISTEAS)
+                .add(ModBlocks.ARISTEA.asItem())
+                .add(Blocks.WITHER_ROSE.asItem());
 
         getOrCreateTagBuilder(ModTags.Items.SHIELDS).add(ModItems.RUBY_SHIELD);
         getOrCreateTagBuilder(ModTags.Items.SHIELDS).add(ModItems.COOLPPER_SHIELD);

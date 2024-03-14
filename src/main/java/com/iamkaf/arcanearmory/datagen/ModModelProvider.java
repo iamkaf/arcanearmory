@@ -1,15 +1,12 @@
 package com.iamkaf.arcanearmory.datagen;
 
-
 import com.iamkaf.arcanearmory.block.ModBlocks;
 import com.iamkaf.arcanearmory.block.custom.CottonCandyCropBlock;
-import com.iamkaf.arcanearmory.item.ModItems;
 import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -34,6 +31,8 @@ public class ModModelProvider extends FabricModelProvider {
         );
 
 //        blockStateModelGenerator.registerNorthDefaultHorizontalRotation(ModBlocks.LOVEY_DOVEY_INFUSER);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DOOMFLARE_BLOCK);
 
         AAMaterialDatagen.generateModels(blockStateModelGenerator);
     }

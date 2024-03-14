@@ -1,0 +1,26 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "arcanearmory:doom_fragment"
+    },
+    {
+      "item": "arcanearmory:solarflare_gem"
+    },
+    {
+      "item": "arcanearmory:shadow_crystal"
+    },
+    {
+      "item": "arcanearmory:aetheric_crystal"
+    },
+    {
+      "item": "minecraft:obsidian"
+    }
+  ],
+  "output": {
+    "id": "arcanearmory:doomflare_block",
+    "count": 1
+  },
+  "min_forge_tier": 1,
+  "fuel_per_tick": 50
+}

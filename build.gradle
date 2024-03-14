@@ -62,7 +62,7 @@ dependencies {
 	modRuntimeOnly "io.wispforest:owo-lib:${project.owo_version}"
 
 	// alloy forgery
-	modRuntimeOnly "maven.modrinth:jhl28YkY:2.1.2+1.20"
+	modRuntimeOnly "maven.modrinth:jhl28YkY:2.1.2+1.20" // <-- do you know how to fix this? pls help :3
 
 	modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"
 
