@@ -34,6 +34,12 @@ public class ModItems {
             ModMaterials.ARISTEUM.toolConfiguration.enchantability,
             ModMaterials.ARISTEUM.MATERIAL
     ));
+    public static final Item VOIDIUM_SHIELD = registerItem("voidium_shield", new FabricShieldItem(
+            new FabricItemSettings().maxDamage((int) (ModMaterials.VOIDIUM.toolConfiguration.durability * 0.9)),
+            100,
+            ModMaterials.VOIDIUM.toolConfiguration.enchantability,
+            ModMaterials.VOIDIUM.MATERIAL
+    ));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(ArcaneArmory.MOD_ID, name), item);

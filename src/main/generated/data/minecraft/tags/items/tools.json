@@ -60,6 +60,11 @@
     "arcanearmory:aristeum_shovel",
     "arcanearmory:aristeum_axe",
     "arcanearmory:aristeum_pickaxe",
-    "arcanearmory:aristeum_hoe"
+    "arcanearmory:aristeum_hoe",
+    "arcanearmory:voidium_sword",
+    "arcanearmory:voidium_shovel",
+    "arcanearmory:voidium_axe",
+    "arcanearmory:voidium_pickaxe",
+    "arcanearmory:voidium_hoe"
   ]
 }

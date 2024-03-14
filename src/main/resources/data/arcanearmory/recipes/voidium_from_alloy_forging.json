@@ -1,0 +1,30 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "arcanearmory:void_obsidian_fragment"
+    },
+    {
+      "item": "arcanearmory:bloodfire_garnet"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    }
+  ],
+  "output": {
+    "id": "arcanearmory:voidium_ingot",
+    "count": 2
+  },
+  "overrides": {
+    "2": {
+      "id": "arcanearmory:voidium_ingot",
+      "count": 2
+    },
+    "3+": {
+      "id": "arcanearmory:voidium_ingot",
+      "count": 3
+    }
+  },
+  "min_forge_tier": 2,
+  "fuel_per_tick": 20
+}

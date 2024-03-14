@@ -1,0 +1,14 @@
+{
+  "parent":"fabricshieldlib:item/fabric_shield",
+  "textures":{
+    "shield":"arcanearmory:item/voidium_shield"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "arcanearmory:item/voidium_shield_blocking"
+    }
+  ]
+}

@@ -25,6 +25,7 @@ public class ModItemGroups {
                         entries.add(ModItems.COOLPPER_SHIELD);
                         entries.add(ModItems.TITANIUM_SHIELD);
                         entries.add(ModItems.ARISTEUM_SHIELD);
+                        entries.add(ModItems.VOIDIUM_SHIELD);
                     }))
                     .build()
     );

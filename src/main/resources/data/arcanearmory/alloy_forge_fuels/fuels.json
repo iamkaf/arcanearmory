@@ -1,0 +1,12 @@
+{
+  "fuels": [
+    {
+      "item": "arcanearmory:solarflare_gem",
+      "fuel": 2000
+    },
+    {
+      "item": "arcanearmory:solarflare_gem_block",
+      "fuel": 20000
+    }
+  ]
+}

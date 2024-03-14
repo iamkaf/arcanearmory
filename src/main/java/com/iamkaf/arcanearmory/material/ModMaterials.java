@@ -33,6 +33,7 @@ public class ModMaterials {
 
     // ALLOYS
     public static final AAMaterial ARISTEUM = register(AristeumMaterial.get());
+    public static final AAMaterial VOIDIUM = register(VoidiumMaterial.get());
 
     private static AAMaterial register(AAMaterial material) {
         ALL_MATERIALS.add(material);

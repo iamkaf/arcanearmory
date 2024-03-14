@@ -35,7 +35,7 @@ public class TitaniumMaterial {
             .axeSwingSpeed(1f)
             .bonusDamage(5)
             .miningLevel(MiningLevels.DIAMOND)
-            .miningSpeed(12)
+            .miningSpeed(7)
             .createOre(true)
             .createArmor(true)
             .createTools(true)

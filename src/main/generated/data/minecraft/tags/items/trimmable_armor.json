@@ -48,6 +48,10 @@
     "arcanearmory:aristeum_helmet",
     "arcanearmory:aristeum_chestplate",
     "arcanearmory:aristeum_leggings",
-    "arcanearmory:aristeum_boots"
+    "arcanearmory:aristeum_boots",
+    "arcanearmory:voidium_helmet",
+    "arcanearmory:voidium_chestplate",
+    "arcanearmory:voidium_leggings",
+    "arcanearmory:voidium_boots"
   ]
 }

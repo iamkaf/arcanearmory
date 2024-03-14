@@ -72,5 +72,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         conditionsFromItem(ModMaterials.ARISTEUM.MATERIAL)
                 )
                 .offerTo(exporter, new Identifier(getRecipeName(ModItems.ARISTEUM_SHIELD)));
+        ShapedRecipeJsonBuilder
+                .create(RecipeCategory.FOOD, ModItems.VOIDIUM_SHIELD, 1)
+                .pattern("ABA")
+                .pattern("AAA")
+                .pattern(" A ")
+                .input('A', ModTags.Items.MINECRAFT_PLANKS)
+                .input('B', ModMaterials.VOIDIUM.MATERIAL)
+                .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromItem(Blocks.OAK_PLANKS))
+                .criterion(
+                        hasItem(ModMaterials.VOIDIUM.MATERIAL),
+                        conditionsFromItem(ModMaterials.VOIDIUM.MATERIAL)
+                )
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.VOIDIUM_SHIELD)));
     }
 }
