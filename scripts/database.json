@@ -159,7 +159,8 @@
           "item_type": "ingot",
           "base_texture": [
             {
-              "texture": "pieces/diamond",
+              "texture": "pieces/gem_15",
+              "tint": { "r": 87, "g": 250, "b": 209 },
               "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
             }
           ]
@@ -170,7 +171,7 @@
             { "texture": "pieces/raw_gem" },
             {
               "texture": "pieces/raw_gem_overlay",
-              "tint": { "r": 183, "g": 247, "b": 245 },
+              "tint": { "r": 87, "g": 250, "b": 209 },
               "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
             }
           ]
@@ -181,6 +182,7 @@
             { "texture": "pieces/stone" },
             {
               "texture": "pieces/gem_ore",
+              "tint": { "r": 87, "g": 250, "b": 209 },
               "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
             }
           ]
@@ -191,6 +193,7 @@
             { "texture": "pieces/deepslate" },
             {
               "texture": "pieces/gem_ore",
+              "tint": { "r": 87, "g": 250, "b": 209 },
               "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
             }
           ]
@@ -199,7 +202,8 @@
           "item_type": "block",
           "base_texture": [
             {
-              "texture": "pieces/diamond_block",
+              "texture": "pieces/lapis_block",
+              "tint": { "r": 87, "g": 250, "b": 209 },
               "modulate": { "brightness": 1, "saturation": 1.1, "hue": 0, "lightness": 20 }
             }
           ]
