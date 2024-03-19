@@ -2,6 +2,7 @@ package com.iamkaf.arcanearmory.world;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
 import com.iamkaf.arcanearmory.material.AAMaterial;
+import com.iamkaf.arcanearmory.material.ModMaterials;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -10,10 +11,9 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +25,8 @@ public class ModConfiguredFeatures {
     // ! This code assumes an ore cannot generate in more than one dimension.
 
     public static final HashMap<AAMaterial, RegistryKey<ConfiguredFeature<?, ?>>> ALL_KEYS = makeKeys();
+    public static final RegistryKey<ConfiguredFeature<?, ?>> AMBER_GEODE_KEY = registerKey(
+            "amber_geode");
 
     private static HashMap<AAMaterial, RegistryKey<ConfiguredFeature<?, ?>>> makeKeys() {
         HashMap<AAMaterial, RegistryKey<ConfiguredFeature<?, ?>>> allKeys = new HashMap<>();
@@ -88,6 +90,33 @@ public class ModConfiguredFeatures {
                 );
             }
         });
+
+        register(context,
+                AMBER_GEODE_KEY,
+                Feature.GEODE,
+                new GeodeFeatureConfig(new GeodeLayerConfig(BlockStateProvider.of(Blocks.AIR),
+                        BlockStateProvider.of(Blocks.DEEPSLATE), // inner layer
+                        BlockStateProvider.of(ModMaterials.AMBER.ORE), // alternate inner layer
+                        BlockStateProvider.of(Blocks.COBBLED_DEEPSLATE), // middle layer
+                        BlockStateProvider.of(Blocks.OAK_WOOD), // outer layer
+                        List.of(Blocks.OAK_WOOD.getDefaultState()), // inner blocks
+                        BlockTags.FEATURES_CANNOT_REPLACE,
+                        BlockTags.GEODE_INVALID_BLOCKS
+                ),
+                        new GeodeLayerThicknessConfig(1D, 1.2D, 2.5D, 2.5D),
+                        new GeodeCrackConfig(0.25D, 1.5D, 1),
+                        0.5D,
+                        0.1D,
+                        true,
+                        UniformIntProvider.create(3, 8),
+                        UniformIntProvider.create(2, 6),
+                        UniformIntProvider.create(1, 2),
+                        -15,
+                        15,
+                        0.075D,
+                        1
+                )
+        );
 
     }
 

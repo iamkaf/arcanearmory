@@ -8,9 +8,10 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+import net.minecraft.world.gen.placementmodifier.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -23,6 +24,9 @@ public class ModPlacedFeatures {
     // ! This code assumes an ore cannot generate in more than one dimension.
 
     public static final HashMap<AAMaterial, RegistryKey<PlacedFeature>> ALL_KEYS = makeAllKeys();
+
+    public static final RegistryKey<PlacedFeature> AMBER_GEODE_PLACED_KEY = registerKey(
+            "amber_geode_placed");
 
     private static HashMap<AAMaterial, RegistryKey<PlacedFeature>> makeAllKeys() {
         HashMap<AAMaterial, RegistryKey<PlacedFeature>> allKeys = new HashMap<>();
@@ -66,6 +70,16 @@ public class ModPlacedFeatures {
                     )
             );
         });
+
+        register(
+                context,
+                AMBER_GEODE_PLACED_KEY,
+                configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.AMBER_GEODE_KEY),
+                RarityFilterPlacementModifier.of(20),
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.fixed(-20), YOffset.fixed(40)),
+                BiomePlacementModifier.of()
+        );
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {
@@ -79,5 +93,14 @@ public class ModPlacedFeatures {
             List<PlacementModifier> modifiers
     ) {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
+    }
+
+    private static <FC extends FeatureConfig, F extends Feature<FC>> void register(
+            Registerable<PlacedFeature> context,
+            RegistryKey<PlacedFeature> key,
+            RegistryEntry<ConfiguredFeature<?, ?>> configuration,
+            PlacementModifier... modifiers
+    ) {
+        register(context, key, configuration, List.of(modifiers));
     }
 }

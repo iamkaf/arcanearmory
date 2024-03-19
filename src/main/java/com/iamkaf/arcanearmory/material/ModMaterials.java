@@ -32,6 +32,7 @@ public class ModMaterials {
     public static final AAMaterial TITANIUM = register(TitaniumMaterial.get());
 
     // ALLOYS
+    public static final AAMaterial AMBER = register(AmberMaterial.get());
     public static final AAMaterial ARISTEUM = register(AristeumMaterial.get());
     public static final AAMaterial VOIDIUM = register(VoidiumMaterial.get());
 

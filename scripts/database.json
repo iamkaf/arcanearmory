@@ -1539,6 +1539,66 @@
           "modulate_overlay": false
         }
       ]
+    },
+    {
+      "name": "amber",
+      "type": "gem",
+      "composite": [
+        {
+          "item_type": "ingot",
+          "base_texture": [
+            {
+              "texture": "pieces/gem_8",
+              "tint": { "r": 245, "g": 179, "b": 37 },
+              "modulate": { "brightness": 1.0, "saturation": 1.1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "raw",
+          "base_texture": [
+            { "texture": "pieces/raw_gem" },
+            {
+              "texture": "pieces/raw_gem_overlay",
+              "tint": { "r": 245, "g": 179, "b": 37 },
+              "modulate": { "brightness": 1.0, "saturation": 1.1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        },
+        {
+          "item_type": "block",
+          "base_texture": [
+            {
+              "texture": "pieces/diamond_block",
+              "tint": { "r": 245, "g": 179, "b": 37 },
+              "modulate": { "brightness": 1.0, "saturation": 1.1, "hue": 0, "lightness": 0 }
+            }
+          ]
+        }
+      ],
+      "tint": [
+        {
+          "item_type": "all",
+          "r": 245,
+          "g": 179,
+          "b": 37,
+          "shift_base": true,
+          "shift_overlay": false
+        }
+      ],
+      "modulate": [
+        {
+          "item_type": "all",
+          "options": {
+            "brightness": 1.0,
+            "saturation": 1.0,
+            "hue": 0,
+            "lightness": 0
+          },
+          "modulate_base": true,
+          "modulate_overlay": false
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "arcanearmory:raw_amber"
+    }
+  ],
+  "output": {
+    "id": "arcanearmory:amber_ingot",
+    "count": 2
+  },
+  "overrides": {
+    "2": {
+      "id": "arcanearmory:amber_ingot",
+      "count": 2
+    },
+    "3+": {
+      "id": "arcanearmory:amber_ingot",
+      "count": 3
+    }
+  },
+  "min_forge_tier": 1,
+  "fuel_per_tick": 10
+}
