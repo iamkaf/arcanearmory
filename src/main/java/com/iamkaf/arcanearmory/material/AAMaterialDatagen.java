@@ -42,7 +42,7 @@ public class AAMaterialDatagen {
                 AAItemRendererUtil.registerHandheldTwoLayers(material.PICKAXE, generator);
                 AAItemRendererUtil.registerHandheldTwoLayers(material.AXE, generator);
                 AAItemRendererUtil.registerHandheldTwoLayers(material.HOE, generator);
-                generator.register(material.HAMMER, Models.HANDHELD);
+                AAItemRendererUtil.registerHandheldTwoLayers(material.HAMMER, generator);
             }
         }
     }

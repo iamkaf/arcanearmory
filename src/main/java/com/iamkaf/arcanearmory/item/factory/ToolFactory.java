@@ -8,6 +8,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.*;
 
 public class ToolFactory {
+    private static final float ATTACK_SPEED_BASELINE = -4f;
+
     /**
      * Creates and registers a full set of tools based on the provided material and namer.
      *
@@ -38,7 +40,7 @@ public class ToolFactory {
     public static SwordItem createSword(String name, ModToolMaterial material) {
         var item = new SwordItem(material,
                 material.getSwordDamage(),
-                1.6f,
+                1.6f + ATTACK_SPEED_BASELINE,
                 new FabricItemSettings()
         );
         ModItems.registerItem(name, item);
@@ -53,7 +55,7 @@ public class ToolFactory {
      * @return The shovel created.
      */
     public static ShovelItem createShovel(String name, ModToolMaterial material) {
-        var item = new ShovelItem(material, 0, 1f, new Item.Settings());
+        var item = new ShovelItem(material, 0, 1f + ATTACK_SPEED_BASELINE, new Item.Settings());
         ModItems.registerItem(name, item);
         return item;
     }
@@ -66,7 +68,7 @@ public class ToolFactory {
      * @return The pickaxe created.
      */
     public static PickaxeItem createPickaxe(String name, ModToolMaterial material) {
-        var item = new PickaxeItem(material, 0, 1f, new Item.Settings());
+        var item = new PickaxeItem(material, 0, 1f + ATTACK_SPEED_BASELINE, new Item.Settings());
         ModItems.registerItem(name, item);
         return item;
     }
@@ -79,7 +81,11 @@ public class ToolFactory {
      * @return The axe created.
      */
     public static AxeItem createAxe(String name, ModToolMaterial material) {
-        var item = new AxeItem(material, material.getAxeDamage(), 1f, new Item.Settings());
+        var item = new AxeItem(material,
+                material.getAxeDamage(),
+                1f + ATTACK_SPEED_BASELINE,
+                new Item.Settings()
+        );
         ModItems.registerItem(name, item);
         return item;
     }
@@ -92,7 +98,7 @@ public class ToolFactory {
      * @return The hoe created.
      */
     public static HoeItem createHoe(String name, ModToolMaterial material) {
-        var item = new HoeItem(material, 0, 1f, new Item.Settings());
+        var item = new HoeItem(material, 0, 1f + ATTACK_SPEED_BASELINE, new Item.Settings());
         ModItems.registerItem(name, item);
         return item;
     }
@@ -105,7 +111,11 @@ public class ToolFactory {
      * @return The hammer created.
      */
     public static HammerItem createHammer(String name, ModToolMaterial material) {
-        var item = new HammerItem(material, 0, 1f, new Item.Settings());
+        var item = new HammerItem(material,
+                material.getSwordDamage(), // less damage than an axe
+                1f + ATTACK_SPEED_BASELINE, // slower than a sword
+                new Item.Settings()
+        );
         ModItems.registerItem(name, item); // system not ready yet
         return item;
     }

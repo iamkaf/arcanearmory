@@ -28,11 +28,11 @@ public class ArmorFactory {
      * Creates a helmet ArmorItem and registers it.
      *
      * @param name          The namespace of the item.
-     * @param armorMaterial
+     * @param material
      * @return The helmet created.
      */
-    public static ArmorItem createHelmet(String name, ModArmorMaterial armorMaterial) {
-        var item = new ArmorItem(armorMaterial, ArmorItem.Type.HELMET, new Item.Settings());
+    public static ArmorItem createHelmet(String name, ModArmorMaterial material) {
+        var item = new ArmorItem(material, ArmorItem.Type.HELMET, new Item.Settings());
         ModItems.registerItem(name, item);
         return item;
     }
@@ -41,11 +41,11 @@ public class ArmorFactory {
      * Creates a chestplate ArmorItem and registers it.
      *
      * @param name          The namespace of the item.
-     * @param armorMaterial
+     * @param material
      * @return The chestplate created.
      */
-    public static ArmorItem createChestplate(String name, ModArmorMaterial armorMaterial) {
-        var item = new ArmorItem(armorMaterial, ArmorItem.Type.CHESTPLATE, new Item.Settings());
+    public static ArmorItem createChestplate(String name, ModArmorMaterial material) {
+        var item = new ArmorItem(material, ArmorItem.Type.CHESTPLATE, new Item.Settings());
         ModItems.registerItem(name, item);
         return item;
     }
@@ -54,11 +54,11 @@ public class ArmorFactory {
      * Creates a leggings ArmorItem and registers it.
      *
      * @param name          The namespace of the item.
-     * @param armorMaterial
+     * @param material
      * @return The leggings created.
      */
-    public static ArmorItem createLeggings(String name, ModArmorMaterial armorMaterial) {
-        var item = new ArmorItem(armorMaterial, ArmorItem.Type.LEGGINGS, new Item.Settings());
+    public static ArmorItem createLeggings(String name, ModArmorMaterial material) {
+        var item = new ArmorItem(material, ArmorItem.Type.LEGGINGS, new Item.Settings());
         ModItems.registerItem(name, item);
         return item;
     }
@@ -67,11 +67,11 @@ public class ArmorFactory {
      * Creates a boots ArmorItem and registers it.
      *
      * @param name          The namespace of the item.
-     * @param armorMaterial
+     * @param material
      * @return The boots created.
      */
-    public static ArmorItem createBoots(String name, ModArmorMaterial armorMaterial) {
-        var item = new ArmorItem(armorMaterial, ArmorItem.Type.BOOTS, new Item.Settings());
+    public static ArmorItem createBoots(String name, ModArmorMaterial material) {
+        var item = new ArmorItem(material, ArmorItem.Type.BOOTS, new Item.Settings());
         ModItems.registerItem(name, item);
         return item;
     }

@@ -11,6 +11,7 @@ export const ITEM_TYPES = [
   "axe",
   "shovel",
   "hoe",
+  "hammer",
   "layer_1",
   "layer_2",
   "ingot",

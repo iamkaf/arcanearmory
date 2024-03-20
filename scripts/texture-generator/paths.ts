@@ -38,6 +38,8 @@ export function getTemplateTexturePath(material, itemType: ItemType, gemOverlay 
         return `${TEXTURE_TEMPLATES_BASE_DIR}/${variant('template_shovel.png')}`;
       case 'hoe':
         return `${TEXTURE_TEMPLATES_BASE_DIR}/${variant('template_hoe.png')}`;
+      case 'hammer':
+        return `${TEXTURE_TEMPLATES_BASE_DIR}/${variant('template_hammer.png')}`;
       case 'layer_1':
         return `${TEXTURE_TEMPLATES_BASE_DIR}/${variant('template_layer_1.png')}`;
       case 'layer_2':
@@ -91,7 +93,7 @@ export function getOutFilePath(material, itemType, isOverlay) {
   return path.join(__dirname, `${GENERATED_RESOURCES_BASE_DIR}/assets/${MOD_ID}/textures/${baseDir}/${fileName}`);
 }
 export function getOverlayTemplateTexturePath(material, itemType: string) {
-  const TYPES_WITH_OVERLAY = ['sword', 'pickaxe', 'axe', 'shovel', 'hoe'];
+  const TYPES_WITH_OVERLAY = ['sword', 'pickaxe', 'axe', 'shovel', 'hoe', 'hammer'];
 
   if (itemType === 'raw' && material.type === 'gem') {
     return path.join(__dirname, `${TEXTURE_TEMPLATES_BASE_DIR}/template_raw_item_gem_overlay.png`);

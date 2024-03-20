@@ -31,6 +31,7 @@ for (const material of database.materials) {
   result[`item.arcanearmory.${material.name}_pickaxe`] = `${trainCase(material.name).replace('-', ' ')} Pickaxe`;
   result[`item.arcanearmory.${material.name}_axe`] = `${trainCase(material.name).replace('-', ' ')} Axe`;
   result[`item.arcanearmory.${material.name}_hoe`] = `${trainCase(material.name).replace('-', ' ')} Hoe`;
+  result[`item.arcanearmory.${material.name}_hammer`] = `${trainCase(material.name).replace('-', ' ')} Hammer`;
   result[`item.arcanearmory.${material.name}_bow`] = `${trainCase(material.name).replace('-', ' ')} Bow`;
 }
 

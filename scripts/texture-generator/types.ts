@@ -59,6 +59,7 @@ export type ItemType =
   | 'axe'
   | 'shovel'
   | 'hoe'
+  | 'hammer'
   | 'layer_1'
   | 'layer_2'
   | 'ingot'

@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "arcanearmory:item/coolpper_hammer"
+    "layer0": "arcanearmory:item/coolpper_hammer",
+    "layer1": "arcanearmory:item/coolpper_hammer_overlay"
   }
 }
