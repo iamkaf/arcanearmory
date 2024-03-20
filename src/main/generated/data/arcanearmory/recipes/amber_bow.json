@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:string"
+    },
+    "X": {
+      "item": "arcanearmory:amber"
+    }
+  },
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "result": {
+    "item": "arcanearmory:amber_bow"
+  },
+  "show_notification": true
+}

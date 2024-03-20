@@ -27,8 +27,6 @@ public class ModItemGroups {
                         entries.add(ModItems.VOIDIUM_SHIELD);
 
                         entries.add(ModBlocks.DOOMFLARE_BLOCK);
-
-                        entries.add(ModItems.ARISTEUM_BOW);
                     }))
                     .build()
     );

@@ -5,6 +5,7 @@ import com.iamkaf.arcanearmory.item.factory.ArmorFactory;
 import com.iamkaf.arcanearmory.item.factory.ToolFactory;
 import com.iamkaf.arcanearmory.material.config.*;
 import dev.draylar.magna.item.HammerItem;
+import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -58,6 +59,8 @@ public class AAMaterial {
     public final HoeItem HOE;
     @Nullable
     public final HammerItem HAMMER;
+    @Nullable
+    public final CustomBow BOW;
     public final AABlockConfiguration blockConfiguration;
     public final AAToolConfiguration toolConfiguration;
     public final AAGenerationConfiguration generate;
@@ -140,6 +143,7 @@ public class AAMaterial {
             AXE = tools.axe();
             HOE = tools.hoe();
             HAMMER = tools.hammer();
+            BOW = tools.bow();
         } else {
             this.SWORD = null;
             this.SHOVEL = null;
@@ -147,6 +151,7 @@ public class AAMaterial {
             this.AXE = null;
             this.HOE = null;
             this.HAMMER = null;
+            this.BOW = null;
         }
 
         addItemsToItemGroup();
@@ -178,6 +183,7 @@ public class AAMaterial {
             items.add(AXE);
             items.add(HOE);
             items.add(HAMMER);
+            items.add(BOW);
         }
 
         if (generate.armor) {

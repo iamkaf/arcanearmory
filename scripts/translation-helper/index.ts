@@ -11,28 +11,28 @@ const result = {
 
 for (const material of database.materials) {
   if (material.type === 'ingot') {
-    result[`item.arcanearmory.${material.name}_ingot`] = `${trainCase(material.name).replace('-', ' ')} Ingot`;
+    result[`item.arcanearmory.${material.name}_ingot`] = `${trainCase(material.name).replaceAll('-', ' ')} Ingot`;
   } else {
-    result[`item.arcanearmory.${material.name}`] = `${trainCase(material.name).replace('-', ' ')}`;
+    result[`item.arcanearmory.${material.name}`] = `${trainCase(material.name).replaceAll('-', ' ')}`;
   }
-  result[`item.arcanearmory.${material.name}_nugget`] = `${trainCase(material.name).replace('-', ' ')} Nugget`;
-  result[`item.arcanearmory.raw_${material.name}`] = `Raw ${trainCase(material.name).replace('-', ' ')}`;
-  result[`block.arcanearmory.raw_${material.name}_block`] = `Raw ${trainCase(material.name).replace('-', ' ')} Block`;
-  result[`block.arcanearmory.${material.name}_block`] = `${trainCase(material.name).replace('-', ' ')} Block`;
-  result[`block.arcanearmory.${material.name}_ore`] = `${trainCase(material.name).replace('-', ' ')} Ore`;
-  result[`block.arcanearmory.deepslate_${material.name}_ore`] = `Deepslate ${trainCase(material.name).replace('-', ' ')} Ore`;
-  result[`item.arcanearmory.${material.name}_helmet`] = `${trainCase(material.name).replace('-', ' ')} Helmet`;
-  result[`item.arcanearmory.${material.name}_chestplate`] = `${trainCase(material.name).replace('-', ' ')} Chestplate`;
-  result[`item.arcanearmory.${material.name}_leggings`] = `${trainCase(material.name).replace('-', ' ')} Leggings`;
-  result[`item.arcanearmory.${material.name}_boots`] = `${trainCase(material.name).replace('-', ' ')} Boots`;
-  result[`item.arcanearmory.${material.name}_shield`] = `${trainCase(material.name).replace('-', ' ')} Shield`;
-  result[`item.arcanearmory.${material.name}_sword`] = `${trainCase(material.name).replace('-', ' ')} Sword`;
-  result[`item.arcanearmory.${material.name}_shovel`] = `${trainCase(material.name).replace('-', ' ')} Shovel`;
-  result[`item.arcanearmory.${material.name}_pickaxe`] = `${trainCase(material.name).replace('-', ' ')} Pickaxe`;
-  result[`item.arcanearmory.${material.name}_axe`] = `${trainCase(material.name).replace('-', ' ')} Axe`;
-  result[`item.arcanearmory.${material.name}_hoe`] = `${trainCase(material.name).replace('-', ' ')} Hoe`;
-  result[`item.arcanearmory.${material.name}_hammer`] = `${trainCase(material.name).replace('-', ' ')} Hammer`;
-  result[`item.arcanearmory.${material.name}_bow`] = `${trainCase(material.name).replace('-', ' ')} Bow`;
+  result[`item.arcanearmory.${material.name}_nugget`] = `${trainCase(material.name).replaceAll('-', ' ')} Nugget`;
+  result[`item.arcanearmory.raw_${material.name}`] = `Raw ${trainCase(material.name).replaceAll('-', ' ')}`;
+  result[`block.arcanearmory.raw_${material.name}_block`] = `Raw ${trainCase(material.name).replaceAll('-', ' ')} Block`;
+  result[`block.arcanearmory.${material.name}_block`] = `${trainCase(material.name).replaceAll('-', ' ')} Block`;
+  result[`block.arcanearmory.${material.name}_ore`] = `${trainCase(material.name).replaceAll('-', ' ')} Ore`;
+  result[`block.arcanearmory.deepslate_${material.name}_ore`] = `Deepslate ${trainCase(material.name).replaceAll('-', ' ')} Ore`;
+  result[`item.arcanearmory.${material.name}_helmet`] = `${trainCase(material.name).replaceAll('-', ' ')} Helmet`;
+  result[`item.arcanearmory.${material.name}_chestplate`] = `${trainCase(material.name).replaceAll('-', ' ')} Chestplate`;
+  result[`item.arcanearmory.${material.name}_leggings`] = `${trainCase(material.name).replaceAll('-', ' ')} Leggings`;
+  result[`item.arcanearmory.${material.name}_boots`] = `${trainCase(material.name).replaceAll('-', ' ')} Boots`;
+  result[`item.arcanearmory.${material.name}_shield`] = `${trainCase(material.name).replaceAll('-', ' ')} Shield`;
+  result[`item.arcanearmory.${material.name}_sword`] = `${trainCase(material.name).replaceAll('-', ' ')} Sword`;
+  result[`item.arcanearmory.${material.name}_shovel`] = `${trainCase(material.name).replaceAll('-', ' ')} Shovel`;
+  result[`item.arcanearmory.${material.name}_pickaxe`] = `${trainCase(material.name).replaceAll('-', ' ')} Pickaxe`;
+  result[`item.arcanearmory.${material.name}_axe`] = `${trainCase(material.name).replaceAll('-', ' ')} Axe`;
+  result[`item.arcanearmory.${material.name}_hoe`] = `${trainCase(material.name).replaceAll('-', ' ')} Hoe`;
+  result[`item.arcanearmory.${material.name}_hammer`] = `${trainCase(material.name).replaceAll('-', ' ')} Hammer`;
+  result[`item.arcanearmory.${material.name}_bow`] = `${trainCase(material.name).replaceAll('-', ' ')} Bow`;
 }
 
 export function ensureDirExists(path) {

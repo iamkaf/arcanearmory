@@ -1,6 +1,7 @@
 {
-    "parent": "arcanearmory:item/aristeum_bow",
-    "textures": {
-        "layer0": "arcanearmory:item/aristeum_bow_pulling_2"
-    }
+  "parent": "arcanearmory:item/aristeum_bow",
+  "textures": {
+    "layer0": "arcanearmory:item/aristeum_bow_pulling_2",
+    "layer1": "arcanearmory:item/aristeum_bow_pulling_2_overlay"
+  }
 }

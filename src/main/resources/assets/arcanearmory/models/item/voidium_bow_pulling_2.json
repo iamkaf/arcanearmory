@@ -1,0 +1,7 @@
+{
+  "parent": "arcanearmory:item/voidium_bow",
+  "textures": {
+    "layer0": "arcanearmory:item/voidium_bow_pulling_2",
+    "layer1": "arcanearmory:item/voidium_bow_pulling_2_overlay"
+  }
+}

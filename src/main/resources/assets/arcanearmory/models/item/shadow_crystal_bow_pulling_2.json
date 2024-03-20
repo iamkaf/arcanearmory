@@ -1,0 +1,7 @@
+{
+  "parent": "arcanearmory:item/shadow_crystal_bow",
+  "textures": {
+    "layer0": "arcanearmory:item/shadow_crystal_bow_pulling_2",
+    "layer1": "arcanearmory:item/shadow_crystal_bow_pulling_2_overlay"
+  }
+}

@@ -187,12 +187,15 @@ public class AAMaterialDatagen {
                 chestplateRecipe(material, exporter);
                 leggingsRecipe(material, exporter);
                 bootsRecipe(material, exporter);
+            }
+            if (material.generate.tools) {
                 swordRecipe(material, exporter);
                 shovelRecipe(material, exporter);
                 pickaxeRecipe(material, exporter);
                 axeRecipe(material, exporter);
                 hoeRecipe(material, exporter);
                 hammerRecipe(material, exporter);
+                bowRecipe(material, exporter);
             }
         }
     }
@@ -335,5 +338,20 @@ public class AAMaterialDatagen {
                 .criterion(hasItem(material.MATERIAL), conditionsFromItem(material.MATERIAL))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(material.HAMMER)));
+    }
+
+    private static void bowRecipe(
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
+    ) {
+        ShapedRecipeJsonBuilder
+                .create(RecipeCategory.MISC, material.BOW, 1)
+                .pattern("OX ")
+                .pattern("O X")
+                .pattern("OX ")
+                .input('X', material.MATERIAL)
+                .input('O', Items.STRING)
+                .criterion(hasItem(material.MATERIAL), conditionsFromItem(material.MATERIAL))
+                .criterion(hasItem(Items.STRING), conditionsFromItem(Items.STRING))
+                .offerTo(exporter, new Identifier(getRecipeName(material.BOW)));
     }
 }

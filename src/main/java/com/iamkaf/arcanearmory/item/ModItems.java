@@ -45,22 +45,9 @@ public class ModItems {
             ModMaterials.VOIDIUM.MATERIAL
     ));
 
-    public static final Item ARISTEUM_BOW = registerBow("aristeum_bow", ModMaterials.ARISTEUM);
-
     public static final Item AMBER_INGOT = registerItem("amber_ingot",
             new Item(new FabricItemSettings())
     );
-
-    public static Item registerBow(String name, AAMaterial config) {
-        var bow = new CustomBow(
-                new FabricItemSettings().maxDamage((int) (config.toolConfiguration.durability * 0.8)),
-                () -> Ingredient.ofItems(config.MATERIAL)
-        );
-        bow.config(new RangedConfig(20, (int) config.toolConfiguration.axeDamage, null));
-
-        registerItem(name, bow);
-        return bow;
-    }
 
     public static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(ArcaneArmory.MOD_ID, name), item);

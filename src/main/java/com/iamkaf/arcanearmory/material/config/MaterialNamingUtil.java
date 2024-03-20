@@ -80,4 +80,8 @@ public class MaterialNamingUtil {
     public String hammer() {
         return config.name + "_hammer";
     }
+
+    public String bow() {
+        return config.name + "_bow";
+    }
 }

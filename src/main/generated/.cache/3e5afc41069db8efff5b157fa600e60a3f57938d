@@ -1,12 +1,12 @@
-// 1.20.1	2024-03-20T11:17:36.5322876	Arcane Armory/Block Loot Tables
+// 1.20.1	2024-03-20T12:22:28.1253096	Arcane Armory/Block Loot Tables
 726ee457fc48dfb9062a3f3867d71cc1bfa79a82 data\arcanearmory\loot_tables\blocks\coolpper_ore.json
 706d989fe354fffb608ffdcef4321ca1f9ad9ff8 data\arcanearmory\loot_tables\blocks\raw_sapphire_block.json
 db5c31e2c80f51b75e9f1d0025b3b005a98298cf data\arcanearmory\loot_tables\blocks\deepslate_black_diamond_ore.json
 73e05a32d94fd54b094ec2ae1382b8d15d5fb609 data\arcanearmory\loot_tables\blocks\coolpper_block.json
 028ad215651c07ce4de7eb68eb6d246d4ac6b48c data\arcanearmory\loot_tables\blocks\ruby_ore.json
 e64a5eebf50144c51ec67e8f44641ae3b9077caa data\arcanearmory\loot_tables\blocks\raw_shadow_crystal_block.json
-296656b4c534afcc2a000fe96ec46870c6b89df5 data\arcanearmory\loot_tables\blocks\solarflare_gem_block.json
 ac59572785005999572865d7091d54709fe85544 data\arcanearmory\loot_tables\blocks\aetheric_crystal_ore.json
+296656b4c534afcc2a000fe96ec46870c6b89df5 data\arcanearmory\loot_tables\blocks\solarflare_gem_block.json
 4d5eb3a4ca7cf5438a5943deb4d8a9bfcff0095f data\arcanearmory\loot_tables\blocks\deepslate_shadow_crystal_ore.json
 064dcda1953bd644ea4cf4c393a7e04639b2dc3a data\arcanearmory\loot_tables\blocks\deepslate_topaz_ore.json
 09081e64e1ee630d873ee750d1c7a837ff7a545d data\arcanearmory\loot_tables\blocks\aquamarine_block.json

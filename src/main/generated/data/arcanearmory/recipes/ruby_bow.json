@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:string"
+    },
+    "X": {
+      "item": "arcanearmory:ruby"
+    }
+  },
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "result": {
+    "item": "arcanearmory:ruby_bow"
+  },
+  "show_notification": true
+}

@@ -4,8 +4,11 @@ import com.iamkaf.arcanearmory.item.ModItems;
 import com.iamkaf.arcanearmory.material.ModToolMaterial;
 import com.iamkaf.arcanearmory.material.config.MaterialNamingUtil;
 import dev.draylar.magna.item.HammerItem;
+import net.fabric_extras.ranged_weapon.api.CustomBow;
+import net.fabric_extras.ranged_weapon.api.RangedConfig;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.*;
+import net.minecraft.recipe.Ingredient;
 
 public class ToolFactory {
     private static final float ATTACK_SPEED_BASELINE = -4f;
@@ -26,7 +29,8 @@ public class ToolFactory {
                 createPickaxe(namer.pickaxe(), material),
                 createAxe(namer.axe(), material),
                 createHoe(namer.hoe(), material),
-                createHammer(namer.hammer(), material)
+                createHammer(namer.hammer(), material),
+                createBow(namer.bow(), material)
         );
     }
 
@@ -111,16 +115,37 @@ public class ToolFactory {
      * @return The hammer created.
      */
     public static HammerItem createHammer(String name, ModToolMaterial material) {
-        var item = new HammerItem(material,
-                material.getSwordDamage(), // less damage than an axe
+        var item = new HammerItem(material, material.getSwordDamage(), // less damage than an axe
                 1f + ATTACK_SPEED_BASELINE, // slower than a sword
                 new Item.Settings()
         );
-        ModItems.registerItem(name, item); // system not ready yet
+        ModItems.registerItem(name, item);
+        return item;
+    }
+
+    /**
+     * Creates a bow item and registers it.
+     *
+     * @param name     The namespace of the item.
+     * @param material
+     * @return The bow created.
+     */
+    public static CustomBow createBow(String name, ModToolMaterial material) {
+        var item = new CustomBow(new FabricItemSettings().maxDamage((int) (material.getDurability() * 0.8)),
+                () -> Ingredient.ofItems(material
+                        .getRepairIngredient()
+                        .getMatchingStacks()[0].getItem())
+        );
+        item.config(new RangedConfig(
+                20,
+                material.getAxeDamage() + material.getAttackDamage(),
+                null
+        ));
+        ModItems.registerItem(name, item);
         return item;
     }
 
     public record ToolSet(SwordItem sword, ShovelItem shovel, PickaxeItem pickaxe, AxeItem axe,
-                          HoeItem hoe, HammerItem hammer) {
+                          HoeItem hoe, HammerItem hammer, CustomBow bow) {
     }
 }

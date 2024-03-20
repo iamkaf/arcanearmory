@@ -246,5 +246,16 @@ function processCompositeTexture(textures: CompositeTexture[]): Promise<sharp.Sh
 }
 
 function isTool(itemType: ItemType): boolean {
-  return ['sword', 'pickaxe', 'axe', 'shovel', 'hoe', 'hammer'].includes(itemType);
+  return [
+    'sword',
+    'pickaxe',
+    'axe',
+    'shovel',
+    'hoe',
+    'hammer',
+    'bow',
+    'bow_pulling_0',
+    'bow_pulling_1',
+    'bow_pulling_2',
+  ].includes(itemType);
 }
