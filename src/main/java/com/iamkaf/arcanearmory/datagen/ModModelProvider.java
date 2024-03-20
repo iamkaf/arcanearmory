@@ -31,7 +31,6 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         AAMaterialDatagen.generateModels(itemModelGenerator);
 
-        itemModelGenerator.register(ModItems.ARISTEUM_HAMMER, Models.HANDHELD);
         itemModelGenerator.register(ModItems.AMBER_INGOT, Models.GENERATED);
     }
 }

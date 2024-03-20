@@ -1,14 +1,20 @@
 package com.iamkaf.arcanearmory.material;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
+import com.iamkaf.arcanearmory.item.factory.ArmorFactory;
+import com.iamkaf.arcanearmory.item.factory.ToolFactory;
 import com.iamkaf.arcanearmory.material.config.*;
+import dev.draylar.magna.item.HammerItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,13 +37,13 @@ public class AAMaterial {
     @Nullable
     public final Block RAW_BLOCK;
     @Nullable
-    public final AAArmorItem HELMET;
+    public final ArmorItem HELMET;
     @Nullable
-    public final AAArmorItem CHESTPLATE;
+    public final ArmorItem CHESTPLATE;
     @Nullable
-    public final AAArmorItem LEGGINGS;
+    public final ArmorItem LEGGINGS;
     @Nullable
-    public final AAArmorItem BOOTS;
+    public final ArmorItem BOOTS;
     @Nullable
     public final SwordItem SWORD;
     @Nullable
@@ -50,15 +56,17 @@ public class AAMaterial {
 //    @Nullable  public final ShearsItem SHEARS;
     @Nullable
     public final HoeItem HOE;
+    @Nullable
+    public final HammerItem HAMMER;
     public final AABlockConfiguration blockConfiguration;
     public final AAToolConfiguration toolConfiguration;
     public final AAGenerationConfiguration generate;
-    private final AANamer namer;
+    private final MaterialNamingUtil namer;
 
     public AAMaterial(AAMaterialConfiguration config) {
         this.name = config.name;
         this.type = config.type;
-        namer = new AANamer(config);
+        namer = new MaterialNamingUtil(config);
 
         this.blockConfiguration = config.oreConfiguration;
         this.toolConfiguration = config.toolConfiguration;
@@ -93,161 +101,108 @@ public class AAMaterial {
         }
 
         if (generate.armor) {
-            var armor = createArmor(config);
-            this.HELMET = armor[0];
-            this.CHESTPLATE = armor[1];
-            this.LEGGINGS = armor[2];
-            this.BOOTS = armor[3];
+            var armorMaterial = new ModArmorMaterial(config.name,
+                    config.armorConfiguration.durability,
+                    config.armorConfiguration.protection,
+                    config.armorConfiguration.enchantability,
+                    config.armorConfiguration.equipSound,
+                    config.armorConfiguration.toughness,
+                    config.armorConfiguration.knockbackResistance,
+                    config.repairIngredient
+            );
+            var armor = ArmorFactory.createFullSet(armorMaterial, namer);
+            HELMET = armor.helmet();
+            CHESTPLATE = armor.chestplate();
+            LEGGINGS = armor.leggings();
+            BOOTS = armor.boots();
         } else {
             this.HELMET = null;
             this.CHESTPLATE = null;
             this.LEGGINGS = null;
             this.BOOTS = null;
         }
-//        try {
-//            AAItemRendererUtil.registerArmorTints(config, MATERIAL,
-////                    RAW_MATERIAL,
-//                    NUGGET, HELMET, CHESTPLATE, LEGGINGS, BOOTS
-//            );
-//        } catch (RuntimeException e) {
-//            // this is fine for now I guess? haha :)
-//            // if you know how to fix this pls open a PR <3
-//        }
 
         if (generate.tools) {
-            var tools = createTools(config);
-            this.SWORD = (SwordItem) tools[0];
-            this.SHOVEL = (ShovelItem) tools[1];
-            this.PICKAXE = (PickaxeItem) tools[2];
-            this.AXE = (AxeItem) tools[3];
-            this.HOE = (HoeItem) tools[4];
+            var toolMaterial = new ModToolMaterial(config.name,
+                    (int) config.toolConfiguration.swordDamage,
+                    (int) config.toolConfiguration.axeDamage,
+                    config.toolConfiguration.durability,
+                    config.toolConfiguration.miningSpeed,
+                    config.toolConfiguration.bonusDamage,
+                    config.toolConfiguration.miningLevel,
+                    config.toolConfiguration.enchantability,
+                    config.repairIngredient
+            );
+            var tools = ToolFactory.createToolSet(toolMaterial, namer);
+            SWORD = tools.sword();
+            SHOVEL = tools.shovel();
+            PICKAXE = tools.pickaxe();
+            AXE = tools.axe();
+            HOE = tools.hoe();
+            HAMMER = tools.hammer();
         } else {
+            this.SWORD = null;
             this.SHOVEL = null;
             this.PICKAXE = null;
             this.AXE = null;
             this.HOE = null;
-            this.SWORD = null;
+            this.HAMMER = null;
         }
-//        try {
-//            AAItemRendererUtil.registerToolTints(config, SWORD, SHOVEL, PICKAXE, AXE, HOE);
-//        } catch (RuntimeException e) {
-//            // this is fine for now I guess? haha :)
-//            // if you know how to fix this pls open a PR <3
-//        }
+
+        addItemsToItemGroup();
     }
 
-    public ItemConvertible[] getItemsToAddToItemGroup() {
-        List<ItemConvertible> e = new ArrayList<>();
+    private void addItemsToItemGroup() {
+        List<ItemConvertible> items = new ArrayList<>();
 
-        e.add(MATERIAL);
-        e.add(BLOCK);
+        items.add(MATERIAL);
+        items.add(BLOCK);
 
         if (generate.ore) {
-            e.add(ORE);
-            e.add(DEEPSLATE_ORE);
-            e.add(RAW_MATERIAL);
-            e.add(RAW_BLOCK);
+            items.add(ORE);
+            items.add(DEEPSLATE_ORE);
+            items.add(RAW_MATERIAL);
+            items.add(RAW_BLOCK);
             if (type.equals(AAMaterialType.INGOT)) {
-                e.add(NUGGET);
+                items.add(NUGGET);
             }
         }
 
         if (generate.weapons) {
-            e.add(SWORD);
+            items.add(SWORD);
         }
 
         if (generate.tools) {
-            e.add(PICKAXE);
-            e.add(SHOVEL);
-            e.add(AXE);
-            e.add(HOE);
+            items.add(PICKAXE);
+            items.add(SHOVEL);
+            items.add(AXE);
+            items.add(HOE);
+            items.add(HAMMER);
         }
 
         if (generate.armor) {
-            e.add(HELMET);
-            e.add(CHESTPLATE);
-            e.add(LEGGINGS);
-            e.add(BOOTS);
+            items.add(HELMET);
+            items.add(CHESTPLATE);
+            items.add(LEGGINGS);
+            items.add(BOOTS);
         }
 
-        return e.toArray(new ItemConvertible[0]);
-    }
-
-    private AAArmorItem[] createArmor(
-            AAMaterialConfiguration config
-    ) {
-        var armorMaterial = new AAArmorMaterial(config.name,
-                config.armorConfiguration.durability,
-                config.armorConfiguration.protection,
-                config.armorConfiguration.enchantability,
-                config.armorConfiguration.equipSound,
-                config.armorConfiguration.toughness,
-                config.armorConfiguration.knockbackResistance,
-                config.repairIngredient
-        );
-        var HELMET = registerItem(namer.helmet(),
-                new AAArmorItem(armorMaterial, ArmorItem.Type.HELMET, new FabricItemSettings())
-        );
-        var CHESTPLATE = registerItem(namer.chestplate(),
-                new AAArmorItem(armorMaterial, ArmorItem.Type.CHESTPLATE, new FabricItemSettings())
-        );
-        var LEGGINGS = registerItem(namer.leggings(),
-                new AAArmorItem(armorMaterial, ArmorItem.Type.LEGGINGS, new FabricItemSettings())
-        );
-        var BOOTS = registerItem(namer.boots(),
-                new AAArmorItem(armorMaterial, ArmorItem.Type.BOOTS, new FabricItemSettings())
-        );
-
-        return new AAArmorItem[]{HELMET, CHESTPLATE, LEGGINGS, BOOTS};
-    }
-
-    private ToolItem[] createTools(
-            AAMaterialConfiguration config
-    ) {
-        var toolMaterial = new AAToolMaterial(config.name,
-                config.toolConfiguration.durability,
-                config.toolConfiguration.miningSpeed,
-                config.toolConfiguration.bonusDamage,
-                config.toolConfiguration.miningLevel,
-                config.toolConfiguration.enchantability,
-                config.repairIngredient
-        );
-        var SWORD = registerItem(namer.sword(), new SwordItem(toolMaterial,
-                (int) config.toolConfiguration.swordDamage,
-                config.toolConfiguration.swordSwingSpeed,
-                new FabricItemSettings()
-        ));
-        var SHOVEL = registerItem(namer.shovel(), new ShovelItem(toolMaterial,
-                0,
-                config.toolConfiguration.axeSwingSpeed * 0.8f,
-                new FabricItemSettings()
-        ));
-        var PICKAXE = registerItem(namer.pickaxe(), new PickaxeItem(toolMaterial,
-                0,
-                config.toolConfiguration.axeSwingSpeed * 0.8f,
-                new FabricItemSettings()
-        ));
-        var AXE = registerItem(namer.axe(), new AxeItem(toolMaterial,
-                (int) config.toolConfiguration.axeDamage,
-                config.toolConfiguration.axeSwingSpeed,
-                new FabricItemSettings()
-        ));
-        var HOE = registerItem(namer.hoe(), new HoeItem(toolMaterial,
-                0,
-                config.toolConfiguration.axeSwingSpeed * 0.8f,
-                new FabricItemSettings()
-        ));
-
-        return new ToolItem[]{SWORD, SHOVEL, PICKAXE, AXE, HOE};
+        ItemGroupEvents
+                .modifyEntriesEvent(RegistryKey.of(RegistryKeys.ITEM_GROUP,
+                        ArcaneArmory.ID("arcanearmory")
+                ))
+                .register(content -> {
+                    for (ItemConvertible item : items) {
+                        content.add(item);
+                    }
+                });
     }
 
     private <T extends Item> T registerItem(String name, T item) {
-//        ArcaneArmory.LOGGER.info("Registering item: " + name);
         return Registry.register(Registries.ITEM, new Identifier(ArcaneArmory.MOD_ID, name), item);
     }
 
     private <T extends Block> T registerBlock(String name, T block) {
-//        ArcaneArmory.LOGGER.info("Registering block: " + name);
         Registry.register(Registries.ITEM,
                 new Identifier(ArcaneArmory.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings())

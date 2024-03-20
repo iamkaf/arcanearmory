@@ -21,8 +21,6 @@ public class ModItemGroups {
                     .displayName(Text.translatable("itemgroup.arcanearmory"))
                     .icon(() -> new ItemStack(ModMaterials.AETHERIC_CRYSTAL.DEEPSLATE_ORE))
                     .entries(((displayContext, entries) -> {
-                        AAMaterialDatagen.addItemsToItemGroup(entries);
-//                        entries.add(ModItems.RUBY_SHIELD);
                         entries.add(ModItems.COOLPPER_SHIELD);
                         entries.add(ModItems.TITANIUM_SHIELD);
                         entries.add(ModItems.ARISTEUM_SHIELD);
@@ -30,7 +28,6 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.DOOMFLARE_BLOCK);
 
-                        entries.add(ModItems.ARISTEUM_HAMMER);
                         entries.add(ModItems.ARISTEUM_BOW);
                     }))
                     .build()

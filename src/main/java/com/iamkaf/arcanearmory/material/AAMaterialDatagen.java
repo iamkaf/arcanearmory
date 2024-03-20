@@ -10,7 +10,6 @@ import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
@@ -43,6 +42,7 @@ public class AAMaterialDatagen {
                 AAItemRendererUtil.registerHandheldTwoLayers(material.PICKAXE, generator);
                 AAItemRendererUtil.registerHandheldTwoLayers(material.AXE, generator);
                 AAItemRendererUtil.registerHandheldTwoLayers(material.HOE, generator);
+                generator.register(material.HAMMER, Models.HANDHELD);
             }
         }
     }
@@ -135,17 +135,6 @@ public class AAMaterialDatagen {
         });
     }
 
-    public static void addItemsToItemGroup(ItemGroup.Entries entries) {
-        forEachMaterial((material) -> {
-            ItemConvertible[] items = material.getItemsToAddToItemGroup();
-
-            for (ItemConvertible item : items) {
-                if (item == null) continue;
-                entries.add(item);
-            }
-        });
-    }
-
     private static void forEachMaterial(Consumer<AAMaterial> useMaterial) {
         for (AAMaterial material : ALL_MATERIALS) {
             useMaterial.accept(material);
@@ -203,6 +192,7 @@ public class AAMaterialDatagen {
                 pickaxeRecipe(material, exporter);
                 axeRecipe(material, exporter);
                 hoeRecipe(material, exporter);
+                hammerRecipe(material, exporter);
             }
         }
     }
@@ -330,5 +320,20 @@ public class AAMaterialDatagen {
                 .criterion(hasItem(material.MATERIAL), conditionsFromItem(material.MATERIAL))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(material.HOE)));
+    }
+
+    private static void hammerRecipe(
+            AAMaterial material, Consumer<RecipeJsonProvider> exporter
+    ) {
+        ShapedRecipeJsonBuilder
+                .create(RecipeCategory.MISC, material.HAMMER, 1)
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern(" O ")
+                .input('X', material.MATERIAL)
+                .input('O', Items.STICK)
+                .criterion(hasItem(material.MATERIAL), conditionsFromItem(material.MATERIAL))
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter, new Identifier(getRecipeName(material.HAMMER)));
     }
 }

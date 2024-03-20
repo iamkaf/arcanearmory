@@ -1,9 +1,9 @@
 package com.iamkaf.arcanearmory.material.config;
 
-public class AANamer {
+public class MaterialNamingUtil {
     private final AAMaterialConfiguration config;
 
-    public AANamer(AAMaterialConfiguration config) {
+    public MaterialNamingUtil(AAMaterialConfiguration config) {
         this.config = config;
     }
 
@@ -77,4 +77,7 @@ public class AANamer {
         return config.name + "_hoe";
     }
 
+    public String hammer() {
+        return config.name + "_hammer";
+    }
 }

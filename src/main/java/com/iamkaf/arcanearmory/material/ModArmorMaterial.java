@@ -3,13 +3,12 @@ package com.iamkaf.arcanearmory.material;
 import com.iamkaf.arcanearmory.ArcaneArmory;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ArmorMaterials;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 
 import java.util.function.Supplier;
 
-public class AAArmorMaterial implements ArmorMaterial {
+public class ModArmorMaterial implements ArmorMaterial {
     private static final float[] ARMOR_DURABILITY_RATIOS = new float[]{
             0.2f, 0.29090909f, 0.27272727f, 0.23636363f
     };
@@ -23,7 +22,7 @@ public class AAArmorMaterial implements ArmorMaterial {
     private final float knockbackResistance;
     private final Supplier<Ingredient> repairIngredient;
 
-    public AAArmorMaterial(String name, int armorDurability, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+    public ModArmorMaterial(String name, int armorDurability, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
         this.name = name;
         this.armorDurability = armorDurability;
         this.protectionAmounts = protectionAmounts;
@@ -36,7 +35,7 @@ public class AAArmorMaterial implements ArmorMaterial {
 
     @Override
     public int getDurability(ArmorItem.Type type) {
-        return ((int) (AAArmorMaterial.ARMOR_DURABILITY_RATIOS[type.ordinal()] * (this.armorDurability * 10)) / 10);
+        return ((int) (ModArmorMaterial.ARMOR_DURABILITY_RATIOS[type.ordinal()] * (this.armorDurability * 10)) / 10);
     }
 
     @Override

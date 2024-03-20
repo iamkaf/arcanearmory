@@ -13,7 +13,7 @@ public class BlackDiamondMaterial {
             .armorDurability(2200)
             .toolDurability(1800)
             .protection(new int[]{3,8,6,3})
-            .toughness(0.2f)
+            .toughness(2f)
             .enchantability(10)
             .miningSpeed(9)
             .type(AAMaterialType.GEM);

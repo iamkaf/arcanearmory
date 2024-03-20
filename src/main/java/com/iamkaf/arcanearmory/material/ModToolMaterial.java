@@ -5,8 +5,10 @@ import net.minecraft.recipe.Ingredient;
 
 import java.util.function.Supplier;
 
-public class AAToolMaterial implements ToolMaterial {
+public class ModToolMaterial implements ToolMaterial {
     private final String name;
+    private final int swordDamage;
+    private final int axeDamage;
     private final int itemDurability;
     private final float miningSpeed;
     private final float attackDamage;
@@ -14,14 +16,34 @@ public class AAToolMaterial implements ToolMaterial {
     private final int enchantability;
     private final Supplier<Ingredient> repairIngredient;
 
-    public AAToolMaterial(String name, int itemDurability, float miningSpeed, float attackDamage, int miningLevel, int enchantability, Supplier<Ingredient> repairIngredient) {
+    public ModToolMaterial(
+            String name,
+            int swordDamage,
+            int axeDamage,
+            int itemDurability,
+            float miningSpeed,
+            float attackDamage,
+            int miningLevel,
+            int enchantability,
+            Supplier<Ingredient> repairIngredient
+    ) {
         this.name = name;
+        this.swordDamage = swordDamage;
+        this.axeDamage = axeDamage;
         this.itemDurability = itemDurability;
         this.miningSpeed = miningSpeed;
         this.attackDamage = attackDamage;
         this.miningLevel = miningLevel;
         this.enchantability = enchantability;
         this.repairIngredient = repairIngredient;
+    }
+
+    public int getSwordDamage() {
+        return swordDamage;
+    }
+
+    public int getAxeDamage() {
+        return axeDamage;
     }
 
     @Override
