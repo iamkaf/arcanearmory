@@ -1,7 +1,6 @@
 package com.iamkaf.arcanearmory.block;
 
 import com.iamkaf.arcanearmory.ArcaneArmory;
-import com.iamkaf.arcanearmory.block.custom.CottonCandyCropBlock;
 import com.iamkaf.arcanearmory.block.custom.DoomflareBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -17,12 +16,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-
-    public static final Block COTTON_CANDY_CROP = Registry.register(Registries.BLOCK,
-            new Identifier(ArcaneArmory.MOD_ID, "cotton_candy_crop"),
-            new CottonCandyCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT))
-    );
-
     public static final Block ARISTEA = registerBlock("aristea",
             new FlowerBlock(StatusEffects.SPEED,
                     10,

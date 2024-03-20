@@ -4,7 +4,6 @@ import com.iamkaf.arcanearmory.block.ModBlocks;
 import com.iamkaf.arcanearmory.item.ModItemGroups;
 import com.iamkaf.arcanearmory.item.ModItems;
 import com.iamkaf.arcanearmory.material.ModMaterials;
-import com.iamkaf.arcanearmory.sound.ModSounds;
 import com.iamkaf.arcanearmory.util.ModCustomTrades;
 import com.iamkaf.arcanearmory.world.gen.ModWorldGeneration;
 import com.iamkaf.arcanearmory.world.loot.ModLootTableModifiers;
@@ -29,7 +28,6 @@ public class ArcaneArmory implements ModInitializer {
         ModBlocks.registerModBlocks();
         ModLootTableModifiers.modifyLootTables();
         ModCustomTrades.registerCustomTrades();
-        ModSounds.registerSounds();
         ModMaterials.initializeArcaneArmoryMaterials();
         ModWorldGeneration.generateModWorldGen();
 

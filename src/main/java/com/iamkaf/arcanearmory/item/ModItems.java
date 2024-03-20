@@ -2,7 +2,6 @@ package com.iamkaf.arcanearmory.item;
 
 import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricShieldItem;
 import com.iamkaf.arcanearmory.ArcaneArmory;
-import com.iamkaf.arcanearmory.item.custom.AristeumHammer;
 import com.iamkaf.arcanearmory.material.AAMaterial;
 import com.iamkaf.arcanearmory.material.ModMaterials;
 import net.fabric_extras.ranged_weapon.api.CustomBow;

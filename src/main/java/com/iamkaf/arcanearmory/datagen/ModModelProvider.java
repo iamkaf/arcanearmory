@@ -1,7 +1,6 @@
 package com.iamkaf.arcanearmory.datagen;
 
 import com.iamkaf.arcanearmory.block.ModBlocks;
-import com.iamkaf.arcanearmory.block.custom.CottonCandyCropBlock;
 import com.iamkaf.arcanearmory.item.ModItems;
 import com.iamkaf.arcanearmory.material.AAMaterialDatagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -17,7 +16,8 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.ARISTEA,
+        blockStateModelGenerator.registerFlowerPotPlant(
+                ModBlocks.ARISTEA,
                 ModBlocks.POTTED_ARISTEA,
                 BlockStateModelGenerator.TintType.NOT_TINTED
         );
