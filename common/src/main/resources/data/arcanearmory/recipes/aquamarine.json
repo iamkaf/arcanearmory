@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "arcanearmory:aquamarine_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "arcanearmory:aquamarine"
+  }
+}

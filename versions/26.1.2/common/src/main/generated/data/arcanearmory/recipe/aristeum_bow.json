@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:string",
+    "X": "arcanearmory:aristeum_ingot"
+  },
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "result": {
+    "id": "arcanearmory:aristeum_bow"
+  },
+  "show_notification": true
+}

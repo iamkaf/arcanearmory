@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:chrysoberyl"
+  },
+  "pattern": [
+    "XXX",
+    " O ",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:chrysoberyl_pickaxe"
+  },
+  "show_notification": true
+}

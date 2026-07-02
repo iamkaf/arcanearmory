@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arcanearmory:item/sapphire_sword",
+    "layer1": "arcanearmory:item/sapphire_sword_overlay"
+  }
+}

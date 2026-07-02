@@ -31,6 +31,13 @@ bin/
 # fabric
 
 run/
+/fabric/versions/
+/forge/versions/
+/neoforge/versions/
+
+# teakit
+
+.teakit/
 
 # java
 

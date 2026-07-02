@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "arcanearmory:block/deepslate_solarflare_gem_ore"
+  }
+}

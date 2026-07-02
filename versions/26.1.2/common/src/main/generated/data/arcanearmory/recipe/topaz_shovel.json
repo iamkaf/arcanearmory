@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:topaz"
+  },
+  "pattern": [
+    "X",
+    "O",
+    "O"
+  ],
+  "result": {
+    "id": "arcanearmory:topaz_shovel"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:bloodfire_garnet"
+  },
+  "pattern": [
+    "X",
+    "X",
+    "O"
+  ],
+  "result": {
+    "id": "arcanearmory:bloodfire_garnet_sword"
+  },
+  "show_notification": true
+}

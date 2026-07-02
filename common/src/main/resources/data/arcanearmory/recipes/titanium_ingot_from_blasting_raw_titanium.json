@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "titanium",
+  "ingredient": {
+    "item": "arcanearmory:raw_titanium"
+  },
+  "result": "arcanearmory:titanium_ingot"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "minecraft:planks"
+    },
+    "B": {
+      "item": "arcanearmory:voidium_ingot"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "AAA",
+    " A "
+  ],
+  "result": {
+    "item": "arcanearmory:voidium_shield"
+  },
+  "show_notification": true
+}

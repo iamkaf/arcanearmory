@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "doom_fragment",
+  "ingredient": {
+    "item": "arcanearmory:doom_fragment_ore"
+  },
+  "result": "arcanearmory:doom_fragment"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "topaz",
+  "ingredient": {
+    "item": "arcanearmory:raw_topaz"
+  },
+  "result": "arcanearmory:topaz"
+}

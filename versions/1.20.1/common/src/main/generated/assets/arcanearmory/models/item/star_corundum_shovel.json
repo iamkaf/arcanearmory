@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arcanearmory:item/star_corundum_shovel",
+    "layer1": "arcanearmory:item/star_corundum_shovel_overlay"
+  }
+}

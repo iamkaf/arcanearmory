@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:string",
+    "X": "arcanearmory:bloodfire_garnet"
+  },
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "result": {
+    "id": "arcanearmory:bloodfire_garnet_bow"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arcanearmory:item/aquamarine_axe",
+    "layer1": "arcanearmory:item/aquamarine_axe_overlay"
+  }
+}

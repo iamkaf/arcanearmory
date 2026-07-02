@@ -1,0 +1,7 @@
+{
+  "parent": "arcanearmory:item/star_corundum_bow",
+  "textures": {
+    "layer0": "arcanearmory:item/star_corundum_bow_pulling_2",
+    "layer1": "arcanearmory:item/star_corundum_bow_pulling_2_overlay"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "arcanearmory:item/amber_bow",
+  "textures": {
+    "layer0": "arcanearmory:item/amber_bow_pulling_0",
+    "layer1": "arcanearmory:item/amber_bow_pulling_0_overlay"
+  }
+}

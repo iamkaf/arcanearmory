@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "arcanearmory:item/topaz_helmet",
+    "layer1": "arcanearmory:item/topaz_helmet_overlay"
+  }
+}
