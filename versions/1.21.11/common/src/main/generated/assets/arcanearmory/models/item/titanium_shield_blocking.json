@@ -13,8 +13,8 @@
       ],
       "translation": [
         4.0,
-        -14.0,
-        0.0
+        -13.25,
+        -2.0
       ]
     },
     "firstperson_righthand": {
@@ -29,9 +29,9 @@
         1.65
       ],
       "translation": [
-        -6.0,
-        -14.0,
-        0.0
+        -5.4,
+        -13.35,
+        -2.0
       ]
     },
     "thirdperson_lefthand": {

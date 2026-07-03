@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "arcanearmory:item/sapphire_hoe",
-    "layer1": "arcanearmory:item/sapphire_hoe_overlay"
-  }
-}

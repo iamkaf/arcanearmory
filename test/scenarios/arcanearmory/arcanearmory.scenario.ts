@@ -101,7 +101,7 @@ describe("Arcane Armory registry parity", () => {
 
     const result = await ctx.scenario.run({
       name: "arcane-armory-hammer-break-plane",
-      steps: [{ action: "break_block", x: 4, y: 73, z: 0, timeoutMs: 10000 }],
+      steps: [{ action: "break_block", x: 4, y: 73, z: 0, timeoutMs: 3000 }],
     });
     if (result.success === false) {
       throw new Error(`Hammer break action failed: ${JSON.stringify(result)}`);

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "aetheric_crystal",
+  "ingredient": {
+    "item": "arcanearmory:raw_aetheric_crystal"
+  },
+  "result": "arcanearmory:aetheric_crystal",
+  "experience": 0.45,
+  "cookingtime": 200
+}

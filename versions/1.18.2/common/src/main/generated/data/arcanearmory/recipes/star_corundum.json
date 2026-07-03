@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:star_corundum_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:star_corundum",
+    "count": 9
+  }
+}

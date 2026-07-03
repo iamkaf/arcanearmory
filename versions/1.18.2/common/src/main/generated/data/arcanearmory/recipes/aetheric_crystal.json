@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:aetheric_crystal_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:aetheric_crystal",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:coolpper_ore"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:coolpper_ingot",
+    "count": 2
+  }
+}

@@ -286,8 +286,206 @@ public final class ArcaneArmoryRecipeProvider implements DataProvider {
     }
 }
 //?} else {
-public final class ArcaneArmoryRecipeProvider {
-    private ArcaneArmoryRecipeProvider() {
+public final class ArcaneArmoryRecipeProvider implements net.minecraft.data.DataProvider {
+    private static final com.google.gson.Gson GSON = new com.google.gson.GsonBuilder().setPrettyPrinting().create();
+    private static final String MOD_ID = com.iamkaf.arcanearmory.ArcaneArmoryConstants.MOD_ID;
+
+    private final java.nio.file.Path output;
+
+    public ArcaneArmoryRecipeProvider(net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator dataGenerator) {
+        this.output = dataGenerator.getOutputFolder();
+    }
+
+    @Override
+    public void run(net.minecraft.data.HashCache cache) throws java.io.IOException {
+        save(cache, "ice", shapeless("minecraft:ice", 16, item(aa("frost_diamond"))));
+        saveAlloys(cache);
+        for (com.iamkaf.arcanearmory.content.ArcaneArmoryContent.RegisteredMaterial registered :
+                com.iamkaf.arcanearmory.content.ArcaneArmoryContent.registeredMaterials()) {
+            com.iamkaf.arcanearmory.content.ArcaneMaterial material = registered.material();
+            String base = aa(material.materialItemId());
+            saveCompression(cache, material.id() + "_block", base, aa(material.id() + "_block"));
+            if (material.ore()) {
+                saveCompression(cache, "raw_" + material.id() + "_block", aa(material.rawMaterialItemId()),
+                        aa("raw_" + material.id() + "_block"));
+                saveOreCooking(cache, material);
+            }
+            if (material.tools()) {
+                saveTools(cache, material, base);
+            }
+            if (material.shield()) {
+                save(cache, material.id() + "_shield", shaped(aa(material.id() + "_shield"),
+                        key("A", tag("minecraft:planks")),
+                        key("B", item(base)),
+                        pattern("ABA", "AAA", " A ")));
+            }
+            if (material.armor()) {
+                saveArmor(cache, material, base);
+            }
+        }
+    }
+
+    @Override
+    public String getName() {
+        return "Arcane Armory legacy recipes";
+    }
+
+    private void saveAlloys(net.minecraft.data.HashCache cache) throws java.io.IOException {
+        save(cache, "amber_from_alloying", shapeless(aa("amber"), 2,
+                item("minecraft:iron_ingot"),
+                item(aa("raw_amber"))));
+        save(cache, "aristeum_from_alloying", shapeless(aa("aristeum_ingot"), 2,
+                item(aa("titanium_ingot")),
+                item(aa("aetheric_crystal")),
+                item(aa("aristea")),
+                item("minecraft:pink_dye")));
+        save(cache, "coolpper_ingot_from_alloying", shapeless(aa("coolpper_ingot"), 2,
+                item(aa("coolpper_ore"))));
+        save(cache, "doomflare_block_from_alloying", shapeless(aa("doomflare_block"), 1,
+                item(aa("doom_fragment")),
+                item(aa("solarflare_gem")),
+                item(aa("shadow_crystal")),
+                item(aa("aetheric_crystal")),
+                item("minecraft:obsidian")));
+        save(cache, "voidium_from_alloying", shapeless(aa("voidium_ingot"), 2,
+                item(aa("void_obsidian_fragment")),
+                item(aa("bloodfire_garnet")),
+                item("minecraft:netherite_ingot")));
+    }
+
+    private void saveCompression(net.minecraft.data.HashCache cache, String blockId, String itemId, String blockItemId)
+            throws java.io.IOException {
+        save(cache, blockId, shaped(blockItemId, key("X", item(itemId)), pattern("XXX", "XXX", "XXX")));
+        save(cache, itemId.substring(itemId.indexOf(':') + 1), shapeless(itemId, 9, item(blockItemId)));
+    }
+
+    private void saveOreCooking(net.minecraft.data.HashCache cache, com.iamkaf.arcanearmory.content.ArcaneMaterial material)
+            throws java.io.IOException {
+        String result = aa(material.materialItemId());
+        String group = material.id();
+        saveCooking(cache, material.materialItemId() + "_from_smelting_" + material.id() + "_ore", "minecraft:smelting", group, result, aa(material.id() + "_ore"), 200);
+        saveCooking(cache, material.materialItemId() + "_from_smelting_deepslate_" + material.id() + "_ore", "minecraft:smelting", group, result, aa("deepslate_" + material.id() + "_ore"), 200);
+        saveCooking(cache, material.materialItemId() + "_from_smelting_raw_" + material.id(), "minecraft:smelting", group, result, aa(material.rawMaterialItemId()), 200);
+        saveCooking(cache, material.materialItemId() + "_from_blasting_" + material.id() + "_ore", "minecraft:blasting", group, result, aa(material.id() + "_ore"), 100);
+        saveCooking(cache, material.materialItemId() + "_from_blasting_deepslate_" + material.id() + "_ore", "minecraft:blasting", group, result, aa("deepslate_" + material.id() + "_ore"), 100);
+        saveCooking(cache, material.materialItemId() + "_from_blasting_raw_" + material.id(), "minecraft:blasting", group, result, aa(material.rawMaterialItemId()), 100);
+    }
+
+    private void saveTools(net.minecraft.data.HashCache cache, com.iamkaf.arcanearmory.content.ArcaneMaterial material, String base)
+            throws java.io.IOException {
+        String id = material.id();
+        save(cache, id + "_sword", shaped(aa(id + "_sword"), key("X", item(base)), key("O", item("minecraft:stick")), pattern("X", "X", "O")));
+        save(cache, id + "_shovel", shaped(aa(id + "_shovel"), key("X", item(base)), key("O", item("minecraft:stick")), pattern("X", "O", "O")));
+        save(cache, id + "_pickaxe", shaped(aa(id + "_pickaxe"), key("X", item(base)), key("O", item("minecraft:stick")), pattern("XXX", " O ", " O ")));
+        save(cache, id + "_axe", shaped(aa(id + "_axe"), key("X", item(base)), key("O", item("minecraft:stick")), pattern(" XX", " OX", " O ")));
+        save(cache, id + "_hoe", shaped(aa(id + "_hoe"), key("X", item(base)), key("O", item("minecraft:stick")), pattern(" XX", " O ", " O ")));
+        save(cache, id + "_hammer", shaped(aa(id + "_hammer"), key("X", item(base)), key("O", item("minecraft:stick")), pattern("XXX", "XXX", " O ")));
+        save(cache, id + "_bow", shaped(aa(id + "_bow"), key("X", item(base)), key("O", item("minecraft:string")),
+                pattern("OX ", "O X", "OX ")));
+    }
+
+    private void saveArmor(net.minecraft.data.HashCache cache, com.iamkaf.arcanearmory.content.ArcaneMaterial material, String base)
+            throws java.io.IOException {
+        String id = material.id();
+        save(cache, id + "_helmet", shaped(aa(id + "_helmet"), key("X", item(base)), pattern("XXX", "X X")));
+        save(cache, id + "_chestplate", shaped(aa(id + "_chestplate"), key("X", item(base)), pattern("X X", "XXX", "XXX")));
+        save(cache, id + "_leggings", shaped(aa(id + "_leggings"), key("X", item(base)), pattern("XXX", "X X", "X X")));
+        save(cache, id + "_boots", shaped(aa(id + "_boots"), key("X", item(base)), pattern("X X", "X X")));
+    }
+
+    private void saveCooking(net.minecraft.data.HashCache cache, String id, String type, String group, String result,
+            String ingredient, int cookingTime) throws java.io.IOException {
+        com.google.gson.JsonObject recipe = new com.google.gson.JsonObject();
+        recipe.addProperty("type", type);
+        recipe.addProperty("group", group);
+        recipe.add("ingredient", item(ingredient));
+        recipe.addProperty("result", result);
+        recipe.addProperty("experience", 0.45D);
+        recipe.addProperty("cookingtime", cookingTime);
+        save(cache, id, recipe);
+    }
+
+    private void save(net.minecraft.data.HashCache cache, String id, com.google.gson.JsonObject recipe) throws java.io.IOException {
+        net.minecraft.data.DataProvider.save(GSON, cache, recipe,
+                output.resolve("data/" + MOD_ID + "/recipes/" + id + ".json"));
+    }
+
+    private static com.google.gson.JsonObject shaped(String result, com.google.gson.JsonObject... parts) {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        root.addProperty("type", "minecraft:crafting_shaped");
+        com.google.gson.JsonObject key = new com.google.gson.JsonObject();
+        com.google.gson.JsonArray pattern = new com.google.gson.JsonArray();
+        for (com.google.gson.JsonObject part : parts) {
+            if (part.has("key")) {
+                for (java.util.Map.Entry<String, com.google.gson.JsonElement> entry : part.getAsJsonObject("key").entrySet()) {
+                    key.add(entry.getKey(), entry.getValue());
+                }
+            }
+            if (part.has("pattern")) {
+                for (com.google.gson.JsonElement entry : part.getAsJsonArray("pattern")) {
+                    pattern.add(entry);
+                }
+            }
+        }
+        root.add("pattern", pattern);
+        root.add("key", key);
+        root.add("result", result(result, 1));
+        return root;
+    }
+
+    private static com.google.gson.JsonObject shapeless(String result, int count, com.google.gson.JsonObject... ingredients) {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        root.addProperty("type", "minecraft:crafting_shapeless");
+        com.google.gson.JsonArray ingredientArray = new com.google.gson.JsonArray();
+        for (com.google.gson.JsonObject ingredient : ingredients) {
+            ingredientArray.add(ingredient);
+        }
+        root.add("ingredients", ingredientArray);
+        root.add("result", result(result, count));
+        return root;
+    }
+
+    private static com.google.gson.JsonObject key(String symbol, com.google.gson.JsonObject ingredient) {
+        com.google.gson.JsonObject key = new com.google.gson.JsonObject();
+        com.google.gson.JsonObject entries = new com.google.gson.JsonObject();
+        entries.add(symbol, ingredient);
+        key.add("key", entries);
+        return key;
+    }
+
+    private static com.google.gson.JsonObject pattern(String... patterns) {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        com.google.gson.JsonArray array = new com.google.gson.JsonArray();
+        for (String pattern : patterns) {
+            array.add(pattern);
+        }
+        root.add("pattern", array);
+        return root;
+    }
+
+    private static com.google.gson.JsonObject item(String id) {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        root.addProperty("item", id);
+        return root;
+    }
+
+    private static com.google.gson.JsonObject tag(String id) {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        root.addProperty("tag", id);
+        return root;
+    }
+
+    private static com.google.gson.JsonObject result(String id, int count) {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        root.addProperty("item", id);
+        if (count != 1) {
+            root.addProperty("count", count);
+        }
+        return root;
+    }
+
+    private static String aa(String id) {
+        return MOD_ID + ":" + id;
     }
 }
 //?}

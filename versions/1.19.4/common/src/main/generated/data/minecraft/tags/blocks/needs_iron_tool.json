@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "arcanearmory:ruby_ore",
+    "arcanearmory:deepslate_ruby_ore",
+    "arcanearmory:sapphire_ore",
+    "arcanearmory:deepslate_sapphire_ore",
+    "arcanearmory:frost_diamond_ore",
+    "arcanearmory:deepslate_frost_diamond_ore",
+    "arcanearmory:black_diamond_ore",
+    "arcanearmory:deepslate_black_diamond_ore",
+    "arcanearmory:topaz_ore",
+    "arcanearmory:deepslate_topaz_ore",
+    "arcanearmory:chrysoberyl_ore",
+    "arcanearmory:deepslate_chrysoberyl_ore",
+    "arcanearmory:titanium_ore",
+    "arcanearmory:deepslate_titanium_ore",
+    "arcanearmory:amber_ore",
+    "arcanearmory:deepslate_amber_ore"
+  ]
+}

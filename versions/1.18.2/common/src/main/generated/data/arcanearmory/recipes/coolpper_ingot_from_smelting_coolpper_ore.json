@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "coolpper",
+  "ingredient": {
+    "item": "arcanearmory:coolpper_ore"
+  },
+  "result": "arcanearmory:coolpper_ingot",
+  "experience": 0.45,
+  "cookingtime": 200
+}

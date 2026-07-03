@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X",
+    "O"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:black_diamond"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:black_diamond_sword"
+  }
+}

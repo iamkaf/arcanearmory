@@ -89,7 +89,7 @@ final class ArcaneArmoryItemFactory {
             return armor("boots", properties);
         }
         if (id.endsWith("_hammer")) {
-            return new ArcaneHammerItem(properties);
+            return hammer(material, properties);
         }
         if (id.endsWith("_bow")) {
             return new ArcaneBowItem(material.bowDamageBonus(), properties);
@@ -147,6 +147,16 @@ final class ArcaneArmoryItemFactory {
         return new HoeItem(Tiers.DIAMOND, properties.attributes(DiggerItem.createAttributes(Tiers.DIAMOND, -3.0F + material.attackDamageBonus(), 0.0F)));
         //?} else {
         return new PublicHoeItem(Tiers.DIAMOND, -3 + material.attackDamageBonus(), 0.0F, properties);
+        //?}
+    }
+
+    private static Item hammer(ArcaneMaterial material, Item.Properties properties) {
+        //? if >=1.21.5 {
+        return new ArcaneHammerItem(properties.pickaxe(toolMaterial(material), 4.0F + material.attackDamageBonus(), -3.2F));
+        //?} else if >=1.21 {
+        return new ArcaneHammerItem(Tiers.DIAMOND, properties.attributes(DiggerItem.createAttributes(Tiers.DIAMOND, 4.0F + material.attackDamageBonus(), -3.2F)));
+        //?} else {
+        return new ArcaneHammerItem(Tiers.DIAMOND, 4 + material.attackDamageBonus(), -3.2F, properties);
         //?}
     }
 

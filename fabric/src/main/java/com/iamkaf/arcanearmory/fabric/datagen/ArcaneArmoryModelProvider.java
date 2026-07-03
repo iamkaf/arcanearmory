@@ -202,14 +202,14 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         root.add("textures", textures);
 
         JsonArray elements = new JsonArray();
-        elements.add(shieldBaseElement());
+        elements.add(shieldPlateElement());
         elements.add(shieldHandleElement());
         root.add("elements", elements);
         root.add("display", shieldDisplay(blocking));
         return root;
     }
 
-    private static JsonObject shieldBaseElement() {
+    private static JsonObject shieldPlateElement() {
         JsonObject element = new JsonObject();
         element.add("from", array(0, 0, 11));
         element.add("to", array(12, 22, 12));
@@ -375,15 +375,14 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         if (blocking) {
             display.add("thirdperson_righthand", transform(40, 135, 5, -1, -4, -2, 1));
             display.add("thirdperson_lefthand", transform(45, 135, 0, 1.5D, -5.5D, 0, 1));
-            display.add("firstperson_righthand", transform(0, 180, -5, -6, -14, 0, 1.65D));
-            display.add("firstperson_lefthand", transform(0, 180, -5, 4, -14, 0, 1.65D));
+            display.add("firstperson_righthand", transform(0, 180, -5, -5.4D, -13.35D, -2, 1.65D));
+            display.add("firstperson_lefthand", transform(0, 180, -5, 4, -13.25D, -2, 1.65D));
         } else {
-            display.add("thirdperson_righthand", transform(0, 90, 0, 0.5D, -5, 2, 1));
-            display.add("thirdperson_lefthand", transform(0, 90, 0, 0.5D, -5, 6, 1));
+            display.add("thirdperson_righthand", transform(0, 90, 0, 0, -5, 2, 1));
+            display.add("thirdperson_lefthand", transform(0, 90, 0, 0, -5, 6, 1));
             display.add("firstperson_righthand", transform(0, 180, 5, -2, -19, 0, 1.65D));
             display.add("firstperson_lefthand", transform(0, 180, 5, 4.5D, -19.5D, 2, 1.65D));
             display.add("gui", transform(15, -25, -5, 2, -2, 0, 0.65D));
-            display.add("head", transform(0, 0, 0, 0, 0, 0, 1));
             display.add("fixed", transform(0, 180, 0, 1, -1.5D, 0, 0.5D));
             display.add("ground", transform(0, 0, 0, 0, 3, 0, 0.25D));
         }
@@ -452,14 +451,14 @@ public final class ArcaneArmoryModelProvider implements net.minecraft.data.DataP
         root.add("textures", textures);
 
         com.google.gson.JsonArray elements = new com.google.gson.JsonArray();
-        elements.add(shieldBaseElement());
+        elements.add(shieldPlateElement());
         elements.add(shieldHandleElement());
         root.add("elements", elements);
         root.add("display", shieldDisplay(blocking));
         return root;
     }
 
-    private static com.google.gson.JsonObject shieldBaseElement() {
+    private static com.google.gson.JsonObject shieldPlateElement() {
         com.google.gson.JsonObject element = new com.google.gson.JsonObject();
         element.add("from", array(0, 0, 11));
         element.add("to", array(12, 22, 12));
@@ -500,15 +499,14 @@ public final class ArcaneArmoryModelProvider implements net.minecraft.data.DataP
         if (blocking) {
             display.add("thirdperson_righthand", transform(40, 135, 5, -1, -4, -2, 1));
             display.add("thirdperson_lefthand", transform(45, 135, 0, 1.5D, -5.5D, 0, 1));
-            display.add("firstperson_righthand", transform(0, 180, -5, -6, -14, 0, 1.65D));
-            display.add("firstperson_lefthand", transform(0, 180, -5, 4, -14, 0, 1.65D));
+            display.add("firstperson_righthand", transform(0, 180, -5, -5.4D, -13.35D, -2, 1.65D));
+            display.add("firstperson_lefthand", transform(0, 180, -5, 4, -13.25D, -2, 1.65D));
         } else {
-            display.add("thirdperson_righthand", transform(0, 90, 0, 0.5D, -5, 2, 1));
-            display.add("thirdperson_lefthand", transform(0, 90, 0, 0.5D, -5, 6, 1));
+            display.add("thirdperson_righthand", transform(0, 90, 0, 0, -5, 2, 1));
+            display.add("thirdperson_lefthand", transform(0, 90, 0, 0, -5, 6, 1));
             display.add("firstperson_righthand", transform(0, 180, 5, -2, -19, 0, 1.65D));
             display.add("firstperson_lefthand", transform(0, 180, 5, 4.5D, -19.5D, 2, 1.65D));
             display.add("gui", transform(15, -25, -5, 2, -2, 0, 0.65D));
-            display.add("head", transform(0, 0, 0, 0, 0, 0, 1));
             display.add("fixed", transform(0, 180, 0, 1, -1.5D, 0, 0.5D));
             display.add("ground", transform(0, 0, 0, 0, 3, 0, 0.25D));
         }

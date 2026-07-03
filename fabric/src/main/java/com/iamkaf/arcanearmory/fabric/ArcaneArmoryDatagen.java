@@ -1,6 +1,7 @@
 package com.iamkaf.arcanearmory.fabric;
 
 import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryLanguageProvider;
+import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryDataProvider;
 import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryModelProvider;
 import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -12,10 +13,13 @@ public final class ArcaneArmoryDatagen implements DataGeneratorEntrypoint {
         //? if >=1.19.3 {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(ArcaneArmoryModelProvider::new);
+        pack.addProvider(ArcaneArmoryDataProvider::new);
         pack.addProvider(ArcaneArmoryRecipeProvider::new);
         pack.addProvider(ArcaneArmoryLanguageProvider::new);
         //?} else {
         fabricDataGenerator.addProvider(ArcaneArmoryModelProvider::new);
+        fabricDataGenerator.addProvider(ArcaneArmoryDataProvider::new);
+        fabricDataGenerator.addProvider(ArcaneArmoryRecipeProvider::new);
         fabricDataGenerator.addProvider(ArcaneArmoryLanguageProvider::new);
         //?}
     }

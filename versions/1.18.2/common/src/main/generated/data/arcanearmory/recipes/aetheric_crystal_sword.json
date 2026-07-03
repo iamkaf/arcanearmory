@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X",
+    "O"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:aetheric_crystal"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:aetheric_crystal_sword"
+  }
+}

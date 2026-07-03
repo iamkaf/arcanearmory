@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "arcanearmory:block/deepslate_shadow_crystal_ore"
-  }
-}

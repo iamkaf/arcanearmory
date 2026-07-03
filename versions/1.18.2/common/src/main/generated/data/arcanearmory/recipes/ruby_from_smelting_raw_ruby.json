@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "ruby",
+  "ingredient": {
+    "item": "arcanearmory:raw_ruby"
+  },
+  "result": "arcanearmory:ruby",
+  "experience": 0.45,
+  "cookingtime": 200
+}

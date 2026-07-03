@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "arcanearmory:item/chrysoberyl_pickaxe",
-    "layer1": "arcanearmory:item/chrysoberyl_pickaxe_overlay"
-  }
-}

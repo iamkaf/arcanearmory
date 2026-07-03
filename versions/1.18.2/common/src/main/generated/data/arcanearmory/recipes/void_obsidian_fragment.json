@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:void_obsidian_fragment_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:void_obsidian_fragment",
+    "count": 9
+  }
+}

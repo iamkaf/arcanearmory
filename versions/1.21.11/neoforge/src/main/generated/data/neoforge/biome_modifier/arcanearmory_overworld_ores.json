@@ -1,0 +1,20 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "arcanearmory:aetheric_crystal_ore_placed",
+    "arcanearmory:amber_geode_placed",
+    "arcanearmory:aquamarine_ore_placed",
+    "arcanearmory:black_diamond_ore_placed",
+    "arcanearmory:chrysoberyl_ore_placed",
+    "arcanearmory:coolpper_ore_placed",
+    "arcanearmory:frost_diamond_ore_placed",
+    "arcanearmory:ruby_ore_placed",
+    "arcanearmory:sapphire_ore_placed",
+    "arcanearmory:solarflare_gem_ore_placed",
+    "arcanearmory:star_corundum_ore_placed",
+    "arcanearmory:titanium_ore_placed",
+    "arcanearmory:topaz_ore_placed"
+  ],
+  "step": "underground_ores"
+}

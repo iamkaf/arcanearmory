@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " XX",
+    " O ",
+    " O "
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:bloodfire_garnet"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:bloodfire_garnet_hoe"
+  }
+}

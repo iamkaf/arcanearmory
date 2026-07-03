@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:void_obsidian_fragment"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:void_obsidian_fragment_block"
+  }
+}
