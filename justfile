@@ -39,8 +39,8 @@ teakit-nodes:
 teakit-explain node:
   @./teakitw explain --node "{{node}}"
 
-scenario-check node scenario="test/scenarios/arcanearmory/arcanearmory.scenario.ts" timeout="240":
-  @./teakitw run --node "{{node}}" --scenario "{{scenario}}" --timeout "{{timeout}}"
+teakit-check node test_file="test/teakit/arcanearmory.test.ts" timeout="240":
+  @./teakitw run --node "{{node}}" --test-file "{{test_file}}" --timeout "{{timeout}}"
 
-scenario-check-all timeout="240":
-  @for node in $(just list-nodes); do echo "==> $node"; just scenario-check "$node" "test/scenarios/arcanearmory/arcanearmory.scenario.ts" "{{timeout}}"; done
+teakit-check-all timeout="240":
+  @for node in $(just list-nodes); do echo "==> $node"; just teakit-check "$node" "test/teakit/arcanearmory.test.ts" "{{timeout}}"; done

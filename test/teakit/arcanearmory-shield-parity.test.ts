@@ -2,7 +2,7 @@ import { Capability, describe, test } from "@teakit/test";
 import type { TeaKitTestContext } from "@teakit/test";
 
 describe.configure({
-  capabilities: [Capability.RuntimeLogs, Capability.ClientScreenshot],
+  capabilities: [Capability.RuntimeLogs, Capability.RuntimeTiming, Capability.PlayerInventory, Capability.PlayerInteractions, Capability.ClientScreenshot, Capability.ClientRenderProbes],
 });
 
 describe("Arcane Armory shield rendering parity", () => {
@@ -31,23 +31,13 @@ async function prepare(ctx: TeaKitTestContext) {
 }
 
 async function captureBlocking(ctx: TeaKitTestContext, slot: number, name: string) {
-  await ctx.scenario.run({
-    name,
-    steps: [
-      { action: "select_hotbar_slot", slot },
-      { action: "set_use_held", held: true },
-      { action: "wait_ms", durationMs: 800 },
-    ],
-  });
+  await ctx.player.inventory().selectHotbar(slot);
+  await ctx.player.holdUse(true);
+  await ctx.runtime.wait(800);
   await ctx.client.waitForFrames(5);
   await ctx.client.screenshot(name);
-  await ctx.scenario.run({
-    name: `${name}-release`,
-    steps: [
-      { action: "set_use_held", held: false },
-      { action: "wait_ms", durationMs: 200 },
-    ],
-  });
+  await ctx.player.holdUse(false);
+  await ctx.runtime.wait(200);
 }
 
 async function assertNoClientResourceErrors(ctx: TeaKitTestContext, phase: string) {

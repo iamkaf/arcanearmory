@@ -2,7 +2,7 @@ import { Capability, describe, test } from "@teakit/test";
 import type { TeaKitTestContext } from "@teakit/test";
 
 describe.configure({
-  capabilities: [Capability.RuntimeLogs, Capability.ClientScreenshot, Capability.ClientRenderProbes, Capability.ClientScreens],
+  capabilities: [Capability.RuntimeLogs, Capability.RuntimeTiming, Capability.PlayerInventory, Capability.PlayerInteractions, Capability.ClientScreenshot, Capability.ClientRenderProbes, Capability.ClientScreens],
 });
 
 describe("Arcane Armory item rendering", () => {
@@ -20,41 +20,21 @@ describe("Arcane Armory item rendering", () => {
     await ctx.client.screenshot("arcane-armory-inventory-bow-shield");
     await ctx.client.closeMenus();
 
-    await ctx.scenario.run({
-      name: "arcane-armory-render-ruby-bow-use",
-      steps: [
-        { action: "select_hotbar_slot", slot: 0 },
-        { action: "set_use_held", held: true },
-        { action: "wait_ms", durationMs: 1300 },
-      ],
-    });
+    await ctx.player.inventory().selectHotbar(0);
+    await ctx.player.holdUse(true);
+    await ctx.runtime.wait(1300);
     await ctx.client.waitForFrames(5);
     await ctx.client.screenshot("arcane-armory-ruby-bow-drawn");
-    await ctx.scenario.run({
-      name: "arcane-armory-release-ruby-bow-render",
-      steps: [
-        { action: "set_use_held", held: false },
-        { action: "wait_ms", durationMs: 200 },
-      ],
-    });
+    await ctx.player.holdUse(false);
+    await ctx.runtime.wait(200);
 
-    await ctx.scenario.run({
-      name: "arcane-armory-render-ruby-shield-use",
-      steps: [
-        { action: "select_hotbar_slot", slot: 2 },
-        { action: "set_use_held", held: true },
-        { action: "wait_ms", durationMs: 800 },
-      ],
-    });
+    await ctx.player.inventory().selectHotbar(2);
+    await ctx.player.holdUse(true);
+    await ctx.runtime.wait(800);
     await ctx.client.waitForFrames(5);
     await ctx.client.screenshot("arcane-armory-ruby-shield-blocking");
-    await ctx.scenario.run({
-      name: "arcane-armory-release-ruby-shield-render",
-      steps: [
-        { action: "set_use_held", held: false },
-        { action: "wait_ms", durationMs: 200 },
-      ],
-    });
+    await ctx.player.holdUse(false);
+    await ctx.runtime.wait(200);
 
     await assertNoClientResourceErrors(ctx, "bow and shield screenshots");
   });

@@ -1,4 +1,4 @@
-import { describe, test } from "@teakit/test";
+import { Capability, Readiness, describe, pos, test } from "@teakit/test";
 import type { TeaKitTestContext } from "@teakit/test";
 
 const materials = [
@@ -41,6 +41,21 @@ const tools = new Set([
   "voidium",
 ]);
 const shields = new Set(["ruby", "coolpper", "titanium", "aristeum", "voidium"]);
+
+describe.configure({
+  timeout: "8m",
+  readiness: [Readiness.World, Readiness.Player],
+  capabilities: [
+    Capability.PlayerInteractions,
+    Capability.PlayerInventory,
+    Capability.PlayerUseItem,
+    Capability.RuntimeTiming,
+    Capability.ServerCommands,
+    Capability.WorldBlock,
+    Capability.WorldFill,
+    Capability.WorldRecipes,
+  ],
+});
 
 describe("Arcane Armory registry parity", () => {
   test("materials, blocks, and owned item families resolve", async (ctx) => {
@@ -91,21 +106,12 @@ describe("Arcane Armory registry parity", () => {
     await ctx.world.fill({ x: 4, y: 72, z: -1 }, { x: 4, y: 74, z: 1 }, "minecraft:stone");
     await ctx.player.teleport({ x: 1.5, y: 73, z: 0.5 });
     await ctx.commands.assert("/item replace entity @s hotbar.0 with arcanearmory:ruby_hammer");
-    await ctx.scenario.run({
-      name: "arcane-armory-select-hammer",
-      steps: [{ action: "select_hotbar_slot", slot: 0 }],
-    });
+    await ctx.player.inventory().selectHotbar(0);
     await assertItem(ctx, "hotbar.0", "arcanearmory:ruby_hammer", 'Inventory:[{Slot:0b,id:"arcanearmory:ruby_hammer"}]');
     await assertItem(ctx, "weapon.mainhand", "arcanearmory:ruby_hammer", 'SelectedItem:{id:"arcanearmory:ruby_hammer"}');
     await ctx.player.lookAt({ x: 4.5, y: 73.5, z: 0.5 });
 
-    const result = await ctx.scenario.run({
-      name: "arcane-armory-hammer-break-plane",
-      steps: [{ action: "break_block", x: 4, y: 73, z: 0, timeoutMs: 3000 }],
-    });
-    if (result.success === false) {
-      throw new Error(`Hammer break action failed: ${JSON.stringify(result)}`);
-    }
+    await ctx.player.mine(pos(4, 73, 0), { timeout: "3s" });
 
     for (let y = 72; y <= 74; y++) {
       for (let z = -1; z <= 1; z++) {
@@ -121,13 +127,8 @@ describe("Arcane Armory registry parity", () => {
     await prepare(ctx);
 
     await ctx.commands.assert("/item replace entity @s hotbar.0 with arcanearmory:ruby_helmet");
-    await ctx.scenario.run({
-      name: "arcane-armory-select-helmet",
-      steps: [
-        { action: "select_hotbar_slot", slot: 0 },
-        { action: "use_item" },
-      ],
-    });
+    await ctx.player.inventory().selectHotbar(0);
+    await ctx.player.useItem();
     await assertItem(ctx, "armor.head", "arcanearmory:ruby_helmet", 'Inventory:[{Slot:103b,id:"arcanearmory:ruby_helmet"}]');
 
     await ctx.commands.run("/gamemode survival");
@@ -135,18 +136,8 @@ describe("Arcane Armory registry parity", () => {
     await ctx.player.teleport({ x: 2.5, y: 73, z: 0.5 });
     await ctx.player.lookAt({ x: 5.5, y: 73.5, z: 0.5 });
     await ctx.commands.assert("/item replace entity @s hotbar.0 with arcanearmory:ruby_pickaxe");
-    await ctx.scenario.run({
-      name: "arcane-armory-select-pickaxe",
-      steps: [{ action: "select_hotbar_slot", slot: 0 }],
-    });
-
-    const result = await ctx.scenario.run({
-      name: "arcane-armory-pickaxe-break-stone",
-      steps: [{ action: "break_block", x: 5, y: 73, z: 0, timeoutMs: 2500 }],
-    });
-    if (result.success === false) {
-      throw new Error(`Pickaxe break action failed: ${JSON.stringify(result)}`);
-    }
+    await ctx.player.inventory().selectHotbar(0);
+    await ctx.player.mine(pos(5, 73, 0), { timeout: "2500ms" });
     const state = await ctx.world.block({ x: 5, y: 73, z: 0 });
     if (state.id !== "minecraft:air") {
       throw new Error(`Expected pickaxe to mine stone, found ${state.id}`);
@@ -166,21 +157,15 @@ describe("Arcane Armory registry parity", () => {
     await ctx.player.teleport({ x: 8.5, y: 73, z: 0.5 });
     await ctx.player.lookAt({ x: 8.5, y: 73.5, z: 3.5 });
 
-    const result = await ctx.scenario.run({
-      name: "arcane-armory-shield-block-projectile",
-      steps: [
-        { action: "set_use_held", held: true },
-        { action: "wait_ms", durationMs: 1500 },
-        { action: "command", command: "/setblock 8 73 3 minecraft:dispenser[facing=north]" },
-        { action: "command", command: "/item replace block 8 73 3 container.0 with minecraft:arrow 1" },
-        { action: "command", command: "/setblock 8 73 4 minecraft:redstone_block" },
-        { action: "wait_ms", durationMs: 1000 },
-        { action: "set_use_held", held: false },
-      ],
-    });
-    if (result.success === false) {
-      throw new Error(`Shield block action failed: ${JSON.stringify(result)}`);
-    }
+    await ctx.player.holdUse(true);
+    await ctx.runtime.wait(1500);
+    await ctx.commands.batch([
+      "/setblock 8 73 3 minecraft:dispenser[facing=north]",
+      "/item replace block 8 73 3 container.0 with minecraft:arrow 1",
+      "/setblock 8 73 4 minecraft:redstone_block",
+    ]);
+    await ctx.runtime.wait(1000);
+    await ctx.player.holdUse(false);
 
     await ctx.commands.assert("/execute if entity @s[nbt={Health:20.0f}]");
     await ctx.commands.run("/kill @e[type=minecraft:arrow,distance=..12]");
@@ -199,24 +184,13 @@ describe("Arcane Armory registry parity", () => {
     await ctx.player.lookAt({ x: 12.5, y: 78, z: 18.5 });
     await ctx.commands.assert("/item replace entity @s hotbar.0 with arcanearmory:voidium_bow");
     await ctx.commands.assert("/item replace entity @s hotbar.1 with minecraft:arrow 8");
-    await ctx.scenario.run({
-      name: "arcane-armory-select-voidium-bow",
-      steps: [{ action: "select_hotbar_slot", slot: 0 }],
-    });
+    await ctx.player.inventory().selectHotbar(0);
     await assertItem(ctx, "weapon.mainhand", "arcanearmory:voidium_bow", 'SelectedItem:{id:"arcanearmory:voidium_bow"}');
 
-    const result = await ctx.scenario.run({
-      name: "arcane-armory-fire-voidium-bow",
-      steps: [
-        { action: "set_use_held", held: true },
-        { action: "wait_ms", durationMs: 1600 },
-        { action: "set_use_held", held: false },
-        { action: "wait_ms", durationMs: 300 },
-      ],
-    });
-    if (result.success === false) {
-      throw new Error(`Bow firing action failed: ${JSON.stringify(result)}`);
-    }
+    await ctx.player.holdUse(true);
+    await ctx.runtime.wait(1600);
+    await ctx.player.holdUse(false);
+    await ctx.runtime.wait(300);
 
     await assertNearestArrowDamage(ctx, "3.5d");
     await ctx.commands.run("/kill @e[type=minecraft:arrow,distance=..80]");
@@ -229,13 +203,7 @@ describe("Arcane Armory registry parity", () => {
     await ctx.commands.assert("/item replace block 14 73 0 container.0 with minecraft:sand 1");
     await ctx.commands.assert("/item replace block 14 73 0 container.1 with arcanearmory:solarflare_gem 1");
 
-    const result = await ctx.scenario.run({
-      name: "arcane-armory-solarflare-furnace-fuel",
-      steps: [{ action: "wait_ms", durationMs: 1500 }],
-    });
-    if (result.success === false) {
-      throw new Error(`Solarflare fuel wait failed: ${JSON.stringify(result)}`);
-    }
+    await ctx.runtime.wait(1500);
 
     await ctx.commands.assert("/execute if block 14 73 0 minecraft:furnace[lit=true]");
     await ctx.commands.run("/setblock 14 73 0 minecraft:air");
