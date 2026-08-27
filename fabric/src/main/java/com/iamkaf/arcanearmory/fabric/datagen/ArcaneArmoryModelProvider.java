@@ -27,6 +27,8 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
     private final PackOutput.PathProvider itemModelPathProvider;
     //? if >=1.21.2
     private final PackOutput.PathProvider itemDefinitionPathProvider;
+    //? if >=1.21.5
+    private final PackOutput.PathProvider equipmentPathProvider;
 
     //? if >=26.1 {
     public ArcaneArmoryModelProvider(FabricPackOutput output) {
@@ -38,6 +40,8 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         this.itemModelPathProvider = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "models/item");
         //? if >=1.21.2
         this.itemDefinitionPathProvider = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "items");
+        //? if >=1.21.5
+        this.equipmentPathProvider = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "equipment");
     }
 
     @Override
@@ -64,6 +68,15 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
                     item(futures, cache, itemId, regularItemModel(itemId), itemId);
                 }
             }
+            //? if >=1.21.5 {
+            if (material.armor()) {
+                futures.add(DataProvider.saveStable(
+                        cache,
+                        equipmentDefinition(material.id()),
+                        equipmentPathProvider.json(ArcaneArmoryConstants.resource(material.id()))
+                ));
+            }
+            //?}
         }
         return CompletableFuture.allOf(futures.toArray(CompletableFuture<?>[]::new));
     }
@@ -315,6 +328,28 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
                 || id.endsWith("_leggings")
                 || id.endsWith("_boots");
     }
+
+    //? if >=1.21.5 {
+    private static JsonObject equipmentDefinition(String id) {
+        JsonObject root = new JsonObject();
+        JsonObject layers = new JsonObject();
+        layers.add("humanoid", equipmentLayers(id));
+        layers.add("humanoid_leggings", equipmentLayers(id));
+        root.add("layers", layers);
+        return root;
+    }
+
+    private static JsonArray equipmentLayers(String id) {
+        JsonArray layers = new JsonArray();
+        JsonObject base = new JsonObject();
+        base.addProperty("texture", MOD_ID + ":" + id);
+        layers.add(base);
+        JsonObject overlay = new JsonObject();
+        overlay.addProperty("texture", MOD_ID + ":" + id + "_overlay");
+        layers.add(overlay);
+        return layers;
+    }
+    //?}
 
     //? if >=1.21.2 {
     private static JsonObject itemDefinition(String modelId) {

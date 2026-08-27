@@ -3,27 +3,26 @@ package com.iamkaf.arcanearmory.content;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public final class ArcaneMaterial {
     private final String id;
     private final String displayName;
     private final boolean ingot;
     private final boolean ore;
-    private final boolean tools;
-    private final boolean armor;
     private final boolean shield;
-    private final int toolDurability;
+    private final Optional<ToolStats> toolStats;
+    private final Optional<ArmorStats> armorStats;
 
-    public ArcaneMaterial(String id, String displayName, boolean ingot, boolean ore, boolean tools, boolean armor, boolean shield,
-            int toolDurability) {
+    public ArcaneMaterial(String id, String displayName, boolean ingot, boolean ore, boolean shield,
+            ToolStats toolStats, ArmorStats armorStats) {
         this.id = id;
         this.displayName = displayName;
         this.ingot = ingot;
         this.ore = ore;
-        this.tools = tools;
-        this.armor = armor;
         this.shield = shield;
-        this.toolDurability = toolDurability;
+        this.toolStats = Optional.ofNullable(toolStats);
+        this.armorStats = Optional.ofNullable(armorStats);
     }
 
     public String id() {
@@ -43,11 +42,11 @@ public final class ArcaneMaterial {
     }
 
     public boolean tools() {
-        return tools;
+        return toolStats.isPresent();
     }
 
     public boolean armor() {
-        return armor;
+        return armorStats.isPresent();
     }
 
     public boolean shield() {
@@ -55,21 +54,28 @@ public final class ArcaneMaterial {
     }
 
     public int toolDurability() {
-        return toolDurability;
+        return requireToolStats().durability();
     }
 
-    public int attackDamageBonus() {
-        if (toolDurability >= 2000) {
-            return 2;
-        }
-        if (toolDurability >= 1561) {
-            return 1;
-        }
-        return 0;
+    public ToolStats requireToolStats() {
+        return toolStats.orElseThrow(() -> new IllegalStateException(id + " does not define tools"));
     }
 
-    public float bowDamageBonus() {
-        return attackDamageBonus() * 0.75F;
+    public ArmorStats requireArmorStats() {
+        return armorStats.orElseThrow(() -> new IllegalStateException(id + " does not define armor"));
+    }
+
+    public int bowDurability() {
+        return Math.max(1, (int) (requireToolStats().durability() * 0.8F));
+    }
+
+    public float bowDamage() {
+        ToolStats stats = requireToolStats();
+        return stats.axeDamage() + stats.attackDamageBonus();
+    }
+
+    public int shieldDurability() {
+        return Math.max(1, (int) (requireToolStats().durability() * 0.9F));
     }
 
     public List<String> itemIds() {
@@ -81,7 +87,7 @@ public final class ArcaneMaterial {
         if (ingot) {
             ids.add(nuggetItemId());
         }
-        if (tools) {
+        if (tools()) {
             ids.add(id + "_sword");
             ids.add(id + "_shovel");
             ids.add(id + "_pickaxe");
@@ -93,7 +99,7 @@ public final class ArcaneMaterial {
         if (shield) {
             ids.add(id + "_shield");
         }
-        if (armor) {
+        if (armor()) {
             ids.add(id + "_helmet");
             ids.add(id + "_chestplate");
             ids.add(id + "_leggings");
@@ -123,5 +129,57 @@ public final class ArcaneMaterial {
 
     public String nuggetItemId() {
         return id + "_nugget";
+    }
+
+    public record ToolStats(
+            int durability,
+            float swordDamage,
+            float axeDamage,
+            float attackDamageBonus,
+            int miningLevel,
+            float miningSpeed,
+            int enchantmentValue
+    ) {
+    }
+
+    public record ArmorStats(
+            int baseDurability,
+            int helmetProtection,
+            int chestplateProtection,
+            int leggingsProtection,
+            int bootsProtection,
+            int enchantmentValue,
+            float toughness,
+            float knockbackResistance
+    ) {
+        public int durability(ArmorPiece piece) {
+            return baseDurability * piece.durabilityMultiplier() / 55;
+        }
+
+        public int protection(ArmorPiece piece) {
+            return switch (piece) {
+                case HELMET -> helmetProtection;
+                case CHESTPLATE -> chestplateProtection;
+                case LEGGINGS -> leggingsProtection;
+                case BOOTS -> bootsProtection;
+            };
+        }
+    }
+
+    public enum ArmorPiece {
+        HELMET(11),
+        CHESTPLATE(16),
+        LEGGINGS(15),
+        BOOTS(13);
+
+        private final int durabilityMultiplier;
+
+        ArmorPiece(int durabilityMultiplier) {
+            this.durabilityMultiplier = durabilityMultiplier;
+        }
+
+        public int durabilityMultiplier() {
+            return durabilityMultiplier;
+        }
     }
 }

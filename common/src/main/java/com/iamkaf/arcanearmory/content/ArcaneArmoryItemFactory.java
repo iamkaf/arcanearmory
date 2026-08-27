@@ -12,48 +12,40 @@ import java.util.List;
 import java.util.Optional;
 //?}
 //? if >=1.21.5 {
-import net.minecraft.world.item.ToolMaterial;
-import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
 //?} else if >=1.21 {
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 //?} else if >=1.20 {
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 //?} else if >=1.19.4 {
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 //?} else {
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 //?}
+//? if <1.21
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Item;
 
 final class ArcaneArmoryItemFactory {
@@ -77,22 +69,22 @@ final class ArcaneArmoryItemFactory {
             return hoe(material, properties);
         }
         if (id.endsWith("_helmet")) {
-            return armor("helmet", properties);
+            return armor(material, ArcaneMaterial.ArmorPiece.HELMET, properties);
         }
         if (id.endsWith("_chestplate")) {
-            return armor("chestplate", properties);
+            return armor(material, ArcaneMaterial.ArmorPiece.CHESTPLATE, properties);
         }
         if (id.endsWith("_leggings")) {
-            return armor("leggings", properties);
+            return armor(material, ArcaneMaterial.ArmorPiece.LEGGINGS, properties);
         }
         if (id.endsWith("_boots")) {
-            return armor("boots", properties);
+            return armor(material, ArcaneMaterial.ArmorPiece.BOOTS, properties);
         }
         if (id.endsWith("_hammer")) {
             return hammer(material, properties);
         }
         if (id.endsWith("_bow")) {
-            return new ArcaneBowItem(material.bowDamageBonus(), properties);
+            return bow(material, properties);
         }
         if (id.endsWith("_shield")) {
             return shield(material, properties);
@@ -101,112 +93,113 @@ final class ArcaneArmoryItemFactory {
     }
 
     private static Item sword(ArcaneMaterial material, Item.Properties properties) {
+        ArcaneMaterial.ToolStats stats = material.requireToolStats();
         //? if >=1.21.5 {
-        return new Item(properties.sword(toolMaterial(material), 3.0F + material.attackDamageBonus(), -2.4F));
+        return new Item(properties
+                .sword(ArcaneEquipmentMaterials.tool(material), stats.swordDamage(), -2.4F)
+                .repairable(repairItem(material)));
         //?} else if >=1.21 {
-        return new SwordItem(Tiers.DIAMOND, properties.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 3 + material.attackDamageBonus(), -2.4F)));
+        var tier = ArcaneEquipmentMaterials.tool(material, repairItem(material));
+        return new SwordItem(tier, properties.attributes(SwordItem.createAttributes(tier, (int) stats.swordDamage(), -2.4F)));
         //?} else {
-        return new SwordItem(Tiers.DIAMOND, 3 + material.attackDamageBonus(), -2.4F, properties);
+        return new SwordItem(ArcaneEquipmentMaterials.tool(material, repairItem(material)),
+                (int) stats.swordDamage(), -2.4F, properties);
         //?}
     }
 
     private static Item shovel(ArcaneMaterial material, Item.Properties properties) {
         //? if >=1.21.5 {
-        return new Item(properties.shovel(toolMaterial(material), 1.5F + material.attackDamageBonus(), -3.0F));
+        return new Item(properties
+                .shovel(ArcaneEquipmentMaterials.tool(material), 0.0F, -3.0F)
+                .repairable(repairItem(material)));
         //?} else if >=1.21 {
-        return new ShovelItem(Tiers.DIAMOND, properties.attributes(DiggerItem.createAttributes(Tiers.DIAMOND, 1.5F + material.attackDamageBonus(), -3.0F)));
+        var tier = ArcaneEquipmentMaterials.tool(material, repairItem(material));
+        return new ShovelItem(tier, properties.attributes(DiggerItem.createAttributes(tier, 0.0F, -3.0F)));
         //?} else {
-        return new ShovelItem(Tiers.DIAMOND, 1.5F + material.attackDamageBonus(), -3.0F, properties);
+        return new ShovelItem(ArcaneEquipmentMaterials.tool(material, repairItem(material)), 0.0F, -3.0F, properties);
         //?}
     }
 
     private static Item pickaxe(ArcaneMaterial material, Item.Properties properties) {
         //? if >=1.21.5 {
-        return new Item(properties.pickaxe(toolMaterial(material), 1.0F + material.attackDamageBonus(), -2.8F));
+        return new Item(properties
+                .pickaxe(ArcaneEquipmentMaterials.tool(material), 0.0F, -3.0F)
+                .repairable(repairItem(material)));
         //?} else if >=1.21 {
-        return new PickaxeItem(Tiers.DIAMOND, properties.attributes(DiggerItem.createAttributes(Tiers.DIAMOND, 1.0F + material.attackDamageBonus(), -2.8F)));
+        var tier = ArcaneEquipmentMaterials.tool(material, repairItem(material));
+        return new PickaxeItem(tier, properties.attributes(DiggerItem.createAttributes(tier, 0.0F, -3.0F)));
         //?} else {
-        return new PublicPickaxeItem(Tiers.DIAMOND, 1 + material.attackDamageBonus(), -2.8F, properties);
+        return new PublicPickaxeItem(ArcaneEquipmentMaterials.tool(material, repairItem(material)), 0, -3.0F, properties);
         //?}
     }
 
     private static Item axe(ArcaneMaterial material, Item.Properties properties) {
+        ArcaneMaterial.ToolStats stats = material.requireToolStats();
         //? if >=1.21.5 {
-        return new Item(properties.axe(toolMaterial(material), 5.0F + material.attackDamageBonus(), -3.0F));
+        return new Item(properties
+                .axe(ArcaneEquipmentMaterials.tool(material), stats.axeDamage(), -3.0F)
+                .repairable(repairItem(material)));
         //?} else if >=1.21 {
-        return new AxeItem(Tiers.DIAMOND, properties.attributes(DiggerItem.createAttributes(Tiers.DIAMOND, 5.0F + material.attackDamageBonus(), -3.0F)));
+        var tier = ArcaneEquipmentMaterials.tool(material, repairItem(material));
+        return new AxeItem(tier, properties.attributes(DiggerItem.createAttributes(tier, stats.axeDamage(), -3.0F)));
         //?} else {
-        return new PublicAxeItem(Tiers.DIAMOND, 5.0F + material.attackDamageBonus(), -3.0F, properties);
+        return new PublicAxeItem(ArcaneEquipmentMaterials.tool(material, repairItem(material)),
+                stats.axeDamage(), -3.0F, properties);
         //?}
     }
 
     private static Item hoe(ArcaneMaterial material, Item.Properties properties) {
         //? if >=1.21.5 {
-        return new Item(properties.hoe(toolMaterial(material), -3.0F + material.attackDamageBonus(), 0.0F));
+        return new Item(properties
+                .hoe(ArcaneEquipmentMaterials.tool(material), 0.0F, -3.0F)
+                .repairable(repairItem(material)));
         //?} else if >=1.21 {
-        return new HoeItem(Tiers.DIAMOND, properties.attributes(DiggerItem.createAttributes(Tiers.DIAMOND, -3.0F + material.attackDamageBonus(), 0.0F)));
+        var tier = ArcaneEquipmentMaterials.tool(material, repairItem(material));
+        return new HoeItem(tier, properties.attributes(DiggerItem.createAttributes(tier, 0.0F, -3.0F)));
         //?} else {
-        return new PublicHoeItem(Tiers.DIAMOND, -3 + material.attackDamageBonus(), 0.0F, properties);
+        return new PublicHoeItem(ArcaneEquipmentMaterials.tool(material, repairItem(material)), 0, -3.0F, properties);
         //?}
     }
 
     private static Item hammer(ArcaneMaterial material, Item.Properties properties) {
+        ArcaneMaterial.ToolStats stats = material.requireToolStats();
         //? if >=1.21.5 {
-        return new ArcaneHammerItem(properties.pickaxe(toolMaterial(material), 4.0F + material.attackDamageBonus(), -3.2F));
+        return new ArcaneHammerItem(properties
+                .pickaxe(ArcaneEquipmentMaterials.tool(material), stats.swordDamage(), -3.0F)
+                .repairable(repairItem(material)));
         //?} else if >=1.21 {
-        return new ArcaneHammerItem(Tiers.DIAMOND, properties.attributes(DiggerItem.createAttributes(Tiers.DIAMOND, 4.0F + material.attackDamageBonus(), -3.2F)));
+        var tier = ArcaneEquipmentMaterials.tool(material, repairItem(material));
+        return new ArcaneHammerItem(tier,
+                properties.attributes(DiggerItem.createAttributes(tier, stats.swordDamage(), -3.0F)));
         //?} else {
-        return new ArcaneHammerItem(Tiers.DIAMOND, 4 + material.attackDamageBonus(), -3.2F, properties);
+        return new ArcaneHammerItem(ArcaneEquipmentMaterials.tool(material, repairItem(material)),
+                (int) stats.swordDamage(), -3.0F, properties);
         //?}
     }
 
-    private static Item armor(String slot, Item.Properties properties) {
+    private static Item armor(ArcaneMaterial material, ArcaneMaterial.ArmorPiece piece, Item.Properties properties) {
+        int durability = material.requireArmorStats().durability(piece);
         //? if >=1.21.5 {
-        return switch (slot) {
-            case "helmet" -> new Item(properties.humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET));
-            case "chestplate" -> new Item(properties.humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.CHESTPLATE));
-            case "leggings" -> new Item(properties.humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.LEGGINGS));
-            case "boots" -> new Item(properties.humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.BOOTS));
-            default -> new Item(properties);
-        };
+        return new Item(properties
+                .humanoidArmor(ArcaneEquipmentMaterials.armor(material), armorType(piece))
+                .durability(durability)
+                .repairable(repairItem(material)));
         //?} else if >=1.21 {
-        return switch (slot) {
-            case "helmet" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.HELMET, properties);
-            case "chestplate" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.CHESTPLATE, properties);
-            case "leggings" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.LEGGINGS, properties);
-            case "boots" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.BOOTS, properties);
-            default -> new Item(properties);
-        };
-        //?} else if >=1.20 {
-        return switch (slot) {
-            case "helmet" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.HELMET, properties);
-            case "chestplate" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.CHESTPLATE, properties);
-            case "leggings" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.LEGGINGS, properties);
-            case "boots" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.BOOTS, properties);
-            default -> new Item(properties);
-        };
+        properties.durability(durability);
+        return new ArmorItem(ArcaneEquipmentMaterials.armor(material, repairItem(material)), armorType(piece), properties);
         //?} else if >=1.19.4 {
-        return switch (slot) {
-            case "helmet" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.HELMET, properties);
-            case "chestplate" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.CHESTPLATE, properties);
-            case "leggings" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.LEGGINGS, properties);
-            case "boots" -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.BOOTS, properties);
-            default -> new Item(properties);
-        };
+        return new ArmorItem(ArcaneEquipmentMaterials.armor(material, repairItem(material)), armorType(piece), properties);
         //?} else {
-        return switch (slot) {
-            case "helmet" -> new ArmorItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, properties);
-            case "chestplate" -> new ArmorItem(ArmorMaterials.DIAMOND, EquipmentSlot.CHEST, properties);
-            case "leggings" -> new ArmorItem(ArmorMaterials.DIAMOND, EquipmentSlot.LEGS, properties);
-            case "boots" -> new ArmorItem(ArmorMaterials.DIAMOND, EquipmentSlot.FEET, properties);
-            default -> new Item(properties);
-        };
+        return new ArmorItem(ArcaneEquipmentMaterials.armor(material, repairItem(material)), equipmentSlot(piece), properties);
         //?}
     }
 
     private static Item shield(ArcaneMaterial material, Item.Properties properties) {
+        ArcaneMaterial.ToolStats stats = material.requireToolStats();
         //? if >=1.21.2 {
         properties
+                .enchantable(stats.enchantmentValue())
+                .repairable(repairItem(material))
                 .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
                 .equippableUnswappable(EquipmentSlot.OFFHAND)
                 //? if >=26 {
@@ -238,30 +231,71 @@ final class ArcaneArmoryItemFactory {
                 //?}
                 .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK);
         //?}
-        return new ArcaneShieldItem(properties);
+        return new ArcaneShieldItem(stats.enchantmentValue(), repairItem(material), properties);
     }
 
+    private static Item bow(ArcaneMaterial material, Item.Properties properties) {
+        ArcaneMaterial.ToolStats stats = material.requireToolStats();
+        //? if >=1.21.2 {
+        properties.enchantable(stats.enchantmentValue()).repairable(repairItem(material));
+        //?}
+        return new ArcaneBowItem(material.bowDamage(), stats.enchantmentValue(), repairItem(material), properties);
+    }
+
+    private static Item repairItem(ArcaneMaterial material) {
+        return ArcaneArmoryContent.item(material.materialItemId())
+                .orElseThrow(() -> new IllegalStateException("Missing repair item for " + material.id()))
+                .get();
+    }
+
+    //? if >=1.19.4 && <1.21.5 {
+    private static ArmorItem.Type armorType(ArcaneMaterial.ArmorPiece piece) {
+        return switch (piece) {
+            case HELMET -> ArmorItem.Type.HELMET;
+            case CHESTPLATE -> ArmorItem.Type.CHESTPLATE;
+            case LEGGINGS -> ArmorItem.Type.LEGGINGS;
+            case BOOTS -> ArmorItem.Type.BOOTS;
+        };
+    }
+    //?}
+
     //? if >=1.21.5 {
-    private static ToolMaterial toolMaterial(ArcaneMaterial material) {
-        return material.toolDurability() > ToolMaterial.DIAMOND.durability() ? ToolMaterial.NETHERITE : ToolMaterial.DIAMOND;
+    private static ArmorType armorType(ArcaneMaterial.ArmorPiece piece) {
+        return switch (piece) {
+            case HELMET -> ArmorType.HELMET;
+            case CHESTPLATE -> ArmorType.CHESTPLATE;
+            case LEGGINGS -> ArmorType.LEGGINGS;
+            case BOOTS -> ArmorType.BOOTS;
+        };
+    }
+    //?}
+
+    //? if <1.19.4 {
+    private static EquipmentSlot equipmentSlot(ArcaneMaterial.ArmorPiece piece) {
+        return switch (piece) {
+            case HELMET -> EquipmentSlot.HEAD;
+            case CHESTPLATE -> EquipmentSlot.CHEST;
+            case LEGGINGS -> EquipmentSlot.LEGS;
+            case BOOTS -> EquipmentSlot.FEET;
+        };
     }
     //?}
 
     //? if <1.21 {
     private static final class PublicPickaxeItem extends PickaxeItem {
-        private PublicPickaxeItem(Tiers tier, int attackDamage, float attackSpeed, Item.Properties properties) {
+        private PublicPickaxeItem(Tier tier, int attackDamage, float attackSpeed, Item.Properties properties) {
             super(tier, attackDamage, attackSpeed, properties);
         }
     }
 
     private static final class PublicAxeItem extends AxeItem {
-        private PublicAxeItem(Tiers tier, float attackDamage, float attackSpeed, Item.Properties properties) {
+        private PublicAxeItem(Tier tier, float attackDamage, float attackSpeed, Item.Properties properties) {
             super(tier, attackDamage, attackSpeed, properties);
         }
     }
 
     private static final class PublicHoeItem extends HoeItem {
-        private PublicHoeItem(Tiers tier, int attackDamage, float attackSpeed, Item.Properties properties) {
+        private PublicHoeItem(Tier tier, int attackDamage, float attackSpeed, Item.Properties properties) {
             super(tier, attackDamage, attackSpeed, properties);
         }
     }

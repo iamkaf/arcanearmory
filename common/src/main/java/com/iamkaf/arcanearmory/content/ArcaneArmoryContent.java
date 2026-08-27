@@ -101,10 +101,10 @@ public final class ArcaneArmoryContent {
             return material.toolDurability();
         }
         if (id.endsWith("_bow")) {
-            return Math.max(1, (int) (material.toolDurability() * 0.8F));
+            return material.bowDurability();
         }
         if (id.endsWith("_shield")) {
-            return Math.max(1, (int) (material.toolDurability() * 0.9F));
+            return material.shieldDurability();
         }
         return 0;
     }

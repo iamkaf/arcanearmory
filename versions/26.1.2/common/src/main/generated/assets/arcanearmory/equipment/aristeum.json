@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:aristeum"
+      },
+      {
+        "texture": "arcanearmory:aristeum_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:aristeum"
+      },
+      {
+        "texture": "arcanearmory:aristeum_overlay"
+      }
+    ]
+  }
+}

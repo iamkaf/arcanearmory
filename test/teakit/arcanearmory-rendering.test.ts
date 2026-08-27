@@ -14,10 +14,15 @@ describe("Arcane Armory item rendering", () => {
     await ctx.commands.assert("/item replace entity @s hotbar.1 with minecraft:arrow 16");
     await ctx.commands.assert("/item replace entity @s hotbar.2 with arcanearmory:ruby_shield");
     await ctx.commands.assert("/item replace entity @s weapon.offhand with arcanearmory:voidium_shield");
+    await ctx.commands.assert("/item replace entity @s armor.head with arcanearmory:ruby_helmet");
+    await ctx.commands.assert("/item replace entity @s armor.chest with arcanearmory:ruby_chestplate");
+    await ctx.commands.assert("/item replace entity @s armor.legs with arcanearmory:ruby_leggings");
+    await ctx.commands.assert("/item replace entity @s armor.feet with arcanearmory:ruby_boots");
+    await ctx.commands.run("/gamemode survival");
 
     await ctx.client.openInventory();
     await ctx.client.waitForFrames(5);
-    await ctx.client.screenshot("arcane-armory-inventory-bow-shield");
+    await ctx.client.screenshot("arcane-armory-inventory-equipment");
     await ctx.client.closeMenus();
 
     await ctx.player.inventory().selectHotbar(0);

@@ -8,7 +8,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -23,13 +22,20 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 //?}
 import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.Item;
+//? if <1.21.2
+import net.minecraft.world.item.ItemStack;
 
 public class ArcaneBowItem extends BowItem {
-    private final double damageBonus;
+    private final double baseArrowDamage;
+    private final int enchantmentValue;
+    private final Item repairItem;
 
-    public ArcaneBowItem(float damageBonus, Properties properties) {
+    public ArcaneBowItem(float configuredDamage, int enchantmentValue, Item repairItem, Properties properties) {
         super(properties);
-        this.damageBonus = Math.max(0.0D, damageBonus);
+        this.baseArrowDamage = Math.max(0.0D, configuredDamage / 3.0D);
+        this.enchantmentValue = enchantmentValue;
+        this.repairItem = repairItem;
     }
 
     //? if >=1.21 {
@@ -78,12 +84,11 @@ public class ArcaneBowItem extends BowItem {
                 arrow.setCritArrow(true);
             }
 
+            arrow.setBaseDamage(this.baseArrowDamage);
+
             int powerLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);
             if (powerLevel > 0) {
                 arrow.setBaseDamage(arrow.getBaseDamage() + (double) powerLevel * 0.5D + 0.5D);
-            }
-            if (this.damageBonus > 0.0D) {
-                arrow.setBaseDamage(arrow.getBaseDamage() + this.damageBonus);
             }
 
             int punchLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);
@@ -122,8 +127,20 @@ public class ArcaneBowItem extends BowItem {
     //?}
 
     private void applyDamageBonus(Object projectileEntity) {
-        if (this.damageBonus > 0.0D && projectileEntity instanceof AbstractArrow arrow) {
-            arrow.setBaseDamage(2.0D + this.damageBonus);
+        if (projectileEntity instanceof AbstractArrow arrow) {
+            arrow.setBaseDamage(this.baseArrowDamage);
         }
     }
+
+    //? if <1.21.2 {
+    @Override
+    public int getEnchantmentValue() {
+        return this.enchantmentValue;
+    }
+
+    @Override
+    public boolean isValidRepairItem(ItemStack stack, ItemStack ingredient) {
+        return ingredient.is(this.repairItem);
+    }
+    //?}
 }

@@ -9,8 +9,6 @@ Embark on a journey through the realms of wonder and mystery with Arcane Armory!
 
 **This mod adds 17 ores, 14 armor/tool sets, bows, shields, working hammers and building blocks.**
 
-Requires Fabric API and optionally [Alloy Forgery](https://modrinth.com/mod/alloy-forgery) (for alloy recipes).
-
 This is my first serious mod so I'm open to all suggestions. :)
 
 ## What's in it?
