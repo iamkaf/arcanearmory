@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:coolpper_ingot"
+    },
+    "O": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:coolpper_bow"
+  }
+}

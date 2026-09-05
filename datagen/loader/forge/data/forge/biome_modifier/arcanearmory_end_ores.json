@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": [
+    "arcanearmory:end_void_obsidian_fragment_ore_placed"
+  ],
+  "step": "underground_ores"
+}

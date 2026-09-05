@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:amber"
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:amber_hammer"
+  },
+  "show_notification": true
+}

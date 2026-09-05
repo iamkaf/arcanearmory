@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "arcanearmory:raw_aquamarine"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "arcanearmory:raw_aquamarine_block"
+  },
+  "show_notification": true
+}

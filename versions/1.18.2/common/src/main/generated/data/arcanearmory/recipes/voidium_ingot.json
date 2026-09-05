@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:voidium_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:voidium_ingot",
+    "count": 9
+  }
+}

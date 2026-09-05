@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:coolpper_ingot"
+  },
+  "pattern": [
+    "XXX",
+    " O ",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:coolpper_pickaxe"
+  },
+  "show_notification": true
+}

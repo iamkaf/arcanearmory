@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:frost_diamond"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:frost_diamond_block"
+  }
+}

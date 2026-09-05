@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "arcanearmory:raw_coolpper"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "arcanearmory:raw_coolpper_block"
+  },
+  "show_notification": true
+}

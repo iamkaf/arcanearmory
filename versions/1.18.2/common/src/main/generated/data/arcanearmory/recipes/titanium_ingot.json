@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:titanium_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:titanium_ingot",
+    "count": 9
+  }
+}

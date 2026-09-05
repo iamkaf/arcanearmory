@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": "arcanearmory:aetheric_crystal"
+  },
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "result": {
+    "id": "arcanearmory:aetheric_crystal_helmet"
+  },
+  "show_notification": true
+}

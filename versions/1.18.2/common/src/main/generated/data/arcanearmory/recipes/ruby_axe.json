@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " XX",
+    " OX",
+    " O "
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:ruby"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:ruby_axe"
+  }
+}

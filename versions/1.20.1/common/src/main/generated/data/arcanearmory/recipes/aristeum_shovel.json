@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "arcanearmory:aristeum_ingot"
+    }
+  },
+  "pattern": [
+    "X",
+    "O",
+    "O"
+  ],
+  "result": {
+    "item": "arcanearmory:aristeum_shovel"
+  },
+  "show_notification": true
+}

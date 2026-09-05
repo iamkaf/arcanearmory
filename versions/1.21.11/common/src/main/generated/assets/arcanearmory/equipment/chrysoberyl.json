@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:chrysoberyl"
+      },
+      {
+        "texture": "arcanearmory:chrysoberyl_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:chrysoberyl"
+      },
+      {
+        "texture": "arcanearmory:chrysoberyl_overlay"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:shadow_crystal_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:shadow_crystal",
+    "count": 9
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "arcanearmory:star_corundum"
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "arcanearmory:star_corundum_boots"
+  },
+  "show_notification": true
+}

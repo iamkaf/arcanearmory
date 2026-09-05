@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:aquamarine"
+  },
+  "pattern": [
+    " XX",
+    " O ",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:aquamarine_hoe"
+  },
+  "show_notification": true
+}

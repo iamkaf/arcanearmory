@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " O ",
+    " O "
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:aquamarine"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:aquamarine_pickaxe"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "arcanearmory:chrysoberyl"
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "arcanearmory:chrysoberyl_boots"
+  },
+  "show_notification": true
+}

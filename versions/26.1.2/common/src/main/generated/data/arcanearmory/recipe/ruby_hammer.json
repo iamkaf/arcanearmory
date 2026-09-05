@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:ruby"
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:ruby_hammer"
+  },
+  "show_notification": true
+}

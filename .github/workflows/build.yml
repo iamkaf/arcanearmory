@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,31 +16,6 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4.4.2
-        with:
-          cache-read-only: ${{ github.event_name == 'pull_request' }}
-
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
-      - name: Build
-        run: ./gradlew build --console=plain
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: arcanearmory-1.20.1-fabric
-          path: build/libs/*.jar
-          if-no-files-found: error
+    uses: iamkaf/multiloader-conventions/.github/workflows/mod-build.yml@6c991b2858e9b008d2c62647ed75c0d948640691
+    with:
+      teakit-runner: wrapper

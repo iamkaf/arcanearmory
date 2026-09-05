@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:voidium_ingot"
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:voidium_hammer"
+  },
+  "show_notification": true
+}

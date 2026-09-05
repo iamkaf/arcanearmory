@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:topaz"
+      },
+      {
+        "texture": "arcanearmory:topaz_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:topaz"
+      },
+      {
+        "texture": "arcanearmory:topaz_overlay"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "chrysoberyl",
+  "ingredient": {
+    "item": "arcanearmory:raw_chrysoberyl"
+  },
+  "result": "arcanearmory:chrysoberyl",
+  "experience": 0.45,
+  "cookingtime": 100
+}

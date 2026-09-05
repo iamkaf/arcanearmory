@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "amber",
+  "ingredient": {
+    "item": "arcanearmory:amber_ore"
+  },
+  "result": "arcanearmory:amber"
+}

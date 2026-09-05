@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "arcanearmory:bloodfire_garnet"
+    }
+  },
+  "pattern": [
+    "XXX",
+    " O ",
+    " O "
+  ],
+  "result": {
+    "item": "arcanearmory:bloodfire_garnet_pickaxe"
+  },
+  "show_notification": true
+}

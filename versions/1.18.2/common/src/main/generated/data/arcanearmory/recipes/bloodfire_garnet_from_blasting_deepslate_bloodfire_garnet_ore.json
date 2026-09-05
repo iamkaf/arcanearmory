@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "bloodfire_garnet",
+  "ingredient": {
+    "item": "arcanearmory:deepslate_bloodfire_garnet_ore"
+  },
+  "result": "arcanearmory:bloodfire_garnet",
+  "experience": 0.45,
+  "cookingtime": 100
+}

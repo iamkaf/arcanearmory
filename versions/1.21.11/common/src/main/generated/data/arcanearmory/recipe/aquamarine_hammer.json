@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:aquamarine"
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:aquamarine_hammer"
+  },
+  "show_notification": true
+}

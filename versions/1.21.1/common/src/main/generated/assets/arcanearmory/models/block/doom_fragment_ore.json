@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "arcanearmory:block/doom_fragment_ore"
+  }
+}

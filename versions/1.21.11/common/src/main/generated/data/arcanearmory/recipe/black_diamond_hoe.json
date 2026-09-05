@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:black_diamond"
+  },
+  "pattern": [
+    " XX",
+    " O ",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:black_diamond_hoe"
+  },
+  "show_notification": true
+}

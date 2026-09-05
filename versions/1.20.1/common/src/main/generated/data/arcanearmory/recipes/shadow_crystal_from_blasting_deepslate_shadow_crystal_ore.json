@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "shadow_crystal",
+  "ingredient": {
+    "item": "arcanearmory:deepslate_shadow_crystal_ore"
+  },
+  "result": "arcanearmory:shadow_crystal"
+}

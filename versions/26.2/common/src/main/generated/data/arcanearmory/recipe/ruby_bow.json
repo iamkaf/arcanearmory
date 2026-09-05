@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:string",
+    "X": "arcanearmory:ruby"
+  },
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "result": {
+    "id": "arcanearmory:ruby_bow"
+  },
+  "show_notification": true
+}

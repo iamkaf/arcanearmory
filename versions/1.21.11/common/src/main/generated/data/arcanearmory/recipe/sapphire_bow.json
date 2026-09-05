@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:string",
+    "X": "arcanearmory:sapphire"
+  },
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "result": {
+    "id": "arcanearmory:sapphire_bow"
+  },
+  "show_notification": true
+}
