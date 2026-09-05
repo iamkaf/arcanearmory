@@ -1,47 +1,220 @@
-# Automatically build the project and run any configured tests for every push
-# and submitted pull request. This can help catch issues that only occur on
-# certain platforms or Java versions, and provides a first line of defence
-# against bad commits.
+name: Build
 
-name: build
-on: [pull_request, push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.set-versions.outputs.versions }}
+      build-matrix: ${{ steps.set-versions.outputs.build-matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed versions
+        id: set-versions
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.base_ref }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          export LC_ALL=C
+          all_versions=$(find versions -mindepth 2 -maxdepth 2 -type f -name gradle.properties -printf '%h\n' | xargs -r -n1 basename | sort -u)
+          if [ -z "$all_versions" ]; then
+            echo "No version metadata found under versions/" >&2
+            exit 1
+          fi
+
+          changed_files=""
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            changed_files=$(git diff --name-only "origin/$BASE_REF...HEAD")
+          elif [ "$EVENT_NAME" = "push" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            changed_files=$(git diff --name-only "$BEFORE_SHA...$HEAD_SHA")
+          fi
+
+          # Version overlays affect their own line; all other build inputs affect every line.
+          shared=false
+          changed_versions=""
+          while IFS= read -r path; do
+            [ -n "$path" ] || continue
+            version=$(printf '%s\n' "$path" | sed -nE 's#^(common/|fabric/|forge/|neoforge/)?versions/([^/]+)/.*#\2#p')
+            if [ -n "$version" ]; then
+              if printf '%s\n' "$all_versions" | grep -Fx "$version" >/dev/null; then
+                changed_versions+="$version"$'\n'
+              else
+                shared=true
+              fi
+            else
+              case "$path" in
+                *.md|LICENSE*|.gitignore|.gitattributes|.editorconfig|.github/ISSUE_TEMPLATE/*) ;;
+                *) shared=true ;;
+              esac
+            fi
+          done <<< "$changed_files"
+
+          if [ -z "$changed_files" ] || [ "$shared" = true ]; then
+            versions="$all_versions"
+          else
+            versions=$(printf '%s' "$changed_versions" | sed '/^$/d' | sort -u)
+          fi
+
+          versions_json=$(printf '%s\n' "$versions" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          build_matrix=$(printf '%s\n' "$versions" | while IFS= read -r version; do
+            [ -n "$version" ] || continue
+            props="versions/$version/gradle.properties"
+            enabled_loaders=$(sed -nE 's/^project\.enabled-loaders=(.*)$/\1/p' "$props" | head -n1)
+
+            for loader in fabric forge neoforge; do
+              if printf '%s\n' "$enabled_loaders" | tr ',' '\n' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//' | grep -Fxq "$loader"; then
+                if [ ! -f "$loader/build.gradle" ] && [ ! -f "$loader/build.gradle.kts" ]; then
+                  echo "Missing build file for enabled loader $loader on $version" >&2
+                  exit 1
+                fi
+                jq -cn --arg version "$version" --arg loader "$loader" --arg node "$version-$loader" '{version: $version, loader: $loader, node: $node}'
+              fi
+            done
+          done | jq -s -c '.')
+
+          if [ "$versions_json" != '[]' ]; then
+            jq -e --argjson versions "$versions_json" '[.[].version] | unique | sort == ($versions | sort)' <<< "$build_matrix" >/dev/null || {
+              echo "Selected versions have no build nodes" >&2
+              exit 1
+            }
+          fi
+
+          echo "versions=$versions_json" >> "$GITHUB_OUTPUT"
+          echo "build-matrix=$build_matrix" >> "$GITHUB_OUTPUT"
+          echo "Versions: $versions_json"
+          echo "Build matrix: $build_matrix"
+
   build:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.build-matrix != '[]'
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Use these Java versions
-        java: [
-          21,
-          25,
-        ]
-        # and run on both Linux and Windows
-        os: [ubuntu-22.04, windows-2022]
-    runs-on: ${{ matrix.os }}
+        include: ${{ fromJson(needs.detect-changes.outputs.build-matrix) }}
+      fail-fast: false
+
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-      - name: setup jdk ${{ matrix.java }}
+      - uses: actions/checkout@v4
+
+      - name: Detect Java version
+        id: java
+        shell: bash
+        run: |
+          set -euo pipefail
+          props="versions/${{ matrix.version }}/gradle.properties"
+          v=$(sed -nE 's/^project\.build-java=([0-9]+).*/\1/p' "$props" | head -n1)
+          if [ -z "$v" ]; then
+            v=$(sed -nE 's/^project\.java=([0-9]+).*/\1/p' "$props" | head -n1)
+          fi
+          if [ -z "$v" ]; then
+            echo "project.build-java/project.java not found in $props" >&2
+            exit 1
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java }}
-          distribution: 'microsoft'
+          distribution: temurin
+          java-version: ${{ steps.java.outputs.version }}
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4.4.2
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' }}
-      - name: make gradle wrapper executable
-        if: ${{ runner.os != 'Windows' }}
-        run: chmod +x ./gradlew
-      - name: build
-        run: ./gradlew build --console=plain
-      - name: capture build artifacts
-        if: ${{ runner.os == 'Linux' && matrix.java == '25' }}
+
+      - name: Setup just
+        uses: taiki-e/install-action@just
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build ${{ matrix.node }}
+        run: just build ${{ matrix.node }}
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Artifacts
-          path: |
-            fabric/versions/*/build/libs/*.jar
-            forge/versions/*/build/libs/*.jar
-            neoforge/versions/*/build/libs/*.jar
+          name: ${{ github.event.repository.name }}-${{ matrix.node }}
+          path: ${{ matrix.loader }}/versions/${{ matrix.version }}/build/libs/*.jar
           if-no-files-found: error
+
+  test:
+    name: Compile common (${{ matrix.version }})
+    needs: detect-changes
+    if: needs.detect-changes.outputs.versions != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ${{ fromJson(needs.detect-changes.outputs.versions) }}
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect Java version
+        id: java
+        shell: bash
+        run: |
+          set -euo pipefail
+          props="versions/${{ matrix.version }}/gradle.properties"
+          v=$(sed -nE 's/^project\.build-java=([0-9]+).*/\1/p' "$props" | head -n1)
+          if [ -z "$v" ]; then
+            v=$(sed -nE 's/^project\.java=([0-9]+).*/\1/p' "$props" | head -n1)
+          fi
+          if [ -z "$v" ]; then
+            echo "project.build-java/project.java not found in $props" >&2
+            exit 1
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ steps.java.outputs.version }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4.4.2
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      # Loader builds compile the merged sources; check the common classpath separately.
+      - name: Compile common sources
+        run: ./gradlew --configure-on-demand ":common:${{ matrix.version }}:compileJava" --console=plain
+
+  summary:
+    needs: [detect-changes, build, test]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Summary
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: |
+          printf '%s\n' "$NEEDS_JSON" >> "$GITHUB_STEP_SUMMARY"
+          jq -e '
+            .["detect-changes"].result == "success" and
+            (.["detect-changes"].outputs.versions as $versions |
+              [to_entries[] | select(.key != "detect-changes") | .value.result] |
+              if $versions == "[]" then all(. == "skipped") else all(. == "success") end)
+          ' <<< "$NEEDS_JSON"
