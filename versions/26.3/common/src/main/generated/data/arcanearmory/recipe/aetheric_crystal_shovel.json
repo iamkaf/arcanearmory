@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:aetheric_crystal"
+  },
+  "pattern": [
+    "X",
+    "O",
+    "O"
+  ],
+  "result": {
+    "id": "arcanearmory:aetheric_crystal_shovel"
+  },
+  "show_notification": true
+}

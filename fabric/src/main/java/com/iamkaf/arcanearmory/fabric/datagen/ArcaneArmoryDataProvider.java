@@ -3,6 +3,9 @@ package com.iamkaf.arcanearmory.fabric.datagen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+//? if >=26.3 {
+import com.google.gson.JsonObject;
+//?}
 import net.minecraft.data.DataProvider;
 //? if >=1.19.3 {
 import net.minecraft.data.CachedOutput;
@@ -112,6 +115,23 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
     private static void saveJson(List<CompletableFuture<?>> futures, CachedOutput cache, Path source, Path target) throws IOException {
         try (Reader reader = Files.newBufferedReader(source)) {
             JsonElement json = GSON.fromJson(reader, JsonElement.class);
+            //? if >=26.3 {
+            if (source.toString().contains("worldgen/configured_feature/")) {
+                JsonObject feature = json.getAsJsonObject();
+                JsonObject flattened = feature.remove("config").getAsJsonObject();
+                flattened.add("type", feature.get("type"));
+                json = migrateWorldgen(flattened);
+            }
+            if (source.toString().contains("/advancements/")) {
+                for (JsonElement criterion : json.getAsJsonObject().getAsJsonObject("criteria").asMap().values()) {
+                    JsonObject object = criterion.getAsJsonObject();
+                    if (object.get("trigger").getAsString().equals("minecraft:recipe_unlocked")) {
+                        JsonObject conditions = object.getAsJsonObject("conditions");
+                        conditions.add("recipes", conditions.remove("recipe"));
+                    }
+                }
+            }
+            //?}
             futures.add(DataProvider.saveStable(cache, json, target));
         }
     }
@@ -172,8 +192,36 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
         relative = replacePrefix(relative, "arcanearmory/advancements/", "arcanearmory/advancement/");
         relative = replacePrefix(relative, "arcanearmory/loot_tables/", "arcanearmory/loot_table/");
         //?}
+        //? if >=26.3 {
+        relative = replacePrefix(relative, "arcanearmory/worldgen/configured_feature/", "arcanearmory/worldgen/feature/");
+        //?}
         return relative;
     }
+
+    //? if >=26.3 {
+    private static JsonElement migrateWorldgen(JsonElement json) {
+        if (json.isJsonArray()) {
+            for (int index = 0; index < json.getAsJsonArray().size(); index++) {
+                json.getAsJsonArray().set(index, migrateWorldgen(json.getAsJsonArray().get(index)));
+            }
+        } else if (json.isJsonObject()) {
+            JsonObject object = json.getAsJsonObject();
+            if (object.has("type") && object.get("type").getAsString().equals("minecraft:simple_state_provider")) {
+                return migrateWorldgen(object.get("state"));
+            }
+            if (object.has("Name")) {
+                object.add("id", object.remove("Name"));
+                if (object.has("Properties")) {
+                    object.add("properties", object.remove("Properties"));
+                }
+            }
+            for (String key : new ArrayList<>(object.keySet())) {
+                object.add(key, migrateWorldgen(object.get(key)));
+            }
+        }
+        return json;
+    }
+    //?}
 
     private static String replacePrefix(String value, String oldPrefix, String newPrefix) {
         if (value.startsWith(oldPrefix)) {

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.45,
+  "group": "shadow_crystal",
+  "ingredient": "arcanearmory:deepslate_shadow_crystal_ore",
+  "result": "arcanearmory:shadow_crystal"
+}
