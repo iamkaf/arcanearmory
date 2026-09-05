@@ -6,8 +6,12 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+//? if >=26.3 {
+/*import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
+*///?} else {
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+//?}
 
 import java.util.List;
 
@@ -70,7 +74,7 @@ public final class ArcaneArmoryLoot {
     }
 
     private static void addMaterialPool(ArcaneMaterial material, java.util.function.Consumer<LootPool.Builder> addPool) {
-        ArcaneArmoryContent.item(material.materialItemId()).ifPresent(item -> addPool.accept(itemPool(item.get(), 0.05F, 1.0F, 4.0F)));
+        ArcaneArmoryContent.item(material.materialItemId()).ifPresent(item -> addPool.accept(itemPool(item.get(), 0.05F, 1, 4)));
     }
 
     private static void addRareGearPools(
@@ -80,16 +84,22 @@ public final class ArcaneArmoryLoot {
     ) {
         for (String itemId : material.itemIds()) {
             if (isGear(itemId)) {
-                ArcaneArmoryContent.item(itemId).ifPresent(item -> addPool.accept(itemPool(item.get(), chance, 1.0F, 1.0F)));
+                ArcaneArmoryContent.item(itemId).ifPresent(item -> addPool.accept(itemPool(item.get(), chance, 1, 1)));
             }
         }
     }
 
-    private static LootPool.Builder itemPool(Item item, float chance, float min, float max) {
+    private static LootPool.Builder itemPool(Item item, float chance, int min, int max) {
         return LootPool.lootPool()
+                //? if >=26.3
+                /*.setRolls(ContextIntProviders.exactly(1))*/
+                //? if <26.3
                 .setRolls(ConstantValue.exactly(1))
                 .when(LootItemRandomChanceCondition.randomChance(chance))
                 .add(LootItem.lootTableItem(item))
+                //? if >=26.3
+                /*.apply(SetItemCountFunction.setCount(ContextIntProviders.between(min, max)));*/
+                //? if <26.3
                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)));
     }
 

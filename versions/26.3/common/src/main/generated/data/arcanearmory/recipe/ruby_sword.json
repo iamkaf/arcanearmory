@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:ruby"
+  },
+  "pattern": [
+    "X",
+    "X",
+    "O"
+  ],
+  "result": {
+    "id": "arcanearmory:ruby_sword"
+  },
+  "show_notification": true
+}

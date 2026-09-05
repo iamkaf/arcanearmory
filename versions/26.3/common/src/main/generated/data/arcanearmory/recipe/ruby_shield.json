@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": "#minecraft:planks",
+    "B": "arcanearmory:ruby"
+  },
+  "pattern": [
+    "ABA",
+    "AAA",
+    " A "
+  ],
+  "result": {
+    "id": "arcanearmory:ruby_shield"
+  },
+  "show_notification": true
+}

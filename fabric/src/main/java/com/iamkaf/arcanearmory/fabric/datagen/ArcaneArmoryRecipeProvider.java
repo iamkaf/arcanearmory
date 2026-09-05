@@ -169,7 +169,11 @@ public final class ArcaneArmoryRecipeProvider implements DataProvider {
         //? if <26.1
         root.addProperty("category", "misc");
         root.addProperty("group", group);
+        //? if >=26.3 {
+        root.addProperty("ingredient", ingredient);
+        //?} else {
         root.add("ingredient", item(ingredient));
+        //?}
         root.addProperty("result", result);
         root.addProperty("experience", 0.45D);
         root.addProperty("cookingtime", cookingTime);
