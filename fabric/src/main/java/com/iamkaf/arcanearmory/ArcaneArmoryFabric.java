@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 //? if <26
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 //? if >=26 {
+//? if <26.3
 import net.fabricmc.fabric.api.registry.FuelValueEvents;
 //?} else if >=1.21.11 {
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
@@ -34,6 +35,7 @@ public class ArcaneArmoryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ArcaneArmoryMod.init();
+        //? if <26.3
         registerFuels();
         registerTrades();
         registerWorldgen();
@@ -49,6 +51,7 @@ public class ArcaneArmoryFabric implements ModInitializer {
         //?}
     }
 
+    //? if <26.3 {
     private static void registerFuels() {
         //? if >=26 {
         FuelValueEvents.BUILD.register((builder, context) -> {
@@ -85,6 +88,8 @@ public class ArcaneArmoryFabric implements ModInitializer {
         */
         //?}
     }
+
+    //?}
 
     private static void registerWorldgen() {
         for (String feature : OVERWORLD_FEATURES) {

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "arcanearmory:titanium_ingot",
+    "arcanearmory:aetheric_crystal",
+    "arcanearmory:aristea",
+    "minecraft:pink_dye"
+  ],
+  "result": {
+    "count": 2,
+    "id": "arcanearmory:aristeum_ingot"
+  }
+}

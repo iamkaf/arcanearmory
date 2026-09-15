@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:star_corundum"
+      },
+      {
+        "texture": "arcanearmory:star_corundum_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:star_corundum"
+      },
+      {
+        "texture": "arcanearmory:star_corundum_overlay"
+      }
+    ]
+  }
+}

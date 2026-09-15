@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.45,
+  "group": "chrysoberyl",
+  "ingredient": "arcanearmory:deepslate_chrysoberyl_ore",
+  "result": "arcanearmory:chrysoberyl"
+}

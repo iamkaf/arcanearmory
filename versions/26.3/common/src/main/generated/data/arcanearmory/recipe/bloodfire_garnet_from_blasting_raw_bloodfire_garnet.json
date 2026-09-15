@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "bloodfire_garnet",
+  "ingredient": "arcanearmory:raw_bloodfire_garnet",
+  "result": "arcanearmory:bloodfire_garnet"
+}

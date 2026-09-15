@@ -119,6 +119,12 @@ public final class ArcaneArmoryContent {
         //?} else {
         Item.Properties properties = new Item.Properties();
         //?}
+        //? if >=26.3 {
+        /*String path = key.identifier().getPath();
+        if (path.equals("solarflare_gem") || path.equals("solarflare_gem_block")) {
+            properties.cookingFuel(ResourceKey.create(Registries.CONTEXT_INT_PROVIDER, key.identifier()));
+        }
+        *///?}
         if (maxDamage > 0) {
             properties.durability(maxDamage);
         }

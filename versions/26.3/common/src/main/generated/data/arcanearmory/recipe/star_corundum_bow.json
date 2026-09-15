@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:string",
+    "X": "arcanearmory:star_corundum"
+  },
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "result": {
+    "id": "arcanearmory:star_corundum_bow"
+  },
+  "show_notification": true
+}

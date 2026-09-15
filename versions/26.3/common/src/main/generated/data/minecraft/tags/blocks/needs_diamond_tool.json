@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "arcanearmory:star_corundum_ore",
+    "arcanearmory:deepslate_star_corundum_ore",
+    "arcanearmory:doom_fragment_ore",
+    "arcanearmory:deepslate_doom_fragment_ore",
+    "arcanearmory:solarflare_gem_ore",
+    "arcanearmory:deepslate_solarflare_gem_ore",
+    "arcanearmory:bloodfire_garnet_ore",
+    "arcanearmory:deepslate_bloodfire_garnet_ore"
+  ]
+}

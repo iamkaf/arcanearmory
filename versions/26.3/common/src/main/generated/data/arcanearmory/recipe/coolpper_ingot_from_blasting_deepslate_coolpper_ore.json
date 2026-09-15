@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "coolpper",
+  "ingredient": "arcanearmory:deepslate_coolpper_ore",
+  "result": "arcanearmory:coolpper_ingot"
+}

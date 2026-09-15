@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:ruby"
+  },
+  "pattern": [
+    "X",
+    "O",
+    "O"
+  ],
+  "result": {
+    "id": "arcanearmory:ruby_shovel"
+  },
+  "show_notification": true
+}
