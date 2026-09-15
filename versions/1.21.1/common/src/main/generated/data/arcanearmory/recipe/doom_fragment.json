@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "arcanearmory:doom_fragment_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "arcanearmory:doom_fragment"
+  }
+}

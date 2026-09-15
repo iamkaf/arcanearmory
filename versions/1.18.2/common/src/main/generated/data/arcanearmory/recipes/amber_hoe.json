@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " XX",
+    " O ",
+    " O "
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:amber"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:amber_hoe"
+  }
+}

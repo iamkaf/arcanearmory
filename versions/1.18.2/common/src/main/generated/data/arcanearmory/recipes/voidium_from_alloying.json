@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:void_obsidian_fragment"
+    },
+    {
+      "item": "arcanearmory:bloodfire_garnet"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:voidium_ingot",
+    "count": 2
+  }
+}

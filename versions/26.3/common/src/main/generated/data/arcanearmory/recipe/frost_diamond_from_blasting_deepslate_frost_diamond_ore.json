@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "frost_diamond",
+  "ingredient": "arcanearmory:deepslate_frost_diamond_ore",
+  "result": "arcanearmory:frost_diamond"
+}

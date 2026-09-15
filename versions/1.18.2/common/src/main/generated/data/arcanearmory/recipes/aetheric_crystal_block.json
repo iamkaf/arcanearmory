@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:aetheric_crystal"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:aetheric_crystal_block"
+  }
+}

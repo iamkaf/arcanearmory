@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OX ",
+    "O X",
+    "OX "
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:chrysoberyl"
+    },
+    "O": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:chrysoberyl_bow"
+  }
+}

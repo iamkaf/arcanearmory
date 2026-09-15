@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:aristeum_ingot"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:aristeum_chestplate"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:star_corundum"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:star_corundum_block"
+  }
+}

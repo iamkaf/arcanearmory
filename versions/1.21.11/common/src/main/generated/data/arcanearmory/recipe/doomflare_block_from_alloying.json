@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "arcanearmory:doom_fragment",
+    "arcanearmory:solarflare_gem",
+    "arcanearmory:shadow_crystal",
+    "arcanearmory:aetheric_crystal",
+    "minecraft:obsidian"
+  ],
+  "result": {
+    "id": "arcanearmory:doomflare_block"
+  }
+}

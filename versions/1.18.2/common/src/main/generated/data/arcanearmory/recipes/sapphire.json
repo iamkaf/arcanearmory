@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:sapphire_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:sapphire",
+    "count": 9
+  }
+}

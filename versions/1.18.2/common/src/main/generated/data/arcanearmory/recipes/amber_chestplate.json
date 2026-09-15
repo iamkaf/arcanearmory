@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:amber"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:amber_chestplate"
+  }
+}

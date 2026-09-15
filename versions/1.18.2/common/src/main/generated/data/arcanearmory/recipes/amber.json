@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:amber_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:amber",
+    "count": 9
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "bloodfire_garnet",
+  "ingredient": {
+    "item": "arcanearmory:bloodfire_garnet_ore"
+  },
+  "result": "arcanearmory:bloodfire_garnet",
+  "experience": 0.45,
+  "cookingtime": 200
+}

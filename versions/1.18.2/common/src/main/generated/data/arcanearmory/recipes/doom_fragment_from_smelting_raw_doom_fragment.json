@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "doom_fragment",
+  "ingredient": {
+    "item": "arcanearmory:raw_doom_fragment"
+  },
+  "result": "arcanearmory:doom_fragment",
+  "experience": 0.45,
+  "cookingtime": 200
+}

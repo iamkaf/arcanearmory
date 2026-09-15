@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:raw_topaz"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:raw_topaz_block"
+  }
+}

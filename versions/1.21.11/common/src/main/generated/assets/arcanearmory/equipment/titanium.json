@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:titanium"
+      },
+      {
+        "texture": "arcanearmory:titanium_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:titanium"
+      },
+      {
+        "texture": "arcanearmory:titanium_overlay"
+      }
+    ]
+  }
+}

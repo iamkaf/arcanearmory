@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "arcanearmory:block/shadow_crystal_ore"
+  }
+}

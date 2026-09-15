@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "black_diamond",
+  "ingredient": {
+    "item": "arcanearmory:raw_black_diamond"
+  },
+  "result": "arcanearmory:black_diamond",
+  "experience": 0.45,
+  "cookingtime": 200
+}

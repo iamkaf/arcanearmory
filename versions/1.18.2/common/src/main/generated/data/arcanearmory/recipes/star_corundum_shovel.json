@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "O",
+    "O"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:star_corundum"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:star_corundum_shovel"
+  }
+}

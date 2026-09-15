@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "arcanearmory:item/aetheric_crystal_chestplate",
+    "layer1": "arcanearmory:item/aetheric_crystal_chestplate_overlay"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "star_corundum",
+  "ingredient": {
+    "item": "arcanearmory:raw_star_corundum"
+  },
+  "result": "arcanearmory:star_corundum"
+}

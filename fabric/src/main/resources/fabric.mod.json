@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "contact": {
+    "homepage": "https://github.com/${mod_author}",
+    "sources": "https://github.com/${mod_author}/${mod_id}"
+  },
+  "license": "${license}",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.iamkaf.arcanearmory.ArcaneArmoryFabric"
+    ],
+    "client": [
+      "com.iamkaf.arcanearmory.ArcaneArmoryFabricClient"
+    ],
+    "fabric-datagen": [
+      "com.iamkaf.arcanearmory.fabric.ArcaneArmoryDatagen"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${fabric_version_range}",
+    "java": ">=${java_version}",
+    "amber": ">=${amber_version}"
+  }
+}

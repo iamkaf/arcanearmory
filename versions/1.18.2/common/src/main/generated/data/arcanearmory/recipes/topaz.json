@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:topaz_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:topaz",
+    "count": 9
+  }
+}

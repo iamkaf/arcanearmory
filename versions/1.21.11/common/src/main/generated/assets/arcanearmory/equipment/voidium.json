@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:voidium"
+      },
+      {
+        "texture": "arcanearmory:voidium_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:voidium"
+      },
+      {
+        "texture": "arcanearmory:voidium_overlay"
+      }
+    ]
+  }
+}

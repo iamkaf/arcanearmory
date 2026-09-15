@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:bloodfire_garnet"
+      },
+      {
+        "texture": "arcanearmory:bloodfire_garnet_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:bloodfire_garnet"
+      },
+      {
+        "texture": "arcanearmory:bloodfire_garnet_overlay"
+      }
+    ]
+  }
+}

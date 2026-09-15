@@ -1,0 +1,20 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arcanearmory:black_diamond"
+      },
+      {
+        "texture": "arcanearmory:black_diamond_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arcanearmory:black_diamond"
+      },
+      {
+        "texture": "arcanearmory:black_diamond_overlay"
+      }
+    ]
+  }
+}

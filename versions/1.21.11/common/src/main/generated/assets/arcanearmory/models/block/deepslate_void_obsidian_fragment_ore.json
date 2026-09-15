@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "arcanearmory:block/deepslate_void_obsidian_fragment_ore"
+  }
+}

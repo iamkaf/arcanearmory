@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arcanearmory:item/voidium_axe",
+    "layer1": "arcanearmory:item/voidium_axe_overlay"
+  }
+}

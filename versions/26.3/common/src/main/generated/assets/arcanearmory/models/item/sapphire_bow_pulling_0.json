@@ -1,0 +1,7 @@
+{
+  "parent": "arcanearmory:item/sapphire_bow",
+  "textures": {
+    "layer0": "arcanearmory:item/sapphire_bow_pulling_0",
+    "layer1": "arcanearmory:item/sapphire_bow_pulling_0_overlay"
+  }
+}

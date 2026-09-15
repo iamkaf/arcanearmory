@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:raw_titanium_block"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:raw_titanium",
+    "count": 9
+  }
+}

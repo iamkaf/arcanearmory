@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arcanearmory:item/bloodfire_garnet_hoe",
+    "layer1": "arcanearmory:item/bloodfire_garnet_hoe_overlay"
+  }
+}

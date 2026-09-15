@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": "#minecraft:planks",
+    "B": "arcanearmory:coolpper_ingot"
+  },
+  "pattern": [
+    "ABA",
+    "AAA",
+    " A "
+  ],
+  "result": {
+    "id": "arcanearmory:coolpper_shield"
+  },
+  "show_notification": true
+}

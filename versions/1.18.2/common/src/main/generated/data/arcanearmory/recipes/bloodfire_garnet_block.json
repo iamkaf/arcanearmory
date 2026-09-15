@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "arcanearmory:bloodfire_garnet"
+    }
+  },
+  "result": {
+    "item": "arcanearmory:bloodfire_garnet_block"
+  }
+}

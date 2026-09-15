@@ -1,6 +1,7 @@
 # gradle
 
 .gradle/
+.cache/
 build/
 out/
 classes/
@@ -31,6 +32,13 @@ bin/
 # fabric
 
 run/
+/fabric/versions/
+/forge/versions/
+/neoforge/versions/
+
+# teakit
+
+.teakit/
 
 # java
 

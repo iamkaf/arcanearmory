@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "aquamarine",
+  "ingredient": {
+    "item": "arcanearmory:raw_aquamarine"
+  },
+  "result": "arcanearmory:aquamarine",
+  "experience": 0.45,
+  "cookingtime": 200
+}

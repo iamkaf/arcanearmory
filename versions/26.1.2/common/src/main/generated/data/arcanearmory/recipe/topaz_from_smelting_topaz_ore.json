@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.45,
+  "group": "topaz",
+  "ingredient": {
+    "item": "arcanearmory:topaz_ore"
+  },
+  "result": "arcanearmory:topaz"
+}

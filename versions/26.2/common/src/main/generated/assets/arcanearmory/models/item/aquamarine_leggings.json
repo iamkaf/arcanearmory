@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "arcanearmory:item/aquamarine_leggings",
+    "layer1": "arcanearmory:item/aquamarine_leggings_overlay"
+  }
+}

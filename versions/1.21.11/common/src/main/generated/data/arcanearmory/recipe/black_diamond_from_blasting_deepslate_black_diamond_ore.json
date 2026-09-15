@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.45,
+  "group": "black_diamond",
+  "ingredient": {
+    "item": "arcanearmory:deepslate_black_diamond_ore"
+  },
+  "result": "arcanearmory:black_diamond"
+}

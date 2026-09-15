@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "arcanearmory:item/black_diamond_boots",
+    "layer1": "arcanearmory:item/black_diamond_boots_overlay"
+  }
+}

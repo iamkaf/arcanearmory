@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "star_corundum",
+  "ingredient": {
+    "item": "arcanearmory:deepslate_star_corundum_ore"
+  },
+  "result": "arcanearmory:star_corundum",
+  "experience": 0.45,
+  "cookingtime": 200
+}
