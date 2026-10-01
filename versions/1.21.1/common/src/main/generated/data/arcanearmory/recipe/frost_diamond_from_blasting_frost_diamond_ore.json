@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:frost_diamond_ore"
   },
-  "result": "arcanearmory:frost_diamond"
+  "result": {
+    "id": "arcanearmory:frost_diamond"
+  }
 }

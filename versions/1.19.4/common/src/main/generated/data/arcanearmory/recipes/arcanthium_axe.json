@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "arcanearmory:arcanthium_ingot"
+    }
+  },
+  "pattern": [
+    " XX",
+    " OX",
+    " O "
+  ],
+  "result": {
+    "item": "arcanearmory:arcanthium_axe"
+  },
+  "show_notification": true
+}

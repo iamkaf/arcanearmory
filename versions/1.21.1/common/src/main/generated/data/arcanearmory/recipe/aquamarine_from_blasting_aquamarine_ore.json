@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:aquamarine_ore"
   },
-  "result": "arcanearmory:aquamarine"
+  "result": {
+    "id": "arcanearmory:aquamarine"
+  }
 }

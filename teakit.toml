@@ -21,6 +21,12 @@ configureOnDemand = false
 "teakit.worldId" = "arcanearmory_teakit"
 "teakit.worldName" = "Arcane Armory TeaKit"
 
+[nodes."26.3-fabric"]
+loader = "fabric"
+minecraft = "26.3"
+tasks = [":fabric:26.3:runClient"]
+gameDirectory = "fabric/versions/26.3/runs/client"
+
 [nodes."26.2-fabric"]
 loader = "fabric"
 minecraft = "26.2"

@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:void_obsidian_fragment_ore"
   },
-  "result": "arcanearmory:void_obsidian_fragment"
+  "result": {
+    "id": "arcanearmory:void_obsidian_fragment"
+  }
 }

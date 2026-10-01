@@ -4,5 +4,7 @@
   "experience": 0.45,
   "group": "aquamarine",
   "ingredient": "arcanearmory:deepslate_aquamarine_ore",
-  "result": "arcanearmory:aquamarine"
+  "result": {
+    "id": "arcanearmory:aquamarine"
+  }
 }

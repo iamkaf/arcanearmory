@@ -3,8 +3,8 @@
   "cookingtime": 200,
   "experience": 0.45,
   "group": "ruby",
-  "ingredient": {
-    "item": "arcanearmory:deepslate_ruby_ore"
-  },
-  "result": "arcanearmory:ruby"
+  "ingredient": "arcanearmory:deepslate_ruby_ore",
+  "result": {
+    "id": "arcanearmory:ruby"
+  }
 }

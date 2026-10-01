@@ -1,24 +1,46 @@
 package com.iamkaf.arcanearmory;
 
-//? if <1.21.2 {
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
+//? if <1.21.2 {
+/*import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-//?} else {
-import net.fabricmc.api.ClientModInitializer;
-//?}
+*///?}
+//? if >=1.21.6 && <26 {
+/*import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+*///?} else if <1.21.6 {
+/*import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.renderer.RenderType;
+*///?}
 
 public class ArcaneArmoryFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         //? if <1.21.2
-        registerLegacyItemPredicates();
+        /*registerLegacyItemPredicates();*/
+        //? if <26
+        /*registerCutoutBlocks();*/
     }
 
+    // From 26.1 the game picks cutout rendering from the texture itself.
+    //? if >=1.21.6 && <26 {
+    /*private static void registerCutoutBlocks() {
+        for (String id : ArcaneArmoryContent.CUTOUT_BLOCKS) {
+            BlockRenderLayerMap.putBlock(ArcaneArmoryContent.block(id).orElseThrow().get(), ChunkSectionLayer.CUTOUT);
+        }
+    }
+    *///?} else if <1.21.6 {
+    /*private static void registerCutoutBlocks() {
+        for (String id : ArcaneArmoryContent.CUTOUT_BLOCKS) {
+            BlockRenderLayerMap.INSTANCE.putBlock(ArcaneArmoryContent.block(id).orElseThrow().get(), RenderType.cutout());
+        }
+    }
+    *///?}
+
     //? if <1.21.2 {
-    private static void registerLegacyItemPredicates() {
+    /*private static void registerLegacyItemPredicates() {
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             for (ArcaneArmoryContent.RegisteredItem registeredItem : registered.items()) {
                 String id = registeredItem.id();
@@ -31,7 +53,7 @@ public class ArcaneArmoryFabricClient implements ClientModInitializer {
                         //? if >=1.21 {
                         return (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
                         //?} else {
-                        /*return (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;*/
+                        /^return (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;^/
                         //?}
                     });
                     FabricModelPredicateProviderRegistry.register(item, property("pulling"), (stack, level, entity, seed) ->
@@ -48,8 +70,8 @@ public class ArcaneArmoryFabricClient implements ClientModInitializer {
         //? if >=1.21 {
         return ResourceLocation.withDefaultNamespace(path);
         //?} else {
-        /*return new ResourceLocation(path);*/
+        /^return new ResourceLocation(path);^/
         //?}
     }
-    //?}
+    *///?}
 }
