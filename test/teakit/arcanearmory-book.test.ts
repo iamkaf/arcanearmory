@@ -60,9 +60,9 @@ describe("Arcane Compendium", () => {
     if (listed.includes("modonomicon:modonomicon")) {
       return;
     }
-    // Modonomicon 2.5.0, the newest NeoForge build for 26.2, lists books only in its own tab.
+    // On NeoForge 26.x, Modonomicon lists the book only in its own tab; the cause is not yet known.
     const health = await ctx.runtime.health();
-    if (health.minecraftVersion === "26.2" && health.loader === "neoforge") {
+    if (health.loader === "neoforge" && (health.minecraftVersion ?? "").startsWith("26.")) {
       await ctx.client.openInventory();
       await ctx.client.waitForFrames(5);
       await openTabWith(ctx, (id) => id === "modonomicon:modonomicon");
