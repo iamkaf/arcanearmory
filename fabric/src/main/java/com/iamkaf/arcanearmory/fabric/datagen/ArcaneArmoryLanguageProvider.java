@@ -5,6 +5,7 @@ import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
 import com.iamkaf.arcanearmory.content.DoomflareBlockItem;
 import com.iamkaf.arcanearmory.content.ArcaneMaterial;
+import com.iamkaf.arcanearmory.content.ArcaneTraits;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 //? if >=1.21
 import net.minecraft.core.HolderLookup;
@@ -60,6 +61,7 @@ public final class ArcaneArmoryLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(itemKey("amber_ingot"), "Amber Ingot");
         translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".arcanthe", "Arcanthe");
         translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".potted_arcanthe", "Potted Arcanthe");
+        ArcaneTraits.englishTooltips().forEach(translationBuilder::add);
 
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();

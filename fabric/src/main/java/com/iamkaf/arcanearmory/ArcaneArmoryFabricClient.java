@@ -1,7 +1,9 @@
 package com.iamkaf.arcanearmory;
 
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
+import com.iamkaf.arcanearmory.content.ArcaneTraits;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 //? if <1.21.2 {
 /*import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -27,6 +29,11 @@ import net.minecraft.world.item.ArmorItem;
 public class ArcaneArmoryFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        //? if >=1.20.5 {
+        ItemTooltipCallback.EVENT.register((stack, context, flag, lines) -> ArcaneTraits.appendTooltip(stack, lines));
+        //?} else {
+        /*ItemTooltipCallback.EVENT.register((stack, flag, lines) -> ArcaneTraits.appendTooltip(stack, lines));
+        *///?}
         //? if <1.21.2
         /*registerLegacyItemPredicates();*/
         //? if <26
