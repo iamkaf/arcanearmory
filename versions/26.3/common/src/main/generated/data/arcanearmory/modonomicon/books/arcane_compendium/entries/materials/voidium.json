@@ -1,0 +1,26 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:materials",
+  "description": "book.arcanearmory.arcane_compendium.materials.voidium.description",
+  "icon": "arcanearmory:voidium_ingot",
+  "id": "arcanearmory:materials/voidium",
+  "name": "book.arcanearmory.arcane_compendium.materials.voidium.name",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "item": "arcanearmory:voidium_ingot",
+      "text": "book.arcanearmory.arcane_compendium.materials.voidium.about.text",
+      "title": "book.arcanearmory.arcane_compendium.materials.voidium.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:voidium_from_alloying",
+      "recipe_id_2": "arcanearmory:voidium_shield"
+    }
+  ],
+  "sort_number": 14,
+  "x": 4,
+  "y": 2
+}

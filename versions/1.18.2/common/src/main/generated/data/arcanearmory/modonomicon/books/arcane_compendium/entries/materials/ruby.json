@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/ruby",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.ruby.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.ruby.description",
+  "icon": "arcanearmory:ruby",
+  "x": -2,
+  "y": -2,
+  "sort_number": 1,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.ruby.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.ruby.about.text",
+      "item": {
+        "item": "arcanearmory:ruby"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:ruby_sword",
+      "recipe_id_2": "arcanearmory:ruby_chestplate"
+    }
+  ]
+}

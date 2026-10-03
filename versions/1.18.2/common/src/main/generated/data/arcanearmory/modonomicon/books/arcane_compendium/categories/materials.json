@@ -1,0 +1,7 @@
+{
+  "name": "book.arcanearmory.arcane_compendium.materials.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.description",
+  "icon": "arcanearmory:ruby",
+  "sort_number": 0,
+  "display_mode": "index"
+}

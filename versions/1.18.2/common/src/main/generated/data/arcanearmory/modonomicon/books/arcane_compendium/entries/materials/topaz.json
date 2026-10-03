@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/topaz",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.topaz.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.topaz.description",
+  "icon": "arcanearmory:topaz",
+  "x": 4,
+  "y": -2,
+  "sort_number": 4,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.topaz.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.topaz.about.text",
+      "item": {
+        "item": "arcanearmory:topaz"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:topaz_sword",
+      "recipe_id_2": "arcanearmory:topaz_chestplate"
+    }
+  ]
+}

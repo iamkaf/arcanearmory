@@ -1,4 +1,4 @@
-// 1.20.1	2026-10-03T12:57:16.38939736	Arcane Armory/Arcane Armory generated data
+// 1.20.1	2026-10-03T13:12:29.093251414	Arcane Armory/Arcane Armory generated data
 1f35ad9d5e9ebd50cf68e518caafd0ed7ae336e2 data/arcanearmory/advancements/recipes/misc/chrysoberyl_from_blasting_chrysoberyl_ore.json
 adf68aa6eea6169268dec82c032615c63ce7d046 data/arcanearmory/advancements/recipes/misc/doom_fragment_from_smelting_doom_fragment_ore.json
 0ebe7166657d1f38fa428c35c9aa549ab95fd0b6 data/arcanearmory/advancements/recipes/misc/aquamarine_boots.json
@@ -8,8 +8,8 @@ b2fa2e74c6ff740b20c89ed877b4dccde5539f6d data/arcanearmory/advancements/recipes/
 a5399de00336d0ee8d4f790550ee6ca6994efa25 data/arcanearmory/worldgen/configured_feature/nether_bloodfire_garnet_ore.json
 4cf983c0f5cda9d7e7355ea76b2f15a87b8d6109 data/c/tags/items/tools.json
 9f7bbd5db120c57ab0a5ab8d406cf807cc342c28 data/arcanearmory/advancements/recipes/misc/aquamarine_pickaxe.json
-21c7ace06afbb9640dc733ecad3378f27e17fb04 data/arcanearmory/advancements/recipes/misc/doom_fragment_from_blasting_deepslate_doom_fragment_ore.json
 e53ad32460c18a166bf2005d363e7696786d809d data/arcanearmory/advancements/recipes/misc/black_diamond_shovel.json
+21c7ace06afbb9640dc733ecad3378f27e17fb04 data/arcanearmory/advancements/recipes/misc/doom_fragment_from_blasting_deepslate_doom_fragment_ore.json
 fa6a2f9d52985b9eeeb9d5e2013599c630039256 data/arcanearmory/worldgen/placed_feature/black_diamond_ore_placed.json
 67f97dc035af45769924a8e74e69c49aea08d647 data/arcanearmory/advancements/recipes/misc/coolpper_pickaxe.json
 53c2ff7a69b637f529ef6c6e023bb78c5ccd0037 data/arcanearmory/advancements/recipes/misc/topaz_sword.json

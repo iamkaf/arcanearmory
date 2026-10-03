@@ -1,7 +1,7 @@
-// 1.21.1	2026-10-03T12:57:39.833057033	Arcane Armory/Arcane Armory generated data
+// 1.21.1	2026-10-03T13:12:49.379788038	Arcane Armory/Arcane Armory generated data
 6d67a69c0897fc87d168f5b62379fa2ae343d198 data/arcanearmory/advancement/recipes/decorations/shadow_crystal_block.json
-77cc44f8566423a424fbd6dee85932e9d2ac7866 ../../../../forge/src/main/generated/data/arcanearmory/forge/biome_modifier/solarflare_gem_ore.json
 50e94b9bdb7bc45c2ba477c16e0df2894321e914 data/arcanearmory/tags/worldgen/biome/has_solarflare_gem_ore.json
+77cc44f8566423a424fbd6dee85932e9d2ac7866 ../../../../forge/src/main/generated/data/arcanearmory/forge/biome_modifier/solarflare_gem_ore.json
 9f74f141171a740f4dc38261144b4337839a9354 data/arcanearmory/advancement/recipes/decorations/voidium_block.json
 4dbfa8aabe8c5bfcb76aa8cd8737b0ef2768dfac data/arcanearmory/advancement/recipes/misc/bloodfire_garnet_from_blasting_raw_bloodfire_garnet.json
 91df1f3a9c062b404b25dca482f865d47d6f49b2 data/arcanearmory/advancement/recipes/misc/amber_hoe.json
@@ -81,8 +81,8 @@ f33804f307a9e24bfc77ffb5c3969de9f714d529 data/arcanearmory/advancement/recipes/m
 4b3f7dd351534068c13981a7407a97113b6d4be6 data/arcanearmory/advancement/recipes/misc/star_corundum_hammer.json
 fa4822090fa2d2e2728b2f0dfa77f76ff1d6884a data/arcanearmory/advancement/recipes/misc/solarflare_gem_from_smelting_raw_solarflare_gem.json
 2ebe96d1ab429988793da17c06b3c83be6bf2cde data/c/tags/item/tools/pickaxes.json
-aa05b1adc23f22119306fac1854698055aa4adc0 data/arcanearmory/advancement/recipes/misc/titanium_ingot_from_smelting_titanium_ore.json
 3344ac8bf07040de8e3eef3f1415d47bd0d90400 data/arcanearmory/advancement/recipes/misc/star_corundum_axe.json
+aa05b1adc23f22119306fac1854698055aa4adc0 data/arcanearmory/advancement/recipes/misc/titanium_ingot_from_smelting_titanium_ore.json
 65448d1c6448f13326052d389b8fc3d12434b0ce data/c/tags/item/boots.json
 72bc8fbd046c8535ca736fa35af8b3b47621bfa2 data/arcanearmory/advancement/recipes/food/arcanthium_shield.json
 39a5e30675d1256ca85172e8cbdc31f61d9c7645 data/arcanearmory/advancement/recipes/misc/arcanthium_chestplate.json

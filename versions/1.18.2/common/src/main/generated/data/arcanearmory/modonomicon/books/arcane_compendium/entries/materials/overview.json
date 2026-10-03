@@ -1,0 +1,27 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/overview",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.overview.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.overview.description",
+  "icon": "arcanearmory:aetheric_crystal",
+  "x": -4,
+  "y": -2,
+  "sort_number": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "intro",
+      "title": "book.arcanearmory.arcane_compendium.materials.overview.intro.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.overview.intro.text",
+      "show_title_separator": true
+    },
+    {
+      "type": "modonomicon:text",
+      "id": "traits",
+      "title": "book.arcanearmory.arcane_compendium.materials.overview.traits.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.overview.traits.text",
+      "show_title_separator": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:equipment",
+  "description": "book.arcanearmory.arcane_compendium.equipment.voidium_upgrade.description",
+  "icon": "arcanearmory:voidium_ingot",
+  "id": "arcanearmory:equipment/voidium_upgrade",
+  "name": "book.arcanearmory.arcane_compendium.equipment.voidium_upgrade.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "about",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.equipment.voidium_upgrade.about.text",
+      "title": "book.arcanearmory.arcane_compendium.equipment.voidium_upgrade.about.title"
+    },
+    {
+      "type": "modonomicon:text",
+      "id": "templates",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.equipment.voidium_upgrade.templates.text",
+      "title": "book.arcanearmory.arcane_compendium.equipment.voidium_upgrade.templates.title"
+    },
+    {
+      "type": "modonomicon:smithing_recipe",
+      "id": "upgrades",
+      "recipe_id_1": "arcanearmory:voidium_sword_smithing",
+      "recipe_id_2": "arcanearmory:voidium_chestplate_smithing"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "template_recipe",
+      "recipe_id_1": "arcanearmory:voidium_upgrade_smithing_template"
+    }
+  ],
+  "sort_number": 4,
+  "x": 4,
+  "y": -2
+}

@@ -160,8 +160,8 @@ final class ArcaneCompendium {
                         Trims show on any armor you wear, and on the icons of Arcane armor."""))));
         entries.add(new Entry("equipment", "voidium_upgrade", "Voidium Upgrade", "Upgrade Black Diamond gear to Voidium", aa("voidium_ingot"), List.of(
                 Page.text("about", "Voidium Upgrade", """
-                        Voidium gear is not crafted. At a smithing table, combine a **Voidium Upgrade Smithing \
-                        Template**, a Black Diamond tool, weapon, or armor piece, and a \
+                        Voidium gear is not crafted. At a smithing table, combine a \
+                        [](item://arcanearmory:voidium_upgrade_smithing_template), a Black Diamond tool, weapon, or armor piece, and a \
                         [](item://arcanearmory:voidium_ingot). Enchantments carry over.
 
                         Templates turn up in End City chests."""),
@@ -204,9 +204,9 @@ final class ArcaneCompendium {
 
                         The rest go into Doomflare Blocks and Voidium."""),
                 Page.crafting("recipe", aa("ice")))));
-        entries.add(new Entry("world", "meteors", "Meteors", "The only source of Star Corundum", aa("star_corundum_ore"), List.of(
+        entries.add(new Entry("world", "meteors", "Meteors", "The only source of Star Corundum", aa("meteorite"), List.of(
                 Page.text("craters", "Meteors", """
-                        Rarely, the Overworld surface holds a small crater with a boulder of **Meteorite** around a \
+                        Rarely, the Overworld surface holds a small crater with a boulder of [](item://arcanearmory:meteorite) around a \
                         core of [](item://arcanearmory:star_corundum_ore). Meteors are the only source of Star Corundum."""),
                 Page.text("falling", "Falling Meteors", """
                         On Minecraft 1.21.11 and newer, some nights a meteor streaks across the sky and lands as a \

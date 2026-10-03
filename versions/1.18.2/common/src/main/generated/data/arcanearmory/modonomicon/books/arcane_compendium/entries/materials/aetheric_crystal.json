@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/aetheric_crystal",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.aetheric_crystal.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.aetheric_crystal.description",
+  "icon": "arcanearmory:aetheric_crystal",
+  "x": 4,
+  "y": 0,
+  "sort_number": 9,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.aetheric_crystal.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.aetheric_crystal.about.text",
+      "item": {
+        "item": "arcanearmory:aetheric_crystal"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:aetheric_crystal_sword",
+      "recipe_id_2": "arcanearmory:aetheric_crystal_chestplate"
+    }
+  ]
+}

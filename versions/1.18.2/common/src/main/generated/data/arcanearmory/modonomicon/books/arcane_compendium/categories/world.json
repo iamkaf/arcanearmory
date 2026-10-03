@@ -1,0 +1,7 @@
+{
+  "name": "book.arcanearmory.arcane_compendium.world.name",
+  "description": "book.arcanearmory.arcane_compendium.world.description",
+  "icon": "arcanearmory:deepslate_aetheric_crystal_ore",
+  "sort_number": 2,
+  "display_mode": "index"
+}
