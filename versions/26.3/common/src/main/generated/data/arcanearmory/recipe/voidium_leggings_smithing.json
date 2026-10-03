@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "arcanearmory:voidium_ingot",
+  "base": "arcanearmory:black_diamond_leggings",
+  "result": {
+    "id": "arcanearmory:voidium_leggings"
+  },
+  "template": "arcanearmory:voidium_upgrade_smithing_template"
+}

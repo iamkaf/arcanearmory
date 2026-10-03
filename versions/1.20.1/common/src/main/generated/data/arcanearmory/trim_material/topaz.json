@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_topaz",
+  "description": {
+    "color": "#88BCF4",
+    "translate": "trim_material.arcanearmory.topaz"
+  },
+  "ingredient": "arcanearmory:topaz",
+  "item_model_index": 0.015
+}

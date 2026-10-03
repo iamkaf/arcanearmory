@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#arcanearmory:has_aquamarine_ore",
+  "features": [
+    "arcanearmory:aquamarine_ore_placed"
+  ],
+  "step": "underground_ores"
+}

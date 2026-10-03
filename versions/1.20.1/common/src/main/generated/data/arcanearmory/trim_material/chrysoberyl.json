@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_chrysoberyl",
+  "description": {
+    "color": "#ADC058",
+    "translate": "trim_material.arcanearmory.chrysoberyl"
+  },
+  "ingredient": "arcanearmory:chrysoberyl",
+  "item_model_index": 0.016
+}

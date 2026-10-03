@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_amber",
+  "description": {
+    "color": "#F2C378",
+    "translate": "trim_material.arcanearmory.amber"
+  },
+  "ingredient": "arcanearmory:amber",
+  "item_model_index": 0.025
+}

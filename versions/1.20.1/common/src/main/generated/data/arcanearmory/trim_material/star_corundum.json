@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_star_corundum",
+  "description": {
+    "color": "#0074C3",
+    "translate": "trim_material.arcanearmory.star_corundum"
+  },
+  "ingredient": "arcanearmory:star_corundum",
+  "item_model_index": 0.018
+}

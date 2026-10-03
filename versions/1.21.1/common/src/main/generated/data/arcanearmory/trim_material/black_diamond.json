@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_black_diamond",
+  "description": {
+    "color": "#5E5E5E",
+    "translate": "trim_material.arcanearmory.black_diamond"
+  },
+  "ingredient": "arcanearmory:black_diamond",
+  "item_model_index": 0.014
+}

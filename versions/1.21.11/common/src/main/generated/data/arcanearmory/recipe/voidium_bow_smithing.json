@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "arcanearmory:voidium_ingot",
+  "base": "arcanearmory:black_diamond_bow",
+  "result": {
+    "id": "arcanearmory:voidium_bow"
+  },
+  "template": "arcanearmory:voidium_upgrade_smithing_template"
+}

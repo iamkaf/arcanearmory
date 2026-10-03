@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_titanium",
+  "description": {
+    "color": "#B7B18E",
+    "translate": "trim_material.arcanearmory.titanium"
+  },
+  "ingredient": "arcanearmory:titanium_ingot",
+  "item_model_index": 0.024
+}

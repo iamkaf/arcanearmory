@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_solarflare_gem",
+  "description": {
+    "color": "#D47A28",
+    "translate": "trim_material.arcanearmory.solarflare_gem"
+  },
+  "ingredient": "arcanearmory:solarflare_gem",
+  "item_model_index": 0.019
+}
