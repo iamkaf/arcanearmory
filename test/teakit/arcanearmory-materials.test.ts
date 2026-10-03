@@ -199,7 +199,7 @@ async function expectOre(ctx: TeaKitTestContext, ore: string, biome: string, wan
 // and returns the corner of a 64-block square centered on it.
 async function freshBiomeArea(ctx: TeaKitTestContext, biome: string): Promise<{ x: number; z: number }> {
   const locate = atLeast(await minecraftVersion(ctx), "1.19") ? `locate biome ${biome}` : `locatebiome ${biome}`;
-  const from = 8192 + 64 * Math.floor(Math.random() * 4096);
+  const from = 8192 + 64 * Math.floor(Math.random() * 400000);
   const result = await ctx.commands.assert(`/execute positioned ${from} 64 ${-from} run ${locate}`, { captureOutput: true });
   const match = result.output.join(" ").match(/\[(-?\d+), *(?:~|-?\d+), *(-?\d+)\]/);
   if (!match) {
