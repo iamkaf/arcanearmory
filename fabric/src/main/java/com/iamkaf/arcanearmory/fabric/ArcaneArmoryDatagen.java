@@ -5,6 +5,8 @@ import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryLootTableProvider;
 import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryDataProvider;
 import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryModelProvider;
 import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryRecipeProvider;
+//? if >=1.20
+import com.iamkaf.arcanearmory.fabric.datagen.ArcaneArmoryTrimProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -18,6 +20,8 @@ public final class ArcaneArmoryDatagen implements DataGeneratorEntrypoint {
         pack.addProvider(ArcaneArmoryRecipeProvider::new);
         pack.addProvider(ArcaneArmoryLootTableProvider::new);
         pack.addProvider(ArcaneArmoryLanguageProvider::new);
+        //? if >=1.20
+        pack.addProvider(ArcaneArmoryTrimProvider::new);
         //?} else {
         fabricDataGenerator.addProvider(ArcaneArmoryModelProvider::new);
         fabricDataGenerator.addProvider(ArcaneArmoryDataProvider::new);

@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import com.iamkaf.arcanearmory.ArcaneArmoryConstants;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
 import com.iamkaf.arcanearmory.content.ArcaneMaterial;
+import com.iamkaf.arcanearmory.content.ArcaneTrimMaterials;
+import com.iamkaf.arcanearmory.content.VoidiumUpgrade;
 //? if >=26.1 {
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 //?} else {
@@ -61,6 +63,8 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         blockItem(futures, cache, "doomflare_block");
         item(futures, cache, "arcanthe", plantItemModel("arcanthe"), "arcanthe");
         item(futures, cache, "amber_ingot", flatItemModel("amber_ingot"), "amber_ingot");
+        //? if >=1.20
+        item(futures, cache, VoidiumUpgrade.TEMPLATE_ID, flatItemModel(VoidiumUpgrade.TEMPLATE_ID), VoidiumUpgrade.TEMPLATE_ID);
 
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();
@@ -129,24 +133,24 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         futures.add(DataProvider.saveStable(cache, shieldItemDefinition(id), itemDefinitionPathProvider.json(ArcaneArmoryConstants.resource(id))));
     }
 
-    // Trimmed armor icons layer vanilla's trim overlay over the piece, as vanilla armor does.
+    // Trimmed armor icons layer the trim overlay over the piece, as vanilla armor does, for vanilla and Arcane trims.
     private void armor(List<CompletableFuture<?>> futures, CachedOutput cache, String id) {
         JsonObject model = regularItemModel(id);
         //? if >=1.20 && <1.21.2 {
         /*JsonArray overrides = new JsonArray();
-        for (int index = 0; index < TRIM_MATERIALS.size(); index++) {
+        for (TrimCase trim : trimCases()) {
             JsonObject override = new JsonObject();
             JsonObject predicate = new JsonObject();
-            predicate.addProperty("trim_type", (index + 1) / 10.0D);
+            predicate.addProperty("trim_type", trim.modelIndex());
             override.add("predicate", predicate);
-            override.addProperty("model", MOD_ID + ":item/" + trimModelId(id, TRIM_MATERIALS.get(index)));
+            override.addProperty("model", MOD_ID + ":item/" + trimModelId(id, trim));
             overrides.add(override);
         }
         model.add("overrides", overrides);
         *///?}
         futures.add(DataProvider.saveStable(cache, model, itemModelPathProvider.json(ArcaneArmoryConstants.resource(id))));
         //? if >=1.20 {
-        for (String trim : TRIM_MATERIALS) {
+        for (TrimCase trim : trimCases()) {
             futures.add(DataProvider.saveStable(cache, trimModel(id, trim),
                     itemModelPathProvider.json(ArcaneArmoryConstants.resource(trimModelId(id, trim)))));
         }
@@ -155,20 +159,41 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         futures.add(DataProvider.saveStable(cache, trimmedItemDefinition(id), itemDefinitionPathProvider.json(ArcaneArmoryConstants.resource(id))));
     }
 
-    private static String trimModelId(String armorId, String trim) {
-        return armorId + "_" + trim + "_trim";
+    //? if >=1.20 {
+    /**
+     * Every trim an armor icon shows, ordered by legacy model index because the last matching override wins.
+     * Arcane trims sort first, below vanilla's 0.1, so vanilla armor never mistakes them for a vanilla trim.
+     */
+    private static List<TrimCase> trimCases() {
+        List<TrimCase> cases = new ArrayList<>();
+        for (ArcaneTrimMaterials.Trim trim : ArcaneTrimMaterials.ALL) {
+            cases.add(new TrimCase(trim.assetName(), MOD_ID + ":" + trim.id(), ArcaneArmoryTrimProvider.itemModelIndex(trim)));
+        }
+        for (int index = 0; index < TRIM_MATERIALS.size(); index++) {
+            String trim = TRIM_MATERIALS.get(index);
+            cases.add(new TrimCase(trim, "minecraft:" + trim, (index + 1) / 10.0D));
+        }
+        return cases;
     }
 
-    private static JsonObject trimModel(String armorId, String trim) {
+    private record TrimCase(String assetName, String materialId, double modelIndex) {
+    }
+
+    private static String trimModelId(String armorId, TrimCase trim) {
+        return armorId + "_" + trim.assetName() + "_trim";
+    }
+
+    private static JsonObject trimModel(String armorId, TrimCase trim) {
         String piece = armorId.substring(armorId.lastIndexOf('_') + 1);
         JsonObject root = new JsonObject();
         root.addProperty("parent", "minecraft:item/generated");
         JsonObject textures = new JsonObject();
         textures.addProperty("layer0", MOD_ID + ":item/" + armorId);
-        textures.addProperty("layer1", "minecraft:trims/items/" + piece + "_trim_" + trim);
+        textures.addProperty("layer1", "minecraft:trims/items/" + piece + "_trim_" + trim.assetName());
         root.add("textures", textures);
         return root;
     }
+    //?}
 
     private static JsonObject simpleBlockstate(String id) {
         JsonObject root = new JsonObject();
@@ -458,9 +483,9 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         model.addProperty("type", "minecraft:select");
         model.addProperty("property", "minecraft:trim_material");
         JsonArray cases = new JsonArray();
-        for (String trim : TRIM_MATERIALS) {
+        for (TrimCase trim : trimCases()) {
             JsonObject trimCase = new JsonObject();
-            trimCase.addProperty("when", "minecraft:" + trim);
+            trimCase.addProperty("when", trim.materialId());
             trimCase.add("model", itemModel(trimModelId(id, trim)));
             cases.add(trimCase);
         }

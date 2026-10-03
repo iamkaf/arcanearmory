@@ -72,6 +72,11 @@ public final class ArcaneArmoryContent {
 
         // The original alloy forge turned raw amber into this ingot; nothing consumes it.
         REGISTERED_ITEMS.put("amber_ingot", ITEMS.register("amber_ingot", key -> new Item(itemProperties(key))));
+
+        //? if >=1.20 {
+        REGISTERED_ITEMS.put(VoidiumUpgrade.TEMPLATE_ID, ITEMS.register(VoidiumUpgrade.TEMPLATE_ID,
+                key -> VoidiumUpgrade.template(itemProperties(key))));
+        //?}
     }
 
     private ArcaneArmoryContent() {
@@ -168,6 +173,14 @@ public final class ArcaneArmoryContent {
             properties.cookingFuel(ResourceKey.create(Registries.CONTEXT_INT_PROVIDER, key.identifier()));
         }
         *///?}
+        //? if >=1.21.5 {
+        String itemId = key.identifier().getPath();
+        for (ArcaneTrimMaterials.Trim trim : ArcaneTrimMaterials.ALL) {
+            if (trim.ingredientId().equals(itemId)) {
+                properties.trimMaterial(ResourceKey.create(Registries.TRIM_MATERIAL, ArcaneArmoryConstants.resource(trim.id())));
+            }
+        }
+        //?}
         if (maxDamage > 0) {
             properties.durability(maxDamage);
         }

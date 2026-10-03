@@ -22,20 +22,20 @@ describe.configure({
 const MINED = pos(5, 73, 0);
 const GLFW_KEY_ESCAPE = 256;
 
+// Ores that generate throughout the Overworld.
 const OVERWORLD_ORES = [
   "aetheric_crystal",
-  "aquamarine",
   "black_diamond",
   "chrysoberyl",
   "coolpper",
-  "frost_diamond",
   "ruby",
   "sapphire",
-  "solarflare_gem",
-  "star_corundum",
   "titanium",
   "topaz",
 ] as const;
+
+// Ores that generate only in some biomes; the materials tests check where.
+const BIOME_ORES = ["aquamarine", "frost_diamond", "solarflare_gem"] as const;
 
 // The Overworld from bedrock to sea level, in fill-sized layers.
 const OVERWORLD_LAYERS = [[-64, -33], [-32, -1], [0, 31], [32, 63]];
@@ -140,11 +140,41 @@ describe("Arcane Armory world generation", () => {
     }
   });
 
+  test("Black Diamond generates only deep down, and Star Corundum not underground at all", async (ctx) => {
+    await prepare(ctx);
+
+    // Veins reach a little past the Y -32 they start below.
+    let deep = false;
+    for (let area = 0; area < 3 && !deep; area++) {
+      const x = freshX();
+      deep = await scanFreshChunks(ctx, "minecraft:overworld", x, 4096, [[-64, -33]], async (fill) =>
+        (await ctx.commands.run(`${fill} minecraft:deepslate replace arcanearmory:deepslate_black_diamond_ore`, { requireSuccess: false })).success === true);
+      const shallow = await scanFreshChunks(ctx, "minecraft:overworld", x, 4096, [[-24, 7], [8, 39]], async (fill) =>
+        (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:black_diamond_ore`, { requireSuccess: false })).success === true
+        || (await ctx.commands.run(`${fill} minecraft:deepslate replace arcanearmory:deepslate_black_diamond_ore`, { requireSuccess: false })).success === true);
+      if (shallow) {
+        throw new Error(`Black Diamond ore generated above Y -24 at ${x}, 4096`);
+      }
+    }
+    if (!deep) {
+      throw new Error("No Black Diamond ore generated below Y -32 in three fresh Overworld areas");
+    }
+
+    for (let area = 0; area < 2; area++) {
+      const corundum = await scanFreshChunks(ctx, "minecraft:overworld", freshX(), 4096, OVERWORLD_LAYERS, async (fill) =>
+        (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:star_corundum_ore`, { requireSuccess: false })).success === true
+        || (await ctx.commands.run(`${fill} minecraft:deepslate replace arcanearmory:deepslate_star_corundum_ore`, { requireSuccess: false })).success === true);
+      if (corundum) {
+        throw new Error("Star Corundum ore generated underground");
+      }
+    }
+  });
+
   // `/place` arrives in 1.19.
   test("every Overworld ore feature and the amber geode place their blocks", { target: { minecraft: ">=1.19" } }, async (ctx) => {
     await prepare(ctx);
 
-    for (const material of OVERWORLD_ORES) {
+    for (const material of [...OVERWORLD_ORES, ...BIOME_ORES]) {
       await ctx.commands.run("/fill 20 140 20 28 148 28 minecraft:stone");
       await placeFeature(ctx, `arcanearmory:${material}_ore`, "24 144 24");
       await ctx.commands.assert(`/fill 20 140 20 28 148 28 minecraft:air replace arcanearmory:${material}_ore`);

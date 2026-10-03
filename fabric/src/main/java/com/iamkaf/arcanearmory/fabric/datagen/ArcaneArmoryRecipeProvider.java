@@ -2,10 +2,13 @@ package com.iamkaf.arcanearmory.fabric.datagen;
 
 //? if >=1.19.3 {
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import com.iamkaf.arcanearmory.ArcaneArmoryConstants;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
 import com.iamkaf.arcanearmory.content.ArcaneMaterial;
+import com.iamkaf.arcanearmory.content.VoidiumUpgrade;
 //? if >=26.1 {
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 //?} else {
@@ -50,7 +53,9 @@ public final class ArcaneArmoryRecipeProvider implements DataProvider {
                         aa("raw_" + material.id() + "_block"));
                 saveOreCooking(futures, cache, material);
             }
-            if (material.tools()) {
+            // Voidium tools and armor come only from the smithing table.
+            boolean upgraded = material.id().equals(VoidiumUpgrade.RESULT);
+            if (material.tools() && !upgraded) {
                 saveTools(futures, cache, material, base);
             }
             if (material.shield()) {
@@ -59,11 +64,52 @@ public final class ArcaneArmoryRecipeProvider implements DataProvider {
                         key("B", item(base)),
                         pattern("ABA", "AAA", " A ")));
             }
-            if (material.armor()) {
+            if (material.armor() && !upgraded) {
                 saveArmor(futures, cache, material, base);
             }
         }
+        saveVoidiumUpgrade(futures, cache);
         return CompletableFuture.allOf(futures.toArray(CompletableFuture<?>[]::new));
+    }
+
+    private void saveVoidiumUpgrade(List<CompletableFuture<?>> futures, CachedOutput cache) {
+        String ingot = aa("voidium_ingot");
+        //? if >=1.20 {
+        String template = aa(VoidiumUpgrade.TEMPLATE_ID);
+        JsonObject duplication = shaped(template,
+                key("#", item(aa("void_obsidian_fragment"))),
+                key("C", item("minecraft:end_stone")),
+                key("S", item(template)),
+                pattern("#S#", "#C#", "###"));
+        duplication.add("result", result(template, 2));
+        save(futures, cache, VoidiumUpgrade.TEMPLATE_ID, duplication);
+        VoidiumUpgrade.upgrades().forEach((base, upgraded) -> {
+            JsonObject recipe = new JsonObject();
+            recipe.addProperty("type", "minecraft:smithing_transform");
+            recipe.add("template", ingredient(template));
+            recipe.add("base", ingredient(aa(base)));
+            recipe.add("addition", ingredient(ingot));
+            recipe.add("result", result(aa(upgraded), 1));
+            save(futures, cache, upgraded + "_smithing", recipe);
+        });
+        //?} else {
+        /*VoidiumUpgrade.upgrades().forEach((base, upgraded) -> {
+            JsonObject recipe = new JsonObject();
+            recipe.addProperty("type", "minecraft:smithing");
+            recipe.add("base", item(aa(base)));
+            recipe.add("addition", item(ingot));
+            recipe.add("result", result(aa(upgraded), 1));
+            save(futures, cache, upgraded + "_smithing", recipe);
+        });
+        *///?}
+    }
+
+    private static JsonElement ingredient(String id) {
+        //? if >=1.21.2 {
+        return new JsonPrimitive(id);
+        //?} else {
+        /*return item(id);
+        *///?}
     }
 
     @Override
@@ -318,7 +364,9 @@ public final class ArcaneArmoryRecipeProvider implements net.minecraft.data.Data
                         aa("raw_" + material.id() + "_block"));
                 saveOreCooking(cache, material);
             }
-            if (material.tools()) {
+            // Voidium tools and armor come only from the smithing table.
+            boolean upgraded = material.id().equals(com.iamkaf.arcanearmory.content.VoidiumUpgrade.RESULT);
+            if (material.tools() && !upgraded) {
                 saveTools(cache, material, base);
             }
             if (material.shield()) {
@@ -327,9 +375,17 @@ public final class ArcaneArmoryRecipeProvider implements net.minecraft.data.Data
                         key("B", item(base)),
                         pattern("ABA", "AAA", " A ")));
             }
-            if (material.armor()) {
+            if (material.armor() && !upgraded) {
                 saveArmor(cache, material, base);
             }
+        }
+        for (java.util.Map.Entry<String, String> upgrade : com.iamkaf.arcanearmory.content.VoidiumUpgrade.upgrades().entrySet()) {
+            com.google.gson.JsonObject recipe = new com.google.gson.JsonObject();
+            recipe.addProperty("type", "minecraft:smithing");
+            recipe.add("base", item(aa(upgrade.getKey())));
+            recipe.add("addition", item(aa("voidium_ingot")));
+            recipe.add("result", result(aa(upgrade.getValue()), 1));
+            save(cache, upgrade.getValue() + "_smithing", recipe);
         }
     }
 
