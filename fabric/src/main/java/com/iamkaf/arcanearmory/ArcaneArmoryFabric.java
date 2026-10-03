@@ -4,6 +4,7 @@ import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryFuels;
 import com.iamkaf.arcanearmory.content.ArcaneTraits;
+import com.iamkaf.arcanearmory.content.ArcaneOreBiomes;
 //? if <26
 import com.iamkaf.arcanearmory.content.ArcaneArmoryTradeOffers;
 import net.fabricmc.api.ModInitializer;
@@ -35,11 +36,17 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.core.Registry;
 //?}
 import net.minecraft.resources.ResourceKey;
+//? if >=1.21.11 {
+import net.minecraft.resources.Identifier;
+//?} else {
+/*import net.minecraft.resources.ResourceLocation;
+*///?}
 //? if >=1.21.11 && <26 {
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
 //?} else if <26 {
 import net.minecraft.world.entity.npc.VillagerProfession;
 //?}
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -136,6 +143,10 @@ public class ArcaneArmoryFabric implements ModInitializer {
         for (String feature : OVERWORLD_FEATURES) {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, placed(feature));
         }
+        ArcaneOreBiomes.BY_ORE.forEach((ore, biomes) -> BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(biomes.stream().map(ArcaneArmoryFabric::biome).toList()),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placed(ArcaneOreBiomes.placedFeature(ore))));
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.LOCAL_MODIFICATIONS, placed(AMBER_GEODE));
         for (String feature : NETHER_FEATURES) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Decoration.UNDERGROUND_ORES, placed(feature));
@@ -153,19 +164,27 @@ public class ArcaneArmoryFabric implements ModInitializer {
         //?}
     }
 
+    private static ResourceKey<Biome> biome(String id) {
+        //? if >=1.21.11 {
+        return ResourceKey.create(Registries.BIOME, Identifier.parse(id));
+        //?} else if >=1.21 {
+        /*return ResourceKey.create(Registries.BIOME, ResourceLocation.parse(id));*/
+        //?} else if >=1.19.3 {
+        /*return ResourceKey.create(Registries.BIOME, new ResourceLocation(id));*/
+        //?} else {
+        /*return ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(id));*/
+        //?}
+    }
+
     private static final String AMBER_GEODE = "amber_geode_placed";
 
     private static final String[] OVERWORLD_FEATURES = {
             "aetheric_crystal_ore_placed",
-            "aquamarine_ore_placed",
             "black_diamond_ore_placed",
             "chrysoberyl_ore_placed",
             "coolpper_ore_placed",
-            "frost_diamond_ore_placed",
             "ruby_ore_placed",
             "sapphire_ore_placed",
-            "solarflare_gem_ore_placed",
-            "star_corundum_ore_placed",
             "titanium_ore_placed",
             "topaz_ore_placed"
     };

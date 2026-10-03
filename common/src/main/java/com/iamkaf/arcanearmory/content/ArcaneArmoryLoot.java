@@ -67,7 +67,10 @@ public final class ArcaneArmoryLoot {
             "sword", "pickaxe", "axe", "shovel", "hoe", "helmet", "chestplate", "leggings", "boots"
     );
 
+    private static final String END_CITY_TREASURE = "minecraft:chests/end_city_treasure";
+
     private static final float MATERIAL_CHANCE = 0.05F;
+    private static final float VOIDIUM_TEMPLATE_CHANCE = 0.15F;
     private static final float ENCHANTED_GEAR_CHANCE = 0.001F;
     private static final float PLAIN_GEAR_CHANCE = 0.0005F;
     private static final float EPIC_GEAR_CHANCE = 0.05F;
@@ -97,6 +100,11 @@ public final class ArcaneArmoryLoot {
                     forEachGear(registered.material(), gear -> addPool.accept(itemPool(gear, EPIC_GEAR_CHANCE, 1, 1)));
                 }
             }
+            //? if >=1.20 {
+            if (key.equals(END_CITY_TREASURE)) {
+                addPool.accept(itemPool(item(VoidiumUpgrade.TEMPLATE_ID), VOIDIUM_TEMPLATE_CHANCE, 1, 1));
+            }
+            //?}
         });
     }
 

@@ -6,6 +6,8 @@ import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
 import com.iamkaf.arcanearmory.content.DoomflareBlockItem;
 import com.iamkaf.arcanearmory.content.ArcaneMaterial;
 import com.iamkaf.arcanearmory.content.ArcaneTraits;
+import com.iamkaf.arcanearmory.content.ArcaneTrimMaterials;
+import com.iamkaf.arcanearmory.content.VoidiumUpgrade;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 //? if >=1.21
 import net.minecraft.core.HolderLookup;
@@ -62,6 +64,20 @@ public final class ArcaneArmoryLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".arcanthe", "Arcanthe");
         translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".potted_arcanthe", "Potted Arcanthe");
         ArcaneTraits.englishTooltips().forEach(translationBuilder::add);
+        //? if >=1.20 {
+        // Worded like vanilla's netherite upgrade template.
+        translationBuilder.add(itemKey(VoidiumUpgrade.TEMPLATE_ID), "Smithing Template");
+        String template = "item." + ArcaneArmoryConstants.MOD_ID + ".smithing_template.voidium_upgrade.";
+        translationBuilder.add(template + "applies_to", "Black Diamond Equipment");
+        translationBuilder.add(template + "ingredients", "Voidium Ingot");
+        translationBuilder.add(template + "base_slot_description", "Add Black Diamond armor, weapon, or tool");
+        translationBuilder.add(template + "additions_slot_description", "Add Voidium Ingot");
+        translationBuilder.add("upgrade." + ArcaneArmoryConstants.MOD_ID + ".voidium_upgrade", "Voidium Upgrade");
+        for (ArcaneTrimMaterials.Trim trim : ArcaneTrimMaterials.ALL) {
+            translationBuilder.add("trim_material." + ArcaneArmoryConstants.MOD_ID + "." + trim.id(),
+                    trim.material().displayName() + " Material");
+        }
+        //?}
 
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();

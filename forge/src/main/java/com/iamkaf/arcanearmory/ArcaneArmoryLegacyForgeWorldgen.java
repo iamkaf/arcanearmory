@@ -1,7 +1,8 @@
 package com.iamkaf.arcanearmory;
 
 //? if <1.19 {
-/*import com.google.gson.JsonElement;
+/*import com.iamkaf.arcanearmory.content.ArcaneOreBiomes;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
@@ -28,15 +29,11 @@ import java.util.Map;
 final class ArcaneArmoryLegacyForgeWorldgen {
     private static final List<String> OVERWORLD_ORES = List.of(
             "aetheric_crystal_ore_placed",
-            "aquamarine_ore_placed",
             "black_diamond_ore_placed",
             "chrysoberyl_ore_placed",
             "coolpper_ore_placed",
-            "frost_diamond_ore_placed",
             "ruby_ore_placed",
             "sapphire_ore_placed",
-            "solarflare_gem_ore_placed",
-            "star_corundum_ore_placed",
             "titanium_ore_placed",
             "topaz_ore_placed"
     );
@@ -66,6 +63,12 @@ final class ArcaneArmoryLegacyForgeWorldgen {
             add(event, GenerationStep.Decoration.UNDERGROUND_ORES, END_ORES);
         } else if (category != Biome.BiomeCategory.NONE) {
             add(event, GenerationStep.Decoration.UNDERGROUND_ORES, OVERWORLD_ORES);
+            String biome = String.valueOf(event.getName());
+            ArcaneOreBiomes.BY_ORE.forEach((ore, biomes) -> {
+                if (biomes.contains(biome)) {
+                    add(event, GenerationStep.Decoration.UNDERGROUND_ORES, List.of(ArcaneOreBiomes.placedFeature(ore)));
+                }
+            });
             add(event, GenerationStep.Decoration.LOCAL_MODIFICATIONS, List.of(AMBER_GEODE));
         }
     }
