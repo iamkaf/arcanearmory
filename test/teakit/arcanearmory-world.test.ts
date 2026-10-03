@@ -123,24 +123,26 @@ describe("Arcane Armory blocks", () => {
 });
 
 describe("Arcane Armory world generation", () => {
-  test("every Overworld ore feature and the amber geode place their blocks", async (ctx) => {
+  test("Overworld ores and the amber geode generate in freshly generated chunks", async (ctx) => {
     await prepare(ctx);
 
-    // `/place` arrives in 1.19, so older lines look for the ores in freshly generated chunks.
-    if (!atLeast(await minecraftVersion(ctx), "1.19")) {
-      for (const material of [...OVERWORLD_ORES, "amber"]) {
-        let found = false;
-        for (let area = 0; area < 6 && !found; area++) {
-          found = await scanFreshChunks(ctx, "minecraft:overworld", freshX(), 4096, OVERWORLD_LAYERS, async (fill) =>
-            (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:${material}_ore`, { requireSuccess: false })).success === true
-            || (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:deepslate_${material}_ore`, { requireSuccess: false })).success === true);
-        }
-        if (!found) {
-          throw new Error(`No ${material} ore generated in six fresh Overworld areas`);
-        }
+    // Some areas lack a rare ore or a geode with amber in it, so a miss gets more fresh areas.
+    for (const material of [...OVERWORLD_ORES, "amber"]) {
+      let found = false;
+      for (let area = 0; area < 6 && !found; area++) {
+        found = await scanFreshChunks(ctx, "minecraft:overworld", freshX(), 4096, OVERWORLD_LAYERS, async (fill) =>
+          (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:${material}_ore`, { requireSuccess: false })).success === true
+          || (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:deepslate_${material}_ore`, { requireSuccess: false })).success === true);
       }
-      return;
+      if (!found) {
+        throw new Error(`No ${material} ore generated in six fresh Overworld areas`);
+      }
     }
+  });
+
+  // `/place` arrives in 1.19.
+  test("every Overworld ore feature and the amber geode place their blocks", { target: { minecraft: ">=1.19" } }, async (ctx) => {
+    await prepare(ctx);
 
     for (const material of OVERWORLD_ORES) {
       await ctx.commands.run("/fill 20 140 20 28 148 28 minecraft:stone");
@@ -296,6 +298,7 @@ async function prepare(ctx: TeaKitTestContext) {
   });
   await ctx.commands.run("/kill @e[type=minecraft:item]");
   await ctx.commands.run("/tp @s 0.5 72 0.5");
+  await loadTestArea(ctx);
   await ctx.commands.run("/fill -2 71 -2 8 71 2 minecraft:stone replace");
   await ctx.commands.run("/fill -2 72 -2 8 76 2 minecraft:air replace");
   // Clearing the area can cut nearby tree trunks, and the leaves left behind decay into stray drops.
@@ -462,7 +465,7 @@ async function scanFreshChunks(
     }
     return found;
   } finally {
-    await ctx.commands.run(`${inDimension} forceload remove all`);
+    await ctx.commands.run(`${inDimension} forceload remove ${x} ${z} ${x + 63} ${z + 63}`);
   }
 }
 
@@ -513,4 +516,23 @@ function atLeast(version: string, minimum: string): boolean {
   }
 
   return true;
+}
+
+// A normal world spawns the player away from the test area, so keep its chunks loaded.
+async function loadTestArea(ctx: TeaKitTestContext) {
+  await ctx.commands.run("/forceload add -16 -16 47 15");
+  const corners = ["-16 0 -16", "47 0 -16", "-16 0 15", "47 0 15"];
+  for (let attempt = 0; attempt < 60; attempt++) {
+    let loaded = true;
+    for (const corner of corners) {
+      // Block checks fail on unloaded chunks, so one of these succeeds only once the chunk loads.
+      loaded &&= (await ctx.commands.run(`/execute if block ${corner} minecraft:air`, { requireSuccess: false })).success === true
+        || (await ctx.commands.run(`/execute unless block ${corner} minecraft:air`, { requireSuccess: false })).success === true;
+    }
+    if (loaded) {
+      return;
+    }
+    await ctx.runtime.wait(250);
+  }
+  throw new Error("The test area did not load");
 }

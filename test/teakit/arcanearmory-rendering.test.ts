@@ -166,6 +166,7 @@ async function prepare(ctx: TeaKitTestContext) {
   await ctx.commands.run("/time set noon");
   await ctx.commands.run("/weather clear");
   await ctx.commands.run("/tp @s 0.5 72 0.5");
+  await loadTestArea(ctx);
   await ctx.commands.run("/fill -3 71 -3 3 71 3 minecraft:stone replace");
   await ctx.commands.run("/fill -3 72 -3 3 76 3 minecraft:air replace");
 }
@@ -195,4 +196,23 @@ function atLeast(version: string, minimum: string): boolean {
   }
 
   return true;
+}
+
+// A normal world spawns the player away from the test area, so keep its chunks loaded.
+async function loadTestArea(ctx: TeaKitTestContext) {
+  await ctx.commands.run("/forceload add -16 -16 47 15");
+  const corners = ["-16 0 -16", "47 0 -16", "-16 0 15", "47 0 15"];
+  for (let attempt = 0; attempt < 60; attempt++) {
+    let loaded = true;
+    for (const corner of corners) {
+      // Block checks fail on unloaded chunks, so one of these succeeds only once the chunk loads.
+      loaded &&= (await ctx.commands.run(`/execute if block ${corner} minecraft:air`, { requireSuccess: false })).success === true
+        || (await ctx.commands.run(`/execute unless block ${corner} minecraft:air`, { requireSuccess: false })).success === true;
+    }
+    if (loaded) {
+      return;
+    }
+    await ctx.runtime.wait(250);
+  }
+  throw new Error("The test area did not load");
 }

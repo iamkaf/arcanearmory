@@ -20,6 +20,8 @@ configureOnDemand = false
 "teakit.runtimeApi.required" = "1"
 "teakit.worldId" = "arcanearmory_teakit"
 "teakit.worldName" = "Arcane Armory TeaKit"
+# Superflat has no ores, and the world generation tests need real terrain.
+"teakit.worldType" = "normal"
 
 [nodes."26.3-fabric"]
 loader = "fabric"
