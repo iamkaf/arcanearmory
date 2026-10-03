@@ -69,7 +69,8 @@ describe("Arcane Armory blocks and creative tab", () => {
   test("trimmed Arcane armor shows its trim worn and in the inventory", async (ctx) => {
     await prepare(ctx);
 
-    const trim = '[minecraft:trim={material:"minecraft:gold",pattern:"minecraft:coast"}]';
+    const trimData = 'material:"minecraft:gold",pattern:"minecraft:coast"';
+    const trim = atLeast(await minecraftVersion(ctx), "1.20.5") ? `[minecraft:trim={${trimData}}]` : `{Trim:{${trimData}}}`;
     await ctx.commands.run("/kill @e[type=minecraft:armor_stand]");
     await ctx.commands.assert("/summon minecraft:armor_stand 0.5 72 2.5 {Rotation:[180f,0f]}");
     for (const [slot, piece] of [["head", "helmet"], ["chest", "chestplate"], ["legs", "leggings"], ["feet", "boots"]]) {
@@ -177,4 +178,21 @@ async function assertNoClientResourceErrors(ctx: TeaKitTestContext, phase: strin
   if (failures.length > 0) {
     throw new Error(`Client resource errors after ${phase}:\n${failures.join("\n")}`);
   }
+}
+
+async function minecraftVersion(ctx: TeaKitTestContext): Promise<string> {
+  return (await ctx.runtime.health()).minecraftVersion ?? "";
+}
+
+function atLeast(version: string, minimum: string): boolean {
+  const left = version.split(".").map((part) => Number.parseInt(part, 10));
+  const right = minimum.split(".").map((part) => Number.parseInt(part, 10));
+  const length = Math.max(left.length, right.length);
+
+  for (let index = 0; index < length; index++) {
+    const difference = (left[index] ?? 0) - (right[index] ?? 0);
+    if (difference !== 0) return difference > 0;
+  }
+
+  return true;
 }

@@ -37,6 +37,9 @@ const OVERWORLD_ORES = [
   "topaz",
 ] as const;
 
+// The Overworld from bedrock to sea level, in fill-sized layers.
+const OVERWORLD_LAYERS = [[-64, -33], [-32, -1], [0, 31], [32, 63]];
+
 // Gear families vanilla chests never hold, so Arcane loot leaves them out too.
 const NON_LOOT_GEAR = ["_hammer", "_bow", "_shield"];
 
@@ -123,6 +126,22 @@ describe("Arcane Armory world generation", () => {
   test("every Overworld ore feature and the amber geode place their blocks", async (ctx) => {
     await prepare(ctx);
 
+    // `/place` arrives in 1.19, so older lines look for the ores in freshly generated chunks.
+    if (!atLeast(await minecraftVersion(ctx), "1.19")) {
+      for (const material of [...OVERWORLD_ORES, "amber"]) {
+        let found = false;
+        for (let area = 0; area < 6 && !found; area++) {
+          found = await scanFreshChunks(ctx, "minecraft:overworld", freshX(), 4096, OVERWORLD_LAYERS, async (fill) =>
+            (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:${material}_ore`, { requireSuccess: false })).success === true
+            || (await ctx.commands.run(`${fill} minecraft:stone replace arcanearmory:deepslate_${material}_ore`, { requireSuccess: false })).success === true);
+        }
+        if (!found) {
+          throw new Error(`No ${material} ore generated in six fresh Overworld areas`);
+        }
+      }
+      return;
+    }
+
     for (const material of OVERWORLD_ORES) {
       await ctx.commands.run("/fill 20 140 20 28 148 28 minecraft:stone");
       await placeFeature(ctx, `arcanearmory:${material}_ore`, "24 144 24");
@@ -161,8 +180,7 @@ describe("Arcane Armory world generation", () => {
     for (const material of nether) {
       let found = false;
       for (let area = 0; area < 3 && !found; area++) {
-        const netherX = 4096 + 64 * Math.floor(Math.random() * 4096);
-        found = await generatedOreFound(ctx, "minecraft:the_nether", netherX, 0, material);
+        found = await generatedOreFound(ctx, "minecraft:the_nether", freshX(), 0, material);
       }
       if (!found) {
         throw new Error(`No ${material} ore generated in three fresh Nether areas`);
@@ -176,10 +194,10 @@ describe("Arcane Armory loot and trades", () => {
   test("treasure chests hold Arcane tools and armor but never hammers, bows, or shields", async (ctx) => {
     await prepare(ctx);
 
-    const items = await lootFrom(ctx, "minecraft:chests/ancient_city", 6);
+    const items = await lootFrom(ctx, "minecraft:chests/end_city_treasure", 6);
     const gear = items.filter((id) => /_(sword|pickaxe|axe|shovel|hoe|helmet|chestplate|leggings|boots)$/.test(id));
     if (gear.length === 0) {
-      throw new Error(`Expected Arcane gear in ancient city chests, found ${items.join(", ") || "nothing"}`);
+      throw new Error(`Expected Arcane gear in End city chests, found ${items.join(", ") || "nothing"}`);
     }
     assertNoNonLootGear(items);
   });
@@ -211,13 +229,16 @@ describe("Arcane Armory loot and trades", () => {
 
   test("chest gear is sometimes enchanted", async (ctx) => {
     await prepare(ctx);
+    const enchantments = atLeast(await minecraftVersion(ctx), "1.20.5")
+      ? 'components:{"minecraft:enchantments":{}}'
+      : "tag:{Enchantments:[{}]}";
 
     const items = await lootFrom(ctx, "minecraft:chests/abandoned_mineshaft", 120, { keep: true });
     const gear = [...new Set(items.filter((id) => id.startsWith("arcanearmory:") && /_(sword|pickaxe|axe|shovel|hoe|helmet|chestplate|leggings|boots)$/.test(id)))];
     let enchanted = 0;
     for (const id of gear) {
       const result = await ctx.commands.run(
-        `/execute if entity @e[type=minecraft:item,nbt={Item:{id:"${id}",components:{"minecraft:enchantments":{}}}}]`,
+        `/execute if entity @e[type=minecraft:item,nbt={Item:{id:"${id}",${enchantments}}}]`,
         { requireSuccess: false },
       );
       if (result.success) {
@@ -256,8 +277,9 @@ describe("Arcane Armory loot and trades", () => {
       await ctx.client.key(GLFW_KEY_ESCAPE);
       await ctx.client.waitForFrames(5);
     }
+    const emeralds = atLeast(await minecraftVersion(ctx), "1.20.5") ? "count:2" : "Count:2b";
     await ctx.commands.assert(
-      '/execute if entity @e[type=minecraft:villager,nbt={Offers:{Recipes:[{buy:{id:"minecraft:emerald",count:2},sell:{id:"arcanearmory:coolpper_axe"}}]}}]',
+      `/execute if entity @e[type=minecraft:villager,nbt={Offers:{Recipes:[{buy:{id:"minecraft:emerald",${emeralds}},sell:{id:"arcanearmory:coolpper_axe"}}]}}]`,
     );
     await ctx.commands.run("/kill @e[type=minecraft:villager]");
   });
@@ -276,6 +298,8 @@ async function prepare(ctx: TeaKitTestContext) {
   await ctx.commands.run("/tp @s 0.5 72 0.5");
   await ctx.commands.run("/fill -2 71 -2 8 71 2 minecraft:stone replace");
   await ctx.commands.run("/fill -2 72 -2 8 76 2 minecraft:air replace");
+  // Clearing the area can cut nearby tree trunks, and the leaves left behind decay into stray drops.
+  await ctx.commands.run("/fill -12 66 -12 20 90 12 minecraft:air replace #minecraft:leaves");
 }
 
 async function minecraftVersion(ctx: TeaKitTestContext): Promise<string> {
@@ -289,7 +313,9 @@ async function expectDrops(
   expected: string[],
   options: { placed?: boolean } = {},
 ) {
+  // Arrows left by the bow tests count as pickups too.
   await ctx.commands.run("/kill @e[type=minecraft:item]");
+  await ctx.commands.run("/kill @e[type=minecraft:arrow]");
   await ctx.commands.run("/clear @s");
   await ctx.commands.run("/gamemode survival");
   await ctx.commands.assert(`/item replace entity @s weapon.mainhand with ${tool}`);
@@ -385,13 +411,37 @@ async function generatedOreFound(
   z: number,
   material: string,
 ): Promise<boolean> {
+  // Swap the ore for its deepslate form and back, so the fresh chunks keep what generated.
+  return scanFreshChunks(ctx, dimension, x, z, [[0, 31], [32, 63]], async (fill) => {
+    const swapped = await ctx.commands.run(
+      `${fill} arcanearmory:deepslate_${material}_ore replace arcanearmory:${material}_ore`,
+      { requireSuccess: false },
+    );
+    if (swapped.success) {
+      await ctx.commands.assert(`${fill} arcanearmory:${material}_ore replace arcanearmory:deepslate_${material}_ore`);
+    }
+    return swapped.success === true;
+  });
+}
+
+// Generates the 64-by-64 area at x, z and runs `probe` on each 32-block cube of the given layers.
+async function scanFreshChunks(
+  ctx: TeaKitTestContext,
+  dimension: string,
+  x: number,
+  z: number,
+  layers: number[][],
+  probe: (fill: string) => Promise<boolean>,
+): Promise<boolean> {
   const inDimension = `/execute in ${dimension} run`;
   await ctx.commands.assert(`${inDimension} forceload add ${x} ${z} ${x + 63} ${z + 63}`);
   try {
+    // `execute if loaded` arrives in 1.19.4. Block checks fail on unloaded chunks on every line.
+    const corner = `${x + 63} 0 ${z + 63}`;
     let loaded = false;
     for (let attempt = 0; attempt < 60 && !loaded; attempt++) {
-      const result = await ctx.commands.run(`/execute in ${dimension} if loaded ${x + 63} 0 ${z + 63}`, { requireSuccess: false });
-      loaded = result.success === true;
+      loaded = (await ctx.commands.run(`/execute in ${dimension} if block ${corner} minecraft:air`, { requireSuccess: false })).success === true
+        || (await ctx.commands.run(`/execute in ${dimension} unless block ${corner} minecraft:air`, { requireSuccess: false })).success === true;
       if (!loaded) {
         await ctx.runtime.wait(500);
       }
@@ -403,17 +453,9 @@ async function generatedOreFound(
     let found = false;
     for (const dx of [0, 32]) {
       for (const dz of [0, 32]) {
-        for (const [low, high] of [[0, 31], [32, 63]]) {
-          const area = `${x + dx} ${low} ${z + dz} ${x + dx + 31} ${high} ${z + dz + 31}`;
-          const swapped = await ctx.commands.run(
-            `${inDimension} fill ${area} arcanearmory:deepslate_${material}_ore replace arcanearmory:${material}_ore`,
-            { requireSuccess: false },
-          );
-          if (swapped.success) {
+        for (const [low, high] of layers) {
+          if (await probe(`${inDimension} fill ${x + dx} ${low} ${z + dz} ${x + dx + 31} ${high} ${z + dz + 31}`)) {
             found = true;
-            await ctx.commands.assert(
-              `${inDimension} fill ${area} arcanearmory:${material}_ore replace arcanearmory:deepslate_${material}_ore`,
-            );
           }
         }
       }
@@ -422,6 +464,11 @@ async function generatedOreFound(
   } finally {
     await ctx.commands.run(`${inDimension} forceload remove all`);
   }
+}
+
+// The test world persists, so each scan picks chunks no earlier run has generated.
+function freshX(): number {
+  return 4096 + 64 * Math.floor(Math.random() * 4096);
 }
 
 async function lootFrom(

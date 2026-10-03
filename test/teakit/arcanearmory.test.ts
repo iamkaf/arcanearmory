@@ -135,7 +135,7 @@ describe("Arcane Armory registry parity", () => {
     await ctx.commands.assert("/item replace block 14 73 0 container.0 with arcanearmory:deepslate_ruby_ore 1");
     await ctx.commands.assert("/item replace block 14 73 0 container.1 with minecraft:coal 1");
     await ctx.runtime.wait(6000);
-    await ctx.commands.assert("/execute if items block 14 73 0 container.2 arcanearmory:ruby");
+    await ctx.commands.assert('/execute if data block 14 73 0 Items[{Slot:2b,id:"arcanearmory:ruby"}]');
     await ctx.commands.run("/setblock 14 73 0 minecraft:air");
     await ctx.recipes.assertCrafting(
       3,
@@ -202,6 +202,8 @@ describe("Arcane Armory registry parity", () => {
     await ctx.world.fill({ x: 3, y: 73, z: -1 }, { x: 5, y: 74, z: 1 }, "minecraft:air");
     await ctx.player.teleport({ x: 4.5, y: 73, z: 0.5 });
     await ctx.player.lookAt({ x: 4.5, y: 72.5, z: 0.5 });
+    // The server ignores the new view until the client confirms the teleport, and the hammer reads it.
+    await ctx.runtime.wait(500);
     await ctx.player.mine(pos(4, 72, 0), { timeout: "8s" });
     await ctx.runtime.wait(300);
     for (let x = 3; x <= 5; x++) {

@@ -536,12 +536,27 @@ public final class ArcaneArmoryModelProvider implements net.minecraft.data.DataP
             if (material.shield()) {
                 shield(cache, material.id() + "_shield");
             }
+            for (String itemId : material.itemIds()) {
+                if (itemId.endsWith("_helmet") || itemId.endsWith("_chestplate") || itemId.endsWith("_leggings") || itemId.endsWith("_boots")) {
+                    armor(cache, itemId);
+                }
+            }
         }
     }
 
     @Override
     public String getName() {
-        return "Arcane Armory legacy shield models";
+        return "Arcane Armory legacy shield and armor models";
+    }
+
+    // Armor trims arrive in 1.19.4, so these replace the shared models without their trim overrides.
+    private void armor(net.minecraft.data.HashCache cache, String id) throws java.io.IOException {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        root.addProperty("parent", "minecraft:item/generated");
+        com.google.gson.JsonObject textures = new com.google.gson.JsonObject();
+        textures.addProperty("layer0", MOD_ID + ":item/" + id);
+        root.add("textures", textures);
+        net.minecraft.data.DataProvider.save(GSON, cache, root, itemModelPath(id));
     }
 
     private void shield(net.minecraft.data.HashCache cache, String id) throws java.io.IOException {

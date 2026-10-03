@@ -14,6 +14,15 @@ import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 /*import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.renderer.RenderType;
 *///?}
+//? if <1.19 {
+/*import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ArmorItem;
+*///?}
 
 public class ArcaneArmoryFabricClient implements ClientModInitializer {
     @Override
@@ -22,7 +31,46 @@ public class ArcaneArmoryFabricClient implements ClientModInitializer {
         /*registerLegacyItemPredicates();*/
         //? if <26
         /*registerCutoutBlocks();*/
+        //? if <1.19
+        /*registerLegacyArmorRenderer();*/
     }
+
+    // Fabric API reads namespaced armor material names from 1.19 on. Before that, vanilla builds
+    // "textures/models/armor/arcanearmory:ruby_layer_1.png" and crashes, so render the armor here.
+    //? if <1.19 {
+    /*private static HumanoidModel<LivingEntity> innerArmor;
+    private static HumanoidModel<LivingEntity> outerArmor;
+
+    private static void registerLegacyArmorRenderer() {
+        ArmorRenderer renderer = (matrices, buffers, stack, entity, slot, light, contextModel) -> {
+            if (innerArmor == null) {
+                innerArmor = new HumanoidModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER_INNER_ARMOR));
+                outerArmor = new HumanoidModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR));
+            }
+            boolean legs = slot == EquipmentSlot.LEGS;
+            HumanoidModel<LivingEntity> model = legs ? innerArmor : outerArmor;
+            contextModel.copyPropertiesTo(model);
+            model.setAllVisible(false);
+            model.head.visible = slot == EquipmentSlot.HEAD;
+            model.hat.visible = slot == EquipmentSlot.HEAD;
+            model.body.visible = slot == EquipmentSlot.CHEST || legs;
+            model.rightArm.visible = slot == EquipmentSlot.CHEST;
+            model.leftArm.visible = slot == EquipmentSlot.CHEST;
+            model.rightLeg.visible = legs || slot == EquipmentSlot.FEET;
+            model.leftLeg.visible = legs || slot == EquipmentSlot.FEET;
+            String[] name = ((ArmorItem) stack.getItem()).getMaterial().getName().split(":", 2);
+            ResourceLocation texture = new ResourceLocation(name[0], "textures/models/armor/" + name[1] + "_layer_" + (legs ? 2 : 1) + ".png");
+            ArmorRenderer.renderPart(matrices, buffers, light, stack, model, texture);
+        };
+        for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
+            for (ArcaneArmoryContent.RegisteredItem registeredItem : registered.items()) {
+                if (registeredItem.item().get() instanceof ArmorItem armor) {
+                    ArmorRenderer.register(renderer, armor);
+                }
+            }
+        }
+    }
+    *///?}
 
     // From 26.1 the game picks cutout rendering from the texture itself.
     //? if >=1.21.6 && <26 {
