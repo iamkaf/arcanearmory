@@ -60,6 +60,7 @@ public final class ArcaneArmoryLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(itemKey("amber_ingot"), "Amber Ingot");
         translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".arcanthe", "Arcanthe");
         translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".potted_arcanthe", "Potted Arcanthe");
+        ArcaneCompendium.english().forEach(translationBuilder::add);
 
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();

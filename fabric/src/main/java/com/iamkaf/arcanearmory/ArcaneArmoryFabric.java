@@ -33,6 +33,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.core.Registry;
 //?}
 import net.minecraft.resources.ResourceKey;
+//? if >=1.20 && <1.20.5 {
+/*import net.minecraft.core.registries.BuiltInRegistries;
+*///?}
 //? if >=1.21.11 && <26 {
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
 //?} else if <26 {
@@ -45,6 +48,10 @@ public class ArcaneArmoryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ArcaneArmoryMod.init();
+        //? if >=1.20 && <1.20.5 {
+        /*net.minecraft.core.Registry.register(BuiltInRegistries.RECIPE_SERIALIZER,
+                ArcaneArmoryConstants.resource("crafting_shapeless_with_nbt"), ShapelessNbtRecipeSerializer.INSTANCE);
+        *///?}
         registerCreativeTab();
         //? if <26.3
         registerFuels();

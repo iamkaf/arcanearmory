@@ -247,7 +247,7 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
         return false;
     }
 
-    private static Path findRepositoryRoot(Path start) {
+    static Path findRepositoryRoot(Path start) {
         Path current = start.toAbsolutePath();
         while (current != null) {
             if (Files.isRegularFile(current.resolve("settings.gradle.kts")) && Files.isDirectory(current.resolve("versions"))) {
@@ -258,7 +258,7 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
         throw new IllegalStateException("Could not find Arcane Armory repository root from " + start);
     }
 
-    private static String findMinecraftVersion(Path output) {
+    static String findMinecraftVersion(Path output) {
         Path absolute = output.toAbsolutePath();
         for (int index = 0; index < absolute.getNameCount() - 1; index++) {
             if ("versions".equals(absolute.getName(index).toString())) {
