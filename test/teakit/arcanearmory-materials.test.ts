@@ -60,6 +60,10 @@ describe("Arcane trim materials", () => {
     await ctx.commands.assert(`/item replace entity @s hotbar.4 with minecraft:diamond_chestplate${trim("ruby")}`);
     await ctx.player.teleport({ x: 0.5, y: 72, z: 0.5 });
     await ctx.player.lookAt({ x: 0.5, y: 73, z: 2.5 });
+    // A test that runs first can still be behind the terrain loading screen.
+    for (let attempt = 0; attempt < 40 && (await ctx.client.screen()).open; attempt++) {
+      await ctx.runtime.wait(250);
+    }
     await ctx.client.waitForFrames(10);
     await ctx.artifacts.attachScreenshot(await ctx.client.screenshot("arcane-armory-arcane-trims-worn"));
 
@@ -113,9 +117,11 @@ describe("Voidium upgrade", () => {
     await ctx.client.waitForFrames(3);
     await ctx.client.closeMenus();
 
-    const enchanted = atLeast(version, "1.20.5")
+    const enchanted = atLeast(version, "1.21.5")
       ? '{id:"arcanearmory:voidium_sword",components:{"minecraft:enchantments":{"minecraft:sharpness":3}}}'
-      : '{id:"arcanearmory:voidium_sword",tag:{Enchantments:[{id:"minecraft:sharpness",lvl:3s}]}}';
+      : atLeast(version, "1.20.5")
+        ? '{id:"arcanearmory:voidium_sword",components:{"minecraft:enchantments":{levels:{"minecraft:sharpness":3}}}}'
+        : '{id:"arcanearmory:voidium_sword",tag:{Enchantments:[{id:"minecraft:sharpness",lvl:3s}]}}';
     await ctx.commands.assert(`/execute if entity @s[nbt={Inventory:[${enchanted}]}]`);
     await ctx.commands.run(`/setblock ${TABLE.x} ${TABLE.y} ${TABLE.z} minecraft:air`);
   });
