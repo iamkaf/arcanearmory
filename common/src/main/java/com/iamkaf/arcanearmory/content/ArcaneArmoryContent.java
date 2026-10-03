@@ -66,6 +66,12 @@ public final class ArcaneArmoryContent {
         REGISTERED_BLOCKS.put("potted_arcanthe", BLOCKS.register("potted_arcanthe",
                 key -> new FlowerPotBlock(arcanthe.get(), copyOf(Blocks.POTTED_ALLIUM, key))));
 
+        RegistrySupplier<Block> meteorite = BLOCKS.register("meteorite",
+                key -> new Block(copyOf(Blocks.DEEPSLATE_IRON_ORE, key)));
+        REGISTERED_BLOCKS.put("meteorite", meteorite);
+        REGISTERED_ITEMS.put("meteorite", ITEMS.register("meteorite",
+                key -> new BlockItem(meteorite.get(), itemProperties(key))));
+
         for (ArcaneMaterial material : ArcaneMaterials.ALL) {
             REGISTERED_MATERIALS.add(registerMaterial(material));
         }

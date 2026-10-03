@@ -79,6 +79,7 @@ public final class ArcaneArmoryCreativeTab {
         stacks.add(new ItemStack(item("amber_ingot")));
         stacks.add(new ItemStack(item("arcanthe")));
         stacks.add(new ItemStack(item("doomflare_block")));
+        stacks.add(new ItemStack(item("meteorite")));
         return stacks;
     }
 

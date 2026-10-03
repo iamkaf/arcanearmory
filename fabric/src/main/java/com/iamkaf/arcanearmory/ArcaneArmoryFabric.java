@@ -134,6 +134,7 @@ public class ArcaneArmoryFabric implements ModInitializer {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, placed(feature));
         }
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.LOCAL_MODIFICATIONS, placed(AMBER_GEODE));
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.LOCAL_MODIFICATIONS, placed(METEOR_CRATER));
         for (String feature : NETHER_FEATURES) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Decoration.UNDERGROUND_ORES, placed(feature));
         }
@@ -151,6 +152,7 @@ public class ArcaneArmoryFabric implements ModInitializer {
     }
 
     private static final String AMBER_GEODE = "amber_geode_placed";
+    private static final String METEOR_CRATER = "meteor_crater_placed";
 
     private static final String[] OVERWORLD_FEATURES = {
             "aetheric_crystal_ore_placed",

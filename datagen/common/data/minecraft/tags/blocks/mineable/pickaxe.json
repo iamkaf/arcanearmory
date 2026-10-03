@@ -71,6 +71,7 @@
     "arcanearmory:raw_amber_block",
     "arcanearmory:arcanthium_block",
     "arcanearmory:voidium_block",
-    "arcanearmory:doomflare_block"
+    "arcanearmory:doomflare_block",
+    "arcanearmory:meteorite"
   ]
 }

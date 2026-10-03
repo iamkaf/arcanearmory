@@ -58,7 +58,9 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         block(futures, cache, "doomflare_block", blockModel("doomflare_block"));
         block(futures, cache, "arcanthe", crossModel("arcanthe"));
         block(futures, cache, "potted_arcanthe", pottedModel("arcanthe"));
+        block(futures, cache, "meteorite", blockModel("meteorite"));
         blockItem(futures, cache, "doomflare_block");
+        blockItem(futures, cache, "meteorite");
         item(futures, cache, "arcanthe", plantItemModel("arcanthe"), "arcanthe");
         item(futures, cache, "amber_ingot", flatItemModel("amber_ingot"), "amber_ingot");
 
