@@ -44,6 +44,7 @@ final class ArcaneArmoryLegacyForgeWorldgen {
     );
     private static final List<String> END_ORES = List.of("end_void_obsidian_fragment_ore_placed");
     private static final String AMBER_GEODE = "amber_geode_placed";
+    private static final String METEOR_CRATER = "meteor_crater_placed";
 
     // Biome filters compare placed features by instance, so every biome must share one instance.
     private static final Map<String, Holder<PlacedFeature>> PLACED = new HashMap<>();
@@ -70,6 +71,7 @@ final class ArcaneArmoryLegacyForgeWorldgen {
                 }
             });
             add(event, GenerationStep.Decoration.LOCAL_MODIFICATIONS, List.of(AMBER_GEODE));
+            add(event, GenerationStep.Decoration.LOCAL_MODIFICATIONS, List.of(METEOR_CRATER));
         }
     }
 

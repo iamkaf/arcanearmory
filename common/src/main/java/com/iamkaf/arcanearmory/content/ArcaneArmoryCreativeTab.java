@@ -81,6 +81,7 @@ public final class ArcaneArmoryCreativeTab {
         stacks.add(new ItemStack(item("doomflare_block")));
         //? if >=1.20
         stacks.add(new ItemStack(item(VoidiumUpgrade.TEMPLATE_ID)));
+        stacks.add(new ItemStack(item("meteorite")));
         return stacks;
     }
 
