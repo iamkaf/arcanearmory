@@ -325,6 +325,11 @@ function atLeast(version: string, minimum: string): boolean {
 // A normal world spawns the player away from the test area, so keep its chunks loaded.
 async function loadTestArea(ctx: TeaKitTestContext) {
   await ctx.commands.run("/forceload add -16 -16 47 15");
+  // A normal world spawns hostile mobs; a creeper blast once wrecked a mining test. 1.21.11 renamed the rule.
+  await ctx.commands.run("/gamerule doMobSpawning false", { requireSuccess: false });
+  await ctx.commands.run("/gamerule spawn_mobs false", { requireSuccess: false });
+  await ctx.commands.run("/kill @e[type=!minecraft:player,distance=..96]", { requireSuccess: false });
+  await ctx.commands.run("/kill @e[type=minecraft:item,distance=..96]", { requireSuccess: false });
   const corners = ["-16 0 -16", "47 0 -16", "-16 0 15", "47 0 15"];
   for (let attempt = 0; attempt < 60; attempt++) {
     let loaded = true;

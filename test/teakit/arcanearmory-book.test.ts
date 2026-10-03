@@ -57,9 +57,19 @@ describe("Arcane Compendium", () => {
     const listed = (await ctx.client.screen()).menu().slots().filter((slot) => slot.slot < 45).map(slotItemId);
     await ctx.artifacts.attachScreenshot(await ctx.client.screenshot("arcane-compendium-creative-tab"));
     await ctx.client.closeMenus();
-    if (!listed.includes("modonomicon:modonomicon")) {
-      throw new Error(`The Arcane Armory tab does not list the Arcane Compendium; its last page shows ${listed.join(", ")}`);
+    if (listed.includes("modonomicon:modonomicon")) {
+      return;
     }
+    // Modonomicon 2.5.0, the newest NeoForge build for 26.2, lists books only in its own tab.
+    const health = await ctx.runtime.health();
+    if (health.minecraftVersion === "26.2" && health.loader === "neoforge") {
+      await ctx.client.openInventory();
+      await ctx.client.waitForFrames(5);
+      await openTabWith(ctx, (id) => id === "modonomicon:modonomicon");
+      await ctx.client.closeMenus();
+      return;
+    }
+    throw new Error(`The Arcane Armory tab does not list the Arcane Compendium; its last page shows ${listed.join(", ")}`);
   });
 
   test("stays inert without Modonomicon", async (ctx) => {
@@ -143,6 +153,10 @@ async function hasModonomicon(ctx: TeaKitTestContext): Promise<boolean> {
 // Creative tabs sit above and below the item grid, 27 GUI units apart. Their position is derived from the
 // search box, which vanilla places at (left + 82, top + 6) on every loader. Returns the item grid's center.
 async function openArcaneTab(ctx: TeaKitTestContext): Promise<{ x: number; y: number }> {
+  return openTabWith(ctx, (id) => id.startsWith("arcanearmory:"));
+}
+
+async function openTabWith(ctx: TeaKitTestContext, matches: (id: string) => boolean): Promise<{ x: number; y: number }> {
   for (let page = 0; page < 4; page++) {
     const screen = await ctx.client.screen();
     const search = screen.widgets().all().find((widget) => widget.widgetClass.endsWith("EditBox"));
@@ -156,7 +170,7 @@ async function openArcaneTab(ctx: TeaKitTestContext): Promise<{ x: number; y: nu
         await ctx.client.click({ x: left + 27 * column + 13, y: tabY + 16 });
         await ctx.client.waitForFrames(2);
         const slots = (await ctx.client.screen()).menu().slots().filter((slot) => slot.slot < 45);
-        if (slots.some((slot) => slotItemId(slot).startsWith("arcanearmory:"))) {
+        if (slots.some((slot) => matches(slotItemId(slot)))) {
           return { x: left + 90, y: top + 63 };
         }
       }
@@ -168,7 +182,7 @@ async function openArcaneTab(ctx: TeaKitTestContext): Promise<{ x: number; y: nu
     await ctx.client.click({ x: next.x + next.width / 2, y: next.y + next.height / 2 });
     await ctx.client.waitForFrames(2);
   }
-  throw new Error("No creative tab lists Arcane Armory items");
+  throw new Error("No creative tab lists the expected item");
 }
 
 function slotItemId(slot: ScreenMenuSlotSnapshot): string {
