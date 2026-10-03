@@ -1,0 +1,26 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:materials",
+  "description": "book.arcanearmory.arcane_compendium.materials.aquamarine.description",
+  "icon": "arcanearmory:aquamarine",
+  "id": "arcanearmory:materials/aquamarine",
+  "name": "book.arcanearmory.arcane_compendium.materials.aquamarine.name",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "item": "arcanearmory:aquamarine",
+      "text": "book.arcanearmory.arcane_compendium.materials.aquamarine.about.text",
+      "title": "book.arcanearmory.arcane_compendium.materials.aquamarine.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:aquamarine_sword",
+      "recipe_id_2": "arcanearmory:aquamarine_chestplate"
+    }
+  ],
+  "sort_number": 6,
+  "x": -2,
+  "y": 0
+}

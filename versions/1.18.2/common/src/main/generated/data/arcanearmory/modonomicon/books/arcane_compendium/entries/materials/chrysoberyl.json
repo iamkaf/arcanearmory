@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/chrysoberyl",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.chrysoberyl.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.chrysoberyl.description",
+  "icon": "arcanearmory:chrysoberyl",
+  "x": -4,
+  "y": 0,
+  "sort_number": 5,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.chrysoberyl.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.chrysoberyl.about.text",
+      "item": {
+        "item": "arcanearmory:chrysoberyl"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:chrysoberyl_sword",
+      "recipe_id_2": "arcanearmory:chrysoberyl_chestplate"
+    }
+  ]
+}

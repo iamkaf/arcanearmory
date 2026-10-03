@@ -4,6 +4,9 @@ package com.iamkaf.arcanearmory;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryTradeOffers;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryFuels;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
+import com.iamkaf.arcanearmory.content.ArcaneTraits;
+import com.iamkaf.amber.api.event.v1.events.common.ServerTickEvents;
+import net.minecraft.server.MinecraftServer;
 //? if >=1.20
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 //? if <1.19.3 {
@@ -21,6 +24,7 @@ import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 //?}
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 //? if <26 {
 //? if >=1.21.11 {
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
@@ -31,6 +35,7 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 //?}
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 @Mod(ArcaneArmoryConstants.MOD_ID)
 public class ArcaneArmoryForge {
@@ -52,6 +57,7 @@ public class ArcaneArmoryForge {
         *///?}
         registerFuelEvents();
         registerTradeEvents();
+        registerTraitEvents();
     }
     //?} else {
     public ArcaneArmoryForge() {
@@ -70,6 +76,7 @@ public class ArcaneArmoryForge {
         /*ArcaneArmoryLegacyForgeWorldgen.register();*/
         registerFuelEvents();
         registerTradeEvents();
+        registerTraitEvents();
     }
     //?}
 
@@ -92,6 +99,8 @@ public class ArcaneArmoryForge {
             @Override
             public void fillItemList(NonNullList<ItemStack> items) {
                 items.addAll(ArcaneArmoryCreativeTab.items());
+                // Lets items that pick this tab themselves, such as the optional guide book, add their stacks.
+                super.fillItemList(items);
             }
         };
     }
@@ -110,6 +119,20 @@ public class ArcaneArmoryForge {
         //?} else {
         MinecraftForge.EVENT_BUS.addListener(ArcaneArmoryForge::fuelBurnTime);
         //?}
+    }
+
+    private static void registerTraitEvents() {
+        ServerTickEvents.END_SERVER_TICK.register(() -> {
+            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            if (server != null) {
+                ArcaneTraits.refreshSetBonuses(server);
+            }
+        });
+        //? if >=1.21.6 {
+        ItemTooltipEvent.BUS.addListener(event -> ArcaneTraits.appendTooltip(event.getItemStack(), event.getToolTip()));
+        //?} else {
+        /*MinecraftForge.EVENT_BUS.addListener((ItemTooltipEvent event) -> ArcaneTraits.appendTooltip(event.getItemStack(), event.getToolTip()));
+        *///?}
     }
 
     private static void registerTradeEvents() {

@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_arcanthium",
+  "description": {
+    "color": "#F27AA4",
+    "translate": "trim_material.arcanearmory.arcanthium"
+  },
+  "ingredient": "arcanearmory:arcanthium_ingot",
+  "item_model_index": 0.026
+}

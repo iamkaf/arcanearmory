@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "arcanearmory:voidium_ingot"
+  },
+  "base": {
+    "item": "arcanearmory:black_diamond_axe"
+  },
+  "result": {
+    "item": "arcanearmory:voidium_axe"
+  },
+  "template": {
+    "item": "arcanearmory:voidium_upgrade_smithing_template"
+  }
+}

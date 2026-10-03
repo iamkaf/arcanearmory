@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/star_corundum",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.star_corundum.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.star_corundum.description",
+  "icon": "arcanearmory:star_corundum",
+  "x": 0,
+  "y": 0,
+  "sort_number": 7,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.star_corundum.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.star_corundum.about.text",
+      "item": {
+        "item": "arcanearmory:star_corundum"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:star_corundum_sword",
+      "recipe_id_2": "arcanearmory:star_corundum_chestplate"
+    }
+  ]
+}

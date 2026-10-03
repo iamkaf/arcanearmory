@@ -1,0 +1,26 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:equipment",
+  "description": "book.arcanearmory.arcane_compendium.equipment.shields.description",
+  "icon": "arcanearmory:ruby_shield",
+  "id": "arcanearmory:equipment/shields",
+  "name": "book.arcanearmory.arcane_compendium.equipment.shields.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "about",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.equipment.shields.about.text",
+      "title": "book.arcanearmory.arcane_compendium.equipment.shields.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:ruby_shield",
+      "recipe_id_2": "arcanearmory:titanium_shield"
+    }
+  ],
+  "sort_number": 2,
+  "x": 0,
+  "y": -2
+}

@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/sapphire",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.sapphire.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.sapphire.description",
+  "icon": "arcanearmory:sapphire",
+  "x": 0,
+  "y": -2,
+  "sort_number": 2,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.sapphire.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.sapphire.about.text",
+      "item": {
+        "item": "arcanearmory:sapphire"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:sapphire_sword",
+      "recipe_id_2": "arcanearmory:sapphire_chestplate"
+    }
+  ]
+}

@@ -5,6 +5,125 @@
       {
         "model": {
           "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_ruby_trim"
+        },
+        "when": "arcanearmory:ruby"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_sapphire_trim"
+        },
+        "when": "arcanearmory:sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_frost_diamond_trim"
+        },
+        "when": "arcanearmory:frost_diamond"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_black_diamond_trim"
+        },
+        "when": "arcanearmory:black_diamond"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_topaz_trim"
+        },
+        "when": "arcanearmory:topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_chrysoberyl_trim"
+        },
+        "when": "arcanearmory:chrysoberyl"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_aquamarine_trim"
+        },
+        "when": "arcanearmory:aquamarine"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_star_corundum_trim"
+        },
+        "when": "arcanearmory:star_corundum"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_solarflare_gem_trim"
+        },
+        "when": "arcanearmory:solarflare_gem"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_bloodfire_garnet_trim"
+        },
+        "when": "arcanearmory:bloodfire_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_aetheric_crystal_trim"
+        },
+        "when": "arcanearmory:aetheric_crystal"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_shadow_crystal_trim"
+        },
+        "when": "arcanearmory:shadow_crystal"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_coolpper_trim"
+        },
+        "when": "arcanearmory:coolpper"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_titanium_trim"
+        },
+        "when": "arcanearmory:titanium"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_amber_trim"
+        },
+        "when": "arcanearmory:amber"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_arcanthium_trim"
+        },
+        "when": "arcanearmory:arcanthium"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "arcanearmory:item/amber_chestplate_arcanearmory_voidium_trim"
+        },
+        "when": "arcanearmory:voidium"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
           "model": "arcanearmory:item/amber_chestplate_quartz_trim"
         },
         "when": "minecraft:quartz"

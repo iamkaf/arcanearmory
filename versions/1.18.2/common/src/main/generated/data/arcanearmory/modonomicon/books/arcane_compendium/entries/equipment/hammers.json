@@ -1,0 +1,26 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:equipment/hammers",
+  "category": "arcanearmory:equipment",
+  "name": "book.arcanearmory.arcane_compendium.equipment.hammers.name",
+  "description": "book.arcanearmory.arcane_compendium.equipment.hammers.description",
+  "icon": "arcanearmory:ruby_hammer",
+  "x": -4,
+  "y": -2,
+  "sort_number": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.equipment.hammers.about.title",
+      "text": "book.arcanearmory.arcane_compendium.equipment.hammers.about.text",
+      "show_title_separator": true
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:ruby_hammer",
+      "recipe_id_2": "arcanearmory:titanium_hammer"
+    }
+  ]
+}

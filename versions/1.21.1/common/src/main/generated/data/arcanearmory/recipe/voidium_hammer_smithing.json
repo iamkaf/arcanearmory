@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "arcanearmory:voidium_ingot"
+  },
+  "base": {
+    "item": "arcanearmory:black_diamond_hammer"
+  },
+  "result": {
+    "id": "arcanearmory:voidium_hammer"
+  },
+  "template": {
+    "item": "arcanearmory:voidium_upgrade_smithing_template"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "book.arcanearmory.arcane_compendium.name",
+  "tooltip": "book.arcanearmory.arcane_compendium.tooltip",
+  "description": "book.arcanearmory.arcane_compendium.description",
+  "model": "modonomicon:modonomicon_purple",
+  "generate_book_item": true,
+  "creative_tab": "arcanearmory",
+  "display_mode": "index"
+}

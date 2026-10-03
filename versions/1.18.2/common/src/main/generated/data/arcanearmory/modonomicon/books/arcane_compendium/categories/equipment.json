@@ -1,0 +1,7 @@
+{
+  "name": "book.arcanearmory.arcane_compendium.equipment.name",
+  "description": "book.arcanearmory.arcane_compendium.equipment.description",
+  "icon": "arcanearmory:ruby_hammer",
+  "sort_number": 1,
+  "display_mode": "index"
+}

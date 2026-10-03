@@ -84,6 +84,7 @@ public final class ArcaneArmoryLootTableProvider implements DataProvider {
         Map<String, JsonObject> tables = new LinkedHashMap<>();
         tables.put("doomflare_block", dropSelf("doomflare_block"));
         tables.put("arcanthe", dropSelf("arcanthe"));
+        tables.put("meteorite", dropSelf("meteorite"));
         tables.put("potted_arcanthe", table("potted_arcanthe", survivingDrop("minecraft:flower_pot"), survivingDrop(aa("arcanthe"))));
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();

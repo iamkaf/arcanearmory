@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "arcanearmory:black_diamond_sword"
+  },
+  "addition": {
+    "item": "arcanearmory:voidium_ingot"
+  },
+  "result": {
+    "item": "arcanearmory:voidium_sword"
+  }
+}

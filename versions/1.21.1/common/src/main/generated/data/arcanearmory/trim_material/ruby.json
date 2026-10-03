@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_ruby",
+  "description": {
+    "color": "#FC6B77",
+    "translate": "trim_material.arcanearmory.ruby"
+  },
+  "ingredient": "arcanearmory:ruby",
+  "item_model_index": 0.011
+}

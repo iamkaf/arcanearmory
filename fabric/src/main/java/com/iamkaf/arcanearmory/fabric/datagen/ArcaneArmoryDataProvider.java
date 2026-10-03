@@ -2,10 +2,11 @@ package com.iamkaf.arcanearmory.fabric.datagen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-//? if >=26.3 {
 import com.google.gson.JsonObject;
-//?}
+import com.iamkaf.arcanearmory.ArcaneArmoryConstants;
+import com.iamkaf.arcanearmory.content.ArcaneOreBiomes;
 import net.minecraft.data.DataProvider;
 //? if >=1.19.3 {
 import net.minecraft.data.CachedOutput;
@@ -24,8 +25,10 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
@@ -64,6 +67,9 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
         try {
             copyTemplateTree(futures, cache, root.resolve("datagen/common/data"), output.resolve("data"), true);
             copyLoaderTemplateTrees(futures, cache);
+            for (Map.Entry<Path, JsonElement> file : oreBiomeFiles().entrySet()) {
+                futures.add(DataProvider.saveStable(cache, file.getValue(), file.getKey()));
+            }
         } catch (IOException exception) {
             CompletableFuture<?> failed = new CompletableFuture<>();
             failed.completeExceptionally(exception);
@@ -76,6 +82,9 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
     public void run(HashCache cache) throws IOException {
         copyTemplateTree(cache, root.resolve("datagen/common/data"), output.resolve("data"), true);
         copyLoaderTemplateTrees(cache);
+        for (Map.Entry<Path, JsonElement> file : oreBiomeFiles().entrySet()) {
+            DataProvider.save(GSON, cache, file.getValue(), file.getKey());
+        }
     }
     //?}
 
@@ -170,6 +179,36 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
     }
     //?}
 
+    // Each biome-restricted ore gets a biome tag, and on Forge and NeoForge a biome modifier that reads it.
+    private Map<Path, JsonElement> oreBiomeFiles() throws IOException {
+        Map<Path, JsonElement> files = new LinkedHashMap<>();
+        for (Map.Entry<String, List<String>> ore : ArcaneOreBiomes.BY_ORE.entrySet()) {
+            String tag = ArcaneOreBiomes.tag(ore.getKey());
+            JsonObject biomes = new JsonObject();
+            JsonArray values = new JsonArray();
+            ore.getValue().forEach(values::add);
+            biomes.add("values", values);
+            files.put(output.resolve("data/" + ArcaneArmoryConstants.MOD_ID + "/tags/worldgen/biome/" + tag + ".json"), biomes);
+
+            for (String loader : List.of("forge", "neoforge")) {
+                if (!isLoaderEnabled(loader)) {
+                    continue;
+                }
+                JsonObject modifier = new JsonObject();
+                modifier.addProperty("type", loader + ":add_features");
+                modifier.addProperty("biomes", "#" + ArcaneArmoryConstants.MOD_ID + ":" + tag);
+                JsonArray features = new JsonArray();
+                features.add(ArcaneArmoryConstants.MOD_ID + ":" + ArcaneOreBiomes.placedFeature(ore.getKey()));
+                modifier.add("features", features);
+                modifier.addProperty("step", "underground_ores");
+                files.put(root.resolve("versions").resolve(minecraftVersion).resolve(loader)
+                        .resolve("src/main/generated/data/" + ArcaneArmoryConstants.MOD_ID + "/" + loader + "/biome_modifier/"
+                                + ore.getKey() + "_ore.json"), modifier);
+            }
+        }
+        return files;
+    }
+
     private static String normalize(Path relativePath, boolean commonData) {
         String relative = relativePath.toString().replace('\\', '/');
         //? if >=1.21 {
@@ -247,7 +286,7 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
         return false;
     }
 
-    private static Path findRepositoryRoot(Path start) {
+    static Path findRepositoryRoot(Path start) {
         Path current = start.toAbsolutePath();
         while (current != null) {
             if (Files.isRegularFile(current.resolve("settings.gradle.kts")) && Files.isDirectory(current.resolve("versions"))) {
@@ -258,7 +297,7 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
         throw new IllegalStateException("Could not find Arcane Armory repository root from " + start);
     }
 
-    private static String findMinecraftVersion(Path output) {
+    static String findMinecraftVersion(Path output) {
         Path absolute = output.toAbsolutePath();
         for (int index = 0; index < absolute.getNameCount() - 1; index++) {
             if ("versions".equals(absolute.getName(index).toString())) {

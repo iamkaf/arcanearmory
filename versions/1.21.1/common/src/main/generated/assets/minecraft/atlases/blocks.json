@@ -1,0 +1,33 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
+      "permutations": {
+        "arcanearmory_aetheric_crystal": "arcanearmory:palettes/trim/aetheric_crystal",
+        "arcanearmory_amber": "arcanearmory:palettes/trim/amber",
+        "arcanearmory_aquamarine": "arcanearmory:palettes/trim/aquamarine",
+        "arcanearmory_arcanthium": "arcanearmory:palettes/trim/arcanthium",
+        "arcanearmory_black_diamond": "arcanearmory:palettes/trim/black_diamond",
+        "arcanearmory_bloodfire_garnet": "arcanearmory:palettes/trim/bloodfire_garnet",
+        "arcanearmory_chrysoberyl": "arcanearmory:palettes/trim/chrysoberyl",
+        "arcanearmory_coolpper": "arcanearmory:palettes/trim/coolpper",
+        "arcanearmory_frost_diamond": "arcanearmory:palettes/trim/frost_diamond",
+        "arcanearmory_ruby": "arcanearmory:palettes/trim/ruby",
+        "arcanearmory_sapphire": "arcanearmory:palettes/trim/sapphire",
+        "arcanearmory_shadow_crystal": "arcanearmory:palettes/trim/shadow_crystal",
+        "arcanearmory_solarflare_gem": "arcanearmory:palettes/trim/solarflare_gem",
+        "arcanearmory_star_corundum": "arcanearmory:palettes/trim/star_corundum",
+        "arcanearmory_titanium": "arcanearmory:palettes/trim/titanium",
+        "arcanearmory_topaz": "arcanearmory:palettes/trim/topaz",
+        "arcanearmory_voidium": "arcanearmory:palettes/trim/voidium"
+      },
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:equipment",
+  "description": "book.arcanearmory.arcane_compendium.equipment.doomflare.description",
+  "icon": "arcanearmory:doomflare_block",
+  "id": "arcanearmory:equipment/doomflare",
+  "name": "book.arcanearmory.arcane_compendium.equipment.doomflare.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "about",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.equipment.doomflare.about.text",
+      "title": "book.arcanearmory.arcane_compendium.equipment.doomflare.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipe",
+      "recipe_id_1": "arcanearmory:doomflare_block_from_alloying"
+    }
+  ],
+  "sort_number": 5,
+  "x": -4,
+  "y": 0
+}

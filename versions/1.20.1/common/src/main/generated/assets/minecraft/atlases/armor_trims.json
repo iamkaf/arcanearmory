@@ -1,0 +1,61 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
+      "permutations": {
+        "arcanearmory_aetheric_crystal": "arcanearmory:palettes/trim/aetheric_crystal",
+        "arcanearmory_amber": "arcanearmory:palettes/trim/amber",
+        "arcanearmory_aquamarine": "arcanearmory:palettes/trim/aquamarine",
+        "arcanearmory_arcanthium": "arcanearmory:palettes/trim/arcanthium",
+        "arcanearmory_black_diamond": "arcanearmory:palettes/trim/black_diamond",
+        "arcanearmory_bloodfire_garnet": "arcanearmory:palettes/trim/bloodfire_garnet",
+        "arcanearmory_chrysoberyl": "arcanearmory:palettes/trim/chrysoberyl",
+        "arcanearmory_coolpper": "arcanearmory:palettes/trim/coolpper",
+        "arcanearmory_frost_diamond": "arcanearmory:palettes/trim/frost_diamond",
+        "arcanearmory_ruby": "arcanearmory:palettes/trim/ruby",
+        "arcanearmory_sapphire": "arcanearmory:palettes/trim/sapphire",
+        "arcanearmory_shadow_crystal": "arcanearmory:palettes/trim/shadow_crystal",
+        "arcanearmory_solarflare_gem": "arcanearmory:palettes/trim/solarflare_gem",
+        "arcanearmory_star_corundum": "arcanearmory:palettes/trim/star_corundum",
+        "arcanearmory_titanium": "arcanearmory:palettes/trim/titanium",
+        "arcanearmory_topaz": "arcanearmory:palettes/trim/topaz",
+        "arcanearmory_voidium": "arcanearmory:palettes/trim/voidium"
+      },
+      "textures": [
+        "minecraft:trims/models/armor/coast",
+        "minecraft:trims/models/armor/coast_leggings",
+        "minecraft:trims/models/armor/sentry",
+        "minecraft:trims/models/armor/sentry_leggings",
+        "minecraft:trims/models/armor/dune",
+        "minecraft:trims/models/armor/dune_leggings",
+        "minecraft:trims/models/armor/wild",
+        "minecraft:trims/models/armor/wild_leggings",
+        "minecraft:trims/models/armor/ward",
+        "minecraft:trims/models/armor/ward_leggings",
+        "minecraft:trims/models/armor/eye",
+        "minecraft:trims/models/armor/eye_leggings",
+        "minecraft:trims/models/armor/vex",
+        "minecraft:trims/models/armor/vex_leggings",
+        "minecraft:trims/models/armor/tide",
+        "minecraft:trims/models/armor/tide_leggings",
+        "minecraft:trims/models/armor/snout",
+        "minecraft:trims/models/armor/snout_leggings",
+        "minecraft:trims/models/armor/rib",
+        "minecraft:trims/models/armor/rib_leggings",
+        "minecraft:trims/models/armor/spire",
+        "minecraft:trims/models/armor/spire_leggings",
+        "minecraft:trims/models/armor/wayfinder",
+        "minecraft:trims/models/armor/wayfinder_leggings",
+        "minecraft:trims/models/armor/shaper",
+        "minecraft:trims/models/armor/shaper_leggings",
+        "minecraft:trims/models/armor/silence",
+        "minecraft:trims/models/armor/silence_leggings",
+        "minecraft:trims/models/armor/raiser",
+        "minecraft:trims/models/armor/raiser_leggings",
+        "minecraft:trims/models/armor/host",
+        "minecraft:trims/models/armor/host_leggings"
+      ]
+    }
+  ]
+}

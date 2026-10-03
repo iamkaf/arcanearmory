@@ -2,6 +2,108 @@
   "parent": "minecraft:item/generated",
   "overrides": [
     {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_ruby_trim",
+      "predicate": {
+        "trim_type": 0.011
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_sapphire_trim",
+      "predicate": {
+        "trim_type": 0.012
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_frost_diamond_trim",
+      "predicate": {
+        "trim_type": 0.013
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_black_diamond_trim",
+      "predicate": {
+        "trim_type": 0.014
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_topaz_trim",
+      "predicate": {
+        "trim_type": 0.015
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_chrysoberyl_trim",
+      "predicate": {
+        "trim_type": 0.016
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_aquamarine_trim",
+      "predicate": {
+        "trim_type": 0.017
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_star_corundum_trim",
+      "predicate": {
+        "trim_type": 0.018
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_solarflare_gem_trim",
+      "predicate": {
+        "trim_type": 0.019
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_bloodfire_garnet_trim",
+      "predicate": {
+        "trim_type": 0.02
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_aetheric_crystal_trim",
+      "predicate": {
+        "trim_type": 0.021
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_shadow_crystal_trim",
+      "predicate": {
+        "trim_type": 0.022
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_coolpper_trim",
+      "predicate": {
+        "trim_type": 0.023
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_titanium_trim",
+      "predicate": {
+        "trim_type": 0.024
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_amber_trim",
+      "predicate": {
+        "trim_type": 0.025
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_arcanthium_trim",
+      "predicate": {
+        "trim_type": 0.026
+      }
+    },
+    {
+      "model": "arcanearmory:item/black_diamond_leggings_arcanearmory_voidium_trim",
+      "predicate": {
+        "trim_type": 0.027
+      }
+    },
+    {
       "model": "arcanearmory:item/black_diamond_leggings_quartz_trim",
       "predicate": {
         "trim_type": 0.1

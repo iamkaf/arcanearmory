@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_aquamarine",
+  "description": {
+    "color": "#7EC1D3",
+    "translate": "trim_material.arcanearmory.aquamarine"
+  },
+  "ingredient": "arcanearmory:aquamarine",
+  "item_model_index": 0.017
+}

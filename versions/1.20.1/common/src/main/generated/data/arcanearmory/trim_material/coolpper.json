@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_coolpper",
+  "description": {
+    "color": "#D5944D",
+    "translate": "trim_material.arcanearmory.coolpper"
+  },
+  "ingredient": "arcanearmory:coolpper_ingot",
+  "item_model_index": 0.023
+}
