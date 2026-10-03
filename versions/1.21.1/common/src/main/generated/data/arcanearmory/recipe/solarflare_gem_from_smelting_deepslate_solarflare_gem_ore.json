@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:deepslate_solarflare_gem_ore"
   },
-  "result": "arcanearmory:solarflare_gem"
+  "result": {
+    "id": "arcanearmory:solarflare_gem"
+  }
 }

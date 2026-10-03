@@ -2,6 +2,8 @@ package com.iamkaf.arcanearmory.fabric.datagen;
 
 import com.iamkaf.arcanearmory.ArcaneArmoryConstants;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
+import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
+import com.iamkaf.arcanearmory.content.DoomflareBlockItem;
 import com.iamkaf.arcanearmory.content.ArcaneMaterial;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 //? if >=1.21
@@ -49,18 +51,20 @@ public final class ArcaneArmoryLanguageProvider extends FabricLanguageProvider {
     //?}
 
     private static void addTranslations(TranslationBuilder translationBuilder) {
-        translationBuilder.add("itemGroup." + ArcaneArmoryConstants.MOD_ID, ArcaneArmoryConstants.MOD_NAME);
-        translationBuilder.add("creativetab." + ArcaneArmoryConstants.MOD_ID + "." + ArcaneArmoryConstants.MOD_ID, ArcaneArmoryConstants.MOD_NAME);
+        translationBuilder.add(ArcaneArmoryCreativeTab.TITLE_KEY, ArcaneArmoryConstants.MOD_NAME);
+        // Fabric 1.18.2 names its creative tab after the tab id.
+        translationBuilder.add(ArcaneArmoryCreativeTab.TITLE_KEY + "." + ArcaneArmoryCreativeTab.ID, ArcaneArmoryConstants.MOD_NAME);
         translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".doomflare_block", "Doomflare Block");
-        translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".aristea", "Aristea");
-        translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".potted_aristea", "Potted Aristea");
+        translationBuilder.add(DoomflareBlockItem.TOOLTIP_KEY,
+                "If destroyed by an explosion, this block will explode with the force of 10 TNT.");
+        translationBuilder.add(itemKey("amber_ingot"), "Amber Ingot");
+        translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".arcanthe", "Arcanthe");
+        translationBuilder.add("block." + ArcaneArmoryConstants.MOD_ID + ".potted_arcanthe", "Potted Arcanthe");
 
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();
             translationBuilder.add(itemKey(material.materialItemId()), material.displayName() + (material.ingot() ? " Ingot" : ""));
-            if (material.ore()) {
-                translationBuilder.add(itemKey(material.rawMaterialItemId()), "Raw " + material.displayName());
-            }
+            translationBuilder.add(itemKey(material.rawMaterialItemId()), "Raw " + material.displayName());
             if (material.ingot()) {
                 translationBuilder.add(itemKey(material.nuggetItemId()), material.displayName() + " Nugget");
             }

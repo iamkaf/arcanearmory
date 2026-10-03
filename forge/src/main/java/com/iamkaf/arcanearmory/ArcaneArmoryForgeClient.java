@@ -3,6 +3,10 @@ package com.iamkaf.arcanearmory;
 //? if <1.21.2 {
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
 import net.minecraft.client.renderer.item.ItemProperties;
+//? if <1.19 {
+/*import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+*///?}
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -15,7 +19,18 @@ public final class ArcaneArmoryForgeClient {
     //? if <1.21.2 {
     public static void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(ArcaneArmoryForgeClient::registerLegacyItemPredicates);
+        //? if <1.19
+        /*event.enqueueWork(ArcaneArmoryForgeClient::registerCutoutBlocks);*/
     }
+
+    // Forge 1.19+ reads the cutout layer from the block model's render_type instead.
+    //? if <1.19 {
+    /*private static void registerCutoutBlocks() {
+        for (String id : ArcaneArmoryContent.CUTOUT_BLOCKS) {
+            ItemBlockRenderTypes.setRenderLayer(ArcaneArmoryContent.block(id).orElseThrow().get(), RenderType.cutout());
+        }
+    }
+    *///?}
 
     private static void registerLegacyItemPredicates() {
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {

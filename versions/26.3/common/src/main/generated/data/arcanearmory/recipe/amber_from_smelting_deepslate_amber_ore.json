@@ -4,5 +4,7 @@
   "experience": 0.45,
   "group": "amber",
   "ingredient": "arcanearmory:deepslate_amber_ore",
-  "result": "arcanearmory:amber"
+  "result": {
+    "id": "arcanearmory:amber"
+  }
 }

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "arcanearmory:arcanthium_ingot"
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "arcanearmory:arcanthium_boots"
+  },
+  "show_notification": true
+}

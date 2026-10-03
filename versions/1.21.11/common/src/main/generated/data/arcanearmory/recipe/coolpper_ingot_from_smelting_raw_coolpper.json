@@ -4,8 +4,8 @@
   "cookingtime": 200,
   "experience": 0.45,
   "group": "coolpper",
-  "ingredient": {
-    "item": "arcanearmory:raw_coolpper"
-  },
-  "result": "arcanearmory:coolpper_ingot"
+  "ingredient": "arcanearmory:raw_coolpper",
+  "result": {
+    "id": "arcanearmory:coolpper_ingot"
+  }
 }

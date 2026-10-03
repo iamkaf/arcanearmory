@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "arcanearmory:arcanthium_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "arcanearmory:arcanthium_ingot"
+  }
+}

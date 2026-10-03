@@ -72,13 +72,13 @@ public final class ArcaneArmoryRecipeProvider implements DataProvider {
     }
 
     private void saveAlloys(List<CompletableFuture<?>> futures, CachedOutput cache) {
-        save(futures, cache, "amber_from_alloying", shapeless(aa("amber"), 2,
+        save(futures, cache, "amber_from_alloying", shapeless(aa("amber_ingot"), 2,
                 item("minecraft:iron_ingot"),
                 item(aa("raw_amber"))));
-        save(futures, cache, "aristeum_from_alloying", shapeless(aa("aristeum_ingot"), 2,
+        save(futures, cache, "arcanthium_from_alloying", shapeless(aa("arcanthium_ingot"), 2,
                 item(aa("titanium_ingot")),
                 item(aa("aetheric_crystal")),
-                item(aa("aristea")),
+                tag("arcanearmory:arcanthium_flowers"),
                 item("minecraft:pink_dye")));
         save(futures, cache, "coolpper_ingot_from_alloying", shapeless(aa("coolpper_ingot"), 2,
                 item(aa("coolpper_ore"))));
@@ -169,12 +169,16 @@ public final class ArcaneArmoryRecipeProvider implements DataProvider {
         //? if <26.1
         root.addProperty("category", "misc");
         root.addProperty("group", group);
-        //? if >=26.3 {
+        //? if >=1.21.2 {
         root.addProperty("ingredient", ingredient);
         //?} else {
-        root.add("ingredient", item(ingredient));
-        //?}
-        root.addProperty("result", result);
+        /*root.add("ingredient", item(ingredient));
+        *///?}
+        //? if >=1.21 {
+        root.add("result", result(result, 1));
+        //?} else {
+        /*root.addProperty("result", result);
+        *///?}
         root.addProperty("experience", 0.45D);
         root.addProperty("cookingtime", cookingTime);
         save(futures, cache, id, root);
@@ -335,13 +339,13 @@ public final class ArcaneArmoryRecipeProvider implements net.minecraft.data.Data
     }
 
     private void saveAlloys(net.minecraft.data.HashCache cache) throws java.io.IOException {
-        save(cache, "amber_from_alloying", shapeless(aa("amber"), 2,
+        save(cache, "amber_from_alloying", shapeless(aa("amber_ingot"), 2,
                 item("minecraft:iron_ingot"),
                 item(aa("raw_amber"))));
-        save(cache, "aristeum_from_alloying", shapeless(aa("aristeum_ingot"), 2,
+        save(cache, "arcanthium_from_alloying", shapeless(aa("arcanthium_ingot"), 2,
                 item(aa("titanium_ingot")),
                 item(aa("aetheric_crystal")),
-                item(aa("aristea")),
+                tag("arcanearmory:arcanthium_flowers"),
                 item("minecraft:pink_dye")));
         save(cache, "coolpper_ingot_from_alloying", shapeless(aa("coolpper_ingot"), 2,
                 item(aa("coolpper_ore"))));

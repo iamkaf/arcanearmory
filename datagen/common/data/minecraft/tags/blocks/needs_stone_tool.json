@@ -37,7 +37,8 @@
     "arcanearmory:titanium_block",
     "arcanearmory:raw_amber_block",
     "arcanearmory:amber_block",
-    "arcanearmory:aristeum_block",
-    "arcanearmory:voidium_block"
+    "arcanearmory:arcanthium_block",
+    "arcanearmory:voidium_block",
+    "arcanearmory:doomflare_block"
   ]
 }

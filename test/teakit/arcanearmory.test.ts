@@ -1,5 +1,5 @@
 import { Capability, Readiness, describe, pos, test } from "@teakit/test";
-import type { TeaKitTestContext } from "@teakit/test";
+import type { BlockPos, TeaKitTestContext } from "@teakit/test";
 
 const materials = [
   "ruby",
@@ -19,11 +19,11 @@ const materials = [
   "coolpper",
   "titanium",
   "amber",
-  "aristeum",
+  "arcanthium",
   "voidium",
 ] as const;
 
-const ingots = new Set(["coolpper", "titanium", "aristeum", "voidium"]);
+const ingots = new Set(["coolpper", "titanium", "arcanthium", "voidium"]);
 const tools = new Set([
   "ruby",
   "sapphire",
@@ -37,16 +37,17 @@ const tools = new Set([
   "coolpper",
   "titanium",
   "amber",
-  "aristeum",
+  "arcanthium",
   "voidium",
 ]);
-const shields = new Set(["ruby", "coolpper", "titanium", "aristeum", "voidium"]);
+const shields = new Set(["ruby", "coolpper", "titanium", "arcanthium", "voidium"]);
 
 describe.configure({
   timeout: "8m",
   readiness: [Readiness.World, Readiness.Player],
   capabilities: [
     Capability.PlayerInteractions,
+    Capability.ClientScreen,
     Capability.PlayerDriver,
     Capability.PlayerInventory,
     Capability.PlayerReset,
@@ -85,29 +86,87 @@ describe("Arcane Armory registry parity", () => {
     }
 
     await ctx.commands.assert("/give @s arcanearmory:doomflare_block 1");
-    await ctx.commands.assert("/give @s arcanearmory:aristea 1");
+    await ctx.commands.assert("/give @s arcanearmory:arcanthe 1");
   });
 
-  test("owned alloy recipes resolve through the recipe manager", async (ctx) => {
+  test("alloy, compression, smelting, and ice recipes resolve through the recipe manager", async (ctx) => {
     await prepare(ctx);
 
-    const result = await ctx.recipes.assertCrafting(
+    await ctx.recipes.assertCrafting(2, 1, ["minecraft:iron_ingot", "arcanearmory:raw_amber"], "arcanearmory:amber_ingot", {
+      resultCount: 2,
+    });
+    // Wither roses count as Arcanthe, the only survival source for arcanthium.
+    await ctx.recipes.assertCrafting(
       2,
-      1,
-      ["minecraft:iron_ingot", "arcanearmory:raw_amber"],
-      "arcanearmory:amber",
+      2,
+      ["arcanearmory:titanium_ingot", "arcanearmory:aetheric_crystal", "minecraft:wither_rose", "minecraft:pink_dye"],
+      "arcanearmory:arcanthium_ingot",
       { resultCount: 2 },
     );
-    if (!result.recipeId?.includes("amber_from_alloying")) {
-      throw new Error(`Expected amber alloying recipe, got ${commandOutput(result)}`);
-    }
+    await ctx.recipes.assertCrafting(
+      3,
+      2,
+      [
+        "arcanearmory:doom_fragment",
+        "arcanearmory:solarflare_gem",
+        "arcanearmory:shadow_crystal",
+        "arcanearmory:aetheric_crystal",
+        "minecraft:obsidian",
+        "minecraft:air",
+      ],
+      "arcanearmory:doomflare_block",
+    );
+    await ctx.recipes.assertCrafting(
+      3,
+      1,
+      ["arcanearmory:void_obsidian_fragment", "arcanearmory:bloodfire_garnet", "minecraft:netherite_ingot"],
+      "arcanearmory:voidium_ingot",
+      { resultCount: 2 },
+    );
+    await ctx.recipes.assertCrafting(1, 1, ["arcanearmory:coolpper_ore"], "arcanearmory:coolpper_ingot", { resultCount: 2 });
+    await ctx.recipes.assertCrafting(1, 1, ["arcanearmory:frost_diamond"], "minecraft:ice", { resultCount: 16 });
+    await ctx.recipes.assertCrafting(3, 3, Array(9).fill("arcanearmory:ruby"), "arcanearmory:ruby_block");
+    await ctx.recipes.assertCrafting(1, 1, ["arcanearmory:ruby_block"], "arcanearmory:ruby", { resultCount: 9 });
+    await ctx.recipes.assertCrafting(3, 3, Array(9).fill("arcanearmory:raw_titanium"), "arcanearmory:raw_titanium_block");
+    await ctx.recipes.assertCooking("minecraft:smelting", "arcanearmory:raw_titanium", "arcanearmory:titanium_ingot");
+    await ctx.recipes.assertCooking("minecraft:smelting", "arcanearmory:deepslate_ruby_ore", "arcanearmory:ruby");
+    // TeaKit asserts only smelting, so run a real blast furnace for the 100-tick blasting recipe.
+    await ctx.commands.run("/setblock 14 73 0 minecraft:blast_furnace[facing=north]");
+    await ctx.commands.assert("/item replace block 14 73 0 container.0 with arcanearmory:deepslate_ruby_ore 1");
+    await ctx.commands.assert("/item replace block 14 73 0 container.1 with minecraft:coal 1");
+    await ctx.runtime.wait(6000);
+    await ctx.commands.assert('/execute if data block 14 73 0 Items[{Slot:2b,id:"arcanearmory:ruby"}]');
+    await ctx.commands.run("/setblock 14 73 0 minecraft:air");
+    await ctx.recipes.assertCrafting(
+      3,
+      3,
+      [
+        "minecraft:oak_planks", "arcanearmory:ruby", "minecraft:oak_planks",
+        "minecraft:oak_planks", "minecraft:oak_planks", "minecraft:oak_planks",
+        "minecraft:air", "minecraft:oak_planks", "minecraft:air",
+      ],
+      "arcanearmory:ruby_shield",
+    );
+    await ctx.recipes.assertCrafting(
+      3,
+      3,
+      [
+        "arcanearmory:topaz", "arcanearmory:topaz", "arcanearmory:topaz",
+        "arcanearmory:topaz", "arcanearmory:topaz", "arcanearmory:topaz",
+        "minecraft:air", "minecraft:stick", "minecraft:air",
+      ],
+      "arcanearmory:topaz_hammer",
+    );
   });
 
   test("hammers mine a 3x3 plane around the target block", async (ctx) => {
     await prepare(ctx);
+    const version = await minecraftVersion(ctx);
 
     await ctx.commands.run("/gamemode survival");
     await ctx.world.fill({ x: 4, y: 72, z: -1 }, { x: 4, y: 74, z: 1 }, "minecraft:stone");
+    // Dirt is not hammer material, so the hammer leaves it standing.
+    await ctx.world.setBlock({ x: 4, y: 74, z: 1 }, "minecraft:dirt");
     await ctx.player.teleport({ x: 1.5, y: 73, z: 0.5 });
     await ctx.commands.assert("/item replace entity @s hotbar.0 with arcanearmory:ruby_hammer");
     await ctx.player.inventory().selectHotbar(0);
@@ -116,15 +175,77 @@ describe("Arcane Armory registry parity", () => {
     await ctx.player.lookAt({ x: 4.5, y: 73.5, z: 0.5 });
 
     await ctx.player.mine(pos(4, 73, 0), { timeout: "8s" });
+    await ctx.runtime.wait(300);
 
     for (let y = 72; y <= 74; y++) {
       for (let z = -1; z <= 1; z++) {
         const state = await ctx.world.block({ x: 4, y, z });
-        if (state.id !== "minecraft:air") {
-          throw new Error(`Expected hammer to clear 4 ${y} ${z}, found ${state.id}`);
+        const expected = y === 74 && z === 1 ? "minecraft:dirt" : "minecraft:air";
+        if (state.id !== expected) {
+          throw new Error(`Expected hammer to leave ${expected} at 4 ${y} ${z}, found ${state.id}`);
         }
       }
     }
+    // One point of wear for each block mined: the target and its seven stone neighbours.
+    await assertHeldDamage(ctx, version, "arcanearmory:ruby_hammer", 8);
+    await ctx.commands.run("/kill @e[type=minecraft:item,distance=..16]");
+  });
+
+  test("hammers mine the plane facing the player", async (ctx) => {
+    await prepare(ctx);
+
+    await ctx.commands.run("/gamemode survival");
+    await ctx.commands.assert("/item replace entity @s weapon.mainhand with arcanearmory:ruby_hammer");
+
+    // Mining downward clears the floor plane under the player.
+    await ctx.world.fill({ x: 3, y: 72, z: -1 }, { x: 5, y: 72, z: 1 }, "minecraft:stone");
+    await ctx.world.fill({ x: 3, y: 73, z: -1 }, { x: 5, y: 74, z: 1 }, "minecraft:air");
+    await ctx.player.teleport({ x: 4.5, y: 73, z: 0.5 });
+    await ctx.player.lookAt({ x: 4.5, y: 72.5, z: 0.5 });
+    // The server ignores the new view until the client confirms the teleport, and the hammer reads it.
+    await ctx.runtime.wait(500);
+    await ctx.player.mine(pos(4, 72, 0), { timeout: "8s" });
+    await ctx.runtime.wait(300);
+    for (let x = 3; x <= 5; x++) {
+      for (let z = -1; z <= 1; z++) {
+        const state = await ctx.world.block({ x, y: 72, z });
+        if (state.id !== "minecraft:air") {
+          throw new Error(`Expected the floor plane to be cleared at ${x} 72 ${z}, found ${state.id}`);
+        }
+      }
+    }
+
+    await ctx.commands.run("/kill @e[type=minecraft:item,distance=..16]");
+  });
+
+  test("hammer drops use the hammer's enchantments and tier", async (ctx) => {
+    await prepare(ctx);
+    const version = await minecraftVersion(ctx);
+
+    await ctx.commands.run("/gamemode survival");
+    await ctx.commands.run("/kill @e[type=minecraft:item,distance=..16]");
+    await ctx.world.fill({ x: 4, y: 72, z: -1 }, { x: 4, y: 74, z: 1 }, "arcanearmory:ruby_ore");
+    await ctx.commands.assert(`/item replace entity @s weapon.mainhand with ${silkTouch(version, "arcanearmory:ruby_hammer")}`);
+    await ctx.player.teleport({ x: 1.5, y: 73, z: 0.5 });
+    await ctx.player.lookAt({ x: 4.5, y: 73.5, z: 0.5 });
+    await ctx.player.mine(pos(4, 73, 0), { timeout: "12s" });
+    await ctx.runtime.wait(500);
+    const silkCount = await collectedCount(ctx, pos(4, 73, 0), "arcanearmory:ruby_ore");
+    if (silkCount !== 9) {
+      throw new Error(`A Silk Touch hammer should drop all nine ores, dropped ${silkCount}`);
+    }
+
+    // An aetheric (stone tier) hammer cannot harvest diamond ore, so it leaves the neighbours alone.
+    await ctx.commands.run("/kill @e[type=minecraft:item,distance=..16]");
+    await ctx.world.fill({ x: 4, y: 72, z: -1 }, { x: 4, y: 74, z: 1 }, "minecraft:diamond_ore");
+    await ctx.world.setBlock({ x: 4, y: 73, z: 0 }, "minecraft:stone");
+    await ctx.commands.assert("/item replace entity @s weapon.mainhand with arcanearmory:aetheric_crystal_hammer");
+    await ctx.player.mine(pos(4, 73, 0), { timeout: "8s" });
+    await ctx.runtime.wait(300);
+    if ((await ctx.world.block({ x: 4, y: 74, z: 0 })).id !== "minecraft:diamond_ore") {
+      throw new Error("A stone-tier hammer should not break diamond ore around the target");
+    }
+    await ctx.commands.run("/kill @e[type=minecraft:item,distance=..16]");
   });
 
   test("armor equips by use and pickaxes mine stone as tools", async (ctx) => {
@@ -274,17 +395,85 @@ describe("Arcane Armory registry parity", () => {
     await ctx.commands.run("/kill @e[type=minecraft:arrow,distance=..80]");
   });
 
-  test("solarflare materials fuel furnaces", async (ctx) => {
+  test("solarflare gems burn eight times longer than coal and their blocks ten times longer still", async (ctx) => {
+    await prepare(ctx);
+    const version = await minecraftVersion(ctx);
+
+    for (const [fuel, burnTime] of [["arcanearmory:solarflare_gem", 2400], ["arcanearmory:solarflare_gem_block", 24000]] as const) {
+      await ctx.commands.run("/setblock 14 73 0 minecraft:air");
+      await ctx.commands.run("/setblock 14 73 0 minecraft:furnace[facing=north]");
+      await ctx.commands.assert("/item replace block 14 73 0 container.0 with minecraft:sand 1");
+      await ctx.commands.assert(`/item replace block 14 73 0 container.1 with ${fuel} 1`);
+      await ctx.runtime.wait(1500);
+
+      await ctx.commands.assert("/execute if block 14 73 0 minecraft:furnace[lit=true]");
+      await assertFurnaceFuelDuration(ctx, version, burnTime);
+    }
+    await ctx.commands.run("/setblock 14 73 0 minecraft:air");
+  });
+
+  test("bows reach full power after a one-second draw and wear by one per shot", async (ctx) => {
+    await prepare(ctx);
+    const version = await minecraftVersion(ctx);
+
+    await ctx.commands.run("/gamemode survival");
+    await ctx.commands.run("/fill 10 71 -2 22 71 18 minecraft:stone replace");
+    await ctx.commands.run("/fill 10 72 -2 22 82 18 minecraft:air replace");
+    await ctx.player.teleport({ x: 12.5, y: 73, z: 0.5 });
+    await ctx.player.lookAt({ x: 12.5, y: 78, z: 18.5 });
+    await ctx.commands.assert("/item replace entity @s hotbar.0 with arcanearmory:ruby_bow");
+    await ctx.commands.assert("/item replace entity @s hotbar.1 with minecraft:arrow 8");
+    await ctx.player.inventory().selectHotbar(0);
+
+    for (const [drawMs, critical] of [[1300, true], [300, false]] as const) {
+      await ctx.commands.run("/kill @e[type=minecraft:arrow,distance=..80]");
+      await ctx.player.holdUse(true);
+      await ctx.runtime.wait(drawMs);
+      await ctx.player.holdUse(false);
+      await ctx.entities.query({ origin: await ctx.player.position(), radius: 80, type: "minecraft:arrow" })
+        .waitForCountAtLeast(1, { timeout: "3s", interval: "50ms" });
+      const crit = await ctx.commands.run(
+        "/execute if entity @e[type=minecraft:arrow,distance=..80,limit=1,sort=nearest,nbt={crit:1b}]",
+        { requireSuccess: false },
+      );
+      if (crit.success !== critical) {
+        throw new Error(`A ${drawMs}ms draw should ${critical ? "" : "not "}fire a full-power arrow`);
+      }
+    }
+    await assertHeldDamage(ctx, version, "arcanearmory:ruby_bow", 2);
+    await ctx.commands.run("/kill @e[type=minecraft:arrow,distance=..80]");
+  });
+
+  test("axes disable Arcane shields", async (ctx) => {
     await prepare(ctx);
 
-    await ctx.commands.run("/setblock 14 73 0 minecraft:furnace[facing=north]");
-    await ctx.commands.assert("/item replace block 14 73 0 container.0 with minecraft:sand 1");
-    await ctx.commands.assert("/item replace block 14 73 0 container.1 with arcanearmory:solarflare_gem 1");
-
-    await ctx.runtime.wait(1500);
-
-    await ctx.commands.assert("/execute if block 14 73 0 minecraft:furnace[lit=true]");
-    await ctx.commands.run("/setblock 14 73 0 minecraft:air");
+    await ctx.commands.run("/difficulty normal");
+    await ctx.commands.run("/gamemode survival");
+    await ctx.commands.run("/kill @e[type=minecraft:vindicator]");
+    await ctx.commands.assert("/item replace entity @s weapon.offhand with arcanearmory:titanium_shield");
+    await ctx.player.teleport({ x: 4.5, y: 72, z: 0.5 });
+    await ctx.player.lookAt({ x: 6.5, y: 72.9, z: 0.5 });
+    await ctx.player.holdUse(true);
+    try {
+      await ctx.runtime.wait(400);
+      await ctx.commands.assert("/summon minecraft:vindicator 6.5 72 0.5");
+      let disabled = false;
+      for (let attempt = 0; attempt < 40 && !disabled; attempt++) {
+        await ctx.runtime.wait(250);
+        disabled = (await ctx.player.pose()).blocking === false;
+      }
+      if (!disabled) {
+        throw new Error("The vindicator's axe never disabled the raised shield");
+      }
+      await ctx.commands.run("/kill @e[type=minecraft:vindicator]");
+      await ctx.runtime.wait(500);
+      if ((await ctx.player.pose()).blocking) {
+        throw new Error("A disabled shield should not block again right away");
+      }
+    } finally {
+      await ctx.player.holdUse(false);
+      await ctx.commands.run("/kill @e[type=minecraft:vindicator]");
+    }
   });
 });
 
@@ -298,8 +487,41 @@ async function prepare(ctx: TeaKitTestContext) {
     inventory: "clear",
   });
   await ctx.commands.run("/tp @s 0.5 72 0.5");
+  await loadTestArea(ctx);
   await ctx.commands.run("/fill -2 71 -2 6 71 2 minecraft:stone replace");
   await ctx.commands.run("/fill -2 72 -2 6 76 2 minecraft:air replace");
+}
+
+// The player picks drops up almost at once, so count both the ground and the inventory.
+async function collectedCount(ctx: TeaKitTestContext, at: BlockPos, item: string): Promise<number> {
+  const ground = await ctx.loot.near(at, { item: item as `${string}:${string}`, radius: 6 }).list();
+  const inventory = await ctx.player.inventory();
+  const held = inventory.items.filter((stack) => (stack["itemId"] ?? stack.id) === item);
+  return [...ground, ...held].reduce((total, stack) => total + (stack.count ?? 1), 0);
+}
+
+async function minecraftVersion(ctx: TeaKitTestContext): Promise<string> {
+  return (await ctx.runtime.health()).minecraftVersion ?? "";
+}
+
+function silkTouch(version: string, tool: string): string {
+  if (atLeast(version, "1.21.5")) {
+    return `${tool}[minecraft:enchantments={"minecraft:silk_touch":1}]`;
+  }
+  if (atLeast(version, "1.20.5")) {
+    return `${tool}[minecraft:enchantments={levels:{"minecraft:silk_touch":1}}]`;
+  }
+  return `${tool}{Enchantments:[{id:"minecraft:silk_touch",lvl:1s}]}`;
+}
+
+async function assertFurnaceFuelDuration(ctx: TeaKitTestContext, version: string, ticks: number) {
+  const field = atLeast(version, "1.21.2") ? "lit_total_time" : "BurnTime";
+  await ctx.commands.run("/scoreboard objectives remove aa_fuel", { requireSuccess: false });
+  await ctx.commands.assert("/scoreboard objectives add aa_fuel dummy");
+  await ctx.commands.assert(`/execute store result score #fuel aa_fuel run data get block 14 73 0 ${field}`);
+  // The pre-1.21.2 field counts down, so allow for the ticks spent getting here.
+  await ctx.commands.assert(`/execute if score #fuel aa_fuel matches ${ticks - 100}..${ticks}`);
+  await ctx.commands.run("/scoreboard objectives remove aa_fuel", { requireSuccess: false });
 }
 
 async function assertItem(ctx: TeaKitTestContext, slot: string, item: string, _legacyNbt: string) {
@@ -375,4 +597,23 @@ function commandOutput(result: unknown): string {
   }
 
   return JSON.stringify(result);
+}
+
+// A normal world spawns the player away from the test area, so keep its chunks loaded.
+async function loadTestArea(ctx: TeaKitTestContext) {
+  await ctx.commands.run("/forceload add -16 -16 47 15");
+  const corners = ["-16 0 -16", "47 0 -16", "-16 0 15", "47 0 15"];
+  for (let attempt = 0; attempt < 60; attempt++) {
+    let loaded = true;
+    for (const corner of corners) {
+      // Block checks fail on unloaded chunks, so one of these succeeds only once the chunk loads.
+      loaded &&= (await ctx.commands.run(`/execute if block ${corner} minecraft:air`, { requireSuccess: false })).success === true
+        || (await ctx.commands.run(`/execute unless block ${corner} minecraft:air`, { requireSuccess: false })).success === true;
+    }
+    if (loaded) {
+      return;
+    }
+    await ctx.runtime.wait(250);
+  }
+  throw new Error("The test area did not load");
 }

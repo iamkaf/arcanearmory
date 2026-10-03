@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_shadow_crystal"
   },
-  "result": "arcanearmory:shadow_crystal"
+  "result": {
+    "id": "arcanearmory:shadow_crystal"
+  }
 }

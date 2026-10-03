@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:deepslate_topaz_ore"
   },
-  "result": "arcanearmory:topaz"
+  "result": {
+    "id": "arcanearmory:topaz"
+  }
 }

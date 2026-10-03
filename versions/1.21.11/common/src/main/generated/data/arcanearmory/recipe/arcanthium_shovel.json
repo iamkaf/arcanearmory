@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:arcanthium_ingot"
+  },
+  "pattern": [
+    "X",
+    "O",
+    "O"
+  ],
+  "result": {
+    "id": "arcanearmory:arcanthium_shovel"
+  },
+  "show_notification": true
+}
