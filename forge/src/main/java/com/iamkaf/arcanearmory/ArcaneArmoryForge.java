@@ -99,6 +99,8 @@ public class ArcaneArmoryForge {
             @Override
             public void fillItemList(NonNullList<ItemStack> items) {
                 items.addAll(ArcaneArmoryCreativeTab.items());
+                // Lets items that pick this tab themselves, such as the optional guide book, add their stacks.
+                super.fillItemList(items);
             }
         };
     }

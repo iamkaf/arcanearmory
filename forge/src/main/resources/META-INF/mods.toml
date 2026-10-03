@@ -27,3 +27,9 @@ mandatory = true
 versionRange = "[${amber_version},)"
 ordering = "BEFORE"
 side = "BOTH"
+[[dependencies.${mod_id}]]
+modId = "modonomicon"
+mandatory = false
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"

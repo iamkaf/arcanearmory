@@ -83,6 +83,7 @@ public final class ArcaneArmoryLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("commands." + ArcaneArmoryConstants.MOD_ID + ".meteor.falling", "A meteor is falling toward %s, %s, %s");
         translationBuilder.add("commands." + ArcaneArmoryConstants.MOD_ID + ".meteor.no_ground", "No open ground for a meteor nearby");
         translationBuilder.add("commands." + ArcaneArmoryConstants.MOD_ID + ".meteor.overworld_only", "Meteors only fall in the Overworld");
+        ArcaneCompendium.english().forEach(translationBuilder::add);
 
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();
