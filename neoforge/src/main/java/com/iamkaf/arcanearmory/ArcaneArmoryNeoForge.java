@@ -3,6 +3,7 @@ package com.iamkaf.arcanearmory;
 //? if <26
 import com.iamkaf.arcanearmory.content.ArcaneArmoryTradeOffers;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
+//? if <26.3
 import com.iamkaf.arcanearmory.content.ArcaneArmoryFuels;
 //? if >=1.21.11 && <26 {
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+//? if <26.3
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 //? if <26
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
@@ -28,6 +30,7 @@ public class ArcaneArmoryNeoForge {
         //? if <1.21.2
         eventBus.addListener(ArcaneArmoryNeoForgeClient::clientSetup);
         eventBus.addListener(ArcaneArmoryNeoForge::buildCreativeTab);
+        //? if <26.3
         NeoForge.EVENT_BUS.addListener(ArcaneArmoryNeoForge::fuelBurnTime);
         //? if <26
         NeoForge.EVENT_BUS.addListener(ArcaneArmoryNeoForge::villagerTrades);
@@ -51,10 +54,12 @@ public class ArcaneArmoryNeoForge {
         }
     }
 
+    //? if <26.3 {
     private static void fuelBurnTime(FurnaceFuelBurnTimeEvent event) {
         int burnTime = ArcaneArmoryFuels.burnTime(event.getItemStack());
         if (burnTime > 0) {
             event.setBurnTime(burnTime);
         }
     }
+    //?}
 }

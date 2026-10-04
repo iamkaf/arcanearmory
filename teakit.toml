@@ -29,6 +29,28 @@ minecraft = "26.3"
 tasks = [":fabric:26.3:runClient"]
 gameDirectory = "fabric/versions/26.3/runs/client"
 
+[nodes."26.3-forge"]
+loader = "forge"
+minecraft = "26.3"
+tasks = [":forge:26.3:runClient"]
+gameDirectory = "forge/versions/26.3/run"
+
+[nodes."26.3-forge".environment]
+GLFW_PLATFORM = "x11"
+XDG_SESSION_TYPE = "x11"
+WAYLAND_DISPLAY = ""
+
+[nodes."26.3-neoforge"]
+loader = "neoforge"
+minecraft = "26.3"
+tasks = [":neoforge:26.3:runClient"]
+gameDirectory = "neoforge/versions/26.3/run"
+
+[nodes."26.3-neoforge".environment]
+GLFW_PLATFORM = "x11"
+XDG_SESSION_TYPE = "x11"
+WAYLAND_DISPLAY = ""
+
 [nodes."26.2-fabric"]
 loader = "fabric"
 minecraft = "26.2"
