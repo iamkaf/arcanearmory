@@ -3,6 +3,7 @@ package com.iamkaf.arcanearmory;
 //? if <26
 import com.iamkaf.arcanearmory.content.ArcaneArmoryTradeOffers;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
+//? if <26.3
 import com.iamkaf.arcanearmory.content.ArcaneArmoryFuels;
 import com.iamkaf.arcanearmory.content.ArcaneTraits;
 import com.iamkaf.amber.api.event.v1.events.common.ServerTickEvents;
@@ -16,6 +17,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+//? if <26.3
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 //? if <26
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
@@ -33,6 +35,7 @@ public class ArcaneArmoryNeoForge {
         //? if <1.21.2
         eventBus.addListener(ArcaneArmoryNeoForgeClient::clientSetup);
         eventBus.addListener(ArcaneArmoryNeoForge::buildCreativeTab);
+        //? if <26.3
         NeoForge.EVENT_BUS.addListener(ArcaneArmoryNeoForge::fuelBurnTime);
         NeoForge.EVENT_BUS.addListener((ItemTooltipEvent event) -> ArcaneTraits.appendTooltip(event.getItemStack(), event.getToolTip()));
         ServerTickEvents.END_SERVER_TICK.register(() -> {
@@ -63,10 +66,12 @@ public class ArcaneArmoryNeoForge {
         }
     }
 
+    //? if <26.3 {
     private static void fuelBurnTime(FurnaceFuelBurnTimeEvent event) {
         int burnTime = ArcaneArmoryFuels.burnTime(event.getItemStack());
         if (burnTime > 0) {
             event.setBurnTime(burnTime);
         }
     }
+    //?}
 }
