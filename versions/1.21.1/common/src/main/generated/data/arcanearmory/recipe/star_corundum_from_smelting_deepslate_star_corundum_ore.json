@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:deepslate_star_corundum_ore"
   },
-  "result": "arcanearmory:star_corundum"
+  "result": {
+    "id": "arcanearmory:star_corundum"
+  }
 }

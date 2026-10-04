@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_bloodfire_garnet"
   },
-  "result": "arcanearmory:bloodfire_garnet"
+  "result": {
+    "id": "arcanearmory:bloodfire_garnet"
+  }
 }

@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_chrysoberyl"
   },
-  "result": "arcanearmory:chrysoberyl"
+  "result": {
+    "id": "arcanearmory:chrysoberyl"
+  }
 }

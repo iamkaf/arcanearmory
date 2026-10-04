@@ -8,6 +8,8 @@
     "arcanearmory:solarflare_gem_ore",
     "arcanearmory:deepslate_solarflare_gem_ore",
     "arcanearmory:bloodfire_garnet_ore",
-    "arcanearmory:deepslate_bloodfire_garnet_ore"
+    "arcanearmory:deepslate_bloodfire_garnet_ore",
+    "arcanearmory:void_obsidian_fragment_ore",
+    "arcanearmory:deepslate_void_obsidian_fragment_ore"
   ]
 }
