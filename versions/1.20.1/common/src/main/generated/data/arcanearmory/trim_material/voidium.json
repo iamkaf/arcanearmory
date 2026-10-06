@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_voidium",
+  "description": {
+    "color": "#BC00E0",
+    "translate": "trim_material.arcanearmory.voidium"
+  },
+  "ingredient": "arcanearmory:voidium_ingot",
+  "item_model_index": 0.027
+}

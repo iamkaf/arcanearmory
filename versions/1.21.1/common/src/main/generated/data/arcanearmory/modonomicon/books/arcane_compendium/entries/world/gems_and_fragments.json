@@ -1,0 +1,32 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:world",
+  "description": "book.arcanearmory.arcane_compendium.world.gems_and_fragments.description",
+  "icon": "arcanearmory:frost_diamond",
+  "id": "arcanearmory:world/gems_and_fragments",
+  "name": "book.arcanearmory.arcane_compendium.world.gems_and_fragments.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "about",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.world.gems_and_fragments.about.text",
+      "title": "book.arcanearmory.arcane_compendium.world.gems_and_fragments.about.title"
+    },
+    {
+      "type": "modonomicon:text",
+      "id": "uses",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.world.gems_and_fragments.uses.text",
+      "title": "book.arcanearmory.arcane_compendium.world.gems_and_fragments.uses.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipe",
+      "recipe_id_1": "arcanearmory:ice"
+    }
+  ],
+  "sort_number": 0,
+  "x": -4,
+  "y": -2
+}

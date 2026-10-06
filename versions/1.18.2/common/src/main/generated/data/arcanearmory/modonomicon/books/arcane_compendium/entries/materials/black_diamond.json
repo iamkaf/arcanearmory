@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/black_diamond",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.black_diamond.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.black_diamond.description",
+  "icon": "arcanearmory:black_diamond",
+  "x": 2,
+  "y": -2,
+  "sort_number": 3,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.black_diamond.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.black_diamond.about.text",
+      "item": {
+        "item": "arcanearmory:black_diamond"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:black_diamond_sword",
+      "recipe_id_2": "arcanearmory:black_diamond_chestplate"
+    }
+  ]
+}

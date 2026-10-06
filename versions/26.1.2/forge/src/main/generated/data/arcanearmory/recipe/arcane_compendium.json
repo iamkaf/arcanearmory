@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "forge:condition": {
+    "type": "forge:mod_loaded",
+    "modid": "modonomicon"
+  },
+  "ingredients": [
+    "minecraft:book",
+    "arcanearmory:aetheric_crystal"
+  ],
+  "result": {
+    "components": {
+      "modonomicon:book_id": "arcanearmory:arcane_compendium"
+    },
+    "id": "modonomicon:modonomicon"
+  }
+}

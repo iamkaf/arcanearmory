@@ -1,0 +1,20 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:equipment",
+  "description": "book.arcanearmory.arcane_compendium.equipment.trims.description",
+  "icon": "minecraft:coast_armor_trim_smithing_template",
+  "id": "arcanearmory:equipment/trims",
+  "name": "book.arcanearmory.arcane_compendium.equipment.trims.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "about",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.equipment.trims.about.text",
+      "title": "book.arcanearmory.arcane_compendium.equipment.trims.about.title"
+    }
+  ],
+  "sort_number": 3,
+  "x": 2,
+  "y": -2
+}

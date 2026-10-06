@@ -1,0 +1,26 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:materials",
+  "description": "book.arcanearmory.arcane_compendium.materials.bloodfire_garnet.description",
+  "icon": "arcanearmory:bloodfire_garnet",
+  "id": "arcanearmory:materials/bloodfire_garnet",
+  "name": "book.arcanearmory.arcane_compendium.materials.bloodfire_garnet.name",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "item": "arcanearmory:bloodfire_garnet",
+      "text": "book.arcanearmory.arcane_compendium.materials.bloodfire_garnet.about.text",
+      "title": "book.arcanearmory.arcane_compendium.materials.bloodfire_garnet.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:bloodfire_garnet_sword",
+      "recipe_id_2": "arcanearmory:bloodfire_garnet_chestplate"
+    }
+  ],
+  "sort_number": 8,
+  "x": 2,
+  "y": 0
+}

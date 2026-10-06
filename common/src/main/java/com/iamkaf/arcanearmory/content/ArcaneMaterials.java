@@ -41,7 +41,7 @@ public final class ArcaneMaterials {
                     armor(825, 1, 3, 2, 1, 22, 0, 0)),
             equipment("titanium", "Titanium", true, true, true,
                     tool(1200, 1, 4, 5, 3, 7, 10),
-                    armor(1400, 2, 8, 5, 2, 10, 2, 0)),
+                    armor(1400, 2, 8, 5, 2, 10, 2, 0.1F)),
             equipment("amber", "Amber", false, true, false,
                     tool(250, 2, 4, 2, 2, 6, 14),
                     armor(1200, 2, 4, 3, 2, 14, 0, 0)),

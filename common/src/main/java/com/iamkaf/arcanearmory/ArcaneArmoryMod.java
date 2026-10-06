@@ -3,6 +3,8 @@ package com.iamkaf.arcanearmory;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryLoot;
+import com.iamkaf.arcanearmory.content.ArcaneTraits;
+import com.iamkaf.arcanearmory.meteor.ArcaneArmoryMeteors;
 import org.jetbrains.annotations.Nullable;
 
 public final class ArcaneArmoryMod {
@@ -18,5 +20,7 @@ public final class ArcaneArmoryMod {
         ArcaneArmoryContent.init();
         ArcaneArmoryCreativeTab.init();
         ArcaneArmoryLoot.init();
+        ArcaneTraits.init();
+        ArcaneArmoryMeteors.init();
     }
 }

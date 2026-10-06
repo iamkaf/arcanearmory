@@ -1,0 +1,33 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "minecraft:trim_base",
+      "permutations": {
+        "arcanearmory_aetheric_crystal": "arcanearmory:trim/aetheric_crystal",
+        "arcanearmory_amber": "arcanearmory:trim/amber",
+        "arcanearmory_aquamarine": "arcanearmory:trim/aquamarine",
+        "arcanearmory_arcanthium": "arcanearmory:trim/arcanthium",
+        "arcanearmory_black_diamond": "arcanearmory:trim/black_diamond",
+        "arcanearmory_bloodfire_garnet": "arcanearmory:trim/bloodfire_garnet",
+        "arcanearmory_chrysoberyl": "arcanearmory:trim/chrysoberyl",
+        "arcanearmory_coolpper": "arcanearmory:trim/coolpper",
+        "arcanearmory_frost_diamond": "arcanearmory:trim/frost_diamond",
+        "arcanearmory_ruby": "arcanearmory:trim/ruby",
+        "arcanearmory_sapphire": "arcanearmory:trim/sapphire",
+        "arcanearmory_shadow_crystal": "arcanearmory:trim/shadow_crystal",
+        "arcanearmory_solarflare_gem": "arcanearmory:trim/solarflare_gem",
+        "arcanearmory_star_corundum": "arcanearmory:trim/star_corundum",
+        "arcanearmory_titanium": "arcanearmory:trim/titanium",
+        "arcanearmory_topaz": "arcanearmory:trim/topaz",
+        "arcanearmory_voidium": "arcanearmory:trim/voidium"
+      },
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
+      ]
+    }
+  ]
+}

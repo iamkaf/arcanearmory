@@ -1,0 +1,26 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:equipment",
+  "description": "book.arcanearmory.arcane_compendium.equipment.bows.description",
+  "icon": "arcanearmory:ruby_bow",
+  "id": "arcanearmory:equipment/bows",
+  "name": "book.arcanearmory.arcane_compendium.equipment.bows.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "about",
+      "show_title_separator": true,
+      "text": "book.arcanearmory.arcane_compendium.equipment.bows.about.text",
+      "title": "book.arcanearmory.arcane_compendium.equipment.bows.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:ruby_bow",
+      "recipe_id_2": "arcanearmory:aetheric_crystal_bow"
+    }
+  ],
+  "sort_number": 1,
+  "x": -2,
+  "y": -2
+}

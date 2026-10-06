@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:materials",
+  "description": "book.arcanearmory.arcane_compendium.materials.titanium.description",
+  "icon": "arcanearmory:titanium_ingot",
+  "id": "arcanearmory:materials/titanium",
+  "name": "book.arcanearmory.arcane_compendium.materials.titanium.name",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "item": {
+        "item": "arcanearmory:titanium_ingot"
+      },
+      "text": "book.arcanearmory.arcane_compendium.materials.titanium.about.text",
+      "title": "book.arcanearmory.arcane_compendium.materials.titanium.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:titanium_sword",
+      "recipe_id_2": "arcanearmory:titanium_chestplate"
+    }
+  ],
+  "sort_number": 11,
+  "x": -2,
+  "y": 2
+}

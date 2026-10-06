@@ -1,0 +1,27 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:world/meteors",
+  "category": "arcanearmory:world",
+  "name": "book.arcanearmory.arcane_compendium.world.meteors.name",
+  "description": "book.arcanearmory.arcane_compendium.world.meteors.description",
+  "icon": "arcanearmory:meteorite",
+  "x": -2,
+  "y": -2,
+  "sort_number": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "id": "craters",
+      "title": "book.arcanearmory.arcane_compendium.world.meteors.craters.title",
+      "text": "book.arcanearmory.arcane_compendium.world.meteors.craters.text",
+      "show_title_separator": true
+    },
+    {
+      "type": "modonomicon:text",
+      "id": "falling",
+      "title": "book.arcanearmory.arcane_compendium.world.meteors.falling.title",
+      "text": "book.arcanearmory.arcane_compendium.world.meteors.falling.text",
+      "show_title_separator": true
+    }
+  ]
+}

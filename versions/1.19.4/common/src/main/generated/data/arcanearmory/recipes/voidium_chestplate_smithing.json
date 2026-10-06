@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "arcanearmory:voidium_ingot"
+  },
+  "base": {
+    "item": "arcanearmory:black_diamond_chestplate"
+  },
+  "result": {
+    "item": "arcanearmory:voidium_chestplate"
+  }
+}

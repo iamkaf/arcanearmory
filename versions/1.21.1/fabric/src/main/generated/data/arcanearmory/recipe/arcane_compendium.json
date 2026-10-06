@@ -1,0 +1,26 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "modonomicon"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "arcanearmory:aetheric_crystal"
+    }
+  ],
+  "result": {
+    "components": {
+      "modonomicon:book_id": "arcanearmory:arcane_compendium"
+    },
+    "id": "modonomicon:modonomicon"
+  }
+}

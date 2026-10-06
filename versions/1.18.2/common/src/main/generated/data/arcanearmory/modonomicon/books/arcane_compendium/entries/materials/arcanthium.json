@@ -1,0 +1,28 @@
+{
+  "type": "modonomicon:content",
+  "id": "arcanearmory:materials/arcanthium",
+  "category": "arcanearmory:materials",
+  "name": "book.arcanearmory.arcane_compendium.materials.arcanthium.name",
+  "description": "book.arcanearmory.arcane_compendium.materials.arcanthium.description",
+  "icon": "arcanearmory:arcanthium_ingot",
+  "x": 2,
+  "y": 2,
+  "sort_number": 13,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "title": "book.arcanearmory.arcane_compendium.materials.arcanthium.about.title",
+      "text": "book.arcanearmory.arcane_compendium.materials.arcanthium.about.text",
+      "item": {
+        "item": "arcanearmory:arcanthium_ingot"
+      }
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipes",
+      "recipe_id_1": "arcanearmory:arcanthium_from_alloying",
+      "recipe_id_2": "arcanearmory:arcanthium_sword"
+    }
+  ]
+}

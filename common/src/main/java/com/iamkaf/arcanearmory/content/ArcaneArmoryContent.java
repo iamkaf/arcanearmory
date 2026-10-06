@@ -66,12 +66,23 @@ public final class ArcaneArmoryContent {
         REGISTERED_BLOCKS.put("potted_arcanthe", BLOCKS.register("potted_arcanthe",
                 key -> new FlowerPotBlock(arcanthe.get(), copyOf(Blocks.POTTED_ALLIUM, key))));
 
+        RegistrySupplier<Block> meteorite = BLOCKS.register("meteorite",
+                key -> new Block(copyOf(Blocks.DEEPSLATE_IRON_ORE, key)));
+        REGISTERED_BLOCKS.put("meteorite", meteorite);
+        REGISTERED_ITEMS.put("meteorite", ITEMS.register("meteorite",
+                key -> new BlockItem(meteorite.get(), itemProperties(key))));
+
         for (ArcaneMaterial material : ArcaneMaterials.ALL) {
             REGISTERED_MATERIALS.add(registerMaterial(material));
         }
 
         // The original alloy forge turned raw amber into this ingot; nothing consumes it.
         REGISTERED_ITEMS.put("amber_ingot", ITEMS.register("amber_ingot", key -> new Item(itemProperties(key))));
+
+        //? if >=1.20 {
+        REGISTERED_ITEMS.put(VoidiumUpgrade.TEMPLATE_ID, ITEMS.register(VoidiumUpgrade.TEMPLATE_ID,
+                key -> VoidiumUpgrade.template(itemProperties(key))));
+        //?}
     }
 
     private ArcaneArmoryContent() {
@@ -168,6 +179,14 @@ public final class ArcaneArmoryContent {
             properties.cookingFuel(ResourceKey.create(Registries.CONTEXT_INT_PROVIDER, key.identifier()));
         }
         *///?}
+        //? if >=1.21.5 {
+        String itemId = key.identifier().getPath();
+        for (ArcaneTrimMaterials.Trim trim : ArcaneTrimMaterials.ALL) {
+            if (trim.ingredientId().equals(itemId)) {
+                properties.trimMaterial(ResourceKey.create(Registries.TRIM_MATERIAL, ArcaneArmoryConstants.resource(trim.id())));
+            }
+        }
+        //?}
         if (maxDamage > 0) {
             properties.durability(maxDamage);
         }

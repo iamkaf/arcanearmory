@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "arcanearmory:voidium_ingot",
+  "base": "arcanearmory:black_diamond_chestplate",
+  "result": {
+    "id": "arcanearmory:voidium_chestplate"
+  },
+  "template": "arcanearmory:voidium_upgrade_smithing_template"
+}

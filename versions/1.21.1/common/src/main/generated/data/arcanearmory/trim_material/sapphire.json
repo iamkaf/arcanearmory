@@ -1,0 +1,9 @@
+{
+  "asset_name": "arcanearmory_sapphire",
+  "description": {
+    "color": "#43B7F3",
+    "translate": "trim_material.arcanearmory.sapphire"
+  },
+  "ingredient": "arcanearmory:sapphire",
+  "item_model_index": 0.012
+}

@@ -1,0 +1,27 @@
+{
+  "type": "modonomicon:content",
+  "category": "arcanearmory:world",
+  "description": "book.arcanearmory.arcane_compendium.world.arcanthe.description",
+  "icon": "arcanearmory:arcanthe",
+  "id": "arcanearmory:world/arcanthe",
+  "name": "book.arcanearmory.arcane_compendium.world.arcanthe.name",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "id": "about",
+      "item": {
+        "item": "arcanearmory:arcanthe"
+      },
+      "text": "book.arcanearmory.arcane_compendium.world.arcanthe.about.text",
+      "title": "book.arcanearmory.arcane_compendium.world.arcanthe.about.title"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "id": "recipe",
+      "recipe_id_1": "arcanearmory:arcanthium_from_alloying"
+    }
+  ],
+  "sort_number": 2,
+  "x": 0,
+  "y": -2
+}
