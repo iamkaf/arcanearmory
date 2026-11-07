@@ -1,0 +1,48 @@
+name: Publish Maven Artifacts
+
+# The run name carries the build id, so the build host finds exactly the run it dispatched.
+run-name: Publish Maven artifacts ${{ inputs.build-id }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Full commit SHA to publish. Leave blank to use the selected ref.
+        required: false
+        type: string
+      versions:
+        description: Comma-separated Minecraft versions from versions/<version>. Leave blank to publish all.
+        required: false
+        type: string
+      loaders:
+        description: Comma-separated loaders. Leave blank to publish every loader.
+        required: false
+        type: string
+      common:
+        description: Publish the Common artifact of each version.
+        required: false
+        type: boolean
+        default: true
+      build-id:
+        description: Identifier the build host knows this run by. Leave blank by hand.
+        required: false
+        type: string
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    uses: iamkaf/multiloader-conventions/.github/workflows/publish-maven.yml@1c5db31d905f1d10a8a13e835483f9da04d172dc
+    with:
+      commit: ${{ inputs.commit }}
+      versions: ${{ inputs.versions }}
+      loaders: ${{ inputs.loaders }}
+      common: ${{ inputs.common }}
+    secrets:
+      MAVEN_PUBLISH_USERNAME: ${{ secrets.MAVEN_PUBLISH_USERNAME }}
+      MAVEN_PUBLISH_PASSWORD: ${{ secrets.MAVEN_PUBLISH_PASSWORD }}
