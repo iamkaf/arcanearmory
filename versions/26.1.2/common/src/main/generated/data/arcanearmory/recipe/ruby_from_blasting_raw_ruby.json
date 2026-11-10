@@ -3,8 +3,8 @@
   "cookingtime": 100,
   "experience": 0.45,
   "group": "ruby",
-  "ingredient": {
-    "item": "arcanearmory:raw_ruby"
-  },
-  "result": "arcanearmory:ruby"
+  "ingredient": "arcanearmory:raw_ruby",
+  "result": {
+    "id": "arcanearmory:ruby"
+  }
 }

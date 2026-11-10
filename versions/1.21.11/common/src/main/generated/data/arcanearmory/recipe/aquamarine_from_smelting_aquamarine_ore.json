@@ -4,8 +4,8 @@
   "cookingtime": 200,
   "experience": 0.45,
   "group": "aquamarine",
-  "ingredient": {
-    "item": "arcanearmory:aquamarine_ore"
-  },
-  "result": "arcanearmory:aquamarine"
+  "ingredient": "arcanearmory:aquamarine_ore",
+  "result": {
+    "id": "arcanearmory:aquamarine"
+  }
 }

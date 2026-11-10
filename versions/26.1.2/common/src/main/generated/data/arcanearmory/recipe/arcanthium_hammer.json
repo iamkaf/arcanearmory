@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:stick",
+    "X": "arcanearmory:arcanthium_ingot"
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    " O "
+  ],
+  "result": {
+    "id": "arcanearmory:arcanthium_hammer"
+  },
+  "show_notification": true
+}

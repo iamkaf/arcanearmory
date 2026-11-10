@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": [
+    "arcanearmory:nether_bloodfire_garnet_ore_placed",
+    "arcanearmory:nether_doom_fragment_ore_placed",
+    "arcanearmory:nether_shadow_crystal_ore_placed"
+  ],
+  "step": "underground_ores"
+}

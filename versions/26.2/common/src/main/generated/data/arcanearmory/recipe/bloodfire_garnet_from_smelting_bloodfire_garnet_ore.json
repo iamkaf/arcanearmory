@@ -3,8 +3,8 @@
   "cookingtime": 200,
   "experience": 0.45,
   "group": "bloodfire_garnet",
-  "ingredient": {
-    "item": "arcanearmory:bloodfire_garnet_ore"
-  },
-  "result": "arcanearmory:bloodfire_garnet"
+  "ingredient": "arcanearmory:bloodfire_garnet_ore",
+  "result": {
+    "id": "arcanearmory:bloodfire_garnet"
+  }
 }

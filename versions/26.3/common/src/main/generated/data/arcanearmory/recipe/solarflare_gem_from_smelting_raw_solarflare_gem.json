@@ -4,5 +4,7 @@
   "experience": 0.45,
   "group": "solarflare_gem",
   "ingredient": "arcanearmory:raw_solarflare_gem",
-  "result": "arcanearmory:solarflare_gem"
+  "result": {
+    "id": "arcanearmory:solarflare_gem"
+  }
 }

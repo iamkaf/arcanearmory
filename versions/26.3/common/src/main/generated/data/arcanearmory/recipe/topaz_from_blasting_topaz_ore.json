@@ -4,5 +4,7 @@
   "experience": 0.45,
   "group": "topaz",
   "ingredient": "arcanearmory:topaz_ore",
-  "result": "arcanearmory:topaz"
+  "result": {
+    "id": "arcanearmory:topaz"
+  }
 }

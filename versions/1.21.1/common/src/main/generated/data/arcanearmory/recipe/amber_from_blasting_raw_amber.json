@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_amber"
   },
-  "result": "arcanearmory:amber"
+  "result": {
+    "id": "arcanearmory:amber"
+  }
 }

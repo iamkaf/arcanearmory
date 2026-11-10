@@ -81,9 +81,7 @@ public final class ArcaneMaterial {
     public List<String> itemIds() {
         List<String> ids = new ArrayList<>();
         ids.add(materialItemId());
-        if (ore) {
-            ids.add(rawMaterialItemId());
-        }
+        ids.add(rawMaterialItemId());
         if (ingot) {
             ids.add(nuggetItemId());
         }

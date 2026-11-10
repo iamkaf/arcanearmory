@@ -4,5 +4,7 @@
   "experience": 0.45,
   "group": "titanium",
   "ingredient": "arcanearmory:titanium_ore",
-  "result": "arcanearmory:titanium_ingot"
+  "result": {
+    "id": "arcanearmory:titanium_ingot"
+  }
 }

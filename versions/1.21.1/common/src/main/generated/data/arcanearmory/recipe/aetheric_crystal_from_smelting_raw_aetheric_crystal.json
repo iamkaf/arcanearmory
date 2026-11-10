@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_aetheric_crystal"
   },
-  "result": "arcanearmory:aetheric_crystal"
+  "result": {
+    "id": "arcanearmory:aetheric_crystal"
+  }
 }

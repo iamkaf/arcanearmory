@@ -3,8 +3,8 @@
   "cookingtime": 100,
   "experience": 0.45,
   "group": "chrysoberyl",
-  "ingredient": {
-    "item": "arcanearmory:chrysoberyl_ore"
-  },
-  "result": "arcanearmory:chrysoberyl"
+  "ingredient": "arcanearmory:chrysoberyl_ore",
+  "result": {
+    "id": "arcanearmory:chrysoberyl"
+  }
 }

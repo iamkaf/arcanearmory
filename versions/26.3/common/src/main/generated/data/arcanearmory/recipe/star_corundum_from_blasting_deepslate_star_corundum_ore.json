@@ -4,5 +4,7 @@
   "experience": 0.45,
   "group": "star_corundum",
   "ingredient": "arcanearmory:deepslate_star_corundum_ore",
-  "result": "arcanearmory:star_corundum"
+  "result": {
+    "id": "arcanearmory:star_corundum"
+  }
 }

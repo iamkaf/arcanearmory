@@ -2,13 +2,13 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:alternatives",
           "children": [
             {
               "type": "minecraft:item",
+              "name": "arcanearmory:star_corundum_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -23,36 +23,27 @@
                     ]
                   }
                 }
-              ],
-              "name": "arcanearmory:star_corundum_ore"
+              ]
             },
             {
               "type": "minecraft:item",
+              "name": "arcanearmory:star_corundum",
               "functions": [
                 {
-                  "add": false,
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "max": 1.0,
-                    "min": 1.0
-                  },
-                  "function": "minecraft:set_count"
-                },
-                {
+                  "function": "minecraft:apply_bonus",
                   "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops",
-                  "function": "minecraft:apply_bonus"
+                  "formula": "minecraft:ore_drops"
                 },
                 {
                   "function": "minecraft:explosion_decay"
                 }
-              ],
-              "name": "arcanearmory:star_corundum"
+              ]
             }
           ]
         }
       ],
-      "rolls": 1.0
+      "rolls": 1.0,
+      "bonus_rolls": 0.0
     }
   ]
 }

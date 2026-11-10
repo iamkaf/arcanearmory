@@ -21,6 +21,14 @@ import java.util.concurrent.CompletableFuture;
 
 public final class ArcaneArmoryModelProvider implements DataProvider {
     private static final String MOD_ID = ArcaneArmoryConstants.MOD_ID;
+    // Vanilla's trim materials, in the order of their legacy trim_type model predicate.
+    //? if >=1.21.2 {
+    private static final List<String> TRIM_MATERIALS = List.of("quartz", "iron", "netherite", "redstone", "copper",
+            "gold", "emerald", "diamond", "lapis", "amethyst", "resin");
+    //?} else {
+    /*private static final List<String> TRIM_MATERIALS = List.of("quartz", "iron", "netherite", "redstone", "copper",
+            "gold", "emerald", "diamond", "lapis", "amethyst");
+    *///?}
 
     private final PackOutput.PathProvider blockstatePathProvider;
     private final PackOutput.PathProvider blockModelPathProvider;
@@ -48,10 +56,11 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
     public CompletableFuture<?> run(CachedOutput cache) {
         List<CompletableFuture<?>> futures = new ArrayList<>();
         block(futures, cache, "doomflare_block", blockModel("doomflare_block"));
-        block(futures, cache, "aristea", crossModel("aristea"));
-        block(futures, cache, "potted_aristea", pottedModel("aristea"));
+        block(futures, cache, "arcanthe", crossModel("arcanthe"));
+        block(futures, cache, "potted_arcanthe", pottedModel("arcanthe"));
         blockItem(futures, cache, "doomflare_block");
-        blockItem(futures, cache, "aristea");
+        item(futures, cache, "arcanthe", plantItemModel("arcanthe"), "arcanthe");
+        item(futures, cache, "amber_ingot", flatItemModel("amber_ingot"), "amber_ingot");
 
         for (ArcaneArmoryContent.RegisteredMaterial registered : ArcaneArmoryContent.registeredMaterials()) {
             ArcaneMaterial material = registered.material();
@@ -64,6 +73,8 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
                     bow(futures, cache, itemId);
                 } else if (itemId.endsWith("_shield")) {
                     shield(futures, cache, itemId);
+                } else if (isArmor(itemId)) {
+                    armor(futures, cache, itemId);
                 } else {
                     item(futures, cache, itemId, regularItemModel(itemId), itemId);
                 }
@@ -118,6 +129,47 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         futures.add(DataProvider.saveStable(cache, shieldItemDefinition(id), itemDefinitionPathProvider.json(ArcaneArmoryConstants.resource(id))));
     }
 
+    // Trimmed armor icons layer vanilla's trim overlay over the piece, as vanilla armor does.
+    private void armor(List<CompletableFuture<?>> futures, CachedOutput cache, String id) {
+        JsonObject model = regularItemModel(id);
+        //? if >=1.20 && <1.21.2 {
+        /*JsonArray overrides = new JsonArray();
+        for (int index = 0; index < TRIM_MATERIALS.size(); index++) {
+            JsonObject override = new JsonObject();
+            JsonObject predicate = new JsonObject();
+            predicate.addProperty("trim_type", (index + 1) / 10.0D);
+            override.add("predicate", predicate);
+            override.addProperty("model", MOD_ID + ":item/" + trimModelId(id, TRIM_MATERIALS.get(index)));
+            overrides.add(override);
+        }
+        model.add("overrides", overrides);
+        *///?}
+        futures.add(DataProvider.saveStable(cache, model, itemModelPathProvider.json(ArcaneArmoryConstants.resource(id))));
+        //? if >=1.20 {
+        for (String trim : TRIM_MATERIALS) {
+            futures.add(DataProvider.saveStable(cache, trimModel(id, trim),
+                    itemModelPathProvider.json(ArcaneArmoryConstants.resource(trimModelId(id, trim)))));
+        }
+        //?}
+        //? if >=1.21.2
+        futures.add(DataProvider.saveStable(cache, trimmedItemDefinition(id), itemDefinitionPathProvider.json(ArcaneArmoryConstants.resource(id))));
+    }
+
+    private static String trimModelId(String armorId, String trim) {
+        return armorId + "_" + trim + "_trim";
+    }
+
+    private static JsonObject trimModel(String armorId, String trim) {
+        String piece = armorId.substring(armorId.lastIndexOf('_') + 1);
+        JsonObject root = new JsonObject();
+        root.addProperty("parent", "minecraft:item/generated");
+        JsonObject textures = new JsonObject();
+        textures.addProperty("layer0", MOD_ID + ":item/" + armorId);
+        textures.addProperty("layer1", "minecraft:trims/items/" + piece + "_trim_" + trim);
+        root.add("textures", textures);
+        return root;
+    }
+
     private static JsonObject simpleBlockstate(String id) {
         JsonObject root = new JsonObject();
         JsonObject variants = new JsonObject();
@@ -140,6 +192,7 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
     private static JsonObject crossModel(String plant) {
         JsonObject root = new JsonObject();
         root.addProperty("parent", "minecraft:block/cross");
+        cutout(root);
         JsonObject textures = new JsonObject();
         textures.addProperty("cross", MOD_ID + ":block/" + plant);
         root.add("textures", textures);
@@ -149,8 +202,25 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
     private static JsonObject pottedModel(String plant) {
         JsonObject root = new JsonObject();
         root.addProperty("parent", "minecraft:block/flower_pot_cross");
+        cutout(root);
         JsonObject textures = new JsonObject();
         textures.addProperty("plant", MOD_ID + ":block/" + plant);
+        root.add("textures", textures);
+        return root;
+    }
+
+    // Forge and NeoForge take the cutout layer from the model; Fabric registers it in code; 26.1+ infers it.
+    private static void cutout(JsonObject model) {
+        //? if <26
+        /*model.addProperty("render_type", "minecraft:cutout");*/
+    }
+
+    // Flowers show their flat texture in the inventory, like vanilla flowers.
+    private static JsonObject plantItemModel(String plant) {
+        JsonObject root = new JsonObject();
+        root.addProperty("parent", "minecraft:item/generated");
+        JsonObject textures = new JsonObject();
+        textures.addProperty("layer0", MOD_ID + ":block/" + plant);
         root.add("textures", textures);
         return root;
     }
@@ -310,6 +380,10 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         return array;
     }
 
+    private static boolean isArmor(String id) {
+        return id.endsWith("_helmet") || id.endsWith("_chestplate") || id.endsWith("_leggings") || id.endsWith("_boots");
+    }
+
     private static boolean isHandheld(String id) {
         return id.endsWith("_sword")
                 || id.endsWith("_shovel")
@@ -379,6 +453,24 @@ public final class ArcaneArmoryModelProvider implements DataProvider {
         return root;
     }
 
+    private static JsonObject trimmedItemDefinition(String id) {
+        JsonObject model = new JsonObject();
+        model.addProperty("type", "minecraft:select");
+        model.addProperty("property", "minecraft:trim_material");
+        JsonArray cases = new JsonArray();
+        for (String trim : TRIM_MATERIALS) {
+            JsonObject trimCase = new JsonObject();
+            trimCase.addProperty("when", "minecraft:" + trim);
+            trimCase.add("model", itemModel(trimModelId(id, trim)));
+            cases.add(trimCase);
+        }
+        model.add("cases", cases);
+        model.add("fallback", itemModel(id));
+        JsonObject root = new JsonObject();
+        root.add("model", model);
+        return root;
+    }
+
     private static JsonObject shieldItemDefinition(String id) {
         JsonObject root = new JsonObject();
         JsonObject model = new JsonObject();
@@ -444,12 +536,27 @@ public final class ArcaneArmoryModelProvider implements net.minecraft.data.DataP
             if (material.shield()) {
                 shield(cache, material.id() + "_shield");
             }
+            for (String itemId : material.itemIds()) {
+                if (itemId.endsWith("_helmet") || itemId.endsWith("_chestplate") || itemId.endsWith("_leggings") || itemId.endsWith("_boots")) {
+                    armor(cache, itemId);
+                }
+            }
         }
     }
 
     @Override
     public String getName() {
-        return "Arcane Armory legacy shield models";
+        return "Arcane Armory legacy shield and armor models";
+    }
+
+    // Armor trims arrive in 1.19.4, so these replace the shared models without their trim overrides.
+    private void armor(net.minecraft.data.HashCache cache, String id) throws java.io.IOException {
+        com.google.gson.JsonObject root = new com.google.gson.JsonObject();
+        root.addProperty("parent", "minecraft:item/generated");
+        com.google.gson.JsonObject textures = new com.google.gson.JsonObject();
+        textures.addProperty("layer0", MOD_ID + ":item/" + id);
+        root.add("textures", textures);
+        net.minecraft.data.DataProvider.save(GSON, cache, root, itemModelPath(id));
     }
 
     private void shield(net.minecraft.data.HashCache cache, String id) throws java.io.IOException {

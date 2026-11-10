@@ -69,7 +69,8 @@
     "arcanearmory:amber_ore",
     "arcanearmory:deepslate_amber_ore",
     "arcanearmory:raw_amber_block",
-    "arcanearmory:aristeum_block",
-    "arcanearmory:voidium_block"
+    "arcanearmory:arcanthium_block",
+    "arcanearmory:voidium_block",
+    "arcanearmory:doomflare_block"
   ]
 }

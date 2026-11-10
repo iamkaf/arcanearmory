@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_coolpper"
   },
-  "result": "arcanearmory:coolpper_ingot"
+  "result": {
+    "id": "arcanearmory:coolpper_ingot"
+  }
 }

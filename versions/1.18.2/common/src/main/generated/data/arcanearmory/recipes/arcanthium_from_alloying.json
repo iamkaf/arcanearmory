@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanearmory:titanium_ingot"
+    },
+    {
+      "item": "arcanearmory:aetheric_crystal"
+    },
+    {
+      "tag": "arcanearmory:arcanthium_flowers"
+    },
+    {
+      "item": "minecraft:pink_dye"
+    }
+  ],
+  "result": {
+    "item": "arcanearmory:arcanthium_ingot",
+    "count": 2
+  }
+}

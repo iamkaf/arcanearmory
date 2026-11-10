@@ -34,7 +34,7 @@ If you have questions, suggestions or just want to hang out feel free to [Join o
 ## FAQ
 
 **Q: Forge?** <br />
-A: Not right now. But if you're able to do so you have my permission.
+A: Yup! Arcane Armory runs on Fabric, Forge, and NeoForge.
 
 **Q: Port to Minecraft version X?** <br />
 A: Not right now. But if you're able to do so you have my permission.

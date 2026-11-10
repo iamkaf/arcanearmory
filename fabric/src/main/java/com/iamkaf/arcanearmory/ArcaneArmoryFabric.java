@@ -1,12 +1,22 @@
 package com.iamkaf.arcanearmory;
 
 import com.iamkaf.arcanearmory.content.ArcaneArmoryContent;
+import com.iamkaf.arcanearmory.content.ArcaneArmoryCreativeTab;
 import com.iamkaf.arcanearmory.content.ArcaneArmoryFuels;
 //? if <26
 import com.iamkaf.arcanearmory.content.ArcaneArmoryTradeOffers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+//? if >=26 {
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+//?} else if >=1.20 {
+/*import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+*///?} else if >=1.19.3 {
+/*import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+*///?} else {
+/*import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+*///?}
 //? if <26
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 //? if >=26 {
@@ -35,11 +45,39 @@ public class ArcaneArmoryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ArcaneArmoryMod.init();
+        registerCreativeTab();
         //? if <26.3
         registerFuels();
         registerTrades();
         registerWorldgen();
     }
+
+    //? if >=26 {
+    private static void registerCreativeTab() {
+        CreativeModeTabEvents.modifyOutputEvent(ArcaneArmoryCreativeTab.KEY)
+                .register(output -> ArcaneArmoryCreativeTab.items().forEach(output::accept));
+    }
+    //?} else if >=1.20 {
+    /*private static void registerCreativeTab() {
+        ItemGroupEvents.modifyEntriesEvent(ArcaneArmoryCreativeTab.KEY)
+                .register(entries -> ArcaneArmoryCreativeTab.items().forEach(entries::accept));
+    }
+    *///?} else if >=1.19.3 {
+    /*private static void registerCreativeTab() {
+        FabricItemGroup.builder(ArcaneArmoryConstants.resource(ArcaneArmoryCreativeTab.ID))
+                .title(ArcaneArmoryCreativeTab.title())
+                .icon(ArcaneArmoryCreativeTab::icon)
+                .displayItems((parameters, output) -> ArcaneArmoryCreativeTab.items().forEach(output::accept))
+                .build();
+    }
+    *///?} else if <1.19.3 {
+    /*private static void registerCreativeTab() {
+        FabricItemGroupBuilder.create(ArcaneArmoryConstants.resource(ArcaneArmoryCreativeTab.ID))
+                .icon(ArcaneArmoryCreativeTab::icon)
+                .appendItems(stacks -> stacks.addAll(ArcaneArmoryCreativeTab.items()))
+                .build();
+    }
+    *///?}
 
     private static void registerTrades() {
         //? if >=1.21.11 && <26 {
@@ -95,6 +133,7 @@ public class ArcaneArmoryFabric implements ModInitializer {
         for (String feature : OVERWORLD_FEATURES) {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, placed(feature));
         }
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.LOCAL_MODIFICATIONS, placed(AMBER_GEODE));
         for (String feature : NETHER_FEATURES) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Decoration.UNDERGROUND_ORES, placed(feature));
         }
@@ -111,9 +150,10 @@ public class ArcaneArmoryFabric implements ModInitializer {
         //?}
     }
 
+    private static final String AMBER_GEODE = "amber_geode_placed";
+
     private static final String[] OVERWORLD_FEATURES = {
             "aetheric_crystal_ore_placed",
-            "amber_geode_placed",
             "aquamarine_ore_placed",
             "black_diamond_ore_placed",
             "chrysoberyl_ore_placed",

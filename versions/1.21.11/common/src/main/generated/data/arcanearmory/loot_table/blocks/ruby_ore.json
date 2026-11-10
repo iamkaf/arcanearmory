@@ -13,14 +13,16 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "enchantments": [
-                      {
-                        "enchantment": "minecraft:silk_touch",
-                        "levels": {
-                          "min": 1
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
                         }
-                      }
-                    ]
+                      ]
+                    }
                   }
                 }
               ],
@@ -29,15 +31,6 @@
             {
               "type": "minecraft:item",
               "functions": [
-                {
-                  "add": false,
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "max": 1.0,
-                    "min": 1.0
-                  },
-                  "function": "minecraft:set_count"
-                },
                 {
                   "enchantment": "minecraft:fortune",
                   "formula": "minecraft:ore_drops",
@@ -54,5 +47,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "arcanearmory:blocks/ruby_ore"
 }

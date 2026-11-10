@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:deepslate_bloodfire_garnet_ore"
   },
-  "result": "arcanearmory:bloodfire_garnet"
+  "result": {
+    "id": "arcanearmory:bloodfire_garnet"
+  }
 }

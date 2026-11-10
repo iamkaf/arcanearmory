@@ -172,6 +172,9 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
 
     private static String normalize(Path relativePath, boolean commonData) {
         String relative = relativePath.toString().replace('\\', '/');
+        //? if >=1.21 {
+        relative = relative.replace("/tags/items/", "/tags/item/").replace("/tags/blocks/", "/tags/block/");
+        //?}
         if (!commonData) {
             return relative;
         }
@@ -184,13 +187,12 @@ public final class ArcaneArmoryDataProvider implements DataProvider {
         }
         //?}
         //? if <1.20 {
-        if (relative.equals("minecraft/tags/items/trimmable_armor.json")) {
+        /*if (relative.equals("minecraft/tags/items/trimmable_armor.json")) {
             return null;
         }
-        //?}
+        *///?}
         //? if >=1.21 {
         relative = replacePrefix(relative, "arcanearmory/advancements/", "arcanearmory/advancement/");
-        relative = replacePrefix(relative, "arcanearmory/loot_tables/", "arcanearmory/loot_table/");
         //?}
         //? if >=26.3 {
         relative = replacePrefix(relative, "arcanearmory/worldgen/configured_feature/", "arcanearmory/worldgen/feature/");

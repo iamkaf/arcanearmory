@@ -45,7 +45,7 @@ public final class ArcaneMaterials {
             equipment("amber", "Amber", false, true, false,
                     tool(250, 2, 4, 2, 2, 6, 14),
                     armor(1200, 2, 4, 3, 2, 14, 0, 0)),
-            equipment("aristeum", "Aristeum", true, false, true,
+            equipment("arcanthium", "Arcanthium", true, false, true,
                     tool(1800, 4, 6, 4, 3, 9, 10),
                     armor(2200, 3, 8, 6, 3, 10, 2, 0)),
             equipment("voidium", "Voidium", true, false, true,

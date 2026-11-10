@@ -3,8 +3,8 @@
   "cookingtime": 200,
   "experience": 0.45,
   "group": "solarflare_gem",
-  "ingredient": {
-    "item": "arcanearmory:deepslate_solarflare_gem_ore"
-  },
-  "result": "arcanearmory:solarflare_gem"
+  "ingredient": "arcanearmory:deepslate_solarflare_gem_ore",
+  "result": {
+    "id": "arcanearmory:solarflare_gem"
+  }
 }

@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:deepslate_doom_fragment_ore"
   },
-  "result": "arcanearmory:doom_fragment"
+  "result": {
+    "id": "arcanearmory:doom_fragment"
+  }
 }

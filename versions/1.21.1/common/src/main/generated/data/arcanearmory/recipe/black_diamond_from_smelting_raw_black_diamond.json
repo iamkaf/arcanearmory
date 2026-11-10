@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_black_diamond"
   },
-  "result": "arcanearmory:black_diamond"
+  "result": {
+    "id": "arcanearmory:black_diamond"
+  }
 }

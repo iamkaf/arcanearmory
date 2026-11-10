@@ -4,8 +4,8 @@
   "cookingtime": 100,
   "experience": 0.45,
   "group": "amber",
-  "ingredient": {
-    "item": "arcanearmory:deepslate_amber_ore"
-  },
-  "result": "arcanearmory:amber"
+  "ingredient": "arcanearmory:deepslate_amber_ore",
+  "result": {
+    "id": "arcanearmory:amber"
+  }
 }

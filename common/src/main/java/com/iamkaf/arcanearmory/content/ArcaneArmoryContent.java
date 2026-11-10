@@ -6,13 +6,19 @@ import com.iamkaf.arcanearmory.ArcaneArmoryConstants;
 //? if >=1.19.3 {
 import net.minecraft.core.registries.Registries;
 //?} else {
-import net.minecraft.core.Registry;
-//?}
+/*import net.minecraft.core.Registry;
+*///?}
+//? if >=1.20.5
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.ArrayList;
@@ -27,20 +33,45 @@ public final class ArcaneArmoryContent {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ArcaneArmoryConstants.MOD_ID, Registries.ITEM);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ArcaneArmoryConstants.MOD_ID, Registries.BLOCK);
     //?} else {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ArcaneArmoryConstants.MOD_ID, Registry.ITEM_REGISTRY);
+    /*public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ArcaneArmoryConstants.MOD_ID, Registry.ITEM_REGISTRY);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ArcaneArmoryConstants.MOD_ID, Registry.BLOCK_REGISTRY);
-    //?}
+    *///?}
+
+    // Arcanthe carries the original release's suspicious stew effect: Speed for ten seconds.
+    //? if >=1.20.5 {
+    private static final float ARCANTHE_STEW_SECONDS = 10.0F;
+    //?} else {
+    /*private static final int ARCANTHE_STEW_SECONDS = 10;
+    *///?}
+
+    /** Blocks with transparent texture pixels that need the cutout render layer before 26.1. */
+    public static final List<String> CUTOUT_BLOCKS = List.of("arcanthe", "potted_arcanthe");
 
     private static final List<RegisteredMaterial> REGISTERED_MATERIALS = new ArrayList<>();
     private static final Map<String, RegistrySupplier<Item>> REGISTERED_ITEMS = new LinkedHashMap<>();
+    private static final Map<String, RegistrySupplier<Block>> REGISTERED_BLOCKS = new LinkedHashMap<>();
 
     static {
-        registerStandaloneBlock("doomflare_block", true);
-        registerStandaloneBlock("aristea", true);
-        registerStandaloneBlock("potted_aristea", false);
+        RegistrySupplier<Block> doomflare = BLOCKS.register("doomflare_block",
+                key -> new DoomflareBlock(copyOf(Blocks.IRON_BLOCK, key)));
+        REGISTERED_BLOCKS.put("doomflare_block", doomflare);
+        REGISTERED_ITEMS.put("doomflare_block", ITEMS.register("doomflare_block",
+                key -> new DoomflareBlockItem(doomflare.get(), itemProperties(key))));
+
+        RegistrySupplier<Block> arcanthe = BLOCKS.register("arcanthe",
+                key -> new FlowerBlock(arcantheStewEffect(), ARCANTHE_STEW_SECONDS, copyOf(Blocks.ALLIUM, key)));
+        REGISTERED_BLOCKS.put("arcanthe", arcanthe);
+        REGISTERED_ITEMS.put("arcanthe", ITEMS.register("arcanthe",
+                key -> new BlockItem(arcanthe.get(), itemProperties(key))));
+        REGISTERED_BLOCKS.put("potted_arcanthe", BLOCKS.register("potted_arcanthe",
+                key -> new FlowerPotBlock(arcanthe.get(), copyOf(Blocks.POTTED_ALLIUM, key))));
+
         for (ArcaneMaterial material : ArcaneMaterials.ALL) {
             REGISTERED_MATERIALS.add(registerMaterial(material));
         }
+
+        // The original alloy forge turned raw amber into this ingot; nothing consumes it.
+        REGISTERED_ITEMS.put("amber_ingot", ITEMS.register("amber_ingot", key -> new Item(itemProperties(key))));
     }
 
     private ArcaneArmoryContent() {
@@ -58,6 +89,10 @@ public final class ArcaneArmoryContent {
         return Optional.ofNullable(REGISTERED_ITEMS.get(id));
     }
 
+    public static Optional<RegistrySupplier<Block>> block(String id) {
+        return Optional.ofNullable(REGISTERED_BLOCKS.get(id));
+    }
+
     public static void init() {
         BLOCKS.register();
         ITEMS.register();
@@ -68,8 +103,10 @@ public final class ArcaneArmoryContent {
         RegisteredMaterial registered = new RegisteredMaterial(material);
 
         for (String blockId : material.blockIds()) {
-            RegistrySupplier<Block> block = BLOCKS.register(blockId, key -> new Block(blockProperties(key)));
+            Block template = blockTemplate(material, blockId);
+            RegistrySupplier<Block> block = BLOCKS.register(blockId, key -> new Block(copyOf(template, key)));
             registered.blocks.add(new RegisteredBlock(blockId, block));
+            REGISTERED_BLOCKS.put(blockId, block);
             RegistrySupplier<Item> item = ITEMS.register(blockId, key -> new BlockItem(block.get(), itemProperties(key)));
             REGISTERED_ITEMS.put(blockId, item);
         }
@@ -83,12 +120,18 @@ public final class ArcaneArmoryContent {
         return registered;
     }
 
-    private static void registerStandaloneBlock(String id, boolean withItem) {
-        RegistrySupplier<Block> block = BLOCKS.register(id, key -> new Block(blockProperties(key)));
-        if (withItem) {
-            RegistrySupplier<Item> item = ITEMS.register(id, key -> new BlockItem(block.get(), itemProperties(key)));
-            REGISTERED_ITEMS.put(id, item);
+    // Matches the original release: ores behave like iron ore, raw blocks like raw iron, storage like diamond.
+    private static Block blockTemplate(ArcaneMaterial material, String blockId) {
+        if (blockId.equals("deepslate_" + material.id() + "_ore")) {
+            return Blocks.DEEPSLATE_IRON_ORE;
         }
+        if (blockId.equals(material.id() + "_ore")) {
+            return Blocks.IRON_ORE;
+        }
+        if (blockId.equals("raw_" + material.id() + "_block")) {
+            return Blocks.RAW_IRON_BLOCK;
+        }
+        return Blocks.DIAMOND_BLOCK;
     }
 
     private static Item createItem(ArcaneMaterial material, String id, ResourceKey<Item> key) {
@@ -117,8 +160,8 @@ public final class ArcaneArmoryContent {
         //? if >=1.21.2 {
         Item.Properties properties = new Item.Properties().setId(key);
         //?} else {
-        Item.Properties properties = new Item.Properties();
-        //?}
+        /*Item.Properties properties = new Item.Properties();
+        *///?}
         //? if >=26.3 {
         /*String path = key.identifier().getPath();
         if (path.equals("solarflare_gem") || path.equals("solarflare_gem_block")) {
@@ -131,15 +174,29 @@ public final class ArcaneArmoryContent {
         return properties;
     }
 
-    private static BlockBehaviour.Properties blockProperties(ResourceKey<Block> key) {
+    private static BlockBehaviour.Properties copyOf(Block template, ResourceKey<Block> key) {
         //? if >=1.21.2 {
-        return BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).setId(key);
+        return BlockBehaviour.Properties.ofFullCopy(template).setId(key);
         //?} else if >=1.21 {
-        return BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK);
-        //?} else {
-        return BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK);
-        //?}
+        /*return BlockBehaviour.Properties.ofFullCopy(template);
+        *///?} else {
+        /*return BlockBehaviour.Properties.copy(template);
+        *///?}
     }
+
+    //? if >=1.20.5 {
+    private static Holder<MobEffect> arcantheStewEffect() {
+        //? if >=1.21.5 {
+        return MobEffects.SPEED;
+        //?} else {
+        /*return MobEffects.MOVEMENT_SPEED;
+        *///?}
+    }
+    //?} else {
+    /*private static MobEffect arcantheStewEffect() {
+        return MobEffects.MOVEMENT_SPEED;
+    }
+    *///?}
 
     public static final class RegisteredMaterial {
         private final ArcaneMaterial material;

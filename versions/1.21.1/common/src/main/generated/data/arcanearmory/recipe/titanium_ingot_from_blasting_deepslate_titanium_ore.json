@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:deepslate_titanium_ore"
   },
-  "result": "arcanearmory:titanium_ingot"
+  "result": {
+    "id": "arcanearmory:titanium_ingot"
+  }
 }

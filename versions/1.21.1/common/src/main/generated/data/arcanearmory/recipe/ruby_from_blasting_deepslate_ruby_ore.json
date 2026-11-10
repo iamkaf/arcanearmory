@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:deepslate_ruby_ore"
   },
-  "result": "arcanearmory:ruby"
+  "result": {
+    "id": "arcanearmory:ruby"
+  }
 }

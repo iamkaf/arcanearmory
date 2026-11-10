@@ -7,5 +7,7 @@
   "ingredient": {
     "item": "arcanearmory:raw_ruby"
   },
-  "result": "arcanearmory:ruby"
+  "result": {
+    "id": "arcanearmory:ruby"
+  }
 }
